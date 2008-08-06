@@ -1,10 +1,10 @@
 # version info : code from -- http://wiki.qtcentre.org/index.php?title=Version_numbering_using_QMake
-VERSION = 444 # $$system(svn info -r HEAD . | grep 'Changed\ Rev' | cut -b 19-)
-#!isEmpty(VERSION){
-	VERSION = 2.$${VERSION}
+VERSION = $$system(svn info -r HEAD . | grep 'Changed\ Rev' | cut -b 19-)
+!isEmpty(VERSION){
+	VERSION = 3.$${VERSION}
 	VERSTR = '\\"$${VERSION}\\"'  # place quotes around the version string
 	DEFINES += VER=\"$${VERSTR}\" # create a VER macro containing the version string
-#} 
+} 
 
 #qt version 
 QTVERSION = $$[QT_VERSION]
