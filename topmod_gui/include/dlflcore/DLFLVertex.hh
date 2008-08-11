@@ -41,13 +41,13 @@
 
 namespace DLFL {
   
-  class DLFLVertex {
+  class DLFLVertex : public NextOnFreeList {
   private:
     static NextOnFreeList *vertex_pool;
   public :
     static void setLastID( uint id ) {
       if( id > suLastID )
-	suLastID = id;
+        suLastID = id;
     };
 
     // Override new operator
@@ -96,9 +96,10 @@ namespace DLFL {
     };
 
   protected :
-    static uint suLastID;                             // Distinct ID for each instance
-    // The last assigned ID is stored in this
     // class variable
+    // To assign distinct ID for each instance, the last assigned ID is
+    // stored in this static variable.
+    static uint suLastID;
 
     // Generate a new unique ID
     static uint newID(void) {
@@ -108,62 +109,68 @@ namespace DLFL {
     };
      
   public :
-    Vector3d             coords;                     // Coordinates of vertex
-    uint ismarked;
-    uint		   isvisited;		       // flag for traverse - ozgur
-    unsigned long         flags;                      // Variable for general use to store flags, etc.
-    uint		   CHullIndex;		       // Index used for convex hull - Esan
+    Vector3d coords; // Coordinates of vertex.
+    uint ismarked; // flag for traverse - ozgur.
+    uint isvisited; // Variable for general use to store flags, etc.
+    unsigned long flags;
+    uint CHullIndex; // Index used for convex hull - Esan.
 
   protected :
-    uint                  uID;                        // ID for this DLFLVertex
-    uint                  index;                      // Index for use in file output
-    DLFLFaceVertexPtrList fvpList;                    // List of DLFLFaceVertexes which
+    uint uID; // ID for this DLFLVertex
+    uint index; // Index for use in file output
+    Vector3d auxcoords; // Coords for use during subdivs, etc.
+    Vector3d auxnormal; // Extra storage for normal
+    Vector3d normal; // Average normal at this vertex
+    DLFLFaceVertexPtrList fvpList; // List of DLFLFaceVertexes which
     // refer to this DLFLVertex
-    DLFLVertexType        vtType;                     // For use in subdivision surfaces
-    Vector3d              auxcoords;                  // Coords for use during subdivs, etc.
-    Vector3d              auxnormal;                  // Extra storage for normal
-    Vector3d              normal;                     // Average normal at this vertex
+    DLFLVertexType vtType; // For use in subdivision surfaces
 
     // Assign a unique ID for this instance
     void assignID(void) {
       uID = DLFLVertex :: newID();
       index = 0;
       ismarked = 0;
-		 isvisited = 0;
-
+      isvisited = 0;
     };
 
   public :
     // Default constructor
-    DLFLVertex() 
-      : coords(), flags(0), fvpList(), vtType(VTNormal), auxcoords(), auxnormal(), normal()
-    { assignID(); }
+    DLFLVertex() : coords(), flags(0), fvpList(), vtType(VTNormal),
+                   auxcoords(), auxnormal(), normal() {
+      assignID();
+    }
     
     // 1 argument constructor
-    DLFLVertex(const Vector3d& vec)
-      : coords(vec), flags(0), fvpList(), vtType(VTNormal), auxcoords(), auxnormal(), normal()
-    { assignID(); }
+    DLFLVertex(const Vector3d& vec) : coords(vec), flags(0), fvpList(),
+        vtType(VTNormal), auxcoords(), auxnormal(), normal() {
+      assignID();
+    }
 
     // 3 argument constructor
-    DLFLVertex(double x, double y, double z)
-      : coords(x,y,z), flags(0), fvpList(), vtType(VTNormal), auxcoords(), auxnormal(), normal()
-    { assignID(); }
+    DLFLVertex(double x, double y, double z) : coords(x,y,z), flags(0),
+        fvpList(), vtType(VTNormal), auxcoords(), auxnormal(), normal() {
+      assignID();
+    }
   
     // Copy constructor
-    DLFLVertex(const DLFLVertex& dv)
-      : coords(dv.coords), flags(dv.flags),
-	uID(dv.uID), index(dv.index), fvpList(dv.fvpList), vtType(dv.vtType),
-	auxcoords(dv.auxcoords), auxnormal(dv.auxnormal), normal(dv.normal)
-    {}
+    DLFLVertex(const DLFLVertex& dv) : coords(dv.coords), flags(dv.flags),
+        uID(dv.uID), index(dv.index), fvpList(dv.fvpList), vtType(dv.vtType),
+        auxcoords(dv.auxcoords), auxnormal(dv.auxnormal), normal(dv.normal) {}
   
     // Destructor
     ~DLFLVertex() {}
 
     // Assignment operator
     DLFLVertex& operator = (const DLFLVertex& dv) {
-      coords = dv.coords; flags = dv.flags;
-      uID = dv.uID; index = dv.index; fvpList = dv.fvpList; vtType = dv.vtType;
-      auxcoords = dv.auxcoords; auxnormal = dv.auxnormal; normal = dv.normal;
+      coords = dv.coords;
+      flags = dv.flags;
+      uID = dv.uID;
+      index = dv.index;
+      fvpList = dv.fvpList;
+      vtType = dv.vtType;
+      auxcoords = dv.auxcoords;
+      auxnormal = dv.auxnormal;
+      normal = dv.normal;
       return (*this);
     }
 
@@ -409,7 +416,8 @@ namespace DLFL {
 
     // Write this vertex in DLFL format and set it's index value
     void writeDLFL(ostream& o, uint newindex) {
-      double x,y,z; coords.get(x,y,z);
+      double x,y,z;
+      coords.get(x,y,z);
       o << "v " << x << ' ' << y << ' ' << z << endl;
       index = newindex;
     }
@@ -456,7 +464,6 @@ namespace DLFL {
   void vertexTrace(const DLFLVertex& vertex);
   istream& operator >> (istream& i, DLFLVertex& dv);
   ostream& operator << (ostream& o, const DLFLVertex& dv);
-
 
 } // end namespace
 

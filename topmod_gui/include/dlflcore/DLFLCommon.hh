@@ -38,6 +38,7 @@
 #include <vector>
 #include <list>
 #include <ext/hash_map>
+#include <ext/hash_set>
 #include <algorithm>
 #include <iterator>
 #include <Vector2d.hh>
@@ -242,4 +243,20 @@ namespace DLFL {
 
 } // end namespace
 
+namespace __gnu_cxx {
+  template<> struct hash<DLFL::DLFLVertexPtr>
+  { size_t operator()(DLFL::DLFLVertexPtr p) {return reinterpret_cast<size_t>(p);} };
+  template<> struct hash<DLFL::DLFLEdgePtr>
+  { size_t operator()(DLFL::DLFLEdgePtr p) {return reinterpret_cast<size_t>(p);} };
+  template<> struct hash<DLFL::DLFLFacePtr>
+  { size_t operator()(DLFL::DLFLFacePtr p) {return reinterpret_cast<size_t>(p);} };
+}
+namespace DLFL {
+  typedef __gnu_cxx::hash_set<DLFLVertexPtr> DLFLVertexPtrSet;
+  typedef __gnu_cxx::hash_set<DLFLEdgePtr> DLFLEdgePtrSet;
+  typedef __gnu_cxx::hash_set<DLFLFacePtr> DLFLFacePtrSet;
+  typedef __gnu_cxx::hash_map<DLFLVertexPtr, DLFLVertexPtr> DLFLVertexPtrMap;
+  typedef __gnu_cxx::hash_map<DLFLEdgePtr, DLFLEdgePtr> DLFLEdgePtrMap;
+  typedef __gnu_cxx::hash_map<DLFLFacePtr, DLFLFacePtr> DLFLFacePtrMap;
+}
 #endif /* #ifndef _DLFL_COMMON_HH_ */

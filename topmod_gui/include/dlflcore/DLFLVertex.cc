@@ -281,10 +281,10 @@ namespace DLFL {
       fvp = (*first); ++first;
       ep = fvp->getEdgePtr();
       if ( ep != NULL ) {
-  ofvp = ep->getOtherFaceVertexPtr(fvp);
-  if ( ofvp && ofvp->vertex == vp ) {
-    retep = ep; break;
-  }
+        ofvp = ep->getOtherFaceVertexPtr(fvp);
+        if ( ofvp && ofvp->vertex == vp ) {
+          retep = ep; break;
+        }
       }
     }
     return retep;

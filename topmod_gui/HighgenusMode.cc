@@ -71,8 +71,6 @@ CreateTorusTool::CreateTorusTool(QWidget *parent) {
 	num_segment_spin_ = createDoubleSpinBox(
       layout_, createTorusNumSegmentsLabel, 
       tr("# Segments"), 3, 100, 1, 8, 0, 0,0);
-	connect(num_segment_spin_, SIGNAL(valueChanged(double)), this,
-          SLOT(ChangeNumSegments(double)));
 
 	QLabel *createTorusRadiusLabel = new QLabel(this);
 	radius_spin_ = createDoubleSpinBox(

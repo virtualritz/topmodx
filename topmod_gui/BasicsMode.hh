@@ -55,6 +55,51 @@ class QGroupBox;
 class QCheckBox;
 class QLabel;
 
+// Declarition of the class DupComponentTool.
+// We should move it to a file named dup_component_tool.hh later.
+// I will create a super class for all the tools. -- Fenghui
+class DupComponentTool : public QWidget {
+  Q_OBJECT // does it have to be a Q_OBJECT?
+
+ public:
+  QAction *action_;
+  QWidget *widget_;
+  QGridLayout *layout_;
+
+  DupComponentTool(QWidget *parent);
+
+ protected:
+  QWidget *parent_;
+
+  QLabel *translation_x_label_;
+  QLabel *translation_y_label_;
+  QLabel *translation_z_label_;
+  QLabel *rotation_x_label_;
+  QLabel *rotation_y_label_;
+  QLabel *rotation_z_label_;
+  QLabel *scaling_x_label_;
+  QLabel *scaling_y_label_;
+  QLabel *scaling_z_label_;
+
+	QDoubleSpinBox *translation_x_spin_;
+	QDoubleSpinBox *translation_y_spin_;
+	QDoubleSpinBox *translation_z_spin_;
+	QDoubleSpinBox *rotation_x_spin_;
+	QDoubleSpinBox *rotation_y_spin_;
+	QDoubleSpinBox *rotation_z_spin_;
+	QDoubleSpinBox *scaling_x_spin_;
+	QDoubleSpinBox *scaling_y_spin_;
+	QDoubleSpinBox *scaling_z_spin_;
+
+  QPushButton *apply_button_;
+
+ public slots:
+  // We might not need a parameter for DoAction since it will grab parameters
+  // from the controls directly.
+  void Apply();
+  void Activate();
+};
+
 // Declarition of the class GeometricTool.
 // We should move it to a file named geometric_tool.hh later.
 // I will create a super class for all the tools. -- Fenghui
@@ -158,6 +203,7 @@ private:
 	QWidget *mParent;
 	QMenu *mBasicsMenu;	
   GeometricTool *geometric_tool_;
+  DupComponentTool *dup_component_tool_;
 	
 	QLabel *numSubdivsLabel;
 	QDoubleSpinBox *numSubdivsSpinBox;
