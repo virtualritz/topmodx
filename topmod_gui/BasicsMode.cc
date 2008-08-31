@@ -53,7 +53,6 @@
 	\see BasicsMode
 */
 
-
 // This function should be a member function of the super class for all tools.
 QDoubleSpinBox *createDoubleSpinBox(
     QGridLayout *layout, QLabel *label, QString s, double low, double high,
@@ -68,7 +67,7 @@ QDoubleSpinBox *createDoubleSpinBox(
 	spinbox->setDecimals(decimals);
 	spinbox->setMaximumSize(75,25);
 	layout->addWidget(label,row,col);
-  layout->addWidget(spinbox,row,col+1);
+    layout->addWidget(spinbox,row,col+1);
 
 	return spinbox;
 }

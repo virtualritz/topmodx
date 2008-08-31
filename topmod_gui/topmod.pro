@@ -1,10 +1,11 @@
 # version info : code from -- http://wiki.qtcentre.org/index.php?title=Version_numbering_using_QMake
 VERSION = $$system(svn info -r HEAD . | grep 'Changed\ Rev' | cut -b 19-)
-!isEmpty(VERSION){
-	VERSION = 3.0.$${VERSION}
-	VERSTR = '\\"$${VERSION}\\"'  # place quotes around the version string
-	DEFINES += VER=\"$${VERSTR}\" # create a VER macro containing the version string
-} 
+!isEmpty(VERSION)
+    {
+    	VERSION = 3.0.$${VERSION}
+    	VERSTR = '\\"$${VERSION}\\"'  # place quotes around the version string
+    	DEFINES += VER=\"$${VERSTR}\" # create a VER macro containing the version string
+    } 
 
 #qt version 
 QTVERSION = $$[QT_VERSION]
@@ -42,126 +43,135 @@ OBJECTS_DIR = tmp
 # TopModd will be the name for the debug version, 
 # and TopMod will be the release version
 CONFIG(release, debug|release) {
- TARGET = TopMod# -$${VERSION}
-} else {
- TARGET = TopMod# -$${VERSION}
-}
+        TARGET = TopMod# -$${VERSION}
+    } else {
+        TARGET = TopMod# -$${VERSION}
+    }
 
-DEPENDPATH += \
-	   lang \
-	   include \
-	   include/Graphics \ 
-	   include/Light \
-	   include/vecmat \
-	   include/dlflcore \
-	   include/dlflaux \
-	   include/verse 
+DEPENDPATH +=  \
+        	   lang \
+        	   include \
+        	   include/Graphics \ 
+        	   include/Light \
+        	   include/vecmat \
+        	   include/dlflcore \
+        	   include/dlflaux \
+        	   include/verse 
 
-INCLUDEPATH += \
-	    include \	      
-	    include/Graphics \ 
-	    include/Light \
-	    include/vecmat \
-	    # include/arcball \
-	    include/dlflcore \
-	    include/dlflaux 
+INCLUDEPATH +=  \
+        	    include \	      
+        	    include/Graphics \ 
+        	    include/Light \
+        	    include/vecmat \
+        	    # include/arcball \
+        	    include/dlflcore \
+        	    include/dlflaux 
 
-CONFIG(WITH_PYTHON){
-	message("PYTHON support will be included")
-	DEFINES *= WITH_PYTHON
-}
+CONFIG(WITH_PYTHON) {
+    	message("PYTHON support will be included")
+    	DEFINES *= WITH_PYTHON
+    }
 
-CONFIG(WITH_SPACENAV){
-	message("SPACENAV support will be included")
-	DEFINES *= WITH_SPACENAV
-}
+CONFIG(WITH_SPACENAV) {
+    	message("SPACENAV support will be included")
+    	DEFINES *= WITH_SPACENAV
+    }
 
 macx {
-	#mac icon when not using a custom info.plist file
-	ICON = topmod.icns
-		
-	# either compile the mac version as an app bundle or a console app
-	# tell it to load a custom info.plist file here
-	QMAKE_INFO_PLIST    = Info.plist
-	MACOSX_DEPLOYMENT_TARGET = 10.2
-	# compile release + universal binary 
-	CONFIG += x86 ppc
+        #dave - testing the macx / linux / win32 define
+        DEFINES *= MACX
+        
+    	#mac icon when not using a custom info.plist file
+    	ICON = topmod.icns
+    		
+    	# either compile the mac version as an app bundle or a console app
+    	# tell it to load a custom info.plist file here
+    	QMAKE_INFO_PLIST    = Info.plist
+    	MACOSX_DEPLOYMENT_TARGET = 10.2
+    	# compile release + universal binary 
+    	CONFIG += x86 ppc
 
-	CONFIG(GPU_OK){# for cg gpu shading
-		INCLUDEPATH += /Library/Frameworks/Cg.framework/Versions/1.0 
-		QMAKE_LFLAGS += -L/Library/Frameworks/Cg.framework 
-		LIBS += -framework Cg
-	}
+    	CONFIG(GPU_OK){# for cg gpu shading
+    		INCLUDEPATH += /Library/Frameworks/Cg.framework/Versions/1.0 
+    		QMAKE_LFLAGS += -L/Library/Frameworks/Cg.framework 
+    		LIBS += -framework Cg
+    	}
 
-	#QMAKE_LFLAGS += -F./lib	
-	#LIBS += -framework vecmat -framework dlflcore -framework dlflaux
-	QMAKE_LFLAGS += -L./lib
-	LIBS += -lvecmat -ldlflcore -ldlflaux -framework CoreFoundation
+    	#QMAKE_LFLAGS += -F./lib	
+    	#LIBS += -framework vecmat -framework dlflcore -framework dlflaux
+    	QMAKE_LFLAGS += -L./lib
+    	LIBS += -lvecmat -ldlflcore -ldlflaux -framework CoreFoundation
 
-	#PRIVATE_FRAMEWORKS.files = ./lib/vecmat.framework ./lib/dlflcore.framework ./lib/dlflaux.framework
-	#PRIVATE_FRAMEWORKS.path = Contents/Frameworks
-	#QMAKE_BUNDLE_DATA += PRIVATE_FRAMEWORKS
+    	#PRIVATE_FRAMEWORKS.files = ./lib/vecmat.framework ./lib/dlflcore.framework ./lib/dlflaux.framework
+    	#PRIVATE_FRAMEWORKS.path = Contents/Frameworks
+    	#QMAKE_BUNDLE_DATA += PRIVATE_FRAMEWORKS
 
-	INCLUDEPATH += /usr/include
-	QMAKE_LFLAGS += -L/usr/lib
+    	INCLUDEPATH += /usr/include
+    	QMAKE_LFLAGS += -L/usr/lib
 
-	CONFIG(WITH_PYTHON){
-		INCLUDEPATH += /Library/Frameworks/Python.framework/Versions/2.5/include/python2.5 
-		QMAKE_LFLAGS += -L/Library/Frameworks/Python.framework 
-		LIBS += -framework Python
-	}
-	CONFIG(WITH_SPACENAV){
-		INCLUDEPATH += /Library/Frameworks/3DconnexionClient.framework/Versions/A/Headers
-		LIBS += -framework 3DconnexionClient
-		QMAKE_LFLAGS += -L/Library/Frameworks/3DconnexionClient.framework 
-	}
-} else:unix {
-	CONFIG -= WITH_SPACENAV
-	QMAKE_LFLAGS += -L./lib
-	LIBS += -lvecmat -ldlflcore -ldlflaux
-	DEFINES *= LINUX
-	
-	CONFIG(WITH_PYTHON){
-		INCLUDEPATH += /usr/include/python2.5
-		LIBS += -lpython2.5 -L/usr/lib/python2.5/config
-	}
-	CONFIG(WITH_SPACENAV){
+    	CONFIG(WITH_PYTHON){
+    		INCLUDEPATH += /Library/Frameworks/Python.framework/Versions/2.5/include/python2.5 
+    		QMAKE_LFLAGS += -L/Library/Frameworks/Python.framework 
+    		LIBS += -framework Python
+    	}
+    	CONFIG(WITH_SPACENAV){
+    		INCLUDEPATH += /Library/Frameworks/3DconnexionClient.framework/Versions/A/Headers
+    		LIBS += -framework 3DconnexionClient
+    		QMAKE_LFLAGS += -L/Library/Frameworks/3DconnexionClient.framework 
+    	}
+    } else:unix {
+        #dave - testing the macx / linux / win32 define
+        DEFINES *= UNIX
+        
+    	CONFIG -= WITH_SPACENAV
+    	QMAKE_LFLAGS += -L./lib
+    	LIBS += -lvecmat -ldlflcore -ldlflaux
+    	DEFINES *= LINUX
+    	
+    	CONFIG(WITH_PYTHON){
+    		INCLUDEPATH += /usr/include/python2.5
+    		LIBS += -lpython2.5 -L/usr/lib/python2.5/config
+    	}
+    	CONFIG(WITH_SPACENAV){
 
-	}
-} else:win32 {
+    	}
+    } else:win32 {
 
-	# TopModd will be the name for the debug version, 
-	# and TopMod will be the release version
-	CONFIG(release, debug|release) {
-	 TARGET = TopMod# -$${VERSION}
-	} else {
-	 TARGET = TopMod# -$${VERSION}
-	}
-	
-	#application icon windows
-	RC_FILE = topmod.rc
+        #dave - testing the macx / linux / win32 define
+        DEFINES *= WIN32
+        
+    	# TopModd will be the name for the debug version, 
+    	# and TopMod will be the release version
+    	CONFIG(release, debug|release) {
+    	 TARGET = TopMod# -$${VERSION}
+    	} else {
+    	 TARGET = TopMod# -$${VERSION}
+    	}
+    	
+    	#application icon windows
+    	RC_FILE = topmod.rc
 
-	CONFIG -= WITH_SPACENAV
+    	CONFIG -= WITH_SPACENAV
 
-	INCLUDEPATH += ./lib
-	QMAKE_LFLAGS += -L./lib
-	# INCLUDEPATH += C:/topmod/topmodx/lib
-	# QMAKE_LFLAGS += -LC:/topmod/topmodx/lib
-	LIBS += -lvecmat -ldlflcore -ldlflaux
+    	INCLUDEPATH += ./lib
+    	QMAKE_LFLAGS += -L./lib
+    	# INCLUDEPATH += C:/topmod/topmodx/lib
+    	# QMAKE_LFLAGS += -LC:/topmod/topmodx/lib
+    	LIBS += -lvecmat -ldlflcore -ldlflaux
 
-	CONFIG(WITH_PYTHON){
-	 INCLUDEPATH += C:/Python25/include
-	 QMAKE_LFLAGS += -LC:/Python25/libs
+    	CONFIG(WITH_PYTHON){
+    	 INCLUDEPATH += C:/Python25/include
+    	 QMAKE_LFLAGS += -LC:/Python25/libs
 
-	 LIBS += -lpython25
-	}
-	CONFIG (GPU_OK){
-		
-	}
-	CONFIG(WITH_SPACENAV){
+    	 LIBS += -lpython25
+    	}
+    	CONFIG (GPU_OK){
+    		
+    	}
+    	CONFIG(WITH_SPACENAV){
 
-	}
-}
+    	}
+    }
 
 # Input
 HEADERS += \

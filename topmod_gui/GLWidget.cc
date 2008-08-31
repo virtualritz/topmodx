@@ -1514,228 +1514,45 @@ void GLWidget::wheelEvent(QWheelEvent *event) {
 	// double z;
 	mCamera->HandleMouseWheel(event->delta(), width(),height());
 	repaint();
-
-	// if ( viewport.current() == VPRotate) {
-	// 	viewport.handle_rotate(VPRelease,x,y); // Stop rotating
-	// 	//viewport.handle_zoom(VPPush,x,y); // Start zooming
-	// 	//QCursor::setShape(Qt::SizeAllCursor);
-	// } 
-	// else  if ( 	!(QApplication::keyboardModifiers() == Qt::AltModifier) && 
-	// 						!(QApplication::keyboardModifiers() == Qt::ShiftModifier) &&
-	// 						!(QApplication::keyboardModifiers() == (Qt::ShiftModifier | Qt::AltModifier) ) ){
-	// 	// QMessageBox::about(this, tr("false"),tr("numDegrees = %1").arg(numDegrees));
-	// 	viewport.handle_zoom(VPPush,x,y); // Start zooming
-	// 	viewport.send_to_current(VPPush,x,y);
-	// 	// updateGL();
-	// 	repaint();
-	// 
-	// 	viewport.handle_zoom(VPPush,x+numDegrees*3,y); // Start zooming
-	// 	//QMessageBox::about(this, tr("false"),tr("z = %1").arg(z));
-	// 	viewport.send_to_current(VPPush,x,y);		
-	// 	viewport.handle_zoom(VPRelease,x+numDegrees,y); // Start zooming
-	// 	viewport.send_to_current(VPRelease,x,y);		
-	// 	//updateGL();
-	// 	repaint();
-	// 
-	// 	// 	//QCursor::setShape(Qt::SizeAllCursor);
-	// }
-	// else  if ( QApplication::keyboardModifiers() == Qt::ShiftModifier ){
-	// 
-	// 	viewport.handle_pan(VPPush,x,y); 
-	// 	viewport.send_to_current(VPPush,x,y);
-	// 
-	// 	viewport.handle_pan(VPPush,x+numDegrees*2,y);
-	// 	viewport.send_to_current(VPPush,x,y);		
-	// 
-	// 	viewport.handle_pan(VPRelease,x+numDegrees*2,y);
-	// 	viewport.send_to_current(VPRelease,x,y);
-	// 
-	// 	//updateGL();
-	// 	repaint();
-	// }
-	// else  if ( QApplication::keyboardModifiers() == Qt::AltModifier ){
-	// 
-	// 	viewport.handle_pan(VPPush,x,y); // Start panning up and down
-	// 	viewport.send_to_current(VPPush,x,y);
-	// 
-	// 	viewport.handle_pan(VPPush,x,y+numDegrees*2); // Start panning up and down		
-	// 	viewport.send_to_current(VPPush,x,y);		
-	// 
-	// 	viewport.handle_pan(VPRelease,x,y+numDegrees*2); // Start panning up and down
-	// 	viewport.send_to_current(VPRelease,x,y);
-	// 
-	// 	//updateGL();
-	// 	repaint();
-	// }
-	// else  if ( QApplication::keyboardModifiers() == (Qt::AltModifier | Qt::ShiftModifier) ){
-	// 
-	// 	viewport.handle_rotate(VPPush,x,y); 
-	// 	viewport.send_to_current(VPPush,x,y);
-	// 
-	// 	viewport.handle_rotate(VPPush,x+numDegrees*2,y); 
-	// 	viewport.send_to_current(VPPush,x,y);		
-	// 
-	// 	viewport.handle_rotate(VPRelease,x+numDegrees*2,y); 
-	// 	viewport.send_to_current(VPRelease,x,y);
-	// 
-	// 	//updateGL();
-	// 	repaint();
-	// }
-	// else  if ( QApplication::keyboardModifiers() == (Qt::ShiftModifier | Qt::MetaModifier) ){
-	// 
-	// 	viewport.handle_rotate(VPPush,x,y); 
-	// 	viewport.send_to_current(VPPush,x,y);
-	// 
-	// 	viewport.handle_rotate(VPPush,x,y+numDegrees*2); 
-	// 	viewport.send_to_current(VPPush,x,y);		
-	// 
-	// 	viewport.handle_rotate(VPRelease,x,y+numDegrees*2); 
-	// 	viewport.send_to_current(VPRelease,x,y);
-	// 
-	// 	//updateGL();
-	// 	repaint();
-	// }
 }
 void GLWidget::mousePressEvent(QMouseEvent *event) {
 	
 	if ( QApplication::keyboardModifiers() == Qt::AltModifier || 
-       event->buttons() == Qt::MidButton ||
-			(event->buttons() == Qt::LeftButton && QApplication::keyboardModifiers() == (Qt::ShiftModifier | Qt::AltModifier)) ){
-		mCamera->HandleMouseEvent(event->button(), event->type(), event->x(), event->y());
-		repaint();	
-	}	
+       //event->buttons() == Qt::MidButton ||
+			(event->buttons() == Qt::LeftButton && QApplication::keyboardModifiers() == (Qt::ShiftModifier | Qt::AltModifier)) )
+        {
+            mCamera->HandleMouseEvent(event->button(), event->type(), event->x(), event->y());
+            repaint();	
+        }	
 	else event->ignore();
-	
-	// if ( QApplication::keyboardModifiers() == Qt::AltModifier ) {
-	// 	int x = event->x(), y = event->y();
-	// 
-	// 	if ( event->buttons() == Qt::LeftButton ) {
-	// 		if ( viewport.current() == VPPan) {
-	// 			viewport.handle_pan(VPRelease,x,y); // Stop panning
-	// //viewport.handle_rotate(VPPush,x,y); // Start rotating
-	// 			setCursor(Qt::ArrowCursor);
-	// 		}
-	// 		else {
-	// 			viewport.handle_rotate(VPPush,x,y); // Start rotating
-	// // 	set the qt cursor - make a custom cursor later
-	// 			setCursor(Qt::CrossCursor);
-	// 		}
-	// 		// 	viewport.send_to_current(GLWidget::translateEvent(event),x,y);
-	// 		// 	this->updateGL();
-	// 
-	// 	} 
-	// 	else if ( event->buttons() == Qt::RightButton ) {
-	// 		if ( viewport.current() == VPRotate) {
-	// 			viewport.handle_rotate(VPRelease,x,y); // Stop rotating
-	// //viewport.handle_zoom(VPPush,x,y); // Start zooming
-	// 			setCursor(Qt::ArrowCursor);
-	// 		} 
-	// 		else {
-	// 			viewport.handle_zoom(VPPush,x,y); // Start zooming
-	// 			setCursor(Qt::SizeAllCursor);
-	// 		}
-	// 	}
-	// 	else if ( event->buttons() == Qt::MidButton ) {
-	// 		if ( viewport.current() == VPRotate ) {
-	// 			viewport.handle_rotate(VPRelease,x,y); // Stop rotating
-	// //viewport.handle_pan(VPPush,x,y);
-	// 			setCursor(Qt::ArrowCursor);
-	// 		} 
-	// 		else {
-	// 			viewport.handle_pan(VPPush,x,y); // Start panning
-	// 			setCursor(Qt::CrossCursor);
-	// 		}
-	// 	}
-	// }
-	// else if ( (event->buttons() == Qt::LeftButton && QApplication::keyboardModifiers() == (Qt::ShiftModifier | Qt::AltModifier)) ){
-	// 	int x = event->x(), y = event->y();
-	// 
-	// 	if ( viewport.current() == VPRotate ) {
-	// 		viewport.handle_rotate(VPRelease,x,y); // Stop rotating
-	// 		//viewport.handle_pan(VPPush,x,y);
-	// 		setCursor(Qt::ArrowCursor);
-	// 	} 
-	// 	else {
-	// 		viewport.handle_pan(VPPush,x,y); // Start panning
-	// 		setCursor(Qt::CrossCursor);
-	// 	}
-	// }
-	// else if ( event->buttons() == Qt::RightButton && QApplication::keyboardModifiers() == Qt::ShiftModifier){
-	// 	// event->ignore();
-	// 	if (!isBrushVisible()) showBrush();
-	// 	mBrushStartX = event->x();
-	// 	// mBrushStartY = event->y();
-	// }
-	// else event->ignore();
-
 }
 
 // this has been modified for the QT interface, so it handles focus automatically
 void GLWidget::mouseMoveEvent(QMouseEvent *event) {	
-	if (QApplication::keyboardModifiers() == Qt::AltModifier || 
-			event->buttons() == Qt::LeftButton && QApplication::keyboardModifiers() == (Qt::ShiftModifier | Qt::AltModifier) ||// ) {
-			event->buttons() == Qt::MidButton) {// && QApplication::keyboardModifiers() == (Qt::ControlModifier | Qt::AltModifier)) {
-		mCamera->HandleMouseMotion(event->x(),event->y(), width(), height() );
-		repaint();	
-	}	
-	else event->ignore();
-	
-	// int x = event->x(), y = event->y();
-	// if (isBrushVisible()) repaint();
-	// 
-	// 
-	// if ( QApplication::keyboardModifiers() == Qt::AltModifier ) {
-	// 	if ( viewport.send_to_current(GLWidget::translateEvent(event),x,y) ) {
-	// 		repaint();
-	// 	}
-	// } 
-	// else if ( QApplication::keyboardModifiers() == (Qt::AltModifier | Qt::ShiftModifier) ) {
-	// 	if ( viewport.send_to_current(GLWidget::translateEvent(event),x,y) ) {
-	// 		repaint();
-	// 	}
-	// }
-	// else if ( event->buttons() == Qt::RightButton && QApplication::keyboardModifiers() == Qt::ShiftModifier){
-	// 	// event->ignore();
-	// 	setBrushSize(mBrushSize+event->x()-mBrushStartX);
-	// }
-	// else event->ignore();
+	if (event->buttons() == Qt::MidButton ||
+        event->buttons() == Qt::LeftButton && QApplication::keyboardModifiers() == Qt::AltModifier || 
+		event->buttons() == Qt::RightButton && QApplication::keyboardModifiers() == Qt::AltModifier || 
+		event->buttons() == Qt::LeftButton && QApplication::keyboardModifiers() == (Qt::ShiftModifier | Qt::AltModifier) ||
+		event->buttons() == Qt::MidButton  && QApplication::keyboardModifiers() == (Qt::AltModifier))
+        {
+            // 
+            mCamera->HandleMouseMotion(event->x(),event->y(), width(), height() );
+            repaint();	
+        } else event->ignore();
 }
 
 void GLWidget::mouseReleaseEvent(QMouseEvent *event) {
-	if ( QApplication::keyboardModifiers() == Qt::AltModifier || 
-       event->buttons() == Qt::MidButton ||
-			(event->buttons() == Qt::LeftButton && QApplication::keyboardModifiers() == (Qt::ShiftModifier | Qt::AltModifier)) ){
+    //
+	if (QApplication::keyboardModifiers() == Qt::AltModifier || 
+        event->buttons() == Qt::MidButton ||
+        event->buttons() == Qt::LeftButton && QApplication::keyboardModifiers() == (Qt::ShiftModifier | Qt::AltModifier) 
+       ) {
 		mCamera->HandleMouseEvent(event->button(), event->type(), event->x(), event->y());
 		repaint();	
 	}	
 	else event->ignore();
-
-	// int x = event->x(), y = event->y();
-	// if ( QApplication::keyboardModifiers() == Qt::AltModifier ) {
-	// 	if ( viewport.send_to_current(GLWidget::translateEvent(event),x,y) ) {
-	// 		//updateGL();
-	// 	repaint();
-	// 	}
-	// } 
-	// else if ( QApplication::keyboardModifiers() == (Qt::AltModifier | Qt::ShiftModifier) ) {
-	// 	if ( viewport.send_to_current(GLWidget::translateEvent(event),x,y) ) {
-	// 		//updateGL();
-	// 	repaint();
-	// 	}
-	// }
-	// else if ( event->buttons() == Qt::RightButton && QApplication::keyboardModifiers() == Qt::ShiftModifier){
-	// 	mBrushStartX = 0;
-	// 	// mBrushStartY = 0;
-	// }
-	// else event->ignore();
 }
 
-// void GLWidget::switchTo(VPView view){
-	// viewport.switchTo(view);
-	// 
-	// if ( view == VPPersp ) // Change camera settings to zoom in closer in perspective view
-	// 	viewport.setPerspView(10,10,10,0,0,0,0,1,0);
-// }
 //for vertex locator moving...
 void erase_dlp(DLFLLocatorPtr lp)  { delete lp; } // brianb
 

@@ -243,8 +243,7 @@ QColor MainWindow::paint_bucket_color = QColor(0.5,0.5,0.5);
  **/
 MainWindow::MainWindow(char *filename) : object(), mode(NormalMode), undoList(), undoMtlList(), redoList(), redoMtlList(), 
 																				 undolimit(20), useUndo(true), mIsModified(false), mIsPrimitive(false), mWasPrimitive(false), mSpinBoxMode(None) {
-																					
-																					
+
 	// i18n stuff
 	translator_es = new QTranslator(this);
 	translator_fr = new QTranslator(this);
@@ -264,7 +263,6 @@ MainWindow::MainWindow(char *filename) : object(), mode(NormalMode), undoList(),
 	QSettings::setPath(QSettings::IniFormat,QSettings::UserScope,QString("%APPDATA%"));
 	#endif
 	
-
 	// #ifdef __APPLE__
 	//mac icon
 	this->setWindowIcon(QIcon(":/images/topmod.png"));

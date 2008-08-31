@@ -259,49 +259,51 @@ void PerspCamera::SetProjection(int WinX, int WinY) {
 
 
 void PerspCamera::HandleMouseMotion(int x, int y,int WinX, int WinY) {
-  if(ALT_DOWN==1 || MOUSEBUTTON == Qt::MidButton){
-    Vector3d looking = EYE-CENTER;
-    Vector3d RIGHT = normalized(UP%looking);
-    float dist = norm(looking);
-    float viewWidth = dist;
-    float pixelToWorld = viewWidth/WinY;
-    Vector3d AXIS;
-    if(MOUSEBUTTON==Qt::LeftButton || MOUSEBUTTON == Qt::MidButton) {
-			// 		  if(SHIFT_DOWN==1) {
-			//         if(norm(CONSTRAINED_AXIS)==0){
-			//           if(abs(x-MOUSE[0])>abs(y-MOUSE[1]))
-			// 		  CONSTRAINED_AXIS=HOMEUP;
-			// 		else
-			// 		  CONSTRAINED_AXIS=RIGHT;
-			// 	}
-			// 	AXIS=((x-MOUSE[0])*UP*CONSTRAINED_AXIS+(y-MOUSE[1])*RIGHT*CONSTRAINED_AXIS)*normalized(CONSTRAINED_AXIS);
-			// }
-			// else
-			//if shift is pressed then do a pan
-			if (SHIFT_DOWN==1) {
-				CENTER = CENTER - RIGHT*(x-MOUSE[0])*pixelToWorld + UP*(y-MOUSE[1])*pixelToWorld;
-	      EYE = EYE - RIGHT*(x-MOUSE[0])*pixelToWorld + UP*(y-MOUSE[1])*pixelToWorld;
-      } else {
-	      AXIS = normalized((x-MOUSE[0])*UP + (y-MOUSE[1])*RIGHT);
-				
-	      Vector3d RtRot = normalized(AXIS%looking);
-	      float omega = -.005;
-	      float mouseDist = sqrt((x-MOUSE[0])*(x-MOUSE[0])+(y-MOUSE[1])*(y-MOUSE[1]));
-	      EYE = looking*cos(omega*mouseDist)+norm(looking)*RtRot*sin(omega*mouseDist);
-	      EYE=EYE+CENTER;
-	      RIGHT = normalized(RIGHT - (RIGHT*HOMEUP)*HOMEUP);
-	      UP = -normalized(RIGHT % looking);
-			}
-    } else if(MOUSEBUTTON==Qt::MidButton) {
-      CENTER = CENTER - RIGHT*(x-MOUSE[0])*pixelToWorld + UP*(y-MOUSE[1])*pixelToWorld;
-      EYE = EYE - RIGHT*(x-MOUSE[0])*pixelToWorld + UP*(y-MOUSE[1])*pixelToWorld;
-    } else if(MOUSEBUTTON==Qt::RightButton) {
-      EYE=EYE-(normalized(looking))*(x-MOUSE[0]+y-MOUSE[1])*pixelToWorld;
-    }
-  }
-  MOUSE[0]=x;
-  MOUSE[1]=y;
+    //only process mouse motion when ALT key is down (unless it's on linux, then process a middle click by itself
+    if(ALT_DOWN==1 
+        #ifdef unix
+        || MOUSEBUTTON == Qt::MidButton
+        #endif
+       ) {
+        Vector3d looking = EYE-CENTER;
+        Vector3d RIGHT = normalized(UP%looking);
+        float dist = norm(looking);
+        float viewWidth = dist;
+        float pixelToWorld = viewWidth/WinY;
+        Vector3d AXIS;
+        if(MOUSEBUTTON==Qt::LeftButton 
+           #ifdef unix
+           || MOUSEBUTTON == Qt::MidButton
+           #endif
+           ) {
+            //if shift is pressed then do a pan
+            if (SHIFT_DOWN==1) {
+                CENTER = CENTER - RIGHT*(x-MOUSE[0])*pixelToWorld + UP*(y-MOUSE[1])*pixelToWorld;
+                EYE = EYE - RIGHT*(x-MOUSE[0])*pixelToWorld + UP*(y-MOUSE[1])*pixelToWorld;
+            } else {
+                //if shift is not press do a rotate
+                AXIS = normalized((x-MOUSE[0])*UP + (y-MOUSE[1])*RIGHT);
 
+                Vector3d RtRot = normalized(AXIS%looking);
+                float omega = -.005;
+                float mouseDist = sqrt((x-MOUSE[0])*(x-MOUSE[0])+(y-MOUSE[1])*(y-MOUSE[1]));
+                EYE = looking*cos(omega*mouseDist)+norm(looking)*RtRot*sin(omega*mouseDist);
+                EYE=EYE+CENTER;
+                RIGHT = normalized(RIGHT - (RIGHT*HOMEUP)*HOMEUP);
+                UP = -normalized(RIGHT % looking);
+            }
+        } else if(MOUSEBUTTON==Qt::MidButton) {
+            //do a pan
+            CENTER = CENTER - RIGHT*(x-MOUSE[0])*pixelToWorld + UP*(y-MOUSE[1])*pixelToWorld;
+            EYE = EYE - RIGHT*(x-MOUSE[0])*pixelToWorld + UP*(y-MOUSE[1])*pixelToWorld;
+        } else if(MOUSEBUTTON==Qt::RightButton) {
+            //do a dolly in and out (zoom)
+            EYE=EYE-(normalized(looking))*(x-MOUSE[0]+y-MOUSE[1])*pixelToWorld;
+        }
+    }//end if (ALT_DOWN = 1)
+        
+    MOUSE[0]=x;
+    MOUSE[1]=y;
 }
 
 void PerspCamera::HandleMouseWheel(int delta, int WinX, int WinY) {
