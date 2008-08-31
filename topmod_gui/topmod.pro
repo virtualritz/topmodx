@@ -20,9 +20,9 @@ QMAKE_CXXFLAGS_DEBUG += -pg
 QMAKE_CXXFLAGS += -fpermissive
 QMAKE_LFLAGS_DEBUG += -pg
 
-# exclude verse python or spacenav drivers
+# exclude python or spacenav drivers
 # or include them with CONFIG += 
-CONFIG -=  WITH_PYTHON WITH_SPACENAV WITH_VERSE
+CONFIG -=  WITH_PYTHON WITH_SPACENAV
 # CONFIG += WITH_PYTHON 
 
 # to include the popup command line interface leave the following line uncommented
@@ -64,13 +64,7 @@ INCLUDEPATH += \
 	    include/vecmat \
 	    # include/arcball \
 	    include/dlflcore \
-	    include/dlflaux \
-	    include/verse
-
-CONFIG(WITH_VERSE){
-	message("VERSE will be included")
-	DEFINES *= WITH_VERSE
-}
+	    include/dlflaux 
 
 CONFIG(WITH_PYTHON){
 	message("PYTHON support will be included")
@@ -121,11 +115,8 @@ macx {
 		LIBS += -framework 3DconnexionClient
 		QMAKE_LFLAGS += -L/Library/Frameworks/3DconnexionClient.framework 
 	}
-	CONFIG(WITH_VERSE){
-		LIBS += -lverse
-	}
 } else:unix {
-	CONFIG -= WITH_SPACENAV WITH_VERSE
+	CONFIG -= WITH_SPACENAV
 	QMAKE_LFLAGS += -L./lib
 	LIBS += -lvecmat -ldlflcore -ldlflaux
 	DEFINES *= LINUX
@@ -135,9 +126,6 @@ macx {
 		LIBS += -lpython2.5 -L/usr/lib/python2.5/config
 	}
 	CONFIG(WITH_SPACENAV){
-
-	}
-	CONFIG(WITH_VERSE){
 
 	}
 } else:win32 {
@@ -171,12 +159,6 @@ macx {
 		
 	}
 	CONFIG(WITH_SPACENAV){
-
-	}
-	CONFIG(WITH_VERSE){
-		LIBS += -lverse
-		INCLUDEPATH += C:/verse/include
-		QMAKE_LFLAGS += -LC:/verse/lib
 
 	}
 }
@@ -279,42 +261,4 @@ TRANSLATIONS += \
 	lang/topmod_fr.ts \
 	lang/topmod_hi.ts \
 	lang/topmod_tr.ts
-
-CONFIG(WITH_VERSE){
-
-HEADERS += \
-	include/verse/TKE_verse.h \
-	include/verse/TIF_verse.h \
-	include/verse/MEM_guardedalloc.h \
-	include/verse/DNA_mesh_types.h \
-	include/verse/DNA_meshdata_types.h \
-	include/verse/DNA_scriptlink_types.h \
-	include/verse/DNA_object_types.h \
-	include/verse/DNA_ID.h \
-	include/verse/DNA_listBase.h \
-	include/verse/mydevice.h \
-	include/verse/TLI_dynamiclist.h \
-	include/verse/TLI_util.h \
-	include/verse/TLI_toplib.h \
-	include/verse/TLI_arithb.h \
-	include/verse/TKE_utildefines.h \
-	include/verse/TIF_space.h \
-	include/verse/TIF_editmesh.h \
-	include/verse/TKE_depsgraph.h \
-	include/verse/TKE_global.h \
-	include/verse/TKE_mesh.h \
-	include/verse/TLI_editVert.h \
-	include/verse/TKE_object.h \
-	VerseTopMod.hh 
-SOURCES += \
-	include/verse/verse_session.cc \
-	include/verse/mallocn.cc \
-	include/verse/verse_common.cc \
-	include/verse/util.cc \
-	include/verse/verse_geometry_node.cc \
-	include/verse/verse_mesh.cc \
-	include/verse/verse_node.cc \
-	include/verse/verse_object.cc \
-	include/verse/verse_object_node.cc \
-	VerseTopMod.cc
-}
+    

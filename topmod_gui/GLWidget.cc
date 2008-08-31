@@ -465,14 +465,6 @@ void GLWidget::paintEvent(QPaintEvent *event){
   glMatrixMode(GL_PROJECTION);
   glPopMatrix();
 	
-		
-	#ifdef WITH_VERSE
-	if (VerseConnected & T_VERSE_CONNECTED){
-		// painter.drawText(rectangle, Qt::AlignCenter,tr("verse connected"));
-		// t_verse_update();
-	}
-	#endif
-	
 	drawSelectionWindow(&painter);	
 	//drawBrush(&painter);
 	drawHUD(&painter);

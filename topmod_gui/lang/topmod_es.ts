@@ -4179,42 +4179,4 @@ Single Word Completion</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
-<context>
-    <name>VerseTopMod</name>
-    <message>
-        <location filename="../VerseTopMod.cc" line="141"/>
-        <source>Connecting to localhost!</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../VerseTopMod.cc" line="159"/>
-        <source>Connect to Verse Server</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../VerseTopMod.cc" line="160"/>
-        <source>Server Address:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../VerseTopMod.cc" line="161"/>
-        <source>localhost</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../VerseTopMod.cc" line="163"/>
-        <source>Connecting to %1!</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../VerseTopMod.cc" line="176"/>
-        <source>Disconnecting session %1!</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../VerseTopMod.cc" line="185"/>
-        <source>Disconnecting all sessions!</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
 </TS>

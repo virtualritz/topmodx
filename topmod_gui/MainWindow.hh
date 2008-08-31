@@ -38,7 +38,6 @@
 #include "qshortcutmanager.hh"
 #include "qshortcutdialog.hh"
 #include "DLFLScriptEditor.hh"
-#include "VerseTopMod.hh"
 
 #include <iostream>
 #include <QMainWindow>
@@ -103,9 +102,6 @@ class ConicalMode;
 class HighgenusMode;
 class TexturingMode;
 class ExperimentalMode;
-#ifdef WITH_VERSE
-class VerseTopMod;
-#endif
 class QAction;
 class QMenu;
 class GLWidget;
@@ -546,11 +542,6 @@ public :
 	QDockWidget *mScriptEditorDockWidget;					//!< docked script editor window for Python Scripting interface by Stuart
 #endif
 
-#ifdef WITH_VERSE
-	VerseTopMod *mVerseDialog;										//!< for a possible future implementation of the Verse protocol http://verse.blender.org
-	QDockWidget *mVerseDialogDockWidget;					//!< for a possible future implementation of the Verse protocol http://verse.blender.org
-#endif	
-
 	QDockWidget *mToolOptionsDockWidget;					//!< the floating window that displays the current tool's options (spinboxes, checkboxes, etc...)
 	QStackedWidget *mToolOptionsStackedWidget;		//!< the widget that references each tool option widget and handles switching the display
 	
@@ -634,10 +625,6 @@ private:
 	QMenu *mHelpMenu;															//!< about TopMod, about Qt, Local documentation, Online documentation
 
 	QMenu *mRightClickMenu;
-
-#ifdef WITH_VERSE
-	QMenu *mVerseMenu;
-#endif
 
 	QMenu *mRemeshingMenu;
 	QMenu *mToolsMenu;
@@ -811,16 +798,6 @@ private:
 	QAction *mCheckForUpdatesAct;
 	QAction *mAboutAct;
 
-#ifdef WITH_VERSE
-	//verse menu actions
-	QAction *mVerseConnectLocalhostAct;
-	QAction *mVerseConnectAct;
-	QAction *mVerseDisconnectAct;
-	QAction *mVerseDisconnectAllAct;
-	QAction *mVerseStartServerAct;
-	QAction *mVerseKillServerAct;
-#endif
-
 	//Window Menu - toolbar display
 	QAction *mEditToolBarAct;
 	QAction *mSelectionMaskToolBarAct;
@@ -862,10 +839,6 @@ private:
 
 #ifdef WITH_PYTHON
 	QAction *mShowScriptEditorAct;
-#endif
-
-#ifdef WITH_VERSE
-	QAction *mShowVerseDialogAct;
 #endif
 			
 	QAction *mShowToolOptionsAct;
@@ -1160,14 +1133,7 @@ public slots:
 	void dropEvent(QDropEvent *event);
 
 	void getRightClickMenu();
-			
-#ifdef WITH_VERSE
-	void verseConnected();
-	void verseDisconnected();
-	void verseStarted();
-	void verseKilled();
-#endif				
-
+    
 	void switchPerspView();
 	void switchTopView();
 	void switchBottomView();

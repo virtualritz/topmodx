@@ -333,16 +333,6 @@ MainWindow::MainWindow(char *filename) : object(), mode(NormalMode), undoList(),
 		Py_Initialize( );
 #endif
 
-#ifdef WITH_VERSE
-	mVerseDialog = VerseTopMod::Instance(this);
-	mVerseDialogDockWidget = new QDockWidget(tr("Verse-TopMod"), this);
-	mVerseDialogDockWidget->setAllowedAreas(Qt::BottomDockWidgetArea | Qt::TopDockWidgetArea);
-	mVerseDialogDockWidget->setWidget(mVerseDialog);
-	addDockWidget(Qt::BottomDockWidgetArea, mVerseDialogDockWidget);
-	mVerseDialogDockWidget->hide();
-	mVerseDialogDockWidget->setMaximumHeight(200);
-#endif
-
 	//Tool options dockwidget must be initialized before setting up the actions
 	//the main tool options DockWidget
 	mToolOptionsDockWidget = new QDockWidget(tr("Tool Options - Insert Edge"),this);
@@ -729,15 +719,6 @@ void MainWindow::createActions() {
 	mShowScriptEditorAct->setStatusTip( tr("Show the script editor to execute DLFL commands") );
 	sm->registerAction(mShowScriptEditorAct, "Window Menu", "SHIFT+CTRL+E");
 	mActionListWidget->addAction(mShowScriptEditorAct);
-#endif
-
-#ifdef WITH_VERSE
-	mShowVerseDialogAct = mVerseDialogDockWidget->toggleViewAction();//new QAction(tr("Show Verse &Dialog"), this);
-	// mShowVerseDialogAct->setText(// true);
-	mShowVerseDialogAct->setStatusTip( tr("Show the verse dialog to view verse server connection status") );
-	// connect(mShowVerseDialogAct, SIGNAL(triggered()), this, SLOT(showHideVerseDialog()));
-	sm->registerAction(mShowVerseDialogAct, "Window Menu", "SHIFT+CTRL+V");
-	mActionListWidget->addAction(mShowVerseDialogAct);
 #endif	
 
 	mShowToolOptionsAct = mToolOptionsDockWidget->toggleViewAction();
@@ -1271,45 +1252,6 @@ void MainWindow::createActions() {
 	mLanguageActionGroup->addAction(hindiAct);
 	englishAct->setChecked(true);
 
-#ifdef WITH_VERSE
-	//verse menu actions
-	mVerseConnectLocalhostAct = new QAction(tr("Connect to localhost..."), this);
-	mVerseConnectLocalhostAct->setStatusTip( tr("Connect to localhost") );
-	connect(mVerseConnectLocalhostAct, SIGNAL(triggered()), mVerseDialog, SLOT(connectLocalhost()));
-	sm->registerAction(mVerseConnectLocalhostAct, "Verse Menu", "");
-	mActionListWidget->addAction(mVerseConnectLocalhostAct);
-
-	mVerseConnectAct = new QAction(tr("Connect to host..."), this);
-	mVerseConnectAct->setStatusTip( tr("Connect to host...") );
-	connect(mVerseConnectAct, SIGNAL(triggered()), mVerseDialog, SLOT(connectHost()));
-	sm->registerAction(mVerseConnectAct, "Verse Menu", "");
-	mActionListWidget->addAction(mVerseConnectAct);
-
-	mVerseDisconnectAct = new QAction(tr("Disconnect session"), this);
-	mVerseDisconnectAct->setStatusTip( tr("Disconnect Verse Session") );
-	connect(mVerseDisconnectAct, SIGNAL(triggered()), mVerseDialog, SLOT(disconnectHost()));
-	sm->registerAction(mVerseDisconnectAct, "Verse Menu", "");
-	mActionListWidget->addAction(mVerseDisconnectAct);
-
-	mVerseDisconnectAllAct = new QAction(tr("Disconnect All Sessions"), this);
-	mVerseDisconnectAllAct->setStatusTip( tr("Disconnect All Sessions") );
-	connect(mVerseDisconnectAllAct, SIGNAL(triggered()), mVerseDialog, SLOT(disconnectAll()));
-	sm->registerAction(mVerseDisconnectAllAct, "Verse Menu", "");
-	mActionListWidget->addAction(mVerseDisconnectAllAct);
-
-	mVerseStartServerAct = new QAction(tr("Start Verse Server"), this);
-	mVerseStartServerAct->setStatusTip( tr("Disconnect All Nodes") );
-	connect(mVerseStartServerAct, SIGNAL(triggered()), mVerseDialog, SLOT(startServer()));
-	sm->registerAction(mVerseStartServerAct, "Verse Menu", "");
-	mActionListWidget->addAction(mVerseStartServerAct);
-
-	mVerseKillServerAct = new QAction(tr("Kill Verse Server"), this);
-	mVerseKillServerAct->setStatusTip( tr("Kill the Local Verse server process") );
-	connect(mVerseKillServerAct, SIGNAL(triggered()), mVerseDialog, SLOT(killServer()));
-	sm->registerAction(mVerseKillServerAct, "Verse Menu", "");
-	mActionListWidget->addAction(mVerseKillServerAct);
-#endif
-
 	mPaintSelectedFacesAct = new QAction(tr("Paint Selected Faces"), this);
 	mPaintSelectedFacesAct->setStatusTip( tr("Paint all Selected Faces") );
 	connect(mPaintSelectedFacesAct, SIGNAL(triggered()), this, SLOT(paintSelectedFaces()));
@@ -1451,20 +1393,6 @@ void MainWindow::createMenus(){
 	mExportMenu->addAction(mExportSTLAct);
 	mFileMenu->addAction(mScreenshotViewportAct);
 	mFileMenu->addAction(mScreenshotAppAct);
-#ifdef WITH_VERSE
-	mFileMenu->addSeparator();
-	mVerseMenu = new QMenu(tr("&Verse"));
-	mFileMenu->addMenu(mVerseMenu);
-	mVerseMenu->addAction(mVerseStartServerAct);
-	// mVerseMenu->addAction(mVerseKillServerAct);
-	mVerseMenu->addSeparator();
-	mVerseMenu->addAction(mVerseConnectLocalhostAct);
-	mVerseMenu->addAction(mVerseConnectAct);
-	// mVerseMenu->removeAction(mVerseConnectAct);
-	mVerseMenu->addSeparator();
-	// mVerseMenu->addAction(mVerseDisconnectAct);
-	// mVerseMenu->addAction(mVerseDisconnectAllAct);
-#endif
 	mFileMenu->addSeparator();
 	mFileMenu->addAction(loadTextureAct);
 	// mFileMenu->addAction(printInfoAct);
@@ -1667,9 +1595,6 @@ void MainWindow::createMenus(){
 	mWindowMenu->addAction(mShowScriptEditorAct);
 	#endif
 	mWindowMenu->addAction(mShowAnimatedHelpAct);
-	#ifdef WITH_VERSE
-	mWindowMenu->addAction(mShowVerseDialogAct);
-	#endif
 	// mWindowMenu->addAction(mShowToolBarsAct);
 	// mWindowMenu->addAction(mHideToolBarsAct);
 	mWindowMenu->addSeparator();
@@ -2128,27 +2053,6 @@ void MainWindow::on_editStyleAction_triggered() {
 void MainWindow::openPreferences() {
 	mPreferencesDialog->display();
 }
-
-#ifdef WITH_VERSE
-void MainWindow::verseConnected(){
-	mVerseMenu->insertAction(mVerseConnectLocalhostAct, mVerseDisconnectAct);
-	mVerseMenu->removeAction(mVerseConnectLocalhostAct);
-	mVerseMenu->removeAction(mVerseConnectAct);
-}
-void MainWindow::verseDisconnected(){
-	mVerseMenu->insertAction(mVerseDisconnectAct,mVerseConnectLocalhostAct);
-	mVerseMenu->insertAction(mVerseDisconnectAct,mVerseConnectAct);
-	mVerseMenu->removeAction(mVerseDisconnectAct);
-}
-void MainWindow::verseStarted(){
-	mVerseMenu->insertAction(mVerseStartServerAct, mVerseKillServerAct);
-	mVerseMenu->removeAction(mVerseStartServerAct);	
-}
-void MainWindow::verseKilled(){
-	mVerseMenu->insertAction(mVerseKillServerAct, mVerseStartServerAct);
-	mVerseMenu->removeAction(mVerseKillServerAct);		
-}
-#endif
 
 void MainWindow::createRenderers(){
 	wired = new WireframeRenderer();
@@ -3208,77 +3112,79 @@ void MainWindow::mouseReleaseEvent(QMouseEvent *event)  {
 						redraw();
 					}
 					break;
-					case SelectSimilar :
-						if (selectionmask == MainWindow::MaskFaces){
-							// cout << "select similar faces mouse release\n";
-							if ( active->numSelectedFaces() >= 1 ){
-								DLFLFacePtr sfptr = active->getSelectedFace(0);			
-								if (sfptr){
-									DLFLFacePtrArray sfptrarray;
-									vector<DLFLFacePtr>::iterator it;
-									DLFL::selectMatchingFaces(&object, sfptr, sfptrarray);
-									for (it = sfptrarray.begin(); it != sfptrarray.end(); it++){
-										if (!active->isSelected(*it)){
-											active->setSelectedFace(*it);
-											num_sel_faces++;
-										}
-									}
-								}
-							}
-						} else if (selectionmask == MainWindow::MaskEdges){
-							if ( active->numSelectedEdges() >= 1 ){
-								DLFLEdgePtr septr = active->getSelectedEdge(0);
-								if (septr){
-									DLFLEdgePtrArray septrarray;
-									vector<DLFLEdgePtr>::iterator eit;
-									DLFL::selectMatchingEdges(&object, septr, septrarray);
-									for (eit = septrarray.begin(); eit != septrarray.end(); eit++){
-										if (!active->isSelected(*eit)){
-											active->setSelectedEdge(*eit);
-											num_sel_edges++;
-										}
-									}
-								}
-							}
-						} else if (selectionmask == MainWindow::MaskVertices){
-							if ( active->numSelectedVertices() >= 1 ){
-								DLFLVertexPtr svptr = active->getSelectedVertex(0);
-								if (svptr){
-									if (!active->isSelected(svptr)){
-										active->setSelectedVertex(svptr);
-										num_sel_verts++;
-									}
-									DLFLVertexPtrArray svptrarray;
-									vector<DLFLVertexPtr>::iterator vit;
-									DLFL::selectMatchingVertices(&object, svptr, svptrarray);
-									for (vit = svptrarray.begin(); vit != svptrarray.end(); vit++){
-										if (!active->isSelected(*vit)){
-											active->setSelectedVertex(*vit);
-											num_sel_verts++;
-										}
-									}
-								}
-							}
-						}
-						redraw();
-						break;
-						case SelectFacesByArea :
-							if ( active->numSelectedFaces() >= 1 ){
-								DLFLFacePtr sfptr = active->getSelectedFace(0);			
-								if (sfptr){
-									DLFLFacePtrArray sfptrarray;
-									vector<DLFLFacePtr>::iterator it;
-									DLFL::selectFacesByArea(&object, sfptr, sfptrarray, MainWindow::face_area_tolerance);
-									for (it = sfptrarray.begin(); it != sfptrarray.end(); it++){
-										if (!active->isSelected(*it)){
-											active->setSelectedFace(*it);
-											num_sel_faces++;
-										}
-									}
-									redraw();
-								}
-							}
-							break;
+                case SelectSimilar :
+                    if (selectionmask == MainWindow::MaskFaces){
+                        // cout << "select similar faces mouse release\n";
+                        if ( active->numSelectedFaces() >= 1 ){
+                            DLFLFacePtr sfptr = active->getSelectedFace(0);			
+                            if (sfptr){
+                                DLFLFacePtrArray sfptrarray;
+                                vector<DLFLFacePtr>::iterator it;
+                                DLFL::selectMatchingFaces(&object, sfptr, sfptrarray);
+                                for (it = sfptrarray.begin(); it != sfptrarray.end(); it++){
+                                    if (!active->isSelected(*it)){
+                                        active->setSelectedFace(*it);
+                                        num_sel_faces++;
+                                    }
+                                }
+                            }
+                        }
+                    } else if (selectionmask == MainWindow::MaskEdges){
+                        if ( active->numSelectedEdges() >= 1 ){
+                            DLFLEdgePtr septr = active->getSelectedEdge(0);
+                            if (septr){
+                                DLFLEdgePtrArray septrarray;
+                                vector<DLFLEdgePtr>::iterator eit;
+                                DLFL::selectMatchingEdges(&object, septr, septrarray);
+                                for (eit = septrarray.begin(); eit != septrarray.end(); eit++){
+                                    if (!active->isSelected(*eit)){
+                                        active->setSelectedEdge(*eit);
+                                        num_sel_edges++;
+                                    }
+                                }
+                            }
+                        }
+                    } else if (selectionmask == MainWindow::MaskVertices){
+                        if ( active->numSelectedVertices() >= 1 ){
+                            DLFLVertexPtr svptr = active->getSelectedVertex(0);
+                            if (svptr){
+                                if (!active->isSelected(svptr)){
+                                    active->setSelectedVertex(svptr);
+                                    num_sel_verts++;
+                                }
+                                DLFLVertexPtrArray svptrarray;
+                                vector<DLFLVertexPtr>::iterator vit;
+                                DLFL::selectMatchingVertices(&object, svptr, svptrarray);
+                                for (vit = svptrarray.begin(); vit != svptrarray.end(); vit++){
+                                    if (!active->isSelected(*vit)){
+                                        active->setSelectedVertex(*vit);
+                                        num_sel_verts++;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    redraw();
+                    break;
+                case SelectFacesByArea :
+                    if ( active->numSelectedFaces() >= 1 )
+                        {
+                            DLFLFacePtr sfptr = active->getSelectedFace(0);			
+                            if (sfptr)
+                                {
+                                    DLFLFacePtrArray sfptrarray;
+                                    vector<DLFLFacePtr>::iterator it;
+                                    DLFL::selectFacesByArea(&object, sfptr, sfptrarray, MainWindow::face_area_tolerance);
+                                    for (it = sfptrarray.begin(); it != sfptrarray.end(); it++){
+                                        if (!active->isSelected(*it)){
+                                            active->setSelectedFace(*it);
+                                            num_sel_faces++;
+                                        }
+                                }
+                                redraw();
+                            }
+                        }
+                    break;
 				case SelectCorner :
 					if ( active->numSelectedCorners() >= 1 )
 						{
@@ -3291,7 +3197,6 @@ void MainWindow::mouseReleaseEvent(QMouseEvent *event)  {
 						}
 					break;
 				case InsertEdge :
-				// std::cout << "/ners = "<<active->numSelectedCorners() << "\n";
 					if ( active->numSelectedCorners() >= 2 )
 						{
 							DLFLFaceVertexPtr sfvptr1, sfvptr2;
@@ -3302,32 +3207,19 @@ void MainWindow::mouseReleaseEvent(QMouseEvent *event)  {
 									DLFLMaterialPtr mptr = sfvptr1->getFacePtr()->material();
 									undoPush();
 									setModified(true);
-#if WITH_PYTHON
-									cmd = QString( "insertEdge((" );
-									cmd += QString().setNum(sfvptr1->getFaceID()) + QString(",");
-									cmd += QString().setNum(sfvptr1->getVertexID()) + QString("),(");
-									cmd += QString().setNum(sfvptr2->getFaceID()) + QString(",");
-									cmd += QString().setNum(sfvptr2->getVertexID()) + QString("))");
-									emit echoCommand(cmd);
-									if( Py_IsInitialized() ) {
-										PyRun_SimpleString( "from dlfl import *");
-										PyRun_SimpleString( cmd.toLocal8Bit().constData() );
-									}
-#else
 									DLFL::insertEdge(&object,sfvptr1,sfvptr2,false,mptr);
-#endif
 									active->clearSelectedFaces();
 									active->clearSelectedCorners();
 									num_sel_faceverts = 0; // num_sel_faces = 0;
-                  active->recomputePatches();
-                  // Fenghui: only compute normals for affected faces and edges
-                  // unless we are in patch modeling mode.
-                  if (active->isInPatchMode()) {
-                    active->recomputeNormals();
-                  } else {
-                    sfvptr1->getVertexPtr()->updateNormal();
-                    sfvptr2->getVertexPtr()->updateNormal();
-                  }
+                                    active->recomputePatches();
+                                    // Fenghui: only compute normals for affected faces and edges
+                                    // unless we are in patch modeling mode.
+                                    if (active->isInPatchMode()) {
+                                        active->recomputeNormals();
+                                    } else {
+                                        sfvptr1->getVertexPtr()->updateNormal();
+                                        sfvptr2->getVertexPtr()->updateNormal();
+                                    } 
 									redraw();   
 								}
 						}
@@ -3342,19 +3234,11 @@ void MainWindow::mouseReleaseEvent(QMouseEvent *event)  {
 							DLFLEdgePtr septr = active->getSelectedEdge(0);
 							if ( septr )
 								{
-									// undoPush();
+									undoPush();
 									setModified(true);
-#if WITH_PYTHON
-									cmd = QString( "deleteEdge(" );
-									cmd += QString().setNum(septr->getID()) + QString(")");
-									emit echoCommand(cmd);
-#endif
-                  deleteEdge(septr);
-                  /*
 									DLFL::deleteEdge( &object, septr, MainWindow::delete_edge_cleanup);
-                  active->recomputePatches();
+                                    active->recomputePatches();
 									active->recomputeNormals();
-                  */
 								}
 							active->clearSelectedEdges();
 							redraw();
@@ -3368,13 +3252,8 @@ void MainWindow::mouseReleaseEvent(QMouseEvent *event)  {
 								{
 									undoPush();
 									setModified(true);
-#if WITH_PYTHON
-									cmd = QString( "subdivideEdge(" );
-									cmd += QString().setNum(septr->getID()) + QString(")");
-									emit echoCommand(cmd);
-#endif
 									DLFL::subdivideEdge(&object, num_e_subdivs,septr);
-                  active->recomputePatches();
+                                    active->recomputePatches();
 									active->recomputeNormals();
 								}
 							active->clearSelectedEdges();
@@ -3389,13 +3268,8 @@ void MainWindow::mouseReleaseEvent(QMouseEvent *event)  {
 								{
 									undoPush();
 									setModified(true);
-#if WITH_PYTHON
-									cmd = QString( "collapseEdge(" );
-									cmd += QString().setNum(septr->getID()) + QString(")");
-									emit echoCommand(cmd);
-#endif
 									DLFL::collapseEdge(&object,septr);
-                  active->recomputePatches();
+                                    active->recomputePatches();
 									active->recomputeNormals();
 								}
 							active->clearSelectedEdges();
@@ -3418,7 +3292,7 @@ void MainWindow::mouseReleaseEvent(QMouseEvent *event)  {
 									active->clearSelectedFaces();
 									active->clearSelectedCorners();
 									num_sel_faceverts = 0; num_sel_faces = 0;
-                  active->recomputePatches();
+                                    active->recomputePatches();
 									active->recomputeNormals();
 									redraw();   
 								}
@@ -3429,50 +3303,53 @@ void MainWindow::mouseReleaseEvent(QMouseEvent *event)  {
 						}
 					break;
 				case ConnectFaces :
-          // Add Hole/Handle (Closest Vertex Mode).
-          // You need to select two faces to make it work (Shift will do
-          // the job.)
-					if ( active->numSelectedFaces() >= 2 ) {
-            DLFLFacePtr sfptr1, sfptr2;
-            sfptr1 = active->getSelectedFace(0);
-            sfptr2 = active->getSelectedFace(1);
-            if (sfptr1 && sfptr2) {
-              undoPush();
-              setModified(true);
-              DLFL::connectFaces(&object,sfptr1,sfptr2,num_segments);
-              active->recomputePatches();
-              active->recomputeNormals();
-              active->clearSelectedFaces();
-              redraw();   
-            }
-					} else if (active->numSelectedFaces() == 1) {
-            num_sel_faces = 1;
-					}
+                    // Add Hole/Handle (Closest Vertex Mode).
+                    // You need to select two faces to make it work (Shift will do
+                    // the job.)
+            		if ( active->numSelectedFaces() >= 2 ) 
+                        {
+                            DLFLFacePtr sfptr1, sfptr2;
+                            sfptr1 = active->getSelectedFace(0);
+                            sfptr2 = active->getSelectedFace(1);
+                            if (sfptr1 && sfptr2) 
+                                {
+                                    undoPush();
+                                    setModified(true);
+                                    DLFL::connectFaces(&object,sfptr1,sfptr2,num_segments);
+                                    active->recomputePatches();
+                                    active->recomputeNormals();
+                                    active->clearSelectedFaces();
+                                    redraw();   
+                                }
+                        } else if (active->numSelectedFaces() == 1) {
+                            num_sel_faces = 1;
+                        }
 					break;
 				case ConnectFaceVertices :
-					if (active->numSelectedCorners() >= 2) {
-            DLFLFaceVertexPtr sfvptr1, sfvptr2;
-            sfvptr1 = active->getSelectedFaceVertex(0);
-            sfvptr2 = active->getSelectedFaceVertex(1);
-            if (sfvptr1 && sfvptr2) {
-              undoPush();
-              setModified(true);
-              DLFL::connectFaces(
-                  &object,sfvptr1,sfvptr2,num_segments, max_segments,
-                  holeHandle_pinching_factor, holeHandle_pinch_center,
-                  holeHandle_pinch_width);
-              active->clearSelectedFaces();
-              active->clearSelectedCorners();
-              num_sel_faceverts = 0;
-              num_sel_faces = 0;
-              active->recomputePatches();
-              active->recomputeNormals();
-              redraw();   
-            }
-          } else if ( active->numSelectedCorners() == 1 ) {
-            num_sel_faceverts = 1;
-            num_sel_faces = 1;
-          }
+					if (active->numSelectedCorners() >= 2) 
+                        {
+                            DLFLFaceVertexPtr sfvptr1, sfvptr2;
+                            sfvptr1 = active->getSelectedFaceVertex(0);
+                            sfvptr2 = active->getSelectedFaceVertex(1);
+                            if (sfvptr1 && sfvptr2) 
+                                {
+                                    undoPush();
+                                    setModified(true);
+                                    DLFL::connectFaces( &object,sfvptr1,sfvptr2,num_segments, max_segments,
+                                                        holeHandle_pinching_factor, holeHandle_pinch_center,
+                                                        holeHandle_pinch_width);
+                                    active->clearSelectedFaces();
+                                    active->clearSelectedCorners();
+                                    num_sel_faceverts = 0;
+                                    num_sel_faces = 0;
+                                    active->recomputePatches();
+                                    active->recomputeNormals();
+                                    redraw();   
+                                }
+                        } else if ( active->numSelectedCorners() == 1 ) {
+                            num_sel_faceverts = 1;
+                            num_sel_faces = 1;
+                        }
 					break;
 				case ConnectEdges :
 					if ( active->numSelectedEdges() >= 2 )
@@ -3509,7 +3386,7 @@ void MainWindow::mouseReleaseEvent(QMouseEvent *event)  {
 									undoPush();
 									setModified(true);
 									DLFL::extrudeFace(&object,sfptr,extrude_dist,num_extrusions,extrude_rot,extrude_scale);
-                  active->recomputePatches();
+                                    active->recomputePatches();
 									active->recomputeNormals();
 								}
 							active->clearSelectedFaces();
@@ -3517,26 +3394,7 @@ void MainWindow::mouseReleaseEvent(QMouseEvent *event)  {
 						}
 					}
 					break;
-				case ExtrudeMultipleFaces :
-					// if (!mExtrudeMultipleAct->isChecked()){
-					// 	if ( active->numSelectedFaces() >= 1 )
-					// 		{
-					// 			DLFLFacePtrArray sfptrarr = active->getSelectedFaces();
-					// 			if ( sfptrarr[0] )
-					// 				{
-					// 					undoPush();
-					// 					setModified(true);
-					// 					vector<DLFLFacePtr>::iterator it;
-					// 					for(it = sfptrarr.begin(); it != sfptrarr.end(); it++) {
-					// 						DLFL::extrudeFace(&object,*it,extrude_dist,num_extrusions,extrude_rot,extrude_scale);
-					// 					}
-					// 					active->recomputePatches();
-					// 					active->recomputeNormals();						
-					// 				}
-					// 			active->clearSelectedFaces();
-					// 			redraw();
-					// 		}
-					// 	}
+				case ExtrudeMultipleFaces ://todo: this isn't used anymore.
 					break;
 				case ExtrudeFaceDS :
 				if (mSingleClickExtrude){
@@ -3548,7 +3406,7 @@ void MainWindow::mouseReleaseEvent(QMouseEvent *event)  {
 									undoPush();
 									setModified(true);
 									DLFL::extrudeFaceDS(&object,sfptr,extrude_dist,num_extrusions, ds_ex_twist,extrude_scale);
-                  active->recomputePatches();
+                                    active->recomputePatches();
 									active->recomputeNormals();
 								}
 							active->clearSelectedFaces();
@@ -3566,7 +3424,7 @@ void MainWindow::mouseReleaseEvent(QMouseEvent *event)  {
 									undoPush();
 									setModified(true);
 									DLFL::extrudeDualFace(&object,sfptr,extrude_dist,num_extrusions, extrude_rot,extrude_scale, dual_mesh_edges_check);
-                  active->recomputePatches();
+                                    active->recomputePatches();
 									active->recomputeNormals();
 								}
 							active->clearSelectedFaces();
@@ -3585,7 +3443,7 @@ void MainWindow::mouseReleaseEvent(QMouseEvent *event)  {
 									setModified(true);
 									DLFL::extrudeFaceDodeca(&object,sfptr,extrude_angle,num_extrusions, extrude_length1,extrude_length2,extrude_length3, hexagonalize_dodeca_extrude);							
 									// DLFL::extrudeFaceDodeca(&object,sfptr,extrude_dist,num_extrusions, ds_ex_twist,extrude_scale, hexagonalize_dodeca_extrude);
-                  active->recomputePatches();
+                                    active->recomputePatches();
 									active->recomputeNormals();
 								}
 							active->clearSelectedFaces();
@@ -3604,7 +3462,7 @@ void MainWindow::mouseReleaseEvent(QMouseEvent *event)  {
 									setModified(true);
 									DLFL::extrudeFaceIcosa(&object, sfptr, extrude_angle_icosa, num_extrusions, extrude_length1_icosa,extrude_length2_icosa,extrude_length3_icosa);
 									// DLFL::extrudeFaceIcosa(&object,sfptr,extrude_dist,num_extrusions, ds_ex_twist,extrude_scale);
-                  active->recomputePatches();
+                                    active->recomputePatches();
 									active->recomputeNormals();
 								}
 							active->clearSelectedFaces();
@@ -3622,7 +3480,7 @@ void MainWindow::mouseReleaseEvent(QMouseEvent *event)  {
 									undoPush();
 									setModified(true);
 									DLFL::stellateFace(&object,sfptr,extrude_dist);
-                  active->recomputePatches();
+                                    active->recomputePatches();
 									active->recomputeNormals();
 								}
 							active->clearSelectedFaces();
@@ -3640,7 +3498,7 @@ void MainWindow::mouseReleaseEvent(QMouseEvent *event)  {
 									undoPush();
 									setModified(true);
 									DLFL::doubleStellateFace(&object,sfptr,extrude_dist);
-                  active->recomputePatches();
+                                    active->recomputePatches();
 									active->recomputeNormals();
 								}
 							active->clearSelectedFaces();
@@ -3658,7 +3516,7 @@ void MainWindow::mouseReleaseEvent(QMouseEvent *event)  {
 										undoPush();
 										setModified(true);
 										DLFL::extrudeFaceDome(&object,sfptr,extrude_dist,extrude_rot,extrude_scale);
-                    active->recomputePatches();
+                                        active->recomputePatches();
 										active->recomputeNormals();
 									}
 								active->clearSelectedFaces();
@@ -3679,7 +3537,7 @@ void MainWindow::mouseReleaseEvent(QMouseEvent *event)  {
 										{
 											DLFL::tagMatchingFaces(&object,sfptr);
 											DLFL::punchHoles(&object);
-                      active->recomputePatches();
+                                            active->recomputePatches();
 											active->recomputeNormals();
 										}
 									else
@@ -3705,7 +3563,7 @@ void MainWindow::mouseReleaseEvent(QMouseEvent *event)  {
 									active->clearSelectedFaces();
 									active->clearSelectedCorners();
 									num_sel_faceverts = 0; num_sel_faces = 0;
-                  active->recomputePatches();
+                                    active->recomputePatches();
 									active->recomputeNormals();
 									redraw();   
 								}
@@ -5420,9 +5278,6 @@ void MainWindow::retranslateUi() {
 
 	//from createMenus()
 	mFileMenu->setTitle(tr("&File"));
-	#ifdef WITH_VERSE
-	mVerseMenu->setTitle(tr("&Verse"));
-	#endif
 	mEditMenu->setTitle(tr("&Edit"));
 	mDisplayMenu->setTitle(tr("&Display"));
 	mRendererMenu->setTitle(tr("&Renderer"));
@@ -5522,9 +5377,6 @@ void MainWindow::retranslateUi() {
 
 	#ifdef WITH_PYTHON
 	mShowScriptEditorAct->setStatusTip( tr("Show the script editor to execute DLFL commands") );
-	#endif
-	#ifdef WITH_VERSE
-	mShowVerseDialogAct->setStatusTip( tr("Show the verse dialog to view verse server connection status") );
 	#endif	
 
 	mShowToolOptionsAct->setStatusTip( tr("Show the tool options window") );
@@ -5643,22 +5495,6 @@ void MainWindow::retranslateUi() {
 	turkishAct->setText(tr("Turkish"));
 	catalanAct->setText(tr("Catalan"));
 	hindiAct->setText(tr("Hindi"));
-
-	#ifdef WITH_VERSE
-	//verse menu actions
-	mVerseConnectLocalhostAct->setText(tr("Connect to localhost..."));
-	mVerseConnectLocalhostAct->setStatusTip( tr("Connect to localhost") );
-	mVerseConnectAct->setText(tr("Connect to host..."));
-	mVerseConnectAct->setStatusTip( tr("Connect to host...") );
-	mVerseDisconnectAct->setText(tr("Disconnect session"));
-	mVerseDisconnectAct->setStatusTip( tr("Disconnect Verse Session") );
-	mVerseDisconnectAllAct->setText(tr("Disconnect All Sessions"));
-	mVerseDisconnectAllAct->setStatusTip( tr("Disconnect All Sessions") );
-	mVerseStartServerAct->setText(tr("Start Verse Server"));
-	mVerseStartServerAct->setStatusTip( tr("Disconnect All Nodes") );
-	mVerseKillServerAct->setText(tr("Kill Verse Server"));
-	mVerseKillServerAct->setStatusTip( tr("Kill the Local Verse server process") );
-	#endif
 
 	mSubdivideSelectedFacesAct->setText(tr("Subdivide Selected Faces"));
 	mSubdivideSelectedFacesAct->setStatusTip( tr("Subdivide all Selected Faces") );

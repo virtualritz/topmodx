@@ -113,7 +113,6 @@ FILE_PATTERNS          = *.c \
                          *.py
 RECURSIVE              = YES
 EXCLUDE                = ../include/arcball \
-                         ../include/verse \
                          EXCLUDE_SYMLINKS \
                          = \
                          YES

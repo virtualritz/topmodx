@@ -495,7 +495,7 @@ BasicsMode::BasicsMode(QWidget *parent, QShortcutManager *sm, QWidget *actionLis
 	mInsertEdgeAction->setStatusTip(tr("Enter Insert Edge Mode"));
 	mInsertEdgeAction->setToolTip(tr("Insert Edge Mode"));
 	connect(mInsertEdgeAction, SIGNAL(triggered()), this, SLOT(triggerInsertEdge()));
-	connect(mInsertEdgeAction, SIGNAL(hovered()), ((MainWindow*)mParent), SLOT(setAnimatedHelpImage()));
+	//connect(mInsertEdgeAction, SIGNAL(hovered()), ((MainWindow*)mParent), SLOT(setAnimatedHelpImage()));
 	actionList->addAction(mInsertEdgeAction);	
 
 	mDeleteEdgeAction = new QAction(tr("Delete Edge"),this);

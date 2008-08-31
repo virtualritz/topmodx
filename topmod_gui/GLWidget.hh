@@ -63,11 +63,6 @@ using namespace Cg;
 
 using namespace DLFL;
 
-#ifdef WITH_VERSE
-#include "TKE_verse.h"
-#include "TIF_verse.h"
-#endif
-
 class QCursor;
 class QImage;
 
