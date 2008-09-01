@@ -78,9 +78,14 @@ extern DLFLFaceVertexPtrArray DLFLObject::sel_fvptr_array; // List of selected D
 
 GLWidget::GLWidget(int w, int h, DLFLRendererPtr rp, QColor color, QColor vcolor, DLFLObjectPtr op, const QGLFormat & format, QWidget * parent ) 
  : 	QGLWidget(format, parent, NULL), /*viewport(w,h,v),*/ object(op), patchObject(NULL), renderer(rp), renderObject(true),
-		mRenderColor(color), mViewportColor(vcolor),/*grid(ZX,20.0,10),*/ showgrid(false), showaxes(false), mUseGPU(false), mAntialiasing(true) { 
-		mParent = parent;
-	// Vector3d neweye = eye - center;
+	mRenderColor(color), mViewportColor(vcolor),/*grid(ZX,20.0,10),*/ showgrid(false), showaxes(false), mUseGPU(false), mAntialiasing(true) { 
+	
+    mParent = parent;
+    
+    //accept file drop events
+	setAcceptDrops(true);
+
+    // Vector3d neweye = eye - center;
 	// double eyedist = norm(neweye);
 	// Matrix4x4 lmat = Transformation::lookat(neweye,Vector3d(0,0,0),up);
 	// transform = lmat;
@@ -94,6 +99,7 @@ GLWidget::GLWidget(int w, int h, DLFLRendererPtr rp, QColor color, QColor vcolor
 	Vector3d Pos(10,10,10);
 	Vector3d Up(-0.40824829046,0.81649658093,-0.40824829046);
 	
+
 	// pos X up
 	// 	A  X B
 	// double ax = -10, ay = -10, az = -10;
@@ -1551,6 +1557,22 @@ void GLWidget::mouseReleaseEvent(QMouseEvent *event) {
 		repaint();	
 	}	
 	else event->ignore();
+}
+
+//drag and drop - dave 08/31/2008
+ void GLWidget::dragEnterEvent(QDragEnterEvent *event) {
+    //if (event->mimeData()->hasFormat("text/plain"))  
+    //event->acceptProposedAction();
+    event->ignore();
+}
+
+void GLWidget::dropEvent(QDropEvent *event) {
+
+    //QMessageBox::about(this, tr("Drop Event"), QFileInfo(event->mimeData()->urls()[0].toLocalFile()).absoluteFilePath());
+    //QMessageBox::about(this, tr("Drop Event"), QString(event->mimeData()->data("text/uri-list")));
+    //mParent->dropEvent(event);
+    //event->acceptProposedAction();
+    event->ignore();
 }
 
 //for vertex locator moving...

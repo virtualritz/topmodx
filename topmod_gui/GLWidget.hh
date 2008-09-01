@@ -65,6 +65,7 @@ using namespace DLFL;
 
 class QCursor;
 class QImage;
+//class MainWindow;
 
 #include "DLFLLocator.hh"     // brianb
 
@@ -859,6 +860,11 @@ void mouseMoveEvent(QMouseEvent *event);
 void mousePressEvent(QMouseEvent *event);
 void mouseReleaseEvent(QMouseEvent *event);
 void wheelEvent(QWheelEvent *event);
+
+//drag and drop event handlers
+void dragEnterEvent(QDragEnterEvent *event);
+void dropEvent(QDropEvent *event);
+
 
 // void keyPressEvent(QKeyEvent *event);
 // void keyReleaseEvent(QKeyEvent *event);

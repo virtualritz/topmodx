@@ -294,8 +294,7 @@ MainWindow::MainWindow(char *filename) : object(), mode(NormalMode), undoList(),
 	// QVBoxLayout *vblayout = new QVBoxLayout;
 	// vblayout->addWidget(active);
 	// shwidget->setLayout(vblayout);
-	//accept file drop events
-	setAcceptDrops(true);
+
 	/** Setup Main Layout and add the glwidget to it **/
 	// layout = new QBoxLayout( QBoxLayout::LeftToRight, this );
 	// layout->addWidget(active);
@@ -2709,16 +2708,13 @@ void MainWindow::doSelection(int x, int y) {
 void MainWindow::dragEnterEvent(QDragEnterEvent *event) {
 	// QMessageBox::about(this,tr("mimetype"),tr("%1").arg(event->mimeData()->formats().join(",")));
 	// if (event->mimeData()->hasFormat("text/uri-list"))
-	// 	event->acceptProposedAction();
+	event->acceptProposedAction();
 }
 
 void MainWindow::dropEvent(QDropEvent *event) {
-	//textBrowser->setPlainText(event->mimeData()->text());
-	//mimeTypeCombo->clear();
-	//mimeTypeCombo->addItems(event->mimeData()->formats());
-	// QMessageBox::about(this,tr("mimetype"),tr("%1").arg(event->mimeData()->data("text/uri-list").data));
-
-	// event->acceptProposedAction();
+    //QMessageBox::about(this, tr("Drop Event"), QFileInfo(event->mimeData()->urls()[0].toLocalFile()).absoluteFilePath());
+    loadFile(QFileInfo(event->mimeData()->urls()[0].toLocalFile()).absoluteFilePath());
+	event->acceptProposedAction();
 }
 
 // Handle keyboard and mouse events
