@@ -4843,8 +4843,8 @@ void MainWindow::loadCube(){
 	// }//end for loop
 	
 	
-	
-	//active->recomputePatches();
+	/* If we are in Patch Mode, recompute patches to ensure that patches are shown */
+	if ( active->isInPatchMode() ) active->recomputePatches();
 	active->recomputeNormals();
 	active->redraw();
 }
@@ -4857,7 +4857,9 @@ void MainWindow::loadOctahedron(){
 	mWasPrimitive = true;
 	setCurrentFile(tr("octahedron.obj"));
 	readObjectQFile(":/octahedron.obj");
-	//active->recomputePatches();
+
+	/* If we are in Patch Mode, recompute patches to ensure that patches are shown */
+	if ( active->isInPatchMode() ) active->recomputePatches();
 	active->recomputeNormals();
 	active->redraw();
 }
@@ -4870,7 +4872,9 @@ void MainWindow::loadTetrahedron(){
 	mWasPrimitive = true;
 	setCurrentFile(tr("tetrahedron.obj"));
 	readObjectQFile(":/tetrahedron.obj");
-	//active->recomputePatches();
+
+	/* If we are in Patch Mode, recompute patches to ensure that patches are shown */
+	if ( active->isInPatchMode() ) active->recomputePatches();
 	active->recomputeNormals();
 	active->redraw();
 }
@@ -4883,7 +4887,9 @@ void MainWindow::loadDodecahedron(){
 	mWasPrimitive = true;
 	setCurrentFile(tr("dodecahedron.obj"));
 	readObjectQFile(":/dodecahedron.obj");
-	//active->recomputePatches();
+
+	/* If we are in Patch Mode, recompute patches to ensure that patches are shown */
+	if ( active->isInPatchMode() ) active->recomputePatches();
 	active->recomputeNormals();
 	active->redraw();
 }
@@ -4896,7 +4902,9 @@ void MainWindow::loadIcosahedron(){
 	mWasPrimitive = true;
 	setCurrentFile(tr("icosahedron.obj"));
 	readObjectQFile(":/icosahedron.obj");
-	//active->recomputePatches();
+
+	/* If we are in Patch Mode, recompute patches to ensure that patches are shown */
+	if ( active->isInPatchMode() ) active->recomputePatches();
 	active->recomputeNormals();
 	active->redraw();
 }
@@ -4909,7 +4917,9 @@ void MainWindow::loadSoccerball(){
 	mWasPrimitive = true;
 	setCurrentFile(tr("soccerball.obj"));
 	readObjectQFile(":/soccerball.obj");
-	//active->recomputePatches();
+
+	/* If we are in Patch Mode, recompute patches to ensure that patches are shown */
+	if ( active->isInPatchMode() ) active->recomputePatches();
 	active->recomputeNormals();
 	active->redraw();
 }
@@ -4922,7 +4932,9 @@ void MainWindow::loadGeodesic(){
 	mWasPrimitive = true;
 	setCurrentFile(tr("geodesic.obj"));
 	readObjectQFile(":/geodesic.obj");
-	//active->recomputePatches();
+
+	/* If we are in Patch Mode, recompute patches to ensure that patches are shown */
+	if ( active->isInPatchMode() ) active->recomputePatches();
 	active->recomputeNormals();
 	active->redraw();
 }
