@@ -2,6 +2,7 @@
 <qresource>
     <file>images/prim_cube.png</file>
     <file>images/prim_torus.png</file>
+
     <file>images/prim_dodecahedron.png</file>
     <file>images/prim_geodesic.png</file>
     <file>images/prim_icosahedron.png</file>

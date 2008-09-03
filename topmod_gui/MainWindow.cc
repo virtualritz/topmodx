@@ -971,7 +971,7 @@ void MainWindow::createActions() {
 
 	selectFaceAct = new QAction(tr("Select &Face"), this);
 	sm->registerAction(selectFaceAct, "Selection", "");
-	selectFaceAct->setStatusTip(tr("Select One Face. Just for practice. :)"));
+	selectFaceAct->setStatusTip(tr("Select a single Face."));
 	connect(selectFaceAct, SIGNAL(triggered()), this, SLOT(select_face() ) );
 	mActionListWidget->addAction(selectFaceAct);
 
@@ -1480,7 +1480,7 @@ void MainWindow::createMenus(){
 	mSelectionMenu->addAction(selectEdgesFromFacesAct);
 	mSelectionMenu->addAction(selectEdgesFromVerticesAct);
 	mSelectionMenu->addSeparator();
-	// mSelectionMenu->addAction(selectFaceAct);
+	mSelectionMenu->addAction(selectFaceAct);
 	mSelectionMenu->addAction(selectFaceLoopAct);
 	// mSelectionMenu->addAction(selectMultipleFacesAct);
 	// mSelectionMenu->addAction(selectSimilarFacesAct);
@@ -2857,7 +2857,7 @@ void MainWindow::getRightClickMenu(){
 		break;
 		case MaskFaces://face stuff
 			// mRightClickMenu->addAction(mDeleteSelectedAct);
-			// mRightClickMenu->addAction(selectFaceAct);
+			mRightClickMenu->addAction(selectFaceAct);
 			mRightClickMenu->addAction(selectFaceLoopAct);
 			// mRightClickMenu->addAction(selectMultipleFacesAct);
 			// mRightClickMenu->addAction(selectSimilarFacesAct);
@@ -3038,14 +3038,7 @@ void MainWindow::mouseReleaseEvent(QMouseEvent *event)  {
 					active->redraw();
 					break;
 				case SelectFace :
-					// if ( active->numSelectedFaces() >= 1 )
-					// 	{
-					// 		DLFLFacePtr fp = active->getSelectedFace(0);
-					// 		// fp->print();
-					// 		// active->clearSelectedFaces();
-					// 		// num_sel_faces = 0;
-					// 		redraw();
-					// 	}
+
 					break;
 					case PaintFace:
 					if ( active->numSelectedFaces() >= 1 ) {
@@ -3973,7 +3966,7 @@ void MainWindow::redraw() {
 // Switch to specified operating mode
 void MainWindow::setMode(Mode m) {
 	mode = m;
-	
+
 	switch ( mode )	{
 		// case BezierMode: // brianb
 		//       object.bezierDefaults();
@@ -4022,6 +4015,7 @@ void MainWindow::setMode(Mode m) {
 	case SelectFacesByColor:
 	case PaintFace:
 	case EyeDropper:
+		// printf("mode is Select Face or something\n");
 		setSelectionMask(MainWindow::MaskFaces);
 		// MainWindow::num_sel_faces = 0;
 		break;
@@ -4265,7 +4259,26 @@ void MainWindow::setSelectionMask(SelectionMask m){
 		}
 	}
 	else {
-		
+		// switch(selectionmask){
+		// 	case MaskVertices :
+		// 	mode = MainWindow::SelectVertex;
+		// 	active->setModeString(tr("Select Vertex"));
+		// 	break;
+		// 	case MaskFaces:
+		// 	mode = MainWindow::SelectFace;
+		// 	active->setModeString(tr("Select Face"));
+		// 	break;
+		// 	case MaskEdges:
+		// 	mode = MainWindow::SelectEdge;
+		// 	active->setModeString(tr("Select Edge"));
+		// 	break;
+		// 	case MaskCorners:
+		// 	mode = MainWindow::SelectCorner;
+		// 	active->setModeString(tr("Select Corner"));
+		// 	break;
+		// 	default:
+		// 	break;
+		// };
 	}
 }
 
@@ -5419,7 +5432,7 @@ void MainWindow::retranslateUi() {
 	mEditVertexAct->setText(tr("Edit Verte&x"));
 	mEditVertexAct->setStatusTip(tr("Select and Move Vertices One at a time."));
 	selectFaceAct->setText(tr("Select &Face"));
-	selectFaceAct->setStatusTip(tr("Select One Face. Just for practice. :)"));
+	selectFaceAct->setStatusTip(tr("Select One Face."));
 	selectFaceLoopAct->setText(tr("Select Face Loo&p"));
 	selectFaceLoopAct->setStatusTip(tr("Select a Face Loop."));
 	selectEdgeRingAct->setText(tr("Select Edge &Ring"));

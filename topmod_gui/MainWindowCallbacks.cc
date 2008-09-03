@@ -174,6 +174,7 @@ void MainWindow::edit_vertex() {
 }
 
 void MainWindow::select_face() {
+	// cout << "select_face called\n";
 	setMode(MainWindow::SelectFace);
 }
 
@@ -269,6 +270,8 @@ void MainWindow::selectionMaskVertices() {
 }
 
 void MainWindow::selectionMaskFaces() {
+	// cout << "selectionMaskFaces called\n";
+	
 	// setSelectionMask(MainWindow::MaskFaces);
 	setMode(MainWindow::SelectFace);
 }
