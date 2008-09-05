@@ -43,17 +43,17 @@ class DLFLRenderer {
 	
 private :
 
-  static QColor mWireframeColor;									//!< wireframe RGB color
-  static QColor mSilhouetteColor;								//!< silhouette RGB color
-  static QColor mVertexColor;										//!< vertex RGB color
-  static QColor mFaceCentroidColor;							//!< face centroid RGB color
-	static QColor mNormalColor;										//!< normals RGB color
-	static double mFaceCentroidThickness;					//!< face centroid point size
-	static double mNormalThickness;								//!< normal line thickness
-	static double mNormalLength;										//!< normal length 
-	static double mWireframeThickness;							//!< wireframe line thickness
-	static double mSilhouetteThickness;						//!< silhouette line thickness
-  static double mVertexThickness;								//!< vertex point size
+    static QColor mWireframeColor;									//!< wireframe RGB color
+    static QColor mSilhouetteColor;								//!< silhouette RGB color
+    static QColor mVertexColor;										//!< vertex RGB color
+    static QColor mFaceCentroidColor;							//!< face centroid RGB color
+    static QColor mNormalColor;										//!< normals RGB color
+    static double mFaceCentroidThickness;					//!< face centroid point size
+    static double mNormalThickness;								//!< normal line thickness
+    static double mNormalLength;										//!< normal length 
+    static double mWireframeThickness;							//!< wireframe line thickness
+    static double mSilhouetteThickness;						//!< silhouette line thickness
+    static double mVertexThickness;								//!< vertex point size
 
 protected :
 

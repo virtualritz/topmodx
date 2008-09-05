@@ -430,6 +430,16 @@ public :
   }
   QString getSelectionMaskString() { return mSelectionMaskString; }
   
+  void setRenderingModeString(QString s){
+    mRenderingModeString = s;
+  }
+  QString getRenderingModeString() { return mRenderingModeString; }
+
+  void setModelingModeString(QString s){
+    mModelingModeString = s;
+  }
+  QString getModelingModeString() { return mModelingModeString; }
+
   void renderLocatorsForSelect() // brianb
   {
     locatorPtr->setRenderSelection(true);
@@ -881,7 +891,12 @@ QColor mYAxisColor;
 QColor mZAxisColor;
 
 QWidget *mParent;
-QString mModeString, mRemeshingSchemeString, mSelectionMaskString, mExtrusionModeString;
+QString mModeString;
+QString mRemeshingSchemeString;
+QString mSelectionMaskString;
+QString mExtrusionModeString;
+QString mRenderingModeString;
+QString mModelingModeString;
 
 };
 

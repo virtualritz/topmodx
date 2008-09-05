@@ -780,7 +780,7 @@ void MainWindow::createActions() {
 
 	colorableRendererAct = new QAction(tr("&Colorable Renderer"), this);
 	colorableRendererAct->setCheckable(true);
-	sm->registerAction(colorableRendererAct, "Renderer Menu", "7");
+	sm->registerAction(colorableRendererAct, "Renderer Menu", "6");
 	colorableRendererAct->setStatusTip(tr("Switch the current renderer to Colorable"));
 	connect(colorableRendererAct, SIGNAL(triggered()), this, SLOT(useColorableRenderer()));
 	mActionListWidget->addAction(colorableRendererAct);
@@ -2022,7 +2022,6 @@ void MainWindow::openPreferences() {
 void MainWindow::createRenderers(){
 	wired = new WireframeRenderer();
 	// wired->setRenderFlags(DLFLRenderer::ShowWireframe);
-
 	normal = new NormalRenderer();
 	// normal->setRenderFlags(DLFLRenderer::ShowWireframe);
 

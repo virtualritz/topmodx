@@ -179,6 +179,27 @@ class MainWindow : public QMainWindow {
 				DoubleStellateExtrude,
 				DomeExtrude			
 			};
+            
+            /**
+              * Enumerations for Modeling Mode
+			  */
+			enum ModelingMode {
+				PlanarMode,
+				PolygonalMode,
+				PatchMode
+            };            
+            			/**
+			* Enumerations for Rendering Modes
+			*/
+			enum RenderingMode {
+				Wireframe,
+				Normal,
+				Lit,
+				Textured,
+				TexturedLit, //!< also called dual
+				Patch,
+				Colorable
+			};
 
 				// Enumerations for various multi-face-handle algorithms
 			enum MFHAlgo { 

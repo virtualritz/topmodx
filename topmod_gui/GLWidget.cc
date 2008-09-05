@@ -600,9 +600,11 @@ void GLWidget::drawHUD(QPainter *painter){
 								"\nSel. Corners: " + QString("%1").arg(numSelectedCorners());
 
 		QString s3 = 	"Mode: " + mModeString + 
-									"\nRemeshing Mode: " + mRemeshingSchemeString + 
-									"\nExtrusion Mode: " + mExtrusionModeString + 
-									"\nSelection Mode: " + mSelectionMaskString;
+                        "\nRemeshing Mode: " + mRemeshingSchemeString + 
+                        "\nExtrusion Mode: " + mExtrusionModeString + 
+                        "\nSelection Mode: " + mSelectionMaskString +
+                        "\nRendering Mode: " + mRenderingModeString +
+                        "\nModeling Mode: " + mModelingModeString;
 									
 		
 		
