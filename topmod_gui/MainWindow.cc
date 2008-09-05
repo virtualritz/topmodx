@@ -705,7 +705,7 @@ void MainWindow::createActions() {
 
 	planarModelingAct = new QAction(tr("&Planar modeling"), this);
 	planarModelingAct->setCheckable(true);
-	// sm->registerAction(planarModelingAct, "Mode Menu", "1");
+	sm->registerAction(planarModelingAct, "Mode Menu", "F2");
 	planarModelingAct->setStatusTip(tr("Switch to planar modeling mode"));
 	connect(planarModelingAct, SIGNAL(triggered()), this, SLOT(setPlanarMode()));	
 	mActionListWidget->addAction(planarModelingAct);
@@ -714,7 +714,7 @@ void MainWindow::createActions() {
 
 	polygonalModelingAct = new QAction(tr("&Polygonal modeling"), this);
 	polygonalModelingAct->setCheckable(true);
-	// sm->registerAction(polygonalModelingAct, "Mode Menu", "1");
+	// sm->registerAction(polygonalModelingAct, "Mode Menu", "F3");
 	polygonalModelingAct->setStatusTip(tr("Switch to polygonal modeling mode"));
   // Fenghui: fix this, use constant for mode
 	connect(polygonalModelingAct, SIGNAL(triggered()), this, SLOT(setPolygonalMode()));	
@@ -725,7 +725,7 @@ void MainWindow::createActions() {
 
 	patchModelingAct = new QAction(tr("&Patch modeling"), this);
 	patchModelingAct->setCheckable(true);
-	sm->registerAction(patchModelingAct, "Mode Menu", "6");
+	//sm->registerAction(patchModelingAct, "Mode Menu", "F4");
 	patchModelingAct->setStatusTip(tr("Switch to patch modeling mode"));
   // Fenghui: fix this, use constant for mode
 	connect(patchModelingAct, SIGNAL(triggered()), this, SLOT(setPatchMode()));	
