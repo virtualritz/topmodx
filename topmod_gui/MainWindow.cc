@@ -714,7 +714,7 @@ void MainWindow::createActions() {
 
 	polygonalModelingAct = new QAction(tr("&Polygonal modeling"), this);
 	polygonalModelingAct->setCheckable(true);
-	// sm->registerAction(polygonalModelingAct, "Mode Menu", "F3");
+	sm->registerAction(polygonalModelingAct, "Mode Menu", "F3");
 	polygonalModelingAct->setStatusTip(tr("Switch to polygonal modeling mode"));
   // Fenghui: fix this, use constant for mode
 	connect(polygonalModelingAct, SIGNAL(triggered()), this, SLOT(setPolygonalMode()));	
@@ -725,7 +725,7 @@ void MainWindow::createActions() {
 
 	patchModelingAct = new QAction(tr("&Patch modeling"), this);
 	patchModelingAct->setCheckable(true);
-	//sm->registerAction(patchModelingAct, "Mode Menu", "F4");
+	sm->registerAction(patchModelingAct, "Mode Menu", "F4");
 	patchModelingAct->setStatusTip(tr("Switch to patch modeling mode"));
   // Fenghui: fix this, use constant for mode
 	connect(patchModelingAct, SIGNAL(triggered()), this, SLOT(setPatchMode()));	
