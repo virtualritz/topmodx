@@ -1,6 +1,6 @@
 /*** ***/
 
-#include "TopMod.hh"
+#include "TopMod.h"
 
 TopMod::~TopMod(){
 	

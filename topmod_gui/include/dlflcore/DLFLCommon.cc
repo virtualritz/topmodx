@@ -1,15 +1,15 @@
 /*** ***/
 
 /**
- * \file DLFLCommon.hh
+ * \file DLFLCommon.h
  */
 
-#include "DLFLCommon.hh"
-#include "DLFLVertex.hh"
-#include "DLFLFaceVertex.hh"
-#include "DLFLEdge.hh"
-#include "DLFLFace.hh"
-#include "DLFLObject.hh"
+#include "DLFLCommon.h"
+#include "DLFLVertex.h"
+#include "DLFLFaceVertex.h"
+#include "DLFLEdge.h"
+#include "DLFLFace.h"
+#include "DLFLObject.h"
 
 namespace DLFL {
 

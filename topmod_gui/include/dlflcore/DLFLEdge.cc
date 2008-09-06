@@ -4,9 +4,9 @@
  * \file DLFLEdge.cc
  */
 
-#include "DLFLEdge.hh"
-#include "DLFLFaceVertex.hh"
-#include "DLFLVertex.hh"
+#include "DLFLEdge.h"
+#include "DLFLFaceVertex.h"
+#include "DLFLVertex.h"
 
 namespace DLFL {
 

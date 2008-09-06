@@ -1,6 +1,6 @@
 /*** ***/
 
-#include "Camera2.hh"
+#include "Camera2.h"
 
 /*!
 * 

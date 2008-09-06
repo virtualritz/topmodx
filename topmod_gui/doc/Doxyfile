@@ -97,7 +97,7 @@ FILE_PATTERNS          = *.c \
                          *.i++ \
                          *.inl \
                          *.h \
-                         *.hh \
+                         *.h \
                          *.hxx \
                          *.hpp \
                          *.h++ \

@@ -2,8 +2,8 @@
 
 
 /* Rough outline of planarization algorithm */
-#include <DLFLCore.hh>
-#include <DLFLCoreExt.hh>
+#include <DLFLCore.h>
+#include <DLFLCoreExt.h>
 #include <cmath>
 #include <cassert>
 

@@ -8,7 +8,7 @@
 #include <GL/gl.h>
 #endif
 
-#include "Arcball.hh"
+#include "Arcball.h"
 
 #define LG_NSEGS 4
 #define NSEGS (1<<LG_NSEGS)

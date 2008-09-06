@@ -2,7 +2,7 @@
 
 #include <QtGui>
 
-#include "ExtrusionsMode.hh"
+#include "ExtrusionsMode.h"
 
 /*!
 	\ingroup gui

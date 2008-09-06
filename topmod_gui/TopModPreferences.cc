@@ -1,6 +1,6 @@
 /*** ***/
 
-#include "TopModPreferences.hh"
+#include "TopModPreferences.h"
 
 TopModPreferences::TopModPreferences(QSettings *settings, StyleSheetEditor *sse, QShortcutManager *sm, QWidget *parent) 
 :	QDialog(parent) {

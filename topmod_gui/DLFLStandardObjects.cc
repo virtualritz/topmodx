@@ -7,7 +7,7 @@
 // All methods return a pointer to a newly created DLFLObject
 // Call has to delete the pointer
 
-#include <DLFLObject.hh>
+#include <DLFLObject.h>
 
 using namespace DLFL;
 

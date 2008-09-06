@@ -1,6 +1,6 @@
 /*** ***/
 
-#include "DLFLLighting.hh"
+#include "DLFLLighting.h"
 
 void computeLighting( DLFLFacePtr fp, LightPtr lightptr, bool usegpu ) {
   if ( fp->front() ) {

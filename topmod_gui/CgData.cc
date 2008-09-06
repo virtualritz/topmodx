@@ -1,6 +1,6 @@
 /*** ***/
 
-#include "CgData.hh"
+#include "CgData.h"
 
 #ifdef GPU_OK
 

@@ -1,6 +1,6 @@
 /*** ***/
 #include <QtGui>
-#include "stylesheeteditor.hh"
+#include "stylesheeteditor.h"
 
  StyleSheetEditor::StyleSheetEditor(QWidget *parent)
      : QWidget(parent)

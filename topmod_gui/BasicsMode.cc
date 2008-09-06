@@ -8,7 +8,7 @@
 #include <algorithm>
 #include <queue>
 
-#include "BasicsMode.hh"
+#include "BasicsMode.h"
 
 /*!
 	\ingroup gui

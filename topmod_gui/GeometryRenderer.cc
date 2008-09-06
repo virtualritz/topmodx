@@ -1,7 +1,7 @@
 /*** ***/
 
-#include "GeometryRenderer.hh"
-#include "DLFLRenderer.hh"
+#include "GeometryRenderer.h"
+#include "DLFLRenderer.h"
 
 /*!
 \ingroup gui

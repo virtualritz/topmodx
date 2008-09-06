@@ -1,6 +1,6 @@
 /*** ***/
 
-#include "TMPatchFace.hh"
+#include "TMPatchFace.h"
 
 // Resize the patch array depending on number of corners in the DLFLFace
 void TMPatchFace::resizePatchArray(void) {

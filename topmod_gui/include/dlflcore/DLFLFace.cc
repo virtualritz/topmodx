@@ -6,11 +6,11 @@
 
 // Non-inline source code for DLFLFace class
 
-#include "DLFLFace.hh"
-#include "DLFLEdge.hh"
-#include "DLFLFaceVertex.hh"
-#include "DLFLVertex.hh"
-//#include "TMPatchFace.hh"
+#include "DLFLFace.h"
+#include "DLFLEdge.h"
+#include "DLFLFaceVertex.h"
+#include "DLFLVertex.h"
+//#include "TMPatchFace.h"
 
 namespace DLFL {
 

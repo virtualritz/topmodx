@@ -3,9 +3,9 @@
 // Non-inline function definitions for class DLFLObject
 // Subroutines that are related to connections between edges/faces
 
-#include "DLFLConnect.hh"
-#include <DLFLCore.hh>
-#include <DLFLCoreExt.hh>
+#include "DLFLConnect.h"
+#include <DLFLCore.h>
+#include <DLFLCoreExt.h>
 
 namespace DLFL {
 

@@ -1,6 +1,6 @@
 /*** ***/
 
-#include "PythonHighlighter.hh"
+#include "PythonHighlighter.h"
 
 PythonHighlighter::PythonHighlighter(QTextEdit *parent) 
   : QSyntaxHighlighter(parent) {

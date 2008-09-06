@@ -8,7 +8,7 @@
 
 #include <QtGui>
 #include <QtOpenGL>
-#include "MainWindow.hh"
+#include "MainWindow.h"
 
 /*!
 	\ingroup gui

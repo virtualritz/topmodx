@@ -2,7 +2,7 @@
 
 #ifdef QCOMPLETER
 
-#include "CommandCompleter.hh"
+#include "CommandCompleter.h"
 #include <QPixmap>
 #include <QBitmap>
 

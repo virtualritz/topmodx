@@ -2,7 +2,7 @@
 
 /* $Id: BallMath.cc,v 2.0 2000/02/09 04:36:08 vinod Exp $ */
 
-#include "BallMath.hh"
+#include "BallMath.h"
 
    /*
      Convert window coordinates to sphere coordinates.

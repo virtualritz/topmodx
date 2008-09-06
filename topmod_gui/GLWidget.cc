@@ -1,7 +1,7 @@
 /*** ***/
 
-#include "GLWidget.hh"
-#include "DLFLSelection.hh"
+#include "GLWidget.h"
+#include "DLFLSelection.h"
 
 /*!
 	\ingroup gui

@@ -2,7 +2,7 @@
 
 #include <QtGui>
 
-#include "ExperimentalModes.hh"
+#include "ExperimentalModes.h"
 
 /*!
 	\ingroup gui

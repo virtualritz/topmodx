@@ -20,11 +20,11 @@ macx {
 }
 
 HEADERS += \
-	Arcball.hh \
-	BallMath.hh \
-	DollyControl.hh \
-	TransControl.hh \
-	ZoomControl.hh 
+	Arcball.h \
+	BallMath.h \
+	DollyControl.h \
+	TransControl.h \
+	ZoomControl.h 
 
 SOURCES += \
 	Arcball.cc \

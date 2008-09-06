@@ -2,11 +2,11 @@
 
 /* $Id: Vector3d.cc,v 1.3 2000/04/30 02:50:08 vinod Exp $ */
 
-// Definitions for non-inline functions in Vector3d.hh
+// Definitions for non-inline functions in Vector3d.h
 
-#include "Vector3d.hh"
-#include "Vector2d.hh"
-#include "Vector4d.hh"
+#include "Vector3d.h"
+#include "Vector2d.h"
+#include "Vector4d.h"
 
 void Vector3d :: copyFrom(const Vector2d& vec)
 {

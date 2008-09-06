@@ -4,7 +4,7 @@
  * \file DLFLCore.cc
  */
 
-#include "DLFLCore.hh"
+#include "DLFLCore.h"
 #include <cmath>
 #include <cassert>
 

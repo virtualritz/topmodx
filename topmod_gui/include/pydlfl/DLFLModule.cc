@@ -2,12 +2,12 @@
 
 #include <Python.h>
 
-#include <DLFLCore.hh>
-#include <DLFLExtrude.hh>
-#include <DLFLSubdiv.hh>
-#include <DLFLDual.hh>
-#include <DLFLConnect.hh>
-#include <DLFLCrust.hh>
+#include <DLFLCore.h>
+#include <DLFLExtrude.h>
+#include <DLFLSubdiv.h>
+#include <DLFLDual.h>
+#include <DLFLConnect.h>
+#include <DLFLCrust.h>
 
 typedef DLFL::DLFLFaceVertex Corner;
 typedef DLFL::DLFLFaceVertexPtr CornerPtr;

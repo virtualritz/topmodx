@@ -27,8 +27,8 @@
 #include <QFileOpenEvent>
 // #include <QWaitCondition>
 
-#include "MainWindow.hh"
-#include "TopMod.hh"
+#include "MainWindow.h"
+#include "TopMod.h"
 
 #define max(a, b)   (((a) < (b)) ? (b) : (a))
 #define min(x1,x2) ((x1)<(x2)?(x1):(x2))
@@ -40,7 +40,7 @@
 #ifdef WITH_SPACENAV
 #ifdef __APPLE__
 /*
-#include "TdxDeviceWrappers.hh"
+#include "TdxDeviceWrappers.h"
 
 int TdxComputeAxes(const TdxDeviceAxes inArrayPtr)
 {

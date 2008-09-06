@@ -175,53 +175,53 @@ macx {
 
 # Input
 HEADERS += \
-	DLFLScriptEditor.hh \
-	TopModPreferences.hh \
-	TdxDeviceWrappers.hh \
-	CommandCompleter.hh \
-	DLFLLocator.hh \
-	GLWidget.hh \
-	TopMod.hh \
-	MainWindow.hh \
-	GeometryRenderer.hh \
-	DLFLLighting.hh \	
-	qcumber.hh \
-	qshortcutdialog.hh \
-	qshortcutmanager.hh \
+	DLFLScriptEditor.h \
+	TopModPreferences.h \
+	TdxDeviceWrappers.h \
+	CommandCompleter.h \
+	DLFLLocator.h \
+	GLWidget.h \
+	TopMod.h \
+	MainWindow.h \
+	GeometryRenderer.h \
+	DLFLLighting.h \	
+	qcumber.h \
+	qshortcutdialog.h \
+	qshortcutmanager.h \
 	ui_shortcutdialog.h \
 	ui_stylesheeteditor.h \
-	editor.hh \
-	PythonHighlighter.hh \
-	BasicsMode.hh \
-	ExtrusionsMode.hh \ 
-	RemeshingMode.hh \
-	ConicalMode.hh \ 
-	HighgenusMode.hh \
-	TexturingMode.hh \
-	ExperimentalModes.hh \
-	DLFLSelection.hh \
-	Viewport.hh \
-	TMPatchFace.hh \
-	TMPatchObject.hh \
-	TMPatch.hh \
-	DLFLRenderer.hh \
-	stylesheeteditor.hh \
-	include/Base/BaseObject.hh \
-	include/Base/Constants.hh \
-	include/Base/Inlines.hh \
-	include/Base/StreamIO.hh \
-	# include/Graphics/Camera.hh \
-	include/Graphics/Color.hh \
-	include/Graphics/Grid.hh \
-	include/Graphics/Texture.hh \
-	include/Graphics/Transform.hh \
-	include/Light/AmbientLight.hh \
-	include/Light/Light.hh \
-	include/Light/PointLight.hh \
-	include/Light/SpotLight.hh \
-	CgData.hh \
-	# include/Camera2.hh \
-	include/Camera3.hh
+	editor.h \
+	PythonHighlighter.h \
+	BasicsMode.h \
+	ExtrusionsMode.h \ 
+	RemeshingMode.h \
+	ConicalMode.h \ 
+	HighgenusMode.h \
+	TexturingMode.h \
+	ExperimentalModes.h \
+	DLFLSelection.h \
+	Viewport.h \
+	TMPatchFace.h \
+	TMPatchObject.h \
+	TMPatch.h \
+	DLFLRenderer.h \
+	stylesheeteditor.h \
+	include/Base/BaseObject.h \
+	include/Base/Constants.h \
+	include/Base/Inlines.h \
+	include/Base/StreamIO.h \
+	# include/Graphics/Camera.h \
+	include/Graphics/Color.h \
+	include/Graphics/Grid.h \
+	include/Graphics/Texture.h \
+	include/Graphics/Transform.h \
+	include/Light/AmbientLight.h \
+	include/Light/Light.h \
+	include/Light/PointLight.h \
+	include/Light/SpotLight.h \
+	CgData.h \
+	# include/Camera2.h \
+	include/Camera3.h
 
 FORMS += shortcutdialog.ui stylesheeteditor.ui
 

@@ -5,7 +5,7 @@
  ****************************************************************************/
 #include <QtGui>
 
-#include "ConicalMode.hh"
+#include "ConicalMode.h"
 
 /*!
 	\ingroup gui

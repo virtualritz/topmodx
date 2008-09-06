@@ -19,9 +19,9 @@
 **
 ****************************************************************************/
 
-#include "qshortcutmanager.hh"
+#include "qshortcutmanager.h"
 
-#include "qshortcutdialog.hh"
+#include "qshortcutdialog.h"
 
 #include <QTextStream>
 

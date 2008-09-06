@@ -13,13 +13,13 @@
 #include <QGridLayout>
 
 /*!
-	\file BasicsMode.hh
+	\file BasicsMode.h
 	\brief Definition of the BasicsMode class
 	
 	\see BasicsMode
 */
 
-#include "MainWindow.hh"
+#include "MainWindow.h"
 
 class MainWindow;
 
@@ -30,7 +30,7 @@ class QCheckBox;
 class QLabel;
 
 // Declarition of the class DupComponentTool.
-// We should move it to a file named dup_component_tool.hh later.
+// We should move it to a file named dup_component_tool.h later.
 // I will create a super class for all the tools. -- Fenghui
 class DupComponentTool : public QWidget {
   Q_OBJECT // does it have to be a Q_OBJECT?
@@ -75,7 +75,7 @@ class DupComponentTool : public QWidget {
 };
 
 // Declarition of the class GeometricTool.
-// We should move it to a file named geometric_tool.hh later.
+// We should move it to a file named geometric_tool.h later.
 // I will create a super class for all the tools. -- Fenghui
 class GeometricTool : public QWidget {
   Q_OBJECT // does it have to be a Q_OBJECT?

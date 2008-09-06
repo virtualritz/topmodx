@@ -1,9 +1,9 @@
 /*** ***/
 
 
-#include "DLFLExtrude.hh"
-#include <DLFLCore.hh>
-#include "DLFLConnect.hh"
+#include "DLFLExtrude.h"
+#include <DLFLCore.h>
+#include "DLFLConnect.h"
 
 namespace DLFL {
 

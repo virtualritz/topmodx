@@ -2,12 +2,12 @@
 
 //#include "function.h"
 //#include "valuemanager.h"
-#include "editor.hh"
+#include "editor.h"
 //#include "evaluator.h"
 //#include "result.h"
 //#include "lexer.h"
 
-#include "PythonHighlighter.hh"
+#include "PythonHighlighter.h"
 
 //#include <netwm.h>
 //#include <fixx11h.h>  // netwm.h includes X11 headers which conflict with qevent

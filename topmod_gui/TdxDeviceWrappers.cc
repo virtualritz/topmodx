@@ -20,7 +20,7 @@
 #include <pthread.h>
 #include <Carbon/Carbon.h>
 
-#include "TdxDeviceWrappers.hh"
+#include "TdxDeviceWrappers.h"
 
 /* ========================================================================== */
 #pragma mark * Data structures *
