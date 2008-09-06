@@ -1,6 +1,6 @@
-QMAKE_PRL_BUILD_DIR = /home/fhzhang/topmod/topmod/topmodx/include/vecmat
+QMAKE_PRL_BUILD_DIR = /home/fhzhang/topmod/topmod_gui/include/vecmat
 QMAKE_PRO_INPUT = vecmat.pro
 QMAKE_PRL_TARGET = libvecmat.a
-QMAKE_PRL_CONFIG = lex yacc debug uic resources incremental no_mocdepend debug stl qt_no_framework staticlib debug warn_off create_prl static staticlib
+QMAKE_PRL_CONFIG = lex yacc uic resources release incremental no_mocdepend stl qt_no_framework staticlib release warn_off create_prl static staticlib
 QMAKE_PRL_VERSION = 1.0.0
 QMAKE_PRL_LIBS =    
