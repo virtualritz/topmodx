@@ -8,13 +8,16 @@
 
 void MainWindow::load_texture() {
 	QString fileName = QFileDialog::getOpenFileName(this,
-		tr("Open File..."),
-		"$HOME",
+		tr("Open Texture File..."),
+		mTextureSaveDirectory,
 		tr("All Supported Files (*.jpg *.png);;JPEG Files (*.jpg);;PNG Files (*.png);;All Files (*)"),
 		0, QFileDialog::DontUseSheet);
-		
+
 	if (!fileName.isEmpty()){
 		// undoPush();
+	  mTextureSaveDirectory = QFileInfo(fileName).absoluteDir().absolutePath();
+	  mPreferencesDialog->setTextureSaveDirectory(mTextureSaveDirectory);
+
 		QByteArray ba = fileName.toLatin1();
 		const char *texfile = ba.data();
 		if (texfile != NULL){
@@ -91,7 +94,7 @@ void MainWindow::setAutoSave(int value){
 	mAutoSave = bool(value);
 	if (mAutoSave)
 		mAutoSaveTimer->start();
-	else 
+	else
 		mAutoSaveTimer->stop();
 }
 
@@ -117,13 +120,24 @@ void MainWindow::setSaveDirectory(QString s){
 
 void MainWindow::checkSaveDirectory(){
 	QDir dir(mSaveDirectory);
-	if (dir.exists()){
-		// std::cout<<"good job\n";
-	}
+	if (dir.exists()){	}
 	else {
 		QString s = QString("Directory\n\n%1\n\ndoes not exist, please type a different directory name.\n\nCheck to make sure there are no unnecessary spaces at the end.").arg(mSaveDirectory);
 		QMessageBox::about(this, tr("TopMod Error"), s);
 	}
+}
+
+void MainWindow::setTextureSaveDirectory(QString s){
+  mTextureSaveDirectory = s;
+}
+
+void MainWindow::checkTextureSaveDirectory(){
+  QDir dir(mTextureSaveDirectory);
+  if (dir.exists()){  }
+  else {
+    QString s = QString("Directory\n\n%1\n\ndoes not exist, please type a different directory name.\n\nCheck to make sure there are no unnecessary spaces at the end.").arg(mTextureSaveDirectory);
+    QMessageBox::about(this, tr("TopMod Error"), s);
+  }
 }
 
 void MainWindow::setCommandCompleterIndexToggle(int value){
@@ -195,7 +209,7 @@ void MainWindow::select_multiple() {
 		case MaskVertices:
 		setMode(MainWindow::MultiSelectVertex);
 		break;
-		case MaskEdges: 
+		case MaskEdges:
 		setMode(MainWindow::MultiSelectEdge);
 		break;
 		case MaskFaces://face stuff
@@ -271,7 +285,7 @@ void MainWindow::selectionMaskVertices() {
 
 void MainWindow::selectionMaskFaces() {
 	// cout << "selectionMaskFaces called\n";
-	
+
 	// setSelectionMask(MainWindow::MaskFaces);
 	setMode(MainWindow::SelectFace);
 }
@@ -279,13 +293,13 @@ void MainWindow::selectionMaskFaces() {
 void MainWindow::selectionMaskEdges() {
 	// setSelectionMask(MainWindow::MaskEdges);
 	setMode(MainWindow::SelectEdge);
-	
+
 }
 
 void MainWindow::selectionMaskCorners() {
 	// setSelectionMask(MainWindow::MaskCorners);
 	setMode(MainWindow::SelectCorner);
-	
+
 }
 
 void MainWindow::selectAll(){
@@ -687,7 +701,7 @@ void MainWindow::changePNormalBendT(double value) {
 }
 
 void MainWindow::toggleGlobalCut(int state){    //ozgur
-	MainWindow::global_cut = bool(state);	
+	MainWindow::global_cut = bool(state);
 }
 void MainWindow::toggleSelectedCut(int state){  //ozgur
 	MainWindow::selected_cut = bool(state);
@@ -785,18 +799,18 @@ void MainWindow::freezeTransforms() {
 // 	object.computeNormals();
 // 	computeLighting( &object, patchObject, &plight);
 // }
-// 
+//
 // void MainWindow::recomputeLighting(void)                // Recompute lighting
 // {
 // 	computeLighting( &object, patchObject, &plight);
 // }
-// 
+//
 // void MainWindow::active->recomputePatches(void) // Recompute the patches for patch rendering
 // {
 //   if(patchObject)
 //     patchObject->updatePatches(&object);
 // }
-// 
+//
 void MainWindow::subdivideAllEdges(void)              // Sub-divide all edges
 {
 	undoPush();
@@ -814,7 +828,7 @@ void MainWindow::subdivideSelectedEdges(void) // Subdivide all selected edges
 	// eparray.resize(active->numSelectedEdges());
 	for (int i=0; i < active->numSelectedEdges(); ++i)	{
 		subdivideEdge(&object,MainWindow::num_e_subdivs, active->getSelectedEdge(i));
-	}  
+	}
 	// DLFL::subdivideEdges(&object,fparray,use_quads);
 	MainWindow::clearSelected();
   active->recomputePatches();
@@ -960,14 +974,14 @@ void MainWindow::subdivideCatmullClark(void)     // Catmull-Clark subdivision
 void MainWindow::subdivideDooSabin(void)             // Doo-Sabin subdivision
 {
 	undoPush();
-	
+
 	// QProgressDialog *progress = new QProgressDialog("Performing Doo Sabin Remeshing...", "Cancel", 0, 1);
 	// progress->setMinimumDuration(2000);
 	// progress->setWindowModality(Qt::WindowModal);
-	
+
 	// DLFLObjectPtr t = object;
 	// active->setRenderingEnabled(false);
-	
+
 	// if (!DLFL::dooSabinSubdivide(&object, doo_sabin_check/* , progress*/) ){
 		// active->recomputePatches();
 		// active->recomputeNormals();
@@ -1011,14 +1025,14 @@ void MainWindow::subdivideDooSabin(void)             // Doo-Sabin subdivision
 		cmd += check + QString(")");
 		emit echoCommand( cmd );
 	// }
-	
+
   // Fenghui, output the time taken to perform each steps.
   cout << "DooSabin:" << (op - start) / (double)CLOCKS_PER_SEC
        << ":" << (recompute_patches - op) / (double)CLOCKS_PER_SEC
        << ":" << (recompute_normals - recompute_patches) / (double)CLOCKS_PER_SEC
        << ":" << (std::clock() - recompute_normals) / (double)CLOCKS_PER_SEC
        << endl;
-  // Fenghui's simple profiler for DooSabin, end!	
+  // Fenghui's simple profiler for DooSabin, end!
 }
 
 void MainWindow::subdivideHoneycomb(void)            // Honeycomb subdivision
@@ -1253,7 +1267,7 @@ void MainWindow::subdivide1264(void)                      // 12-6-4 remeshing
 
 	QString cmd = QString("dual()\ndual()\n");
 	cmd += QString("subdivide(\"dual-12.6.4\",")
-		+ QString().setNum(MainWindow::dual1264_scale_factor) 
+		+ QString().setNum(MainWindow::dual1264_scale_factor)
 		+ QString(")\n");
 	cmd += QString("dual()");
 	emit echoCommand(cmd);
@@ -1508,9 +1522,9 @@ void MainWindow::createCrust(bool use_scaling)        // Create a crust
 {
 	undoPush();
 	setModified(true);
-	if ( use_scaling ) 
+	if ( use_scaling )
 		DLFL::createCrustWithScaling(&object,MainWindow::crust_scale_factor);
-	else 
+	else
 		DLFL::createCrust(&object,MainWindow::crust_thickness);
   active->recomputePatches();
 	active->recomputeNormals();
@@ -1529,9 +1543,9 @@ void MainWindow::createCrust2(bool use_scaling) {
 
 	undoPush();
 	setModified(true);
-	if ( use_scaling ) 
+	if ( use_scaling )
 		DLFL::createCrustWithScaling(&object,MainWindow::crust_scale_factor);
-	else 
+	else
 		DLFL::createCrust(&object,MainWindow::crust_thickness);
   active->recomputePatches();
 	active->recomputeNormals();
@@ -1551,8 +1565,8 @@ void MainWindow::createCrust2(bool use_scaling) {
 	active->clearSelectedFaces();
 	redraw();
 
-	QString cmd = QString("rind(") + 
-		facelist + QString(",True,") + 
+	QString cmd = QString("rind(") +
+		facelist + QString(",True,") +
 		MainWindow::crust_thickness +
 		QString(")");
 	emit echoCommand( cmd );
@@ -1714,11 +1728,11 @@ void MainWindow::getCommand(){
 }
 
 void MainWindow::initializeAnimatedHelp(){
-	
+
 	mAnimatedHelpWidget = new QWidget(this);
 	// QSplashScreen *w = new QSplashScreen(this);
 	mAnimatedHelpLayout = new QVBoxLayout;
-	
+
 	mAnimatedHelpMovie = new QMovie(this);
 	mAnimatedHelpMovie->setCacheMode(QMovie::CacheAll);
 	mAnimatedHelpMovie->setBackgroundColor(QColor(255,255,255,255));
@@ -1728,31 +1742,31 @@ void MainWindow::initializeAnimatedHelp(){
 	// mAnimatedHelpLabel->setSizePolicy(QSizePolicy::Ignored, QSizePolicy::Ignored);
 	// mAnimatedHelpLabel->setBackgroundRole(QPalette::Dark);
 	// mAnimatedHelpLabel->setAutoFillBackground(true);
-	
+
 	mAnimatedHelpLayout->addWidget(mAnimatedHelpLabel);
 	mAnimatedHelpLayout->addStretch(1);
 	mAnimatedHelpLayout->setMargin(0);
 	mAnimatedHelpWidget->setLayout(mAnimatedHelpLayout);
-	
+
 	mAnimatedHelpMovie->stop();
   mAnimatedHelpLabel->setMovie(mAnimatedHelpMovie);
   // mAnimatedHelp->setFileName("images/insert_edge.mng");
 	// w->move(QCursor::pos());
 	// w->show();
-	
+
 	// create the dockwidget, set it to the right side
 	mAnimatedHelpDockWidget = new QDockWidget(tr("TopMod Animated Help"), this);
 	mAnimatedHelpDockWidget->setAllowedAreas(Qt::NoDockWidgetArea);
 	mAnimatedHelpDockWidget->setWidget(mAnimatedHelpWidget);
 	// addDockWidget(Qt::RightDockWidgetArea, mAnimatedHelpDockWidget);
-	mAnimatedHelpDockWidget->hide();	
+	mAnimatedHelpDockWidget->hide();
 	mAnimatedHelpDockWidget->setFloating(true);
 	mAnimatedHelpDockWidget->setFeatures(QDockWidget::DockWidgetMovable | QDockWidget::DockWidgetClosable | QDockWidget::DockWidgetFloatable);
 	// mAnimatedHelpDockWidget->setResizeEnabled(false);
 	//sizing
 	mAnimatedHelpDockWidget->setMinimumSize(200,200);
 	mAnimatedHelpDockWidget->setMaximumSize(200,200);
-	
+
 	//fix positioning later
 	mAnimatedHelpDockWidget->move(width() , 150+mToolOptionsDockWidget->height()+200);
 }
@@ -1796,12 +1810,12 @@ void MainWindow::deleteSelected(){
 	DLFLFacePtrArray sfptrarr;
 	DLFLVertexPtrArray svptrarr;
 	DLFLFaceVertexPtrArray sfvptrarr;
-	
+
 	vector<DLFLFaceVertexPtr>::iterator fvt;
 	vector<DLFLVertexPtr>::iterator vit;
 	vector<DLFLEdgePtr>::iterator eit;
 	vector<DLFLFacePtr>::iterator fit;
-	
+
 	// undoPush();
 	// setModified(true);
 
@@ -1815,7 +1829,7 @@ void MainWindow::deleteSelected(){
 				for(eit = septrarr.begin(); eit != septrarr.end(); eit++){
           deleteEdge(*eit);
 				}
-			}			
+			}
 			active->clearSelectedEdges();
 
 			redraw();
@@ -1832,12 +1846,12 @@ void MainWindow::deleteSelected(){
 						//DLFL::deleteEdge( &object, *eit, true);
 						deleteEdge(*eit);
 						// active->recomputePatches();
-						// active->recomputeNormals();						
+						// active->recomputeNormals();
 					}
-			}			
+			}
 			active->clearSelectedVertices();
       // active->recomputePatches();
-			// active->recomputeNormals();		
+			// active->recomputeNormals();
 			redraw();
       break;
 		case MaskFaces:
@@ -1863,10 +1877,10 @@ void MainWindow::deleteSelected(){
       // 		// } // end loop through corners of current face
       // 	}//end loop through selected faces
       // 	active->recomputePatches();
-      // 	active->recomputeNormals();						
-      // }			
+      // 	active->recomputeNormals();
+      // }
       // active->clearSelectedFaces();
-      // redraw();		
+      // redraw();
       break;
 		case MaskCorners:
       break;
@@ -1888,11 +1902,11 @@ void MainWindow::collapseSelectedEdges(){
 		for(eit = septrarr.begin(); eit != septrarr.end(); eit++){
 			if (*eit){
 				DLFL::collapseEdge( &object, *eit, MainWindow::delete_edge_cleanup);
-				active->recomputeNormals();						
+				active->recomputeNormals();
 			}
 		}
     active->recomputePatches();
-	}			
+	}
 	active->clearSelectedEdges();
 	redraw();
 }
@@ -1916,11 +1930,11 @@ void MainWindow::selectEdgesFromFaces(){
 			}
 		}
     active->recomputePatches();
-		active->recomputeNormals();						
-	}			
+		active->recomputeNormals();
+	}
 	setMode(MainWindow::SelectEdge);
 	active->clearSelectedFaces();
-	redraw();		
+	redraw();
 }
 
 void MainWindow::selectEdgesFromVertices(){
@@ -1941,11 +1955,11 @@ void MainWindow::selectEdgesFromVertices(){
 			}
 		}
     active->recomputePatches();
-		active->recomputeNormals();						
-	}			
+		active->recomputeNormals();
+	}
 	setMode(MainWindow::SelectEdge);
 	active->clearSelectedVertices();
-	redraw();	
+	redraw();
 }
 
 void MainWindow::selectFacesFromEdges(){
@@ -1967,11 +1981,11 @@ void MainWindow::selectFacesFromEdges(){
 			}
 		}
     active->recomputePatches();
-		active->recomputeNormals();						
-	}			
-	setMode(MainWindow::SelectFace);	
+		active->recomputeNormals();
+	}
+	setMode(MainWindow::SelectFace);
 	active->clearSelectedEdges();
-	redraw();	
+	redraw();
 }
 
 void MainWindow::selectFacesFromVertices(){
@@ -1992,11 +2006,11 @@ void MainWindow::selectFacesFromVertices(){
 			}
 		}
     active->recomputePatches();
-		active->recomputeNormals();						
-	}			
+		active->recomputeNormals();
+	}
 	setMode(MainWindow::SelectFace);
 	active->clearSelectedVertices();
-	redraw();			
+	redraw();
 }
 
 void MainWindow::selectVerticesFromFaces(){
@@ -2019,14 +2033,14 @@ void MainWindow::selectVerticesFromFaces(){
 			}
 		}
     active->recomputePatches();
-		active->recomputeNormals();						
-	}			
+		active->recomputeNormals();
+	}
 	setMode(MainWindow::SelectVertex);
 	active->clearSelectedFaces();
-	redraw();	
+	redraw();
 }
 
-void MainWindow::selectVerticesFromEdges(){	
+void MainWindow::selectVerticesFromEdges(){
 	DLFLEdgePtrArray septrarr;
 	vector<DLFLEdgePtr>::iterator eit;
 	DLFLVertexPtr vptr1,vptr2;
@@ -2046,11 +2060,11 @@ void MainWindow::selectVerticesFromEdges(){
 			}
 		}
     active->recomputePatches();
-		active->recomputeNormals();						
-	}			
+		active->recomputeNormals();
+	}
 	setMode(MainWindow::SelectVertex);
 	active->clearSelectedEdges();
-	redraw();	
+	redraw();
 }
 
 void MainWindow::selectComponent(){
@@ -2062,12 +2076,12 @@ void MainWindow::selectComponent(){
 	vector<DLFLEdgePtr>::iterator eit;
 	vector<DLFLFacePtr>::iterator fit;
 	vector<DLFLFaceVertexPtr>::iterator fvit;
-	
+
 	DLFLVertexPtr vptr1,vptr2;
 	DLFLFacePtr fptr1,fptr2;
 	DLFLEdgePtrArray eptrarray;
 	vector<DLFLEdgePtr>::iterator eit2;
-	
+
 	switch (selectionmask){
 		case MaskVertices:
 		//loop through selected vertices, get corresponding edges
@@ -2098,7 +2112,7 @@ void MainWindow::selectComponent(){
 					}
 				}
 			}
-		}			
+		}
 		redraw();
 		break;
 		case MaskEdges:
@@ -2121,7 +2135,7 @@ void MainWindow::selectComponent(){
 						active->setSelectedEdge(num_sel_edges,*eit2);
             Q.push(*eit2);
 						num_sel_edges++;
-					}					
+					}
 				}
 				//get edges for vertex 2
 				vptr2->getEdges(eptrarray);
@@ -2130,10 +2144,10 @@ void MainWindow::selectComponent(){
 						active->setSelectedEdge(num_sel_edges,*eit2);
             Q.push(*eit2);
 						num_sel_edges++;
-					}					
+					}
 				}
 			}
-		}			
+		}
 		redraw();
 		break;
 		case MaskFaces:
@@ -2181,12 +2195,12 @@ void MainWindow::growSelection(){
 	vector<DLFLEdgePtr>::iterator eit;
 	vector<DLFLFacePtr>::iterator fit;
 	vector<DLFLFaceVertexPtr>::iterator fvit;
-	
+
 	DLFLVertexPtr vptr1,vptr2;
 	DLFLFacePtr fptr1,fptr2;
 	DLFLEdgePtrArray eptrarray;
 	vector<DLFLEdgePtr>::iterator eit2;
-	
+
 	switch (selectionmask){
 		case MaskVertices:
 		//loop through selected vertices, get corresponding edges
@@ -2209,7 +2223,7 @@ void MainWindow::growSelection(){
 					}
 				}
 			}
-		}			
+		}
 		redraw();
 		break;
 		case MaskEdges:
@@ -2225,7 +2239,7 @@ void MainWindow::growSelection(){
 					if (!active->isSelected(*eit2)){
 						active->setSelectedEdge(num_sel_edges,*eit2);
 						num_sel_edges++;
-					}					
+					}
 				}
 				//get edges for vertex 2
 				vptr2->getEdges(eptrarray);
@@ -2233,10 +2247,10 @@ void MainWindow::growSelection(){
 					if (!active->isSelected(*eit2)){
 						active->setSelectedEdge(num_sel_edges,*eit2);
 						num_sel_edges++;
-					}					
+					}
 				}
 			}
-		}			
+		}
 		redraw();
 		break;
 		case MaskFaces:
@@ -2282,12 +2296,12 @@ void MainWindow::shrinkSelection(){
 	vector<DLFLFacePtr>::iterator fit;
 	vector<DLFLFaceVertexPtr>::iterator fvit;
 	int i = 0;
-	
+
 	DLFLVertexPtr vptr1,vptr2;
 	DLFLFacePtr fptr1,fptr2;
 	DLFLEdgePtrArray eptrarray;
 	vector<DLFLEdgePtr>::iterator eit2;
-	
+
 	switch (selectionmask){
 		case MaskVertices:
 		//loop through selected vertices, get corresponding edges
@@ -2313,7 +2327,7 @@ void MainWindow::shrinkSelection(){
 				if (deselectvertices[i])
 					active->clearSelectedVertex(*vit);
 			}
-		}			
+		}
 		redraw();
 		break;
 		case MaskEdges:
@@ -2345,7 +2359,7 @@ void MainWindow::shrinkSelection(){
 				if (deselectedges[i])
 					active->clearSelectedEdge(*eit);
 			}
-		}			
+		}
 		redraw();		break;
 		case MaskFaces:
 		//loop through selected faces
@@ -2400,10 +2414,10 @@ void MainWindow::reorderSelectedFaces(){
 	// 		}
 	// 	}
 	// 	active->recomputePatches();
-	// 	active->recomputeNormals();						
-	// }			
+	// 	active->recomputeNormals();
+	// }
 	// active->clearSelectedVertices();
-	// redraw();			
+	// redraw();
 }
 
 void MainWindow::toggleFullScreen(){
@@ -2418,12 +2432,12 @@ void MainWindow::toggleFullScreen(){
 		//mConicalToolBar->toggleViewAction();
 		mHighgenusToolBar->setVisible(true);
 		mTexturingToolBar->setVisible(true);
-		// mRemeshingToolBar->setVisible(true);		
+		// mRemeshingToolBar->setVisible(true);
 		mStatusBar->show();
 	}
 	// go to full screen mode 2
 	else if (windowState() == Qt::WindowFullScreen) {
-		// setWindowState(windowState() ^ Qt::WindowFullScreen);	
+		// setWindowState(windowState() ^ Qt::WindowFullScreen);
 		mStatusBar->hide();
 		mEditToolBar->setVisible(false);
 		mPrimitivesToolBar->setVisible(false);
@@ -2431,12 +2445,12 @@ void MainWindow::toggleFullScreen(){
 		mExtrusionToolBar->setVisible(false);
 		mHighgenusToolBar->setVisible(false);
 		mTexturingToolBar->setVisible(false);
-		mRemeshingToolBar->setVisible(false);		
+		mRemeshingToolBar->setVisible(false);
 	}
 	//go into full screen mode 1
 	else {
-		setWindowState(windowState() ^ Qt::WindowFullScreen);		
+		setWindowState(windowState() ^ Qt::WindowFullScreen);
 	}
-	
-	
+
+
 }

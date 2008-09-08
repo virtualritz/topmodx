@@ -16,7 +16,6 @@
 #include <QSpinBox>
 #include <iostream>
 
-//class QLineEdit;
 class QTextEdit;
 class QProcess;
 
@@ -35,55 +34,55 @@ static void **PyDLFL_API;
   (*(void (*)(DLFLObject* obj)) PyDLFL_API[1])
 
 class DLFLScriptEditor : public QWidget {
-Q_OBJECT
+  Q_OBJECT
 
 public:
   DLFLScriptEditor( DLFLObjectPtr obj = NULL, QWidget *parent = 0, Qt::WindowFlags f = Qt::Tool );
   ~DLFLScriptEditor( );
 
-  QColor& outputBgColor( ) { return mOutputBgColor; };
-  QColor& inputBgColor( ) { return mInputBgColor; };
-	void retranslateUi();
+  QColor& outputBgColor( ) {return mOutputBgColor;};
+  QColor& inputBgColor( ) {return mInputBgColor;};
+  void retranslateUi();
 
-signals :
+  signals :
   void makingChange( ); // for undo push
   void cmdExecuted( );
   void addToHistory( const QString& item );
   void requestObject( QString fileName );
 private slots :
   void executeCommand( );
-	void echoCommand( QString cmd );
-	void toggleTabWidthWidget( );
+  void echoCommand( QString cmd );
+  void toggleTabWidthWidget( );
 public slots :
   void loadObject( DLFLObject* obj, QString fileName );
-	void loadDLFLModule( QString newPath );
-	void execFile( );
-	void openFile( );
-	void saveFile( );
-	void saveOutput( );
-	void clearHistory( );
-	void clearInput( );
-	void toggleEchoing( );
-	// Run this function to convert spaces to TABs
-	void setTabWidth( int width );
-	void spacesToTABs( );
+  void loadDLFLModule( QString newPath );
+  void execFile( );
+  void openFile( );
+  void saveFile( );
+  void saveOutput( );
+  void clearHistory( );
+  void clearInput( );
+  void toggleEchoing( );
+  // Run this function to convert spaces to TABs
+  void setTabWidth( int width );
+  void spacesToTABs( );
 private :
-	// The place where the user types the commands (multiline)
+  // The place where the user types the commands (multiline)
   Editor *mCommandEdit;
-	// The place where executed commands are executed
+  // The place where executed commands are executed
   QTextEdit *mHistoryBox;
-	// The menubar with some options
-	QMenuBar *mMenuBar;
-	QMenu *mScriptMenu;
-	QAction *mExecFile, *mOpenFile, *mSaveFile, *mSaveOutput;
-	QAction *mClearHistory;
-	QAction *mClearInput;
-	QAction *mToggleEchoing;
+  // The menubar with some options
+  QMenuBar *mMenuBar;
+  QMenu *mScriptMenu;
+  QAction *mExecFile, *mOpenFile, *mSaveFile, *mSaveOutput;
+  QAction *mClearHistory;
+  QAction *mClearInput;
+  QAction *mToggleEchoing;
 
-	// For Spaces to TABs conversion
-	QMenu *mFormatMenu;
-	QAction *mSetTabWidth;
-	QAction *mConvertSpaces;
+  // For Spaces to TABs conversion
+  QMenu *mFormatMenu;
+  QAction *mSetTabWidth;
+  QAction *mConvertSpaces;
 
   PythonHighlighter *pyhigh;
 
@@ -94,17 +93,17 @@ private :
   PyObject *dlfl_module, *dlfl_dict;
   PyObject *main_module, *main_dict;
 
-	bool mEchoing;
+  bool mEchoing;
 
-	QString pathPython;
+  QString pathPython;
 
-	// The number of spaces equal to a TAB
-	// will get converted at the beginning of a line
-	int mTabWidth;
-	QSpinBox *mSetTabWidthWidget;
+  // The number of spaces equal to a TAB
+  // will get converted at the beginning of a line
+  int mTabWidth;
+  QSpinBox *mSetTabWidthWidget;
 
 public :
-	QString addToPath;
+  QString addToPath;
 };
 
 #endif

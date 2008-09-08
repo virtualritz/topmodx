@@ -2,9 +2,9 @@
 
 #include "TopModPreferences.h"
 
-TopModPreferences::TopModPreferences(QSettings *settings, StyleSheetEditor *sse, QShortcutManager *sm, QWidget *parent) 
+TopModPreferences::TopModPreferences(QSettings *settings, StyleSheetEditor *sse, QShortcutManager *sm, QWidget *parent)
 :	QDialog(parent) {
-	
+
 	mSettings = settings;
 	mParent = parent;
 	setSizeGripEnabled(false);
@@ -12,12 +12,12 @@ TopModPreferences::TopModPreferences(QSettings *settings, StyleSheetEditor *sse,
 	setFixedSize(700,600);
 	setWindowTitle(tr("TopMod Preferences"));
 	// setWindowFlags(Qt::FramelessWindowHint | Qt::Dialog);
-		
+
 	// mMainTab = new QWidget;
 	mStyleSheetsTab = sse;
 	mShortcutsManager = sm;
 	mShortcutsTab = sm->getShortcutDialog();
-	
+
 	mPrefTabs = new QTabWidget;
 	//setup layouts
 	QVBoxLayout *mainLayout = new QVBoxLayout;
@@ -25,7 +25,7 @@ TopModPreferences::TopModPreferences(QSettings *settings, StyleSheetEditor *sse,
 	QHBoxLayout *lowLayout = new QHBoxLayout;
 	mainLayout->addLayout(lowLayout,1);
 	lowLayout->addStretch(1);
-	
+
 	mOkButton = new QPushButton(tr("OK"));
 	// mOkButton->setDefault(true);
 	connect(mOkButton, SIGNAL(clicked()), this, SLOT(saveSettings()));
@@ -47,7 +47,7 @@ TopModPreferences::~TopModPreferences(){
 }
 
 int TopModPreferences::display(){
-	
+
 	mShortcutsTab->exec();
 	return exec();
 }
@@ -56,7 +56,7 @@ void TopModPreferences::createTabs(){
 
 	mMainTab = new QWidget;
 	mColorsTab = new QWidget;
-	 
+
 	mPrefTabs->addTab(mMainTab,tr("Main"));
 	mPrefTabs->addTab(mColorsTab,tr("Colors"));
 	mPrefTabs->addTab(((QWidget*)mShortcutsTab),tr("Shortcuts"));
@@ -87,7 +87,7 @@ void TopModPreferences::saveSettings(){
 	mSettings->setValue("FaceIDBgColor",mFaceIDBgColor);
 	mSettings->setValue("LightIntensity",mLightIntensity);
 	mSettings->endGroup();
-	
+
 	mSettings->beginGroup("Display");
 	mSettings->setValue("NormalThickness", mNormalThickness);
 	mSettings->setValue("FaceCentroidThickness", mFaceCentroidThickness);
@@ -100,18 +100,19 @@ void TopModPreferences::saveSettings(){
 
 	mSettings->beginGroup("Camera");
 	mSettings->setValue("NearPlane",mCameraNearPlaneSpinBox->value());
-	mSettings->setValue("FarPlane",mCameraFarPlaneSpinBox->value());	
+	mSettings->setValue("FarPlane",mCameraFarPlaneSpinBox->value());
 	mSettings->setValue("Fov",mCameraFovSpinBox->value());
 	mSettings->endGroup();
-	
+
 	mSettings->beginGroup("Save Options");
 	mSettings->setValue("SaveDirectory", mSaveDirectoryLineEdit->text());
+  mSettings->setValue("TextureSaveDirectory", mTextureSaveDirectoryLineEdit->text());
 	mSettings->setValue("AutoSave", mAutoSaveCheckBox->checkState());
 	mSettings->setValue("AutoSaveDelay", mAutoSaveDelaySpinBox->value());
 	mSettings->setValue("IncrementalSave", mIncrementalSaveCheckBox->checkState());
 	mSettings->setValue("IncrementalSaveMax", mIncrementalSaveMaxSpinBox->value());
 	mSettings->endGroup();
-	
+
 	mSettings->beginGroup("MainWindow");
 	mSettings->setValue("pos", ((MainWindow*)mParent)->pos());
 	mSettings->setValue("size", ((MainWindow*)mParent)->size());
@@ -120,13 +121,13 @@ void TopModPreferences::saveSettings(){
 	mSettings->setValue("toolOptionsPos", ((MainWindow*)mParent)->mToolOptionsDockWidget->pos());
 	mSettings->setValue("CommandCompleterIndex", mCommandCompleterIndexToggle->checkState());
 	mSettings->setValue("SingleClickExtrude", mSingleClickExtrudeCheckBox->checkState());
-	
+
 	#ifdef WITH_PYTHON
 	mSettings->setValue("scriptEditorPos", ((MainWindow*)mParent)->mScriptEditorDockWidget->pos());
 	mSettings->setValue("scriptEditorSize", ((MainWindow*)mParent)->mScriptEditorDockWidget->size());
 	#endif
 	mSettings->endGroup();
-	
+
 	accept();
 }
 
@@ -165,7 +166,7 @@ void TopModPreferences::readSettings(){
 	mFaceIDBgColorDefault = QColor(0,0,127,127);
 	mFaceIDBgColor = mSettings->value("FaceIDBgColor", mFaceIDBgColorDefault).value<QColor>();
 	mSettings->endGroup();
-	
+
 	mSettings->beginGroup("Display");
 	mLightIntensityDefault = 2.0;
 	mLightIntensity = mSettings->value("LightIntensity", mLightIntensityDefault).toDouble();
@@ -186,7 +187,7 @@ void TopModPreferences::readSettings(){
 	mFaceCentroidThicknessDefault = 5.0;
 	mFaceCentroidThickness = mSettings->value("FaceCentroidThickness", mFaceCentroidThicknessDefault).toDouble();
 	mSettings->endGroup();
-	
+
 	mSettings->beginGroup("Camera");
 	mCameraNearPlaneDefault = 1.0;
 	mCameraNearPlane = mSettings->value("NearPlane", mCameraNearPlaneDefault).toDouble();
@@ -195,13 +196,12 @@ void TopModPreferences::readSettings(){
 	mCameraFovDefault = 60;
 	mCameraFov = mSettings->value("Fov", mCameraFovDefault).toDouble();
 	mSettings->endGroup();
-	
+
 	mSettings->beginGroup("Save Options");
-	// std::cout<< QDir::currentPath().toLatin1().data() << "\n";
-	// mSaveDirectory = QDir::currentPath();
-	mSaveDirectoryDefault = QDir::currentPath();
-	mSaveDirectory = mSettings->value("SaveDirectory", mSaveDirectoryDefault).toString();
-	// std::cout<< mSaveDirectory.toLatin1().data() << "\n";
+  mSaveDirectoryDefault = QDir::currentPath();
+  mSaveDirectory = mSettings->value("SaveDirectory", mSaveDirectoryDefault).toString();
+  mTextureSaveDirectoryDefault = QDir::currentPath();
+  mTextureSaveDirectory = mSettings->value("TextureSaveDirectory", mTextureSaveDirectoryDefault).toString();
 	mAutoSaveDefault = false;
 	mAutoSave = mSettings->value("AutoSave", mAutoSaveDefault).toBool();
 	mAutoSaveDelayDefault = 5;
@@ -217,16 +217,16 @@ void TopModPreferences::readSettings(){
 	if (pos.y()==0) pos.setY(pos.y()+20);
 	QSize size = mSettings->value("size", QSize(800, 600)).toSize();
 	QPoint toolOptionsPos = mSettings->value("toolOptionsPos", QPoint()).toPoint();
-	
+
 	mCommandCompleterIndexDefault = false;
 	mCommandCompleterIndex = mSettings->value("CommandCompleterIndex", mCommandCompleterIndexDefault).toBool();
 
 	mSingleClickExtrudeDefault = false;
 	mSingleClickExtrude = mSettings->value("SingleClickExtrude", mSingleClickExtrudeDefault).toBool();
-	
+
 	#ifdef WITH_PYTHON
 	QSize scriptEditorSize = mSettings->value("scriptEditorSize", QSize(500,300)).toSize();
-	QPoint scriptEditorPos = mSettings->value("scriptEditorPos", QPoint(20, QApplication::desktop()->height()-500)).toPoint();	
+	QPoint scriptEditorPos = mSettings->value("scriptEditorPos", QPoint(20, QApplication::desktop()->height()-500)).toPoint();
 	#endif
 	mShowStartupDialogAtStartup = mSettings->value("showStartupDialogAtStartup", false).toBool();
 	mSettings->endGroup();
@@ -234,12 +234,12 @@ void TopModPreferences::readSettings(){
 	((MainWindow*)mParent)->resize(size.width(),size.height());
 	((MainWindow*)mParent)->move(pos);
 	((MainWindow*)mParent)->setShowStartupDialogAtStartup((int)mShowStartupDialogAtStartup);
-	((MainWindow*)mParent)->mToolOptionsDockWidget->setGeometry(10 + ((MainWindow*)mParent)->x(),((MainWindow*)mParent)->y()+150,((MainWindow*)mParent)->mToolOptionsDockWidget->width(),((MainWindow*)mParent)->mToolOptionsDockWidget->height());	
+	((MainWindow*)mParent)->mToolOptionsDockWidget->setGeometry(10 + ((MainWindow*)mParent)->x(),((MainWindow*)mParent)->y()+150,((MainWindow*)mParent)->mToolOptionsDockWidget->width(),((MainWindow*)mParent)->mToolOptionsDockWidget->height());
 	#ifdef WITH_PYTHON
 	((MainWindow*)mParent)->mScriptEditorDockWidget->resize(scriptEditorSize.width(),scriptEditorSize.height());
-	((MainWindow*)mParent)->mScriptEditorDockWidget->move(scriptEditorPos);	
+	((MainWindow*)mParent)->mScriptEditorDockWidget->move(scriptEditorPos);
 	#endif
-	
+
 	//initialize the settings
 	((MainWindow*)mParent)->getActive()->setViewportColor(mViewportColor);
 	((MainWindow*)mParent)->getActive()->setRenderColor(mRenderColor);
@@ -258,21 +258,22 @@ void TopModPreferences::readSettings(){
 	((MainWindow*)mParent)->getActive()->setFaceIDBgColor(mFaceIDBgColor);
 	((MainWindow*)mParent)->getActive()->setFaceCentroidColor(mFaceCentroidColor);
 	((MainWindow*)mParent)->getActive()->setNormalColor(mNormalColor);
-	((MainWindow*)mParent)->getActive()->setNormalThickness(mNormalThickness);	
-	((MainWindow*)mParent)->getActive()->setFaceCentroidThickness(mFaceCentroidThickness);	
-	((MainWindow*)mParent)->getActive()->setNormalLength(mNormalLength);	
-	((MainWindow*)mParent)->getActive()->setWireframeThickness(mWireframeThickness);	
-	((MainWindow*)mParent)->getActive()->setSilhouetteThickness(mSilhouetteThickness);	
-	((MainWindow*)mParent)->getActive()->setVertexThickness(mVertexThickness);	
-	((MainWindow*)mParent)->getActive()->setSelectedVertexThickness(mSelectedVertexThickness);	
+	((MainWindow*)mParent)->getActive()->setNormalThickness(mNormalThickness);
+	((MainWindow*)mParent)->getActive()->setFaceCentroidThickness(mFaceCentroidThickness);
+	((MainWindow*)mParent)->getActive()->setNormalLength(mNormalLength);
+	((MainWindow*)mParent)->getActive()->setWireframeThickness(mWireframeThickness);
+	((MainWindow*)mParent)->getActive()->setSilhouetteThickness(mSilhouetteThickness);
+	((MainWindow*)mParent)->getActive()->setVertexThickness(mVertexThickness);
+	((MainWindow*)mParent)->getActive()->setSelectedVertexThickness(mSelectedVertexThickness);
 	((MainWindow*)mParent)->getActive()->setSelectedEdgeThickness(mSelectedEdgeThickness);
-	
+
 	((MainWindow*)mParent)->getActive()->setNearPlane(mCameraNearPlane);
 	((MainWindow*)mParent)->getActive()->setFarPlane(mCameraFarPlane);
 	((MainWindow*)mParent)->getActive()->setFOV(mCameraFov);
 		//save options
 	((MainWindow*)mParent)->setSaveDirectory(mSaveDirectory);
-	((MainWindow*)mParent)->setAutoSave(mAutoSave);
+  ((MainWindow*)mParent)->setTextureSaveDirectory(mTextureSaveDirectory);
+  ((MainWindow*)mParent)->setAutoSave(mAutoSave);
 	((MainWindow*)mParent)->setAutoSaveDelay(mAutoSaveDelay);
 	((MainWindow*)mParent)->setIncrementalSave(mIncrementalSave);
 	((MainWindow*)mParent)->setIncrementalSaveMax(mIncrementalSaveMax);
@@ -324,23 +325,23 @@ void TopModPreferences::loadDefaults(){
 	mPatchBoundaryColor = mPatchBoundaryColorDefault;
 	// ((MainWindow*)mParent)->getActive()->setPatchBoundaryColor(mPatchBoundaryColor);
 	setButtonColor(mPatchBoundaryColor, mPatchBoundaryColorButton);
-	
+
 	mSelectedVertexColor = mSelectedVertexColorDefault;
 	((MainWindow*)mParent)->getActive()->setSelectedVertexColor(mSelectedVertexColor);
 	setButtonColor(mSelectedVertexColor, mSelectedVertexColorButton);
-	
+
 	mSelectedEdgeColor = mSelectedEdgeColorDefault;
 	((MainWindow*)mParent)->getActive()->setSelectedEdgeColor(mSelectedEdgeColor);
 	setButtonColor(mSelectedEdgeColor, mSelectedEdgeColorButton);
-	
+
 	mSelectedFaceColor = mSelectedFaceColorDefault;
 	((MainWindow*)mParent)->getActive()->setSelectedFaceColor(mSelectedFaceColor);
 	setButtonColor(mSelectedFaceColor, mSelectedFaceColorButton);
-	
+
 	mVertexIDBgColor = mVertexIDBgColor;
 	((MainWindow*)mParent)->getActive()->setVertexIDBgColor(mVertexIDBgColor);
 	setButtonColor(mVertexIDBgColor, mVertexIDBgColorButton);
-	
+
 	mNormalColor = mNormalColorDefault;
 	((MainWindow*)mParent)->getActive()->setNormalColor(mNormalColor);
 	setButtonColor(mNormalColor, mNormalColorButton);
@@ -348,85 +349,88 @@ void TopModPreferences::loadDefaults(){
 	mFaceCentroidColor = mFaceCentroidColorDefault;
 	((MainWindow*)mParent)->getActive()->setFaceCentroidColor(mFaceCentroidColor);
 	setButtonColor(mFaceCentroidColor, mFaceCentroidColorButton);
-	
+
 	mFaceIDBgColor = mFaceIDBgColorDefault;
 	((MainWindow*)mParent)->getActive()->setFaceIDBgColor(mFaceIDBgColor);
 	setButtonColor(mFaceIDBgColor, mFaceIDBgColorButton);
-	
+
 	mLightIntensity = mLightIntensityDefault;
-	mLightIntensitySpinBox->setValue(mLightIntensity); 
-	
+	mLightIntensitySpinBox->setValue(mLightIntensity);
+
 	mWireframeThickness = mWireframeThicknessDefault;
-	mWireframeThicknessSpinBox->setValue(mWireframeThickness);	
-	
+	mWireframeThicknessSpinBox->setValue(mWireframeThickness);
+
 	mSilhouetteThickness = mSilhouetteThicknessDefault;
 	mSilhouetteThicknessSpinBox->setValue(mSilhouetteThickness);
-	
+
 	mNormalThickness = mNormalThicknessDefault;
-	mNormalThicknessSpinBox->setValue(mNormalThickness);	
+	mNormalThicknessSpinBox->setValue(mNormalThickness);
 
 	mNormalLength = mNormalLengthDefault;
-	mNormalLengthSpinBox->setValue(mNormalLength);	
+	mNormalLengthSpinBox->setValue(mNormalLength);
 
 	mFaceCentroidThickness = mFaceCentroidThicknessDefault;
-	mFaceCentroidThicknessSpinBox->setValue(mFaceCentroidThickness);	
+	mFaceCentroidThicknessSpinBox->setValue(mFaceCentroidThickness);
 
 	mVertexThickness = mVertexThicknessDefault;
-	mVertexThicknessSpinBox->setValue(mVertexThickness);	
-	
+	mVertexThicknessSpinBox->setValue(mVertexThickness);
+
 	mSelectedVertexThickness = mSelectedVertexThicknessDefault;
 	mVertexThicknessSpinBox->setValue(mSelectedVertexThickness);
-	
+
 	mSelectedEdgeThickness = mSelectedEdgeThicknessDefault;
 	mSelectedEdgeThicknessSpinBox->setValue(mSelectedVertexThickness);
-	
-	
+
+
 	//camera stuff
 	mCameraNearPlane = mCameraNearPlaneDefault;
 	((MainWindow*)mParent)->getActive()->setNearPlane(mCameraNearPlane);
-	
+
 	mCameraFarPlane = mCameraFarPlaneDefault;
 	((MainWindow*)mParent)->getActive()->setFarPlane(mCameraFarPlane);
-	
+
 	mCameraFov = mCameraFovDefault;
 	((MainWindow*)mParent)->getActive()->setFOV(mCameraFov);
-	
+
 	//save options!
 	mSaveDirectory = mSaveDirectoryDefault;
 	((MainWindow*)mParent)->setSaveDirectory(mSaveDirectory);
 
-	mAutoSave = mAutoSaveDefault;
+  mTextureSaveDirectory = mTextureSaveDirectoryDefault;
+  ((MainWindow*)mParent)->setTextureSaveDirectory(mTextureSaveDirectory);
+
+  mAutoSave = mAutoSaveDefault;
 	((MainWindow*)mParent)->setAutoSave(mAutoSave);
-	
+
 	mAutoSaveDelay = mAutoSaveDelayDefault;
 	((MainWindow*)mParent)->setAutoSaveDelay(mAutoSaveDelay);
 
 	mIncrementalSave = mIncrementalSaveDefault;
 	((MainWindow*)mParent)->setIncrementalSave(mIncrementalSave);
-	
+
 	mIncrementalSaveMax = mIncrementalSaveMaxDefault;
 	((MainWindow*)mParent)->setIncrementalSaveMax(mIncrementalSaveMax);
-	
+
 	mCommandCompleterIndex = mCommandCompleterIndexDefault;
 	((MainWindow*)mParent)->setCommandCompleterIndexToggle(mCommandCompleterIndex);
 
 	mSingleClickExtrude = mSingleClickExtrudeDefault;
 	((MainWindow*)mParent)->setSingleClickExtrude(mSingleClickExtrude);
-	
+
 }
 
 void TopModPreferences::setupMain(){
 
 	QGridLayout *mMainLayout = new QGridLayout;
-	
+
 	// mResetCameraButton = new QPushButton(tr("Reset"));
 	// connect(mResetCameraButton,SIGNAL(clicked()),
 	// 				((MainWindow*)mParent), SLOT(switchPerspView()));
-	
+
 	// mShowStartupDialogAtStartupCheckBox = new QCheckBox(tr("Show Tutorial Dialog at Startup"));
 	// mShowStartupDialogAtStartupCheckBox->setChecked(mShowStartupDialogAtStartup);
 	// connect(mShowStartupDialogAtStartupCheckBox,SIGNAL(stateChanged(int)),this,SLOT(setShowStartupDialogAtStartup(int)));
-	
+
 	QStyle* colorPickerStyle = new QPlastiqueStyle;
 	QPalette p;
 
@@ -441,13 +445,13 @@ void TopModPreferences::setupMain(){
 	//camera nearplane
 	mCameraFovSpinBox = addSpinBoxPreference(mCameraFovLabel, tr("Field of View:"), 15, 100, 1, mCameraFov, 0, mMainLayout, 2, 0);
 	connect(mCameraFovSpinBox, SIGNAL(valueChanged(double)),((MainWindow*)mParent)->getActive(), SLOT(setFOV(double)));
-	
+
 	//auto save toggle
 	mAutoSaveCheckBox = new QCheckBox(tr("Auto Save:"), this);
 	mAutoSaveCheckBox->setChecked(mAutoSave);
 	connect(mAutoSaveCheckBox, SIGNAL(stateChanged(int)),((MainWindow*)mParent), SLOT(setAutoSave(int)));
 	mMainLayout->addWidget(mAutoSaveCheckBox,3,0);
-	
+
 	//auto save delay in minutes
 	mAutoSaveDelaySpinBox = addSpinBoxPreference(mAutoSaveDelayLabel, tr("Auto Save Delay\n(in minutes):"), 1, 30, 1, mAutoSaveDelay, 0, mMainLayout, 4, 0);
 	connect(mAutoSaveDelaySpinBox, SIGNAL(valueChanged(double)),((MainWindow*)mParent), SLOT(setAutoSaveDelay(double)));
@@ -461,7 +465,7 @@ void TopModPreferences::setupMain(){
 	//max incremental save files on disk
 	mIncrementalSaveMaxSpinBox = addSpinBoxPreference(mIncrementalSaveMaxLabel, tr("Max Incremental Saves:"), 2, 50, 1, mIncrementalSaveMax, 0, mMainLayout, 6, 0);
 	connect(mIncrementalSaveMaxSpinBox, SIGNAL(valueChanged(double)),((MainWindow*)mParent), SLOT(setIncrementalSaveMax(double)));
-	
+
 	//default save directory
 	mSaveDirectoryLabel = new QLabel(tr("Default Save Directory"),this);
 	mSaveDirectoryLineEdit = new QLineEdit(this);
@@ -471,30 +475,39 @@ void TopModPreferences::setupMain(){
 	connect(mSaveDirectoryLineEdit, SIGNAL(editingFinished()),((MainWindow*)mParent), SLOT(checkSaveDirectory()));
 	mMainLayout->addWidget(mSaveDirectoryLabel,7,0);
 	mMainLayout->addWidget(mSaveDirectoryLineEdit,8,0,1,3);
-	
-	//command completer word typing toggle
+
+  //default save directory for textures
+  mTextureSaveDirectoryLabel = new QLabel(tr("Default Texture File\nSave Directory"),this);
+  mTextureSaveDirectoryLineEdit = new QLineEdit(this);
+  mTextureSaveDirectoryLineEdit->setText(mTextureSaveDirectory);
+  connect(mTextureSaveDirectoryLineEdit, SIGNAL(textEdited(QString)),((MainWindow*)mParent), SLOT(setTextureSaveDirectory(QString)));
+  connect(mTextureSaveDirectoryLineEdit, SIGNAL(editingFinished()),((MainWindow*)mParent), SLOT(checkTextureSaveDirectory()));
+  mMainLayout->addWidget(mTextureSaveDirectoryLabel,9,0);
+  mMainLayout->addWidget(mTextureSaveDirectoryLineEdit,10,0,1,3);
+
+  //command completer word typing toggle
 	mCommandCompleterIndexToggle  = new QCheckBox(tr("Command Completer\nSingle Word Completion"), this);
 	mCommandCompleterIndexToggle->setChecked(mCommandCompleterIndex);
 	connect(mCommandCompleterIndexToggle, SIGNAL(stateChanged(int)),((MainWindow*)mParent), SLOT(setCommandCompleterIndexToggle(int)));
-	mMainLayout->addWidget(mCommandCompleterIndexToggle,9,0);
+	mMainLayout->addWidget(mCommandCompleterIndexToggle,11,0);
 
 	//single click extrude word typing toggle
 	mSingleClickExtrudeCheckBox  = new QCheckBox(tr("Single Click Extrusions"), this);
 	mSingleClickExtrudeCheckBox->setChecked(mSingleClickExtrude);
 	connect(mSingleClickExtrudeCheckBox, SIGNAL(stateChanged(int)),((MainWindow*)mParent), SLOT(setSingleClickExtrude(int)));
-	mMainLayout->addWidget(mSingleClickExtrudeCheckBox,10,0);
-	
-	mMainLayout->setRowStretch(11,2);
+	mMainLayout->addWidget(mSingleClickExtrudeCheckBox,12,0);
+
+	mMainLayout->setRowStretch(13,2);
 	mMainLayout->setColumnStretch(4,2);
-	
+
 	mMainTab->setLayout(mMainLayout);
 	// mMainLayout->addWidget(mResetCameraButton,0,0);
-	
+
 	// persp->switchTo(VPPersp);
 }
 
 QPushButton* TopModPreferences::addColorPreference(QLabel *label, QString text, QColor color, QGridLayout *layout, QStyle *style, int row, int col){
-	
+
 	label = new QLabel(text);
 	QPushButton *button = new QPushButton(mColorsTab);
 	button->setMaximumSize(QSize(100,25));
@@ -502,7 +515,7 @@ QPushButton* TopModPreferences::addColorPreference(QLabel *label, QString text, 
 	button->setStyle(style);
 	QPalette p = button->palette();
 	p.setColor(button->backgroundRole(), color);
-	button->setPalette(p);	
+	button->setPalette(p);
 	layout->addWidget(label,row,col);
 	layout->addWidget(button,row,col+1);
 	return button;
@@ -515,14 +528,14 @@ QDoubleSpinBox* TopModPreferences::addSpinBoxPreference(QLabel *label, QString t
 	spinbox->setSingleStep(step);
 	spinbox->setValue(value);
 	spinbox->setDecimals(decimals);
-	spinbox->setMaximumSize(100,25);	
+	spinbox->setMaximumSize(100,25);
 	layout->addWidget(label,row,col);
 	layout->addWidget(spinbox,row,col+1);
 	return spinbox;
 }
 
 void TopModPreferences::setupColors(){
-	
+
 	//layout for colors tab page
 	QGridLayout *mColorsLayout = new QGridLayout;
 	//style for the color
@@ -574,9 +587,9 @@ void TopModPreferences::setupColors(){
 	//FaceCentroid  color
 	mFaceCentroidColorButton = addColorPreference(mFaceCentroidColorLabel, tr("Face Centroid Color:"), mFaceCentroidColor, mColorsLayout, colorPickerStyle, 14, 0);
 	connect(mFaceCentroidColorButton,SIGNAL(clicked()),this,SLOT(setFaceCentroidColor()));
-	
+
 	//new column
-	
+
 	//light intensity
 	mLightIntensitySpinBox = addSpinBoxPreference(mLightIntensityLabel, tr("Light Intensity:"), 0.0, 10.0, 0.1, mLightIntensity, 1, mColorsLayout, 0, 2);
 	connect(mLightIntensitySpinBox, SIGNAL(valueChanged(double)),((MainWindow*)mParent)->getActive(), SLOT(setLightIntensity(double)));
@@ -609,13 +622,13 @@ void TopModPreferences::setupColors(){
 	mResetColorsButton = new QPushButton(tr("Reset"));
 	connect(mResetColorsButton,SIGNAL(clicked()),this, SLOT(loadDefaults()));
 	mColorsLayout->addWidget(mResetColorsButton,14,3);
-	
+
 	mColorsLayout->setRowStretch(15,17);
 	mColorsLayout->setColumnStretch(4,10);
 
 	// mColorsLayout->addStretch(1);
-	mColorsTab->setLayout(mColorsLayout);	
-	
+	mColorsTab->setLayout(mColorsLayout);
+
 }
 
 void TopModPreferences::setViewportColor(){
@@ -741,4 +754,9 @@ void TopModPreferences::setFaceCentroidColor(){
 void TopModPreferences::setSaveDirectory(QString s){
 	mSaveDirectory = s;
 	mSaveDirectoryLineEdit->setText(s);
+}
+
+void TopModPreferences::setTextureSaveDirectory(QString s){
+  mTextureSaveDirectory = s;
+  mTextureSaveDirectoryLineEdit->setText(s);
 }

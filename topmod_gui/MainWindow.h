@@ -2,7 +2,7 @@
 
 /******************************************
  * include.h
- * 
+ *
  ******************************************/
 
 #ifndef MAINWINDOW_H
@@ -88,7 +88,7 @@ using namespace DLFL;
 /*!
 	\file MainWindow.h
 	\brief Definition of the MainWindow class
-	
+
 	\see MainWindow
 */
 
@@ -97,8 +97,8 @@ class MainWindow : public QMainWindow {
 
 	public:
 
-		/** 
-		* Enumerations for the various operating modes. 
+		/**
+		* Enumerations for the various operating modes.
 		*/
 		enum Mode	{
 				NormalMode=0, 					/**< normal mode. does not allow any selection in the viewport. */
@@ -157,7 +157,7 @@ class MainWindow : public QMainWindow {
 			/**
 			* Enumerations for Selection Masking (e.g. vertices, faces, edges, face-vertices, and eventually objects... ?)
 			*/
-			enum SelectionMask { 
+			enum SelectionMask {
 				MaskObject=0,
 				MaskVertices,
 				MaskEdges,
@@ -165,10 +165,10 @@ class MainWindow : public QMainWindow {
 				MaskCorners,
 				MaskNone
 			};
-			
-			/**
-			* Enumerations for Extrusion operatoers
-			*/
+
+			/*
+			 * Enumerations for Extrusion operatoers
+			 */
 			enum ExtrusionMode {
 				CubicalExtrude,
 				DooSabinExtrude,
@@ -177,36 +177,38 @@ class MainWindow : public QMainWindow {
 				OctahedralExtrude, //!< also called dual
 				StellateExtrude,
 				DoubleStellateExtrude,
-				DomeExtrude			
+				DomeExtrude
 			};
-            
-            /**
-              * Enumerations for Modeling Mode
-			  */
+      /*
+       * Enumerations for Modeling Mode
+			 */
 			enum ModelingMode {
 				PlanarMode,
 				PolygonalMode,
 				PatchMode
-            };            
-            			/**
-			* Enumerations for Rendering Modes
-			*/
+			};
+      /*
+			 * Enumerations for Rendering Modes
+			 */
 			enum RenderingMode {
 				Wireframe,
 				Normal,
 				Lit,
 				Textured,
-				TexturedLit, //!< also called dual
+				TexturedLit,
 				Patch,
 				Colorable
 			};
-
-				// Enumerations for various multi-face-handle algorithms
-			enum MFHAlgo { 
+			/*
+			 * Enumerations for various multi-face-handle algorithms
+			 */
+			enum MFHAlgo {
 				ConvexHull=0,
-				ClosestEdge=1 
+				ClosestEdge=1
 			};
-
+      /*
+       * Enumerations for remeshing schemes
+       */
 			enum RemeshingScheme {
 				Dual=0,															/**< . */
 				Root3=10,														/**< . */
@@ -246,8 +248,8 @@ class MainWindow : public QMainWindow {
 				DooSabinBC=113, 										/**< . */
 				DooSabinBCNew=114										/**< . */
 				};
-				
-				enum SpinBoxMode { 
+
+				enum SpinBoxMode {
 					One=1,														/**< the first spinbox in the current option panel will be controlled by the Y key. */
 					Two, 															/**< the second spinbox in the current option panel will be controlled by the U key. */
 					Three, 														/**< the third spinbox in the current option panel will be controlled by the I key. */
@@ -267,7 +269,7 @@ class MainWindow : public QMainWindow {
 	// Edge deletion
 	static bool delete_edge_cleanup; //!< Flag for point-sphere cleanup after edge deletion
 
-	static bool triangulate_new_faces;    
+	static bool triangulate_new_faces;
 	static bool scherk_collins;    //!< Use symmetric weight factors
   static double scherk_collins_pinch;
   static double scherk_collins_pinch_center;
@@ -345,8 +347,8 @@ class MainWindow : public QMainWindow {
 
 	static double holeHandle_pinching_factor;		//!< scaling factor for pinched handles
 	static double holeHandle_pinch_center;
-	static double holeHandle_pinch_width;	
-	
+	static double holeHandle_pinch_width;
+
 	//!< Added by Doug
 	static double star_offset; //!< Offset value for star subdivision
 	static double fractal_offset; //!< Offset value for fractal subdivision
@@ -359,7 +361,7 @@ class MainWindow : public QMainWindow {
 	static double domeExtrudeLength_factor;     //!< Length for dome extrusion  //dave
 	static double domeExtrudeScale_factor; 			//!< Scale factor for dome extrusion //dave
 	static double domeExtrudeRotation_factor; 			//!< Scale factor for dome extrusion //dave
-	
+
 	//!< Added by Bei & Cansin
 	static double domeLength_factor;     //!< Length for dome extrusion
 	static double domeScale_factor; //!< Scale factor for dome extrusion
@@ -402,7 +404,7 @@ class MainWindow : public QMainWindow {
 
 	//dave paint bucket tool - exp. 11.07
 	static QColor paint_bucket_color;
-	
+
 	QString curFile;
 	//document modified
 	bool isModified();
@@ -459,7 +461,7 @@ public :
 	* \brief Constructor
 	*/
 	MainWindow(char *filename = NULL);
-	
+
 	/**
 	* \brief Destructor
 	*/
@@ -468,7 +470,7 @@ public :
 		clearRedoList();
 		delete active;
 	}
-	
+
 	/**
 	* \brief translation function. see tutorial at http://trolltech.com/developer/knowledgebase/faq.2007-05-23.5871663589/
 	*/
@@ -478,7 +480,7 @@ public :
 		}
 		QMainWindow::changeEvent(event);
 	}
-	
+
 	void retranslateUi();
 
   DLFLObjectPtr GetObject();
@@ -510,7 +512,7 @@ public :
 		num_sel_faces = 0;
 		num_sel_faceverts = 0;
 	}
-	
+
 	void getCheckerboardSelection(DLFLFacePtr fptr);		//!< \todo  needs to be moved to DLFL namespace
 	void getEdgeLoopSelection(DLFLEdgePtr eptr);				//!< \todo  needs to be moved to DLFL namespace
 	void getFaceLoopSelection(DLFLEdgePtr eptr, bool start, DLFLFacePtr face_loop_marker, bool select_face_loop);	//!< \todo  needs to be moved to DLFL namespace
@@ -526,7 +528,7 @@ public :
 	void setSelectionMask(SelectionMask m);							//!< set the current selection mask (verts, edges, faces, multiple?)
 	void setToolOptions(QWidget *optionsWidget);				//!< set the current tool option widget to be displayed in mToolOptionsDockWidget
 	void loadFile(QString fileName);										//!< load an OBJ or a DLFL file
-	
+
 	/**
 	* \brief this will store pointers to the current mode's spinboxes so we can do keyboard interaction with them
 	*/
@@ -539,14 +541,14 @@ public :
 
 	QDockWidget *mToolOptionsDockWidget;					//!< the floating window that displays the current tool's options (spinboxes, checkboxes, etc...)
 	QStackedWidget *mToolOptionsStackedWidget;		//!< the widget that references each tool option widget and handles switching the display
-	
+
 	QDockWidget *mStartupDialogDockWidget;
 	QWidget *mStartupDialogWidget;
 	QGridLayout *mStartupDialogLayout;
 	bool mShowStartupDialogAtStartup;
 	QLabel *quicktimeLabel;
 	QLabel *downloadQuicktimeLabel;
-	
+
 protected:
 	void closeEvent( QCloseEvent *event );				//!< what will execute when the main window is closed (on application exit/quit)
 
@@ -570,10 +572,10 @@ protected:
 	ExperimentalMode *mExperimentalMode;					//!< experimental mode widgets like the new paint bucket tool dave 11.07
 
 	QShortcutManager *sm;													//!< Stuff for the shortcut manager test
-			
-	QStandardItemModel *mActionModel; 						//!< stores all the actions in topmod. sent to CommandCompleter class in order to create an index of the possible actions based on the text and icon associated with each action	
+
+	QStandardItemModel *mActionModel; 						//!< stores all the actions in topmod. sent to CommandCompleter class in order to create an index of the possible actions based on the text and icon associated with each action
 	QWidget *mActionListWidget;										//!< widget that stores all actions availabe in topmod for CommandCompleter autocompletion functionality
-			
+
 private:
 	//document modified
 	bool mIsModified;															//!< bool to stop program from exiting if file has been edited but not saved
@@ -583,7 +585,8 @@ private:
 	int mIncrementalSaveMax;
 	QTimer *mAutoSaveTimer;
 	int mAutoSaveDelay;
-	QString mSaveDirectory;
+  QString mSaveDirectory;
+  QString mTextureSaveDirectory;
 	bool mCommandCompleterIndexToggle;
 	bool mSingleClickExtrude;
 
@@ -596,7 +599,7 @@ private:
 	void initializeHelp();												//!< initialize the help files / create index / load html files
 
  	void createStartupDialog();										//!< initialize the startup screen that will show links to beginner video tutorials / will include link to quicktime website and "disable checkbox"
-	void initializeAnimatedHelp();								//!< initialize the in-context help animated screen captures. these will display in a small floatable window to the right 
+	void initializeAnimatedHelp();								//!< initialize the in-context help animated screen captures. these will display in a small floatable window to the right
 
 	//QAssistantClient *mAssistantClient;						//!< Qt help file viewer, will display html files created by DocBook xml transformation
 
@@ -642,7 +645,7 @@ private:
 	QAction *printEdgeListAct;
 	QAction *mPrintCVListAct;
 	QAction *mExitAct;
-			
+
 	QAction *mFullscreenAct;
 	QAction *mPerformRemeshingAct;
 	QAction *mPerformExtrusionAct;
@@ -669,9 +672,9 @@ private:
 
 	QAction *mZoomInAct;
 	QAction *mZoomOutAct;
-	
+
 	//Display Menu Actions
-	QAction *showVerticesAct;								
+	QAction *showVerticesAct;
 	QAction *mShowFaceIDsAct;
 	QAction *mShowEdgeIDsAct;
 	QAction *mShowVertexIDsAct;
@@ -702,8 +705,8 @@ private:
 	QAction *lightedRendererAct;
 	QAction *texturedRendererAct;
 	QAction *texturedLightedAct;
-	QAction *patchRendererAct;	
-	QAction *colorableRendererAct;	
+	QAction *patchRendererAct;
+	QAction *colorableRendererAct;
 
 	//Primitives Menu Actions
 	QAction *pCubeAct;
@@ -766,7 +769,7 @@ private:
 	QAction *selectFacesFromVerticesAct;
 	QAction *selectVerticesFromFacesAct;
 	QAction *selectVerticesFromEdgesAct;
-	
+
 	//selection mask actions
 	QAction *mSelectVerticesMaskAct;
 	QAction *mSelectFacesMaskAct;
@@ -783,7 +786,7 @@ private:
 	QAction *italianAct;
 	QAction *turkishAct;
 	QAction *catalanAct;
-			
+
 	//help menu
 	QAction *mAboutQtAct;
 	QAction *mHelpAct;
@@ -835,10 +838,10 @@ private:
 #ifdef WITH_PYTHON
 	QAction *mShowScriptEditorAct;
 #endif
-			
+
 	QAction *mShowToolOptionsAct;
 	QAction *mShowStartupDialogAct;
-			
+
 	StyleSheetEditor *mStyleSheetEditor;
 	QAction *mEditStyleSheetAct;
 	TopModPreferences *mPreferencesDialog;
@@ -848,7 +851,7 @@ private:
 	CommandCompleter *mCommandCompleter;
 	#endif
 	QStringList mCommandList;
-			
+
 	//popup helper animations
 	QMovie *mAnimatedHelpMovie;
 	QLabel *mAnimatedHelpLabel;
@@ -856,9 +859,9 @@ private:
 	QVBoxLayout *mAnimatedHelpLayout;
 	QDockWidget *mAnimatedHelpDockWidget;
 	QAction *mShowAnimatedHelpAct;
-			
+
 	QDoubleSpinBox *mSpinBoxOne,*mSpinBoxTwo,*mSpinBoxThree,*mSpinBoxFour,*mSpinBoxFive,*mSpinBoxSix;
-			
+
 	//startup dialog actions for loading movies
 	QAction *mTutorialNavigationAct;
 	QAction *mTutorialInterfaceAct;
@@ -866,7 +869,7 @@ private:
 	QAction *mTutorialExtrusionAct;
 	QAction *mTutorialRemeshingAct;
 	QAction *mTutorialHighgenusAct;
-	QAction *mTutorialTexturingAct;	
+	QAction *mTutorialTexturingAct;
 	//associated toolbuttons
 	QToolButton *mTutorialNavigationButton;
 	QToolButton *mTutorialInterfaceButton;
@@ -876,7 +879,7 @@ private:
 	QToolButton *mTutorialHighgenusButton;
 	QToolButton *mTutorialTexturingButton;
 	QCheckBox *mShowStartupDialogAtStartupCheckBox;
-	
+
 	//translation stuff for future
 	QTranslator *translator_es;							//!< \todo translation widget spanish
   QTranslator *translator_fr;							//!< \todo translation widget french
@@ -889,15 +892,15 @@ private:
 	//for screenshots
 	QPixmap viewportPixmap;
 	QPixmap appPixmap;
-	
+
 	//paint bucket tool dave //11.07
 	// QColor mPaintBucketColor;
-	
+
 public slots:
 
 	bool viewportScreenshot(); //!< take a screenshot of just the opengl viewport
 	bool appScreenshot(); //!< take a screenshot of the whole app (for forum posting and bug reports)
-	
+
 	//brand new stuff - dave - 9/12/07
 	void setAutoSave(int value);
 	void setAutoSaveDelay(double value);
@@ -905,10 +908,12 @@ public slots:
 	void setCommandCompleterIndexToggle(int value);
 	void setSingleClickExtrude(int value);
 	void setIncrementalSaveMax(double value);
-	void setSaveDirectory(QString s);
-	void checkSaveDirectory();
-	
-	
+  void setSaveDirectory(QString s);
+  void checkSaveDirectory();
+  void setTextureSaveDirectory(QString s);
+  void checkTextureSaveDirectory();
+
+
 	// i18n stuff
 	void changeLanguage(const QString &string);
 	void setLanguageSpanish();
@@ -918,13 +923,13 @@ public slots:
 	void setLanguageItalian();
 	void setLanguageCatalan();
 	void setLanguageHindi();
-	void setLanguageEnglish();	
-	
-	void about(); 												//!< \todo  topmod developer credits 
+	void setLanguageEnglish();
+
+	void about(); 												//!< \todo  topmod developer credits
 	void help(); 													//!< open the qtassistantclient help viewer
 	void checkForUpdates(); 							//!< check for updates on the topMod home page
 	void topModWeb(); 										//!< open the TopMod web page in the default browser
-	void topModBlip(); 										//!< open the http://topmod.blip.tv web page 
+	void topModBlip(); 										//!< open the http://topmod.blip.tv web page
 	void topModResearch(); 								//!< open the TopMod research web page in the default browser
 	void documentWasModified();
 	void toggleFullScreen();							//!< fullscreen mode in the mainwindow class... this is a test...
@@ -935,7 +940,7 @@ public slots:
 
 	void showAllToolBars();
 	void hideAllToolBars();
-	
+
 	bool getShowStartupDialogAtStartup();
 	void setShowStartupDialogAtStartup(int b);
 	//load the seven basic tutorial movies
@@ -945,8 +950,8 @@ public slots:
 	void loadExtrusionTutorial();
 	void loadRemeshingTutorial();
 	void loadHighgenusTutorial();
-	void loadTexturingTutorial();	
-	
+	void loadTexturingTutorial();
+
 	void load_texture();
 	//renderers
 	void useWireframeRenderer();
@@ -997,7 +1002,7 @@ public slots:
 	void setPaintBucketColor(QColor c);
 	void paintSelectedFaces();
 	void clearMaterials();
-	
+
 	void deleteSelected();																						//!< delete selected objects
 	void collapseSelectedEdges();																			//!< collapse selected edges
   void deleteEdge(DLFLEdgePtr edgeptr);
@@ -1011,7 +1016,7 @@ public slots:
 	void toggleUseQuadsFlag(int state);
 
 	void changeFaceAreaTolerance(double value);	//!< dave - facial area calculation
-	
+
 	// Extrusion
 	void changeExtrudeLength(double value);
 	void changeExtrudeRotation(double value);
@@ -1052,7 +1057,7 @@ public slots:
 	void changeExtraTwists(double value);
 	void toggleTriangulateNewFaces(int state);
 	void toggleScherkCollins(int state);
-	
+
 	//pinching
 	void changePinch(double value); //Ryan
 	void changePinchCenter(double value); //Ryan
@@ -1060,7 +1065,7 @@ public slots:
 	void changeHoleHandlePinchValue(double value); //Ryan
 	void changeHoleHandlePinchCenterValue(double value); //Ryan
 	void changeHoleHandlePinchWidthValue(double value); //Ryan
-	
+
 	void changeCrustScaleFactor(double value);
 	void changeCrustThickness(double value);
 	void toggleCrustCleanupFlag(int state);
@@ -1120,7 +1125,7 @@ public slots:
 	void mousePressEvent(QMouseEvent * event);
 	void mouseReleaseEvent(QMouseEvent * event);
 	void mouseMoveEvent(QMouseEvent * event);
-			
+
 	void keyPressEvent(QKeyEvent *event);
 	void keyReleaseEvent(QKeyEvent *event);
 
@@ -1128,7 +1133,7 @@ public slots:
 	void dropEvent(QDropEvent *event);
 
 	void getRightClickMenu();
-    
+
 	void switchPerspView();
 	void switchTopView();
 	void switchBottomView();
@@ -1136,7 +1141,7 @@ public slots:
 	void switchLeftView();
 	void switchFrontView();
 	void switchBackView();
-	
+
 	// void writeObjectOBJ(const char * filename, bool with_normals=false, bool with_tex_coords=false);
 	// void writeObjectDLFL(const char * filename);
 	void setUndoLimit(int limit);
@@ -1181,7 +1186,7 @@ public slots:
 
 #ifdef WITH_PYTHON
 	// run after an operation is done via python
-	void recomputeAll() { 
+	void recomputeAll() {
 		active->recomputePatches();
 		active->recomputeNormals();
 	};
@@ -1200,7 +1205,7 @@ public slots:
 	void modifiedMultiConnectCrust();
 	void createSponge();
 	void planarizeFaces();
-	
+
 	void spheralizeObject();
 	void smoothMesh();
 	void performRemeshing(); //!< Generic method for all remeshing schemes
@@ -1264,10 +1269,10 @@ public slots:
 	void printEdgeList();
 	void printCVList();
 	void printFaceList();
-			
+
 	void mfh_use_closest_edge_algo();
 	void mfh_use_convex_hull_algo();
-	
+
 	//conical functions from ozgur
 	void performCutting();
 	void createConvexHull();
@@ -1275,7 +1280,7 @@ public slots:
 	void testConvexHull();
 
 	// File handling
-	void openFile(); 
+	void openFile();
 	void openFile(QString fileName);
 	bool saveFile(QString fileName);
 	void newFile();
@@ -1299,7 +1304,7 @@ public slots:
 	bool saveFileSTL( );
 	void writePatchOBJ(const char *filename);
 	void writeLG3d(const char *filename, bool selected = false);
-	void writeSTL(const char *filename);	
+	void writeSTL(const char *filename);
 
 	//primitive slot functions finally work
 	void loadCube();
@@ -1309,7 +1314,7 @@ public slots:
 	void loadIcosahedron();
 	void loadSoccerball();
 	void loadGeodesic();
-	
+
 signals:
 #ifdef WITH_PYTHON
 	void loadedObject( DLFLObject *obj, QString fileName ); // echo command for loading object

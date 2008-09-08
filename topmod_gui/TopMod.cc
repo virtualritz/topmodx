@@ -2,41 +2,41 @@
 
 #include "TopMod.h"
 
-TopMod::~TopMod(){
-	
+TopMod::~TopMod() {
+
 }
 
-TopMod::TopMod(int & argc, char ** argv, bool GUIenabled )
-	: QApplication(argc,argv,GUIenabled){
-		
-	setApplicationName("TopMod");
+TopMod::TopMod(int & argc, char ** argv, bool GUIenabled) :
+  QApplication(argc, argv, GUIenabled) {
 
-	mainWindow = new MainWindow();
+  setApplicationName("TopMod");
 
-	QString locale = QLocale::system().name();
-	QTranslator translator;
-	translator.load(QString(":/topmod_") + locale);
-	installTranslator(&translator);
+  mainWindow = new MainWindow();
 
-	processEvents( );
+  QString locale = QLocale::system().name();
+  QTranslator translator;
+  translator.load(QString(":/topmod_") + locale);
+  installTranslator(&translator);
 
-	mainWindow->resize( 1000, 800 );
-	mainWindow->show();
+  processEvents();
+
+  mainWindow->resize(1000, 800);
+  mainWindow->show();
 }
 
-MainWindow *TopMod::getMainWindow(){
-	return mainWindow;
+MainWindow *TopMod::getMainWindow() {
+  return mainWindow;
 }
 
-bool TopMod::event(QEvent *event){
+bool TopMod::event(QEvent *event) {
 
-	switch (event->type()) {
-	case 116:// case QEvent::FileOpen:
-		mainWindow->loadFile(static_cast<QFileOpenEvent *>(event)->file());        
-		return true;
-	default:
-		return QApplication::event(event);
-	};
+  switch (event->type()) {
+    case 116:// case QEvent::FileOpen:
+      mainWindow->loadFile(static_cast<QFileOpenEvent *> (event)->file());
+      return true;
+    default:
+      return QApplication::event(event);
+  };
 }
 
 // #ifdef __APPLE__
