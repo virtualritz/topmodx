@@ -85,9 +85,14 @@ class GeometricTool : public QWidget {
   QWidget *widget_;
   QGridLayout *layout_;
 
+  static GeometricTool * GetInstance(QWidget *parent);
+  void SetTranslation(double x, double y, double z);
+  
+ protected:
   GeometricTool(QWidget *parent);
 
- protected:
+  static GeometricTool * instance;
+
   QWidget *parent_;
     
   QLabel *translation_x_label_;

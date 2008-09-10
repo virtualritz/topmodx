@@ -22,6 +22,8 @@
 	\see BasicsMode
 */
 
+static GeometricTool * GeometricTool::instance = NULL;
+
 // This function should be a member function of the super class for all tools.
 QDoubleSpinBox *createDoubleSpinBox(
     QGridLayout *layout, QLabel *label, QString s, double low, double high,
@@ -137,16 +139,17 @@ void DupComponentTool::Apply() {
     Vector3d p = (*it)->getCoords();
     max_old_x = max(max_old_x, p.getCArray()[0]);
   }
-  Vector3d translate(max_old_x + 2 - min_old_x, 0, 0);
 
   // Now we have all the vertices, edges and faces.
   // Add vertices first, we need a map to reconstruct the new component.
   map<DLFLVertexPtr, DLFLVertexPtr> old2new_vertices;
+  vector<DLFLVertexPtr> new_vertices;
   for (DLFLVertexPtrSet::iterator it = old_vertices.begin();
        it != old_vertices.end(); ++it) {
-    DLFLVertexPtr new_vertex = new DLFLVertex(translate + (*it)->getCoords());
+    DLFLVertexPtr new_vertex = new DLFLVertex((*it)->getCoords());
     object->addVertexPtr(new_vertex);
     old2new_vertices[*it] = new_vertex;
+    new_vertices.push_back(new_vertex);
   }
 
   map<int, map<int, DLFLEdgePtr> > new_edges;
@@ -202,11 +205,31 @@ void DupComponentTool::Apply() {
 
   glw->recomputeNormals();
   ((MainWindow*)parent_)->redraw();
+
+  
+  GeometricTool * geo_tool = GeometricTool::GetInstance(parent_);
+  geo_tool->Activate();
+
+  ((MainWindow*)parent_)->clearSelected();
+  for (vector<DLFLVertexPtr>::iterator it = new_vertices.begin();
+       it != new_vertices.end(); ++it) {
+    ((MainWindow*)parent_)->selectVertex(*it);
+  }
+  geo_tool->SetTranslation(max_old_x + 2 - min_old_x, 0, 0);
 }
 // This is called when the user activate this tool.
 void DupComponentTool::Activate() {
   ((MainWindow*)parent_)->setToolOptions(widget_);
 }
+
+
+/* static */ GeometricTool * GeometricTool::GetInstance(QWidget *parent) {
+  if (instance == NULL) {
+    instance = new GeometricTool(parent);
+  }
+  return instance;
+}
+
 // Implementation of the class GeometricTool.
 // We should move it to a file named geometric_tool.cc later.
 // Constructor.
@@ -389,6 +412,12 @@ void GeometricTool::DoAction(double) {
   ((MainWindow*)parent_)->redraw();
 }
 
+void GeometricTool::SetTranslation(double x, double y, double z) {
+  translation_x_spin_->setValue(x);
+  translation_y_spin_->setValue(y);
+  translation_z_spin_->setValue(z);
+}
+
 // Apply the current changes.
 void GeometricTool::Apply() {
   active_ = false;
@@ -426,10 +455,11 @@ BasicsMode::BasicsMode(QWidget *parent, QShortcutManager *sm, QWidget *actionLis
 		
 	setParent(0);
 	mParent = parent;
-  geometric_tool_ = new GeometricTool(parent);
+  geometric_tool_ = GeometricTool::GetInstance(parent);
+  // geometric_tool_ = new GeometricTool(parent);
   dup_component_tool_ = new DupComponentTool(parent);
-	actionList->addAction(geometric_tool_->action_);	
-	actionList->addAction(dup_component_tool_->action_);	
+	actionList->addAction(geometric_tool_->action_);
+	actionList->addAction(dup_component_tool_->action_);
 	
 	//here we set the default mode for when the application is executed.
 	// ((MainWindow*)mParent)->setMode(MainWindow::InsertEdge);

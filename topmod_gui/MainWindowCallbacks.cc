@@ -2067,6 +2067,11 @@ void MainWindow::selectVerticesFromEdges(){
 	redraw();
 }
 
+void MainWindow::selectVertex(DLFLVertexPtr vp){
+  active->setSelectedVertex(num_sel_verts,vp);
+  num_sel_verts++;
+}
+
 void MainWindow::selectComponent(){
 	DLFLEdgePtrArray septrarr;
 	DLFLVertexPtrArray svptrarr;

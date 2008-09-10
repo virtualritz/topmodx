@@ -989,6 +989,7 @@ public slots:
 	void selectAll();
 	void growSelection();
 	void selectComponent();
+	void selectVertex(DLFLVertexPtr vp);
 	void shrinkSelection();
 	void selectInverse();
 	void selectEdgesFromFaces();
