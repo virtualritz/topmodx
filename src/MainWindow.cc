@@ -4,7 +4,7 @@
  **
  ****************************************************************************/
 
-#include <ctime> 
+#include <ctime>
 
 #include <QtGui>
 #include <QtOpenGL>
@@ -13,12 +13,12 @@
 /*!
 	\ingroup gui
 	@{
-	
+
 	\class MainWindow
 	\brief The Main Window of the application.
-	
-	\note 
-	
+
+	\note
+
 	\see MainWindow
 */
 
@@ -194,7 +194,7 @@ bool MainWindow::deselect_edges = false;
 bool MainWindow::deselect_faces = false;
 bool MainWindow::deselect_faceverts = false;
 
-// for face loop selection 
+// for face loop selection
 DLFLEdgePtr MainWindow::face_loop_start_edge = NULL;
 DLFLEdgePtr MainWindow::edge_ring_start_edge = NULL;
 
@@ -209,7 +209,7 @@ QColor MainWindow::paint_bucket_color = QColor(0.5,0.5,0.5);
  * asdflkjasdf
  * asdfl;jkas;df
  **/
-MainWindow::MainWindow(char *filename) : object(), mode(NormalMode), undoList(), undoMtlList(), redoList(), redoMtlList(), 
+MainWindow::MainWindow(char *filename) : object(), mode(NormalMode), undoList(), undoMtlList(), redoList(), redoMtlList(),
 																				 undolimit(20), useUndo(true), mIsModified(false), mIsPrimitive(false), mWasPrimitive(false), mSpinBoxMode(None) {
 
 	// i18n stuff
@@ -226,11 +226,11 @@ MainWindow::MainWindow(char *filename) : object(), mode(NormalMode), undoList(),
 	mAutoSaveTimer = new QTimer(this);
 	connect(mAutoSaveTimer, SIGNAL(timeout()), this, SLOT(saveFile(/*normals and texture options should go here... eventually*/)));
 
-	//QSettings Path for windows     
-	#ifdef WIN32 
+	//QSettings Path for windows
+	#ifdef WIN32
 	QSettings::setPath(QSettings::IniFormat,QSettings::UserScope,QString("%APPDATA%"));
 	#endif
-	
+
 	// #ifdef __APPLE__
 	//mac icon
 	this->setWindowIcon(QIcon(":/images/topmod.png"));
@@ -242,7 +242,7 @@ MainWindow::MainWindow(char *filename) : object(), mode(NormalMode), undoList(),
 	setMouseTracking(true);
 
 	active = new GLWidget(500,600, lit, QColor(255,255,255,255),QColor(255,255,255,255) , &object, fmt, this);
-	// active->switchTo(VPPersp);	
+	// active->switchTo(VPPersp);
 	setRenderer(lit);
 	active->redraw();
 	active->setMinimumSize(400,400);
@@ -257,7 +257,7 @@ MainWindow::MainWindow(char *filename) : object(), mode(NormalMode), undoList(),
 	setWindowFlags(Qt::Window);
 	setWindowTitle(tr("newfile[*] - TopMod"));
 	setCurrentFile("untitled");
-	// cWidget = new QWidget( );	
+	// cWidget = new QWidget( );
 	// QWidget *shwidget = new QWidget;
 	// QVBoxLayout *vblayout = new QVBoxLayout;
 	// vblayout->addWidget(active);
@@ -277,7 +277,7 @@ MainWindow::MainWindow(char *filename) : object(), mode(NormalMode), undoList(),
 
 #ifdef WITH_PYTHON
 	//the script editor widget will be placed into a QDockWidget
-	//and will be dockable in the top and bottom sections of the main window	
+	//and will be dockable in the top and bottom sections of the main window
 	mScriptEditorDockWidget = new QDockWidget(tr("Script Editor"), this);
 	mScriptEditor = new DLFLScriptEditor( &object, mScriptEditorDockWidget );
 	mScriptEditorDockWidget->setAllowedAreas(Qt::BottomDockWidgetArea | Qt::TopDockWidgetArea);
@@ -302,7 +302,7 @@ MainWindow::MainWindow(char *filename) : object(), mode(NormalMode), undoList(),
 	//the main tool options DockWidget
 	mToolOptionsDockWidget = new QDockWidget(tr("Tool Options - Insert Edge"),this);
 	// mToolOptionsDockWidget->setFeatures(QDockWidget::DockWidgetFloatable | QDockWidget::DockWidgetMovable /* | QDockWidget::DockWidgetClosable*/);
-	
+
 	mToolOptionsDockWidget->setAllowedAreas(Qt::NoDockWidgetArea);
 	mToolOptionsStackedWidget = new QStackedWidget();
 	// mToolOptionsDockWidget->hide();
@@ -317,10 +317,10 @@ MainWindow::MainWindow(char *filename) : object(), mode(NormalMode), undoList(),
 	// mToolOptionsDockWidget->move(0,22);
 	// mToolOptionsDockWidget->setWindowTitle("Insert Edge Mode");
 	// addDockWidget(Qt::TopDockWidgetArea, mToolOptionsDockWidget);
-	
+
 	//animated help dockwidget
 	initializeAnimatedHelp();
-	
+
 	//make a new instance of QShortcutManager
 	sm = new QShortcutManager();
 	mActionModel = new QStandardItemModel();
@@ -340,7 +340,7 @@ MainWindow::MainWindow(char *filename) : object(), mode(NormalMode), undoList(),
 	mTexturingMode = new TexturingMode(this, sm, mActionListWidget);
 	mExperimentalMode = new ExperimentalMode(this, sm, mActionListWidget);
 
-	
+
 	#ifdef QCOMPLETER
 	mCommandCompleter = new CommandCompleter(mActionListWidget, this);
 	#endif
@@ -352,25 +352,25 @@ MainWindow::MainWindow(char *filename) : object(), mode(NormalMode), undoList(),
 	mStyleSheetEditor = new StyleSheetEditor;
 	//preference dialog
 	mSettings = new QSettings("TopMod");
-	mPreferencesDialog = new TopModPreferences(mSettings, mStyleSheetEditor, sm, this);	
-	
+	mPreferencesDialog = new TopModPreferences(mSettings, mStyleSheetEditor, sm, this);
+
 	// //testing shortcut context
 	// for (int i = 0; i < mActionListWidget->actions().count(); i++){
 	// 	mActionListWidget->actions().at(i)->setShortcutContext(Qt::WidgetShortcut);
 	// }
-	
+
 	//reposition floating windows:
 	// mToolOptionsDockWidget->setGeometry(10 + this->x()/*this->active->width()-mToolOptionsDockWidget->width()*/,this->y()+150,mToolOptionsDockWidget->width(),mToolOptionsDockWidget->height());
 	// mToolOptionsDockWidget->setFixedSize(mToolOptionsDockWidget->width(),mToolOptionsDockWidget->height());
-	
+
 	//must happen after preference file is loaded
 	createStartupDialog();
-	
+
 	retranslateUi();
 	setExtrusionMode(CubicalExtrude);
 	setMode(MainWindow::NormalMode);
-	
-	// std::cout << QT_VER << "\n"; 
+
+	// std::cout << QT_VER << "\n";
   setPolygonalMode();
 }
 
@@ -390,7 +390,7 @@ void MainWindow::createActions() {
 	mOpenAct->setStatusTip(tr("Open an existing file"));
 	connect(mOpenAct, SIGNAL(triggered()), this, SLOT(openFile()));
 	mActionListWidget->addAction(mOpenAct);
-	
+
 	mSaveAct = new QAction(QIcon(":images/document-save.png"),tr("&Save"), this);
 	sm->registerAction(mSaveAct, "File Menu", "CTRL+S");
 	mSaveAct->setStatusTip(tr("Save the document to disk"));
@@ -480,7 +480,7 @@ void MainWindow::createActions() {
 	mExitAct->setStatusTip(tr("Exit the application"));
 	connect(mExitAct, SIGNAL(triggered()), this, SLOT(close()));
 	// mActionListWidget->addAction(mExitAct);
-	
+
 	//quick command quicksilver like interface
 	#ifdef QCOMPLETER
 	mQuickCommandAct = new QAction(tr("Quick Command"), this);
@@ -539,31 +539,31 @@ void MainWindow::createActions() {
 	// mTopViewAct->setStatusTip(tr("Switch to Top View"));
 	// connect(mTopViewAct, SIGNAL(triggered()), this, SLOT(switchTopView()));
 	// // mActionListWidget->addAction(mTopViewAct);
-	// 
+	//
 	// mBottomViewAct = new QAction( tr("&Bottom View"), this);
 	// sm->registerAction(mBottomViewAct, "View Menu", "");
 	// mBottomViewAct->setStatusTip(tr("Switch to Bottom View"));
 	// connect(mBottomViewAct, SIGNAL(triggered()), this, SLOT(switchBottomView()));
 	// // mActionListWidget->addAction(mBottomViewAct);
-	// 
+	//
 	// mFrontViewAct = new QAction( tr("&Front View"), this);
 	// sm->registerAction(mFrontViewAct, "View Menu", "");
 	// mFrontViewAct->setStatusTip(tr("Switch to Front View"));
 	// connect(mFrontViewAct, SIGNAL(triggered()), this, SLOT(switchFrontView()));
 	// // mActionListWidget->addAction(mFrontViewAct);
-	// 
+	//
 	// mBackViewAct = new QAction( tr("B&ack View"), this);
 	// sm->registerAction(mBackViewAct, "View Menu", "");
 	// mBackViewAct->setStatusTip(tr("Switch to Back View"));
 	// connect(mBackViewAct, SIGNAL(triggered()), this, SLOT(switchBackView()));
 	// // mActionListWidget->addAction(mBackViewAct);
-	// 
+	//
 	// mLeftViewAct = new QAction( tr("&Left View"), this);
 	// sm->registerAction(mLeftViewAct, "View Menu", "");
 	// mLeftViewAct->setStatusTip(tr("Switch to Left View"));
 	// connect(mLeftViewAct, SIGNAL(triggered()), this, SLOT(switchLeftView()));
 	// // mActionListWidget->addAction(mLeftViewAct);
-	// 
+	//
 	// mRightViewAct = new QAction( tr("&Right View"), this);
 	// sm->registerAction(mRightViewAct, "View Menu", "");
 	// mRightViewAct->setStatusTip(tr("Switch to Right View"));
@@ -664,16 +664,16 @@ void MainWindow::createActions() {
 	#ifdef GPU_OK
 	mUseGPUAct = new QAction(tr("&Use GPU Shading"), this);
 	mUseGPUAct->setCheckable(true);
-	mUseGPUAct->setChecked(true);	
+	mUseGPUAct->setChecked(true);
 	sm->registerAction(mUseGPUAct, "Display Menu", "L");
 	mUseGPUAct->setStatusTip(tr("Use GPU Shading"));
 	connect(mUseGPUAct, SIGNAL(triggered()), this->getActive(), SLOT(toggleGPU()));
 	mActionListWidget->addAction(mUseGPUAct);
 	#endif
-	
+
 	mAntialiasingAct = new QAction(tr("Toggle &Antialiasing"), this);
 	mAntialiasingAct->setCheckable(true);
-	mAntialiasingAct->setChecked(false);	
+	mAntialiasingAct->setChecked(false);
 	sm->registerAction(mAntialiasingAct, "Display Menu", "K");
 	mAntialiasingAct->setStatusTip(tr("Toggle Antialiasing"));
 	connect(mAntialiasingAct, SIGNAL(triggered()), this->getActive(), SLOT(toggleAntialiasing()));
@@ -684,7 +684,7 @@ void MainWindow::createActions() {
 	mShowScriptEditorAct->setStatusTip( tr("Show the script editor to execute DLFL commands") );
 	sm->registerAction(mShowScriptEditorAct, "Window Menu", "SHIFT+CTRL+E");
 	mActionListWidget->addAction(mShowScriptEditorAct);
-#endif	
+#endif
 
 	mShowToolOptionsAct = mToolOptionsDockWidget->toggleViewAction();
 	mShowToolOptionsAct->setStatusTip( tr("Show the tool options window") );
@@ -695,7 +695,7 @@ void MainWindow::createActions() {
 	mShowStartupDialogAct->setStatusTip( tr("Show the startup screen with links to video tutorials") );
 	sm->registerAction(mShowStartupDialogAct, "Window Menu", "");
 	mActionListWidget->addAction(mShowStartupDialogAct);
-	
+
 	mShowAnimatedHelpAct = mAnimatedHelpDockWidget->toggleViewAction();// new QAction(tr("Show Animated Hel&p"), this);
 	// mShowAnimatedHelpAct->setCheckable(true);
 	mShowAnimatedHelpAct->setStatusTip( tr("Show/Hide the animated help window") );
@@ -707,7 +707,7 @@ void MainWindow::createActions() {
 	planarModelingAct->setCheckable(true);
 	sm->registerAction(planarModelingAct, "Mode Menu", "F2");
 	planarModelingAct->setStatusTip(tr("Switch to planar modeling mode"));
-	connect(planarModelingAct, SIGNAL(triggered()), this, SLOT(setPlanarMode()));	
+	connect(planarModelingAct, SIGNAL(triggered()), this, SLOT(setPlanarMode()));
 	mActionListWidget->addAction(planarModelingAct);
 	planarModelingAct->setText(tr("&Planar modeling"));
 	planarModelingAct->setStatusTip(tr("Switch to planar modeling mode"));
@@ -717,7 +717,7 @@ void MainWindow::createActions() {
 	sm->registerAction(polygonalModelingAct, "Mode Menu", "F3");
 	polygonalModelingAct->setStatusTip(tr("Switch to polygonal modeling mode"));
   // Fenghui: fix this, use constant for mode
-	connect(polygonalModelingAct, SIGNAL(triggered()), this, SLOT(setPolygonalMode()));	
+	connect(polygonalModelingAct, SIGNAL(triggered()), this, SLOT(setPolygonalMode()));
 	mActionListWidget->addAction(polygonalModelingAct);
 	polygonalModelingAct->setText(tr("&Polygonal modeling"));
 	polygonalModelingAct->setStatusTip(tr("Switch to polygonal modeling mode"));
@@ -728,7 +728,7 @@ void MainWindow::createActions() {
 	sm->registerAction(patchModelingAct, "Mode Menu", "F4");
 	patchModelingAct->setStatusTip(tr("Switch to patch modeling mode"));
   // Fenghui: fix this, use constant for mode
-	connect(patchModelingAct, SIGNAL(triggered()), this, SLOT(setPatchMode()));	
+	connect(patchModelingAct, SIGNAL(triggered()), this, SLOT(setPatchMode()));
 	mActionListWidget->addAction(patchModelingAct);
 	patchModelingAct->setText(tr("&Patch modeling"));
 	patchModelingAct->setStatusTip(tr("Switch to patch modeling mode"));
@@ -740,7 +740,7 @@ void MainWindow::createActions() {
 	wireframeRendererAct->setCheckable(true);
 	sm->registerAction(wireframeRendererAct, "Renderer Menu", "1");
 	wireframeRendererAct->setStatusTip(tr("Switch the current renderer to Wireframe"));
-	connect(wireframeRendererAct, SIGNAL(triggered()), this, SLOT(useWireframeRenderer()));	
+	connect(wireframeRendererAct, SIGNAL(triggered()), this, SLOT(useWireframeRenderer()));
 	mActionListWidget->addAction(wireframeRendererAct);
 
 	normalRendererAct = new QAction(tr("&Normal Renderer"), this);
@@ -944,7 +944,7 @@ void MainWindow::createActions() {
 	sm->registerAction(mSelectionWindowAct, "Selection", "SHIFT+W");
 	connect( mSelectionWindowAct , SIGNAL( triggered() ), this, SLOT( selection_window() ) );
 	mActionListWidget->addAction(mSelectionWindowAct);
-	
+
 	selectVertexAct = new QAction(tr("Select &Vertex"), this);
 	sm->registerAction(selectVertexAct, "Selection", "");
 	selectVertexAct->setStatusTip(tr("Select a Vertex"));
@@ -1047,7 +1047,7 @@ void MainWindow::createActions() {
 	selectMultipleEdgesAct->setStatusTip(tr("Select multiple edges"));
 	connect( selectMultipleEdgesAct , SIGNAL( triggered() ), this,SLOT( select_multiple_edges() ) );
 	mActionListWidget->addAction(selectMultipleEdgesAct);
-	
+
 	mCollapseSelectedEdgesAct = new QAction(tr("Collapse Selected Edges"), this);
 	sm->registerAction(mCollapseSelectedEdgesAct, "Edit Menu", "ALT+C");
 	mCollapseSelectedEdgesAct->setStatusTip(tr("Collapse Selected Edges"));
@@ -1086,27 +1086,27 @@ void MainWindow::createActions() {
 	sm->registerAction(selectEdgesFromFacesAct, "Selection", "");
 	connect( selectEdgesFromFacesAct , SIGNAL( triggered() ), this, SLOT( selectEdgesFromFaces() ) );
 	mActionListWidget->addAction(selectEdgesFromFacesAct);
-	
+
 	selectEdgesFromVerticesAct = new QAction(tr("Select Edges from Vertices"), this);
 	sm->registerAction(selectEdgesFromVerticesAct, "Selection", "");
 	connect( selectEdgesFromVerticesAct , SIGNAL( triggered() ), this, SLOT( selectEdgesFromVertices() ) );
 	mActionListWidget->addAction(selectEdgesFromVerticesAct);
-	
+
 	selectFacesFromEdgesAct = new QAction(tr("Select Faces from Edges"), this);
 	sm->registerAction(selectFacesFromEdgesAct, "Selection", "");
 	connect( selectFacesFromEdgesAct , SIGNAL( triggered() ), this, SLOT( selectFacesFromEdges() ) );
 	mActionListWidget->addAction(selectFacesFromEdgesAct);
-	
+
 	selectFacesFromVerticesAct = new QAction(tr("Select Faces from Vertices"), this);
 	sm->registerAction(selectFacesFromVerticesAct, "Selection", "");
 	connect( selectFacesFromVerticesAct , SIGNAL( triggered() ), this, SLOT( selectFacesFromVertices() ) );
 	mActionListWidget->addAction(selectFacesFromVerticesAct);
-	
+
 	selectVerticesFromEdgesAct = new QAction(tr("Select Vertices from Edges"), this);
 	sm->registerAction(selectVerticesFromEdgesAct, "Selection", "");
 	connect( selectVerticesFromEdgesAct , SIGNAL( triggered() ), this, SLOT( selectVerticesFromEdges() ) );
 	mActionListWidget->addAction(selectVerticesFromEdgesAct);
-	
+
 	selectVerticesFromFacesAct = new QAction(tr("Select Vertices from Faces"), this);
 	sm->registerAction(selectVerticesFromFacesAct, "Selection", "");
 	connect( selectVerticesFromFacesAct , SIGNAL( triggered() ), this, SLOT( selectVerticesFromFaces() ) );
@@ -1149,11 +1149,11 @@ void MainWindow::createActions() {
 	mSelectionMaskActionGroup->addAction(mSelectCornersMaskAct);
 	// mSelectCornersMaskAct->setChecked(true);
 
-	//SETTINGS ACTIONS	
+	//SETTINGS ACTIONS
 	mPreferencesAct = new QAction(QIcon(":images/preferences-system.png"), tr("&Preferences"), this);
 	sm->registerAction(mPreferencesAct, "Settings", "CTRL+,");
 	mPreferencesAct->setStatusTip(tr("Open the Preferences Dialog"));
-	connect(mPreferencesAct, SIGNAL(triggered()), this, SLOT(openPreferences()));	
+	connect(mPreferencesAct, SIGNAL(triggered()), this, SLOT(openPreferences()));
 	mActionListWidget->addAction(mPreferencesAct);
 
 	//LANGUAGE MENU BAR ACTIONS
@@ -1180,7 +1180,7 @@ void MainWindow::createActions() {
 	connect( frenchAct , SIGNAL( triggered() ), this, SLOT  ( setLanguageFrench() ) );
 	sm->registerAction(frenchAct, "Languages", "CTRL+ALT+4");
 	mActionListWidget->addAction(frenchAct);
-	
+
 	italianAct = new QAction(tr("Italian"),this);
 	italianAct->setCheckable(true);
 	connect( italianAct , SIGNAL( triggered() ), this, SLOT  ( setLanguageItalian() ) );
@@ -1204,7 +1204,7 @@ void MainWindow::createActions() {
 	connect( hindiAct , SIGNAL( triggered() ), this, SLOT  ( setLanguageHindi() ) );
 	sm->registerAction(hindiAct, "Languages", "CTRL+ALT+8");
 	mActionListWidget->addAction(hindiAct);
-	
+
 	mLanguageActionGroup = new QActionGroup(this);
 	mLanguageActionGroup->setExclusive(true);
 	mLanguageActionGroup->addAction(englishAct);
@@ -1240,7 +1240,7 @@ void MainWindow::createActions() {
 	connect(mSubdivideSelectedEdgesAct, SIGNAL(triggered()), this, SLOT(subdivideSelectedEdges()));
 	sm->registerAction(mSubdivideSelectedEdgesAct, "Tools Menu", "CTRL+SHIFT+E");
 	mActionListWidget->addAction(mSubdivideSelectedEdgesAct);
-	
+
 	mPerformRemeshingAct = new QAction(tr("Perform Remeshing"), this);
 	mPerformRemeshingAct->setStatusTip( tr("Perform the current remeshing scheme") );
 	connect(mPerformRemeshingAct, SIGNAL(triggered()), this, SLOT(performRemeshing()));
@@ -1273,7 +1273,7 @@ void MainWindow::createActions() {
 	connect(mVideoTutorialsAct, SIGNAL(triggered()), this, SLOT(topModBlip()));
 	sm->registerAction(mVideoTutorialsAct, "Help Menu", "");
 	mActionListWidget->addAction(mVideoTutorialsAct);
-	
+
 	mTopModWebAct = new QAction(QIcon(":images/applications-internet.png"),tr("&TopMod on the Web"), this);
 	mTopModWebAct->setStatusTip( tr("Go to the TopMod web page") );
 	connect(mTopModWebAct, SIGNAL(triggered()), this, SLOT(topModWeb()));
@@ -1303,7 +1303,7 @@ void MainWindow::createActions() {
 	connect(mAboutQtAct, SIGNAL(triggered()), qApp, SLOT(aboutQt()));
 	sm->registerAction(mAboutQtAct, "Help Menu", "");
 	mActionListWidget->addAction(mAboutQtAct);
-	
+
 	mHideToolBarsAct = new QAction(tr("Hide All ToolBars"), this);
 	mHideToolBarsAct->setStatusTip( tr("Hide All ToolBars") );
 	connect(mHideToolBarsAct, SIGNAL(triggered()), this, SLOT(hideAllToolBars()));
@@ -1331,7 +1331,7 @@ void MainWindow::createMenus(){
 	mFileMenu = new QMenu(tr("&File"));
 	menuBar->addMenu(mFileMenu);
 	mFileMenu->setTearOffEnabled(true);
-	
+
 	mNewMenu = new QMenu(tr("&New"));
 	mNewMenu->setTearOffEnabled(true);
 	mFileMenu->addMenu(mNewMenu);
@@ -1343,7 +1343,7 @@ void MainWindow::createMenus(){
 	mNewMenu->addAction(pIcosahedronAct);
 	mNewMenu->addAction(pSoccerBallAct);
 	mNewMenu->addAction(pGeodesicAct);
-	
+
 
 	mExportMenu = new QMenu(tr("&Export"));
 	mExportMenu->setIcon(QIcon(":images/document-save-as.png"));
@@ -1371,7 +1371,7 @@ void MainWindow::createMenus(){
 	mEditMenu = new QMenu(tr("&Edit"));
 	menuBar->addMenu(mEditMenu);
 	mEditMenu->addAction(mDeleteSelectedAct);
-	mEditMenu->addSeparator();	
+	mEditMenu->addSeparator();
 	mEditMenu->addAction(mUndoAct);
 	mEditMenu->addAction(mRedoAct);
 	mEditMenu->setTearOffEnabled(true);
@@ -1419,7 +1419,7 @@ void MainWindow::createMenus(){
 	mRendererMenu->addSeparator()->setText(tr("Special Mode??"));
 	//mRendererMenu->addAction(patchRendererAct);
 	mRendererMenu->addAction(colorableRendererAct);
-	
+
 	mDisplayMenu->addAction(mPerspViewAct);
 	mDisplayMenu->addAction(showVerticesAct);
 	//ID display submenu
@@ -1434,7 +1434,7 @@ void MainWindow::createMenus(){
 	mDisplayMenu->addAction(showSilhouetteAct);
 	mDisplayMenu->addAction(showWireframeAct);
 	mDisplayMenu->addAction(showCoordinateAxesAct);
-	// mDisplayMenu->addAction(showGridAct); //removed for now 
+	// mDisplayMenu->addAction(showGridAct); //removed for now
 	mDisplayMenu->addAction(showHUDAct);
 	#ifdef GPU_OK
 	mDisplayMenu->addAction(mUseGPUAct);
@@ -1475,7 +1475,7 @@ void MainWindow::createMenus(){
 	// mSelectionMenu->addAction(selectMultipleEdgesAct);
 	mSelectionMenu->addAction(selectEdgeLoopAct);
 	mSelectionMenu->addAction(selectEdgeRingAct);
-	// mSelectionMenu->addAction(mCollapseSelectedEdgesAct);	
+	// mSelectionMenu->addAction(mCollapseSelectedEdgesAct);
 	// mSelectionMenu->addAction(mSubdivideSelectedEdgesAct);
 	mSelectionMenu->addAction(selectEdgesFromFacesAct);
 	mSelectionMenu->addAction(selectEdgesFromVerticesAct);
@@ -1497,7 +1497,7 @@ void MainWindow::createMenus(){
 	mSelectionMenu->addAction(selectVerticesFromEdgesAct);
 	// mSelectionMenu->addAction(selectCornerAct);
 	// mSelectionMenu->addSeparator();
-	
+
 	mToolsMenu = new QMenu(tr("&Tools"));
 	mToolsMenu->setTearOffEnabled(true);
 	mToolsMenu->addMenu(mBasicsMode->getMenu());
@@ -1519,7 +1519,7 @@ void MainWindow::createMenus(){
 	mRemeshingMenu = mRemeshingMode->getMenu();
 	mRemeshingMenu->addAction(mPerformRemeshingAct);
 	mRemeshingMenu->setTearOffEnabled(true);
-	menuBar->addMenu(mRemeshingMenu);		
+	menuBar->addMenu(mRemeshingMenu);
 
 	mObjectMenu = new QMenu(tr("&Object"));
 	mObjectMenu->setTearOffEnabled(true);
@@ -1596,7 +1596,7 @@ void MainWindow::createMenus(){
 	mHelpMenu->addSeparator();
 	mHelpMenu->addAction(mAboutAct);
 	mHelpMenu->addAction(mAboutQtAct);
-		
+
 	mRightClickMenu = new QMenu();
 
 }
@@ -1613,7 +1613,7 @@ void MainWindow::createToolBars() {
 	mEditToolBar->addAction(mUndoAct);
 	mEditToolBar->addAction(mRedoAct);
 	mEditToolBar->addAction(mScreenshotViewportAct);
-	mEditToolBar->addAction(mScreenshotAppAct);	
+	mEditToolBar->addAction(mScreenshotAppAct);
 	mEditToolBar->setIconSize(QSize(32,32));
 
 	//selection masks toolbar
@@ -1685,7 +1685,7 @@ void MainWindow::createToolBars() {
 	mToolsActionGroup = new QActionGroup(this);
 	mToolsActionGroup->setExclusive(true);
 
-	mBasicsMode->addActions(mToolsActionGroup, mToolsToolBar, mToolOptionsStackedWidget);	
+	mBasicsMode->addActions(mToolsActionGroup, mToolsToolBar, mToolOptionsStackedWidget);
 	mExtrusionsMode->addActions(mToolsActionGroup, mExtrusionToolBar, mToolOptionsStackedWidget);
 	mConicalMode->addActions(mToolsActionGroup, mConicalToolBar, mToolOptionsStackedWidget);
 
@@ -1697,7 +1697,7 @@ void MainWindow::createToolBars() {
 	mExperimentalMode->addActions(mToolsActionGroup, mExperimentalToolBar, mToolOptionsStackedWidget);
 
 	//window menu toolbar display actions
-	mEditToolBarAct 					= mEditToolBar->toggleViewAction();         
+	mEditToolBarAct 					= mEditToolBar->toggleViewAction();
 	mSelectionMaskToolBarAct 	= mSelectionMaskToolBar->toggleViewAction();
 	mPrimitivesToolBarAct     = mPrimitivesToolBar->toggleViewAction();
 	mToolsToolBarAct				 	= mToolsToolBar->toggleViewAction();
@@ -1711,13 +1711,13 @@ void MainWindow::createToolBars() {
 }
 
 void MainWindow::createStartupDialog(){
-	
+
 	//startup screen - links to video tutorials and free quicktime download
 
 	// mStartupDialogDockWidget->setFeatures(QDockWidget::DockWidgetFloatable | QDockWidget::DockWidgetMovable /* | QDockWidget::DockWidgetClosable*/);
 	mStartupDialogDockWidget->setAllowedAreas(Qt::NoDockWidgetArea);
 	mStartupDialogDockWidget->hide();
-	
+
 	mStartupDialogWidget = new QWidget;
 	mStartupDialogLayout = new QGridLayout;
 
@@ -1730,7 +1730,7 @@ void MainWindow::createStartupDialog(){
 	mTutorialNavigationButton->setDefaultAction(mTutorialNavigationAct);
 	mTutorialNavigationButton->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
 	mStartupDialogLayout->addWidget(mTutorialNavigationButton,1,0);
-	
+
 	mTutorialInterfaceAct = new QAction(QIcon(":/images/tutorial_02.png"),tr("Interface Basics"), this);
 	connect(mTutorialInterfaceAct, SIGNAL(triggered()), this, SLOT(loadInterfaceTutorial()));
 	mTutorialInterfaceButton = new QToolButton;
@@ -1784,19 +1784,19 @@ void MainWindow::createStartupDialog(){
 	mTutorialTexturingButton->setDefaultAction(mTutorialTexturingAct);
 	mTutorialTexturingButton->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
 	mStartupDialogLayout->addWidget(mTutorialTexturingButton,3,1);
-	
+
 	//show on startup? checkbox
 	mShowStartupDialogAtStartupCheckBox = new QCheckBox(tr("Show this dialog at startup"));
 	mShowStartupDialogAtStartupCheckBox->setChecked(mShowStartupDialogAtStartup);
 	connect(mShowStartupDialogAtStartupCheckBox,SIGNAL(stateChanged(int)),this,SLOT(setShowStartupDialogAtStartup(int)));
 	mStartupDialogLayout->addWidget(mShowStartupDialogAtStartupCheckBox,5,0);
-	
+
 	//download quicktime link label
 	quicktimeLabel = new QLabel(tr("Quicktime 7.2 or greater recommended."));
 	downloadQuicktimeLabel = new QLabel(tr("<h5>Quicktime 7.2 or greater recommended.<br /><a href=\"http://apple.com/quicktime/\">Download now.</a></h5>"));
 	downloadQuicktimeLabel->setOpenExternalLinks(true);
 	mStartupDialogLayout->addWidget(downloadQuicktimeLabel,5,1, Qt::AlignRight);
-		
+
 	mStartupDialogLayout->setColumnStretch(2,1);
 	mStartupDialogLayout->setRowStretch(6,1);
 	mStartupDialogWidget->setLayout(mStartupDialogLayout);
@@ -1854,7 +1854,7 @@ void MainWindow::showAllToolBars(){
 	mTexturingToolBar->show();
 	mExperimentalToolBar->show();
 	mRemeshingToolBar->show();
-	
+
 }
 
 void MainWindow::hideAllToolBars(){
@@ -1868,12 +1868,13 @@ void MainWindow::hideAllToolBars(){
 	mTexturingToolBar->hide();
 	mExperimentalToolBar->hide();
 	mRemeshingToolBar->hide();
-	
+
 }
 
 void MainWindow::setToolOptions(QWidget *optionsWidget) {
 	mToolOptionsDockWidget->setWindowTitle(tr("Tool Options - ") + optionsWidget->windowTitle());
 	mToolOptionsStackedWidget->setCurrentWidget(optionsWidget);
+	mToolOptionsStackedWidget->updateGeometry();
 	// show or hide the dockwidget options
 	// if (optionsWidget->windowTitle() != "" && mToolOptionsDockWidget->isHidden())
 		// mToolOptionsDockWidget->show();
@@ -1891,15 +1892,15 @@ void MainWindow::closeEvent(QCloseEvent *event) {
 	// 	mAssistantClient->closeAssistant();
 
 	mPreferencesDialog->saveSettings();
-	
-	if (maybeSave()) {	
+
+	if (maybeSave()) {
 		event->accept();
-	} 
+	}
 	else event->ignore();
 }
 
 void MainWindow::newFile(){
-	
+
 	if (maybeSave()){
 		clearUndoList();
 		object.destroy();
@@ -1907,7 +1908,7 @@ void MainWindow::newFile(){
   	}
 	else return;
 }
- 
+
 bool MainWindow::maybeSave() {
 	if (this->isModified()) {
 		int ret = QMessageBox::warning(this, tr("TopMod"),
@@ -1976,8 +1977,8 @@ void MainWindow::initializeHelp(){
 	//   mAssistantClient->setArguments(arguments);
 }
 
-/** 
-* \brief show the help file in the QAssistant help file viewer 
+/**
+* \brief show the help file in the QAssistant help file viewer
 */
 void MainWindow::help() {
 	// mAssistantClient->openAssistant();//showPage(QString("userdoc/index.html"));
@@ -2070,12 +2071,12 @@ void MainWindow::doDrag(int x, int y) { // brianb
 	DLFLVertexPtrArray::iterator vit;
 	DLFLFacePtrArray sfptrarr;
 	DLFLFacePtrArray::iterator fit,first, last;
-	
+
 	int drag_endx = x;
 	int drag_endy = y;
 
 	GLdouble 	obj_world[3],  // Object world coordinates
-						obj_window[3], // Object window coordinates 
+						obj_window[3], // Object window coordinates
 						ms_window[3],  // Mouse start drag window
 						ms_world[3],   // Mouse start drag world
 						me_window[3],  // Mouse end drag window
@@ -2114,8 +2115,8 @@ void MainWindow::doDrag(int x, int y) { // brianb
 				glGetDoublev(GL_MODELVIEW_MATRIX, modelMatrix);
 				glGetDoublev(GL_PROJECTION_MATRIX, projMatrix);
 
-				obj_world[0] = vptr->getCoords()[0]; 
-				obj_world[1] = vptr->getCoords()[1]; 
+				obj_world[0] = vptr->getCoords()[0];
+				obj_world[1] = vptr->getCoords()[1];
 				obj_world[2] = vptr->getCoords()[2];
 
 				// Project object coordinates to window coordinates (to get accurate window depth)
@@ -2141,20 +2142,20 @@ void MainWindow::doDrag(int x, int y) { // brianb
 				switch (active->getLocatorPtr()->getSelectedAxis())
 					{
 					case 0: // X-axis
-						obj_world[0] = obj_world[0] + me_world[0] - ms_world[0];     
+						obj_world[0] = obj_world[0] + me_world[0] - ms_world[0];
 						break;
 
 					case 1: // Y-axis
-						obj_world[1] = obj_world[1] + me_world[1] - ms_world[1];                     
+						obj_world[1] = obj_world[1] + me_world[1] - ms_world[1];
 						break;
 
 					case 2: // Z-axis
-						obj_world[2] = obj_world[2] + me_world[2] - ms_world[2];                 
+						obj_world[2] = obj_world[2] + me_world[2] - ms_world[2];
 						break;
 
 					case 3:  // User can drag freely along viewing place
-					default: 
-						obj_world[0] = obj_world[0] + me_world[0] - ms_world[0];             
+					default:
+						obj_world[0] = obj_world[0] + me_world[0] - ms_world[0];
 						obj_world[1] = obj_world[1] + me_world[1] - ms_world[1];
 						obj_world[2] = obj_world[2] + me_world[2] - ms_world[2];
 						break;
@@ -2177,7 +2178,7 @@ void MainWindow::doDrag(int x, int y) { // brianb
 	case SelectionWindow:
 	{
 		// std::cout << "masking!\n";
-	
+
 		//draw the window with qPainter
 		active->showSelectionWindow();
 		active->setSelectionWindowStartX(drag_startx);// mapFromGlobal(QCursor::pos()).x());
@@ -2195,9 +2196,9 @@ void MainWindow::doDrag(int x, int y) { // brianb
 
 		int cx = (x+drag_startx)/2;
 		int cy = (y+drag_starty)/2;
-		
-		// cout << "cx = " << cx << "\t\tcy = " << cy << "\t\tw = " << w << "\t\th = " << h << "\n"; 
-		
+
+		// cout << "cx = " << cx << "\t\tcy = " << cy << "\t\tw = " << w << "\t\th = " << h << "\n";
+
 		if(selectionmask == MainWindow::MaskVertices){
 			svptrarr = active->selectVertices(cx,cy,w,h);
 			for(vit = svptrarr.begin(); vit != svptrarr.end(); vit++){
@@ -2228,9 +2229,9 @@ void MainWindow::doDrag(int x, int y) { // brianb
 				}
 			}
 			active->redraw();
-			sfptrarr.clear();	
+			sfptrarr.clear();
 		} else if (selectionmask == MainWindow::MaskCorners){
-			
+
 		}
 	}
 	break;
@@ -2274,7 +2275,7 @@ void MainWindow::doSelection(int x, int y) {
 			else {
 				active->getLocatorPtr()->setActiveVertex(NULL);
 				active->clearSelectedLocators();
-			} 
+			}
 		}
 		break;
 	case SelectVertex:
@@ -2304,7 +2305,7 @@ void MainWindow::doSelection(int x, int y) {
 			}
 			active->redraw();
 			svptrarr.clear();
-		}	
+		}
 		// svptr = active->selectVertex(x,y);
 		// if ( !active->isSelected(svptr) )
 		// 	active->setSelectedVertex(num_sel_verts,svptr);
@@ -2347,7 +2348,7 @@ void MainWindow::doSelection(int x, int y) {
 			}
 			active->redraw();
 			septrarr.clear();
-		}	
+		}
 		// septr = active->selectEdge(x,y);
 		// if ( !active->isSelected(septr) )
 		// 	active->setSelectedEdge(num_sel_edges,septr);
@@ -2380,7 +2381,7 @@ void MainWindow::doSelection(int x, int y) {
 	case EyeDropper://dave
 		if (QApplication::keyboardModifiers() != Qt::ShiftModifier){
 			active->clearSelectedFaces();
-		}	
+		}
     if (patch != active->getRenderer())
       sfptr = active->selectFace(x,y);
     else {
@@ -2415,7 +2416,7 @@ void MainWindow::doSelection(int x, int y) {
 	// 	break;
 		case SelectSimilar:
 		// std::cout << active->getSelectionMaskString() << " = select similar\n";
-		
+
 			switch (selectionmask){
 				case MaskFaces:
 				// std::cout<< "Mask faces select sim\n";
@@ -2578,8 +2579,8 @@ void MainWindow::doSelection(int x, int y) {
 	case ExtrudeFaceDodeca :
 	case ExtrudeFaceIcosa :
 	case StellateFace :
-	case DoubleStellateFace :		
-	case ExtrudeFaceDome :		
+	case DoubleStellateFace :
+	case ExtrudeFaceDome :
 	case ExtrudeMultipleFaces :
 	case MultiSelectFace :
 	case SubdivideFace :
@@ -2617,7 +2618,7 @@ void MainWindow::doSelection(int x, int y) {
 			active->setSelectedFace(sfptr);
 			num_sel_faces++;
 			getCheckerboardSelection(sfptr);
-		}		
+		}
 		active->redraw();
 		sfptrarr.clear();
 		break;
@@ -2664,10 +2665,10 @@ void MainWindow::doSelection(int x, int y) {
 			active->clearSelectedFaces();
 		}
 		startDrag(x,y);
-		
-		
-		break;	
-	};	
+
+
+		break;
+	};
 	redraw();
 	// if ( svptr != NULL || septr != NULL || sfptr != NULL ) redraw();
 }
@@ -2689,7 +2690,7 @@ void MainWindow::mousePressEvent(QMouseEvent *event) {
 
 	//experimental for crossing window selection
 	// if (event->buttons() == Qt::LeftButton && mode == SelectionWindow){
-		
+
 	// }
 	if ( event->buttons() == Qt::LeftButton && mode != NormalMode ){
 		doSelection(event->x(),height()-mStatusBar->height()-event->y());
@@ -2709,12 +2710,12 @@ void MainWindow::mousePressEvent(QMouseEvent *event) {
 
 /**
 * \brief load custom right click menu options based on the current mode of operation
-* 
+*
 */
 void MainWindow::getRightClickMenu(){
 	mRightClickMenu->clear();
 	//add generic items for now to test it out
-	
+
 	switch (mode){
 		NormalMode :
 		// mRightClickMenu->addAction(createWireframeAct);
@@ -2812,27 +2813,27 @@ void MainWindow::getRightClickMenu(){
 		// SelectSimilarFaces :
 		SelectFacesByArea:
 		SelectFacesByColor:
-		SelectCheckerboard :	
+		SelectCheckerboard :
 		mRightClickMenu->addAction(mSubdivideSelectedFacesAct);
 		mRightClickMenu->addAction(mPaintSelectedFacesAct);
 		break;
-		
+
 		default:
 		break;
 	};
-	
+
 	mRightClickMenu->addSeparator();
 	mRightClickMenu->addAction(selectAllAct);
 	mRightClickMenu->addAction(selectInverseAct);
 	mRightClickMenu->addAction(mSelectMultipleAct);
 	mRightClickMenu->addAction(mSelectSimilarAct);
-	mRightClickMenu->addAction(mSelectionWindowAct);	
+	mRightClickMenu->addAction(mSelectionWindowAct);
 	mRightClickMenu->addAction(mSelectComponentAct);
 	mRightClickMenu->addAction(mGrowSelectionAct);
 	mRightClickMenu->addAction(mShrinkSelectionAct);
-	mRightClickMenu->addAction(clearSelectedModeAct);		
+	mRightClickMenu->addAction(clearSelectedModeAct);
 	mRightClickMenu->addSeparator();
-	
+
 	switch (selectionmask){
 		case MaskVertices:
 			mRightClickMenu->addAction(mDeleteSelectedAct);
@@ -2840,10 +2841,10 @@ void MainWindow::getRightClickMenu(){
 			// mRightClickMenu->addAction(selectMultipleVerticesAct);
 			mRightClickMenu->addAction(mEditVertexAct);
 			// mRightClickMenu->addAction(mEditVertexAct);
-			mRightClickMenu->addAction(selectEdgesFromVerticesAct);			
-			mRightClickMenu->addAction(selectFacesFromVerticesAct);			
+			mRightClickMenu->addAction(selectEdgesFromVerticesAct);
+			mRightClickMenu->addAction(selectFacesFromVerticesAct);
 		break;
-		case MaskEdges: 
+		case MaskEdges:
 			mRightClickMenu->addAction(mDeleteSelectedAct);
 			mRightClickMenu->addAction(mCollapseSelectedEdgesAct);
 			mRightClickMenu->addSeparator();
@@ -2851,8 +2852,8 @@ void MainWindow::getRightClickMenu(){
 			// mRightClickMenu->addAction(selectMultipleEdgesAct);
 			mRightClickMenu->addAction(selectEdgeLoopAct);
 			mRightClickMenu->addAction(selectEdgeRingAct);
-			mRightClickMenu->addAction(selectVerticesFromEdgesAct);			
-			mRightClickMenu->addAction(selectFacesFromEdgesAct);			
+			mRightClickMenu->addAction(selectVerticesFromEdgesAct);
+			mRightClickMenu->addAction(selectFacesFromEdgesAct);
 		break;
 		case MaskFaces://face stuff
 			// mRightClickMenu->addAction(mDeleteSelectedAct);
@@ -2863,8 +2864,8 @@ void MainWindow::getRightClickMenu(){
 			mRightClickMenu->addAction(selectFacesByAreaAct);
 			mRightClickMenu->addAction(selectFacesByColorAct);
 			mRightClickMenu->addAction(selectCheckerboardFacesAct);
-			mRightClickMenu->addAction(selectEdgesFromFacesAct);			
-			mRightClickMenu->addAction(selectVerticesFromFacesAct);						
+			mRightClickMenu->addAction(selectEdgesFromFacesAct);
+			mRightClickMenu->addAction(selectVerticesFromFacesAct);
 		break;
 		case MaskCorners:
 			// mRightClickMenu->addAction(mDeleteSelectedAct);
@@ -2873,7 +2874,7 @@ void MainWindow::getRightClickMenu(){
 		default:
 		break;
 	};
-	
+
 	// mRightClickMenu->addSeparator();
 	// mRightClickMenu->addAction(mEditVertexAct);
 	mRightClickMenu->addSeparator();
@@ -2911,17 +2912,17 @@ void MainWindow::mouseMoveEvent(QMouseEvent *event) {
 			break;
 		};
 	}
-	
+
 	else event->ignore();
 }
 
 //if the user holds down certain keys, allow them to
 //change various properties in the scene
 void MainWindow::keyPressEvent(QKeyEvent *event){
-		
+
 	mStartDragX = mapFromGlobal(QCursor::pos()).x();
 	mStartDragY = mapFromGlobal(QCursor::pos()).y();
-	
+
 	switch (event->key()){
 	case Qt::Key_Y : mSpinBoxMode = One;
 		break;
@@ -2972,7 +2973,7 @@ void MainWindow::mouseReleaseEvent(QMouseEvent *event)  {
 					}
 					break;
 				case SelectVertex :
-					
+
 					if ( active->numSelectedVertices() >= 1 )
 						{
 							// DLFLVertexPtr vp = active->getSelectedVertex(0);
@@ -3001,7 +3002,7 @@ void MainWindow::mouseReleaseEvent(QMouseEvent *event)  {
 							getEdgeLoopSelection(septr);
 					}
 					// active->clearSelectedEdges();
-					active->redraw();			
+					active->redraw();
 					break;
 				case SelectEdgeRing:
 					if ( active->numSelectedEdges() >= 1 ){
@@ -3046,10 +3047,10 @@ void MainWindow::mouseReleaseEvent(QMouseEvent *event)  {
 						// DLFLMaterialPtr m = object.findMaterial(RGBColor(paint_bucket_color.redF(),paint_bucket_color.greenF(),paint_bucket_color.blueF() ));
 						fp->setMaterial(object.addMaterial(RGBColor(paint_bucket_color.redF(),paint_bucket_color.greenF(),paint_bucket_color.blueF())) );
 						// if ( m ){
-						// 	
+						//
 						// }
 						// else {
-						// 	
+						//
 						// }
 						active->clearSelectedFaces();
 						redraw();
@@ -3070,7 +3071,7 @@ void MainWindow::mouseReleaseEvent(QMouseEvent *event)  {
                     if (selectionmask == MainWindow::MaskFaces){
                         // cout << "select similar faces mouse release\n";
                         if ( active->numSelectedFaces() >= 1 ){
-                            DLFLFacePtr sfptr = active->getSelectedFace(0);			
+                            DLFLFacePtr sfptr = active->getSelectedFace(0);
                             if (sfptr){
                                 DLFLFacePtrArray sfptrarray;
                                 vector<DLFLFacePtr>::iterator it;
@@ -3123,7 +3124,7 @@ void MainWindow::mouseReleaseEvent(QMouseEvent *event)  {
                 case SelectFacesByArea :
                     if ( active->numSelectedFaces() >= 1 )
                         {
-                            DLFLFacePtr sfptr = active->getSelectedFace(0);			
+                            DLFLFacePtr sfptr = active->getSelectedFace(0);
                             if (sfptr)
                                 {
                                     DLFLFacePtrArray sfptrarray;
@@ -3173,8 +3174,8 @@ void MainWindow::mouseReleaseEvent(QMouseEvent *event)  {
                                     } else {
                                         sfvptr1->getVertexPtr()->updateNormal();
                                         sfvptr2->getVertexPtr()->updateNormal();
-                                    } 
-									redraw();   
+                                    }
+									redraw();
 								}
 						}
 					else if ( active->numSelectedCorners() == 1 )
@@ -3248,7 +3249,7 @@ void MainWindow::mouseReleaseEvent(QMouseEvent *event)  {
 									num_sel_faceverts = 0; num_sel_faces = 0;
                                     active->recomputePatches();
 									active->recomputeNormals();
-									redraw();   
+									redraw();
 								}
 						}
 					else if ( active->numSelectedCorners() == 1 )
@@ -3260,12 +3261,12 @@ void MainWindow::mouseReleaseEvent(QMouseEvent *event)  {
                     // Add Hole/Handle (Closest Vertex Mode).
                     // You need to select two faces to make it work (Shift will do
                     // the job.)
-            		if ( active->numSelectedFaces() >= 2 ) 
+            		if ( active->numSelectedFaces() >= 2 )
                         {
                             DLFLFacePtr sfptr1, sfptr2;
                             sfptr1 = active->getSelectedFace(0);
                             sfptr2 = active->getSelectedFace(1);
-                            if (sfptr1 && sfptr2) 
+                            if (sfptr1 && sfptr2)
                                 {
                                     undoPush();
                                     setModified(true);
@@ -3273,19 +3274,19 @@ void MainWindow::mouseReleaseEvent(QMouseEvent *event)  {
                                     active->recomputePatches();
                                     active->recomputeNormals();
                                     active->clearSelectedFaces();
-                                    redraw();   
+                                    redraw();
                                 }
                         } else if (active->numSelectedFaces() == 1) {
                             num_sel_faces = 1;
                         }
 					break;
 				case ConnectFaceVertices :
-					if (active->numSelectedCorners() >= 2) 
+					if (active->numSelectedCorners() >= 2)
                         {
                             DLFLFaceVertexPtr sfvptr1, sfvptr2;
                             sfvptr1 = active->getSelectedFaceVertex(0);
                             sfvptr2 = active->getSelectedFaceVertex(1);
-                            if (sfvptr1 && sfvptr2) 
+                            if (sfvptr1 && sfvptr2)
                                 {
                                     undoPush();
                                     setModified(true);
@@ -3298,7 +3299,7 @@ void MainWindow::mouseReleaseEvent(QMouseEvent *event)  {
                                     num_sel_faces = 0;
                                     active->recomputePatches();
                                     active->recomputeNormals();
-                                    redraw();   
+                                    redraw();
                                 }
                         } else if ( active->numSelectedCorners() == 1 ) {
                             num_sel_faceverts = 1;
@@ -3322,7 +3323,7 @@ void MainWindow::mouseReleaseEvent(QMouseEvent *event)  {
 									active->clearSelectedEdges();
 									active->clearSelectedFaces();
 									num_sel_edges = 0; num_sel_faces = 0;
-									redraw();   
+									redraw();
 								}
 						}
 					else if ( active->numSelectedEdges() == 1 )
@@ -3395,7 +3396,7 @@ void MainWindow::mouseReleaseEvent(QMouseEvent *event)  {
 								{
 									undoPush();
 									setModified(true);
-									DLFL::extrudeFaceDodeca(&object,sfptr,extrude_angle,num_extrusions, extrude_length1,extrude_length2,extrude_length3, hexagonalize_dodeca_extrude);							
+									DLFL::extrudeFaceDodeca(&object,sfptr,extrude_angle,num_extrusions, extrude_length1,extrude_length2,extrude_length3, hexagonalize_dodeca_extrude);
 									// DLFL::extrudeFaceDodeca(&object,sfptr,extrude_dist,num_extrusions, ds_ex_twist,extrude_scale, hexagonalize_dodeca_extrude);
                                     active->recomputePatches();
 									active->recomputeNormals();
@@ -3519,7 +3520,7 @@ void MainWindow::mouseReleaseEvent(QMouseEvent *event)  {
 									num_sel_faceverts = 0; num_sel_faces = 0;
                                     active->recomputePatches();
 									active->recomputeNormals();
-									redraw();   
+									redraw();
 								}
 						}
 					else if ( active->numSelectedCorners() == 1 )
@@ -3649,7 +3650,7 @@ void MainWindow::mouseReleaseEvent(QMouseEvent *event)  {
 
 				case CutEdgeandVertex :
 					if ( active->numSelectedEdges() >= 1 )
-						{	
+						{
 							if ( active->numSelectedEdges() >= 1 ) {
 								DLFLVertexPtr svptr = active->getSelectedVertex(0);
 								DLFLEdgePtr septr = active->getSelectedEdge(0);
@@ -3709,7 +3710,7 @@ void MainWindow::mouseReleaseEvent(QMouseEvent *event)  {
 					break;
 					case SelectionWindow:
 						active->hideSelectionWindow();
-					
+
 					break;
 				}//end switch (mode)
 
@@ -3737,7 +3738,7 @@ void MainWindow::testConvexHull(void) {
 	// vertices[7].set(10,0,10);
 	// DLFLConvexHull convexhull;
 	// convexhull.createHull(vertices);
-	// 
+	//
 	// ofstream file;
 	// file.open("convexhull.dlfl");
 	// convexhull.writeDLFL(file);
@@ -3895,20 +3896,20 @@ void MainWindow::performExtrusion(){
                               scherk_collins_pinch_width);
 						break;
 						// case IcosahedralExtrude: DLFL::extrudeFaceIcosa(&object,*it,extrude_dist,num_extrusions, ds_ex_twist,extrude_scale);
-					case IcosahedralExtrude: 
+					case IcosahedralExtrude:
 							// std::cout<< extrude_angle_icosa  << "\t" << num_extrusions  << "\t" << extrude_length1_icosa  << "\t" << extrude_length2_icosa << "\t" << extrude_length3_icosa <<"\n";
 							DLFL::extrudeFaceIcosa(&object, *it, extrude_angle_icosa, num_extrusions, extrude_length1_icosa,extrude_length2_icosa,extrude_length3_icosa);
 							// DLFL::extrudeFaceCubOcta(&object, *it, extrude_angle_icosa,num_extrusions, extrude_length1_icosa,extrude_length2_icosa,extrude_length3_icosa);
 							break;
 							// DLFLFacePtr extrudeFaceDodeca(DLFLObjectPtr obj, DLFLFacePtr fptr, double angle, int num, double ex_dist1, double ex_dist2, double ex_dist3, bool hexagonalize);
-							case DodecahedralExtrude: 
-							DLFL::extrudeFaceDodeca(&object,*it,extrude_angle,num_extrusions, extrude_length1,extrude_length2,extrude_length3, hexagonalize_dodeca_extrude);							
-							// case DodecahedralExtrude: DLFL::extrudeFaceDodeca(&object,*it,extrude_dist,num_extrusions, ds_ex_twist,extrude_scale, hexagonalize_dodeca_extrude);							
+							case DodecahedralExtrude:
+							DLFL::extrudeFaceDodeca(&object,*it,extrude_angle,num_extrusions, extrude_length1,extrude_length2,extrude_length3, hexagonalize_dodeca_extrude);
+							// case DodecahedralExtrude: DLFL::extrudeFaceDodeca(&object,*it,extrude_dist,num_extrusions, ds_ex_twist,extrude_scale, hexagonalize_dodeca_extrude);
 							// DLFL::extrudeFaceSmallRhombiCubOcta(&object,*it,extrude_angle,num_extrusions, extrude_length1,extrude_length2,extrude_length3);
 							break;
 							case OctahedralExtrude: DLFL::extrudeDualFace(&object,*it,extrude_dist,num_extrusions, extrude_rot,extrude_scale, dual_mesh_edges_check);
 							break;
-							case StellateExtrude: DLFL::stellateFace(&object,*it,extrude_dist);							
+							case StellateExtrude: DLFL::stellateFace(&object,*it,extrude_dist);
 							break;
 							case DoubleStellateExtrude: DLFL::doubleStellateFace(&object,*it,extrude_dist);
 							break;
@@ -3925,7 +3926,7 @@ void MainWindow::performExtrusion(){
           // Fenghui, record the time after compute patches.
           recompute_patches = std::clock();
 
-					active->recomputeNormals();						
+					active->recomputeNormals();
           recompute_normals = std::clock();
           // Fenghui, output the time taken to perform each steps.
           cout << "Extrusion:" << (op - start) / (double)CLOCKS_PER_SEC
@@ -3933,7 +3934,7 @@ void MainWindow::performExtrusion(){
                << ":" << (recompute_normals - recompute_patches) / (double)CLOCKS_PER_SEC
                << ":" << (std::clock() - recompute_normals) / (double)CLOCKS_PER_SEC
                << endl;
-          // Fenghui's simple profiler for Extrusion, end!          
+          // Fenghui's simple profiler for Extrusion, end!
 				}
 			active->clearSelectedFaces();
 			redraw();
@@ -3977,7 +3978,7 @@ void MainWindow::setMode(Mode m) {
 	case MarkVertex :
 		setSelectionMask(MainWindow::MaskVertices);
 		MainWindow::num_sel_verts = 0;
-		break; 
+		break;
 	case SelectEdge :
 	case SelectEdgeLoop :
 	case SelectEdgeRing :
@@ -4023,12 +4024,12 @@ void MainWindow::setMode(Mode m) {
 	break;
 	// case SelectSimilar :
 	// switch(selectionmask){
-	// 	case MaskEdges: 
+	// 	case MaskEdges:
 	// 	break;
 	// 	case MaskFaces:
 	// 	break;
 	// 	case MaskVertices:
-	// 	
+	//
 	// 	break;
 	// 	default:
 	// 	break;
@@ -4051,14 +4052,14 @@ void MainWindow::setMode(Mode m) {
 		setSelectionMask(MainWindow::MaskNone);
 	default :
 		// Nothing to be done for other modes except clearing selection lists
-		setSelectionMask(MainWindow::MaskNone);									
+		setSelectionMask(MainWindow::MaskNone);
 		// MainWindow::clearSelected();
 		break;
 	}
 	// if (mode != MultiSelectFace)
 		// active->hideBrush();
-	// else active->showBrush();	
-	
+	// else active->showBrush();
+
 	QString s;
 	//this switch statement is for setting the string for the Heads up display
 	switch (mode){
@@ -4194,12 +4195,12 @@ void MainWindow::setExtrusionMode(ExtrusionMode m){
 void MainWindow::setSelectionMask(SelectionMask m){
 	if (selectionmask != m){
 		selectionmask = m;
-	
+
 		// active->clearSelected();
 		active->repaint();
 		//make sure we clear all other selected objects here...
 		switch(selectionmask){
-		case MaskVertices : 
+		case MaskVertices :
 		active->clearSelectedEdges();
 		active->clearSelectedFaces();
 		active->clearSelectedCorners();
@@ -4210,7 +4211,7 @@ void MainWindow::setSelectionMask(SelectionMask m){
 		mSelectCornersMaskAct->setChecked(false);
 		active->setSelectionMaskString(tr("Vertices"));
 		break;
-		case MaskEdges :	
+		case MaskEdges :
 		active->clearSelectedVertices();
 		active->clearSelectedFaces();
 		active->clearSelectedCorners();
@@ -4221,7 +4222,7 @@ void MainWindow::setSelectionMask(SelectionMask m){
 		mSelectCornersMaskAct->setChecked(false);
 		active->setSelectionMaskString(tr("Edges"));
 		break;
-		case MaskFaces :	
+		case MaskFaces :
 		active->clearSelectedEdges();
 		active->clearSelectedVertices();
 		active->clearSelectedCorners();
@@ -4232,7 +4233,7 @@ void MainWindow::setSelectionMask(SelectionMask m){
 		mSelectCornersMaskAct->setChecked(false);
 		active->setSelectionMaskString(tr("Faces"));
 		break;
-		case MaskCorners :	
+		case MaskCorners :
 		active->clearSelectedEdges();
 		active->clearSelectedFaces();
 		active->clearSelectedVertices();
@@ -4253,7 +4254,7 @@ void MainWindow::setSelectionMask(SelectionMask m){
 		mSelectFacesMaskAct->setChecked(false);
 		mSelectCornersMaskAct->setChecked(false);
 		active->setSelectionMaskString(tr("None"));
-		
+
 		break;
 		}
 	}
@@ -4284,8 +4285,8 @@ void MainWindow::setSelectionMask(SelectionMask m){
 void MainWindow::setRemeshingScheme(RemeshingScheme scheme) {
 	remeshingscheme = scheme;
 	QString s;
-	
-	switch (remeshingscheme){		
+
+	switch (remeshingscheme){
 		case Dual : s = tr("Dual");
 		break;
 		case Root3 : s = tr("Root-3");
@@ -4370,7 +4371,7 @@ void MainWindow::readObject(const char * filename, const char *mtlfilename) {
 	ifstream file, mtlfile;
 	file.open(filename);
 	mtlfile.open(mtlfilename);
-		
+
 	if ( strstr(filename,".dlfl") || strstr(filename,".DLFL") )
 		object.readDLFL(file, mtlfile);
 	else if ( strstr(filename,".obj") || strstr(filename,".OBJ") )
@@ -4388,7 +4389,7 @@ void MainWindow::readObjectQFile(QString filename) {
 	const char *filecontents = ba.data();
 	string str(filecontents);
 	istringstream filestring(str);
-	
+
 	ifstream mtlfile;
 	// mtlfile = 0;
 
@@ -4404,7 +4405,7 @@ void MainWindow::readObjectQFile(QString filename) {
 		emit loadedObject(obj,filename);
 #endif
 	active->createPatchObject( );
-	
+
 	// std::cout << "readObjectQFile end\n";
 }
 
@@ -4428,7 +4429,7 @@ void MainWindow::writeObject(const char * filename, const char* mtlfilename, boo
 	mtlfile.open(mtlfilename);
 
 	std::cout << mtlfilename << " = mtlfilename in writeObject function\n";
-	
+
 	if ( strstr(filename,".dlfl") || strstr(filename,".DLFL") )
 		object.writeDLFL(file, mtlfile);
 	else if ( strstr(filename,".obj") || strstr(filename,".OBJ") ){
@@ -4494,7 +4495,7 @@ void MainWindow::openFile(void) {
 		const char *filename = ba.data();
 		mWasPrimitive = false;
 		mIsPrimitive = false;
-		
+
 		mSaveDirectory = QFileInfo(fileName).absoluteDir().absolutePath();
 		QByteArray ba2 = mSaveDirectory.toLatin1();
 		const char *dirname = ba2.data();
@@ -4503,11 +4504,11 @@ void MainWindow::openFile(void) {
 		QString mtlfile = mSaveDirectory + "/" + QFileInfo(fileName).baseName() + ".mtl";
 		QByteArray ba3 = mtlfile.toLatin1();
 		const char *mtlfilename = ba3.data();
-		
-		setCurrentFile(fileName);	
+
+		setCurrentFile(fileName);
 		std::cout << "filename for DLFL reading = " << filename << endl;
 		readObject(filename, mtlfilename);
-		
+
 #ifdef WITH_PYTHON
 		// Emit and send to python script editor
 		DLFLObjectPtr obj = &object;
@@ -4523,9 +4524,9 @@ void MainWindow::openFile(void) {
 
 bool MainWindow::saveFile(bool with_normals, bool with_tex_coords) {
 	if (curFile != "untitled"){
-		statusBar()->showMessage(tr("Saving File..."),3000);	
+		statusBar()->showMessage(tr("Saving File..."),3000);
 		QString curFileTemp(curFile);
-	
+
 		if (!curFile.isEmpty() ){
 			if (mIncrementalSave){
 				if (incremental_save_count >= mIncrementalSaveMax){
@@ -4559,8 +4560,8 @@ bool MainWindow::saveFile(bool with_normals, bool with_tex_coords) {
 			// writeMTL(mtlfilename);
 
 			writeObject(filename, mtlfilename, with_normals, with_tex_coords);
-			
-				
+
+
 			if (mIncrementalSave)
 				incremental_save_count++;
 			setModified(false);
@@ -4583,14 +4584,14 @@ bool MainWindow::saveFile(bool with_normals, bool with_tex_coords) {
 						fileName.insert(fileName.lastIndexOf("."),"000");
 					else fileName.append("000");
 				}
-			
+
 				if (!fileName.indexOf(".obj") || !fileName.indexOf(".dlfl") || !fileName.indexOf(".OBJ") || !fileName.indexOf(".DLFL"))
 					fileName.append(".obj");
-				setCurrentFile(fileName);	
-			
+				setCurrentFile(fileName);
+
 				mSaveDirectory = QFileInfo(fileName).absoluteDir().absolutePath();
 				mPreferencesDialog->setSaveDirectory(mSaveDirectory);
-			
+
 				QByteArray ba = fileName.toLatin1();
 				const char *filename = ba.data();
 
@@ -4603,8 +4604,8 @@ bool MainWindow::saveFile(bool with_normals, bool with_tex_coords) {
 				// writeMTL(mtlfilename);
 
 				writeObject(filename, mtlfilename, with_normals,with_tex_coords);
-				
-				
+
+
 				if (mIncrementalSave)
 					incremental_save_count++;
 				setModified(false);
@@ -4618,9 +4619,9 @@ bool MainWindow::saveFile(bool with_normals, bool with_tex_coords) {
 }
 
 bool MainWindow::saveFileAs(bool with_normals, bool with_tex_coords) {
-	
-	statusBar()->showMessage(tr("Saving File..."));	
-	
+
+	statusBar()->showMessage(tr("Saving File..."));
+
 	QString fileName = QFileDialog::getSaveFileName(this,
 																									tr("Save File As..."),
 																									mSaveDirectory + "/" + curFile,
@@ -4637,11 +4638,11 @@ bool MainWindow::saveFileAs(bool with_normals, bool with_tex_coords) {
 		}
 		if (!fileName.indexOf(".obj") || !fileName.indexOf(".dlfl") || !fileName.indexOf(".OBJ") || !fileName.indexOf(".DLFL"))
 			fileName.append(".dlfl");
-		setCurrentFile(fileName);		
+		setCurrentFile(fileName);
 
 		mSaveDirectory = QFileInfo(fileName).absoluteDir().absolutePath();
 		mPreferencesDialog->setSaveDirectory(mSaveDirectory);
-				
+
 		QByteArray ba = fileName.toLatin1();
 		const char *filename = ba.data();
 
@@ -4657,8 +4658,8 @@ bool MainWindow::saveFileAs(bool with_normals, bool with_tex_coords) {
 
 		if (mIncrementalSave)
 			incremental_save_count++;
-		
-		statusBar()->clearMessage();	
+
+		statusBar()->clearMessage();
 		return true;
 	}
 	statusBar()->clearMessage();
@@ -4742,12 +4743,12 @@ bool MainWindow::saveFileLG3dSelected( ) {
 
 /* dave - stl export */
 bool MainWindow::saveFileSTL( ) {
-	
+
 	//triangulate the mesh first - this isn't the best solution but will work for now.
 	// globalStellate();
 	//testing out a custom triangulate function
 	triangulate();
-	
+
 	QString fileName = QFileDialog::getSaveFileName(this,
 																									tr("Export STL..."),
 																									mSaveDirectory+ "/" + curFile,
@@ -4764,7 +4765,7 @@ bool MainWindow::saveFileSTL( ) {
 
 /* dave - png opengl viewport screenshot export */
 bool MainWindow::viewportScreenshot( ) {
-	
+
 	// viewportPixmap = QPixmap::grabWidget(active,0,0,active->width(),active->height());
 	// viewportPixmap = QPixmap::grabWindow(active->winId(),/*mapToGlobal(active->pos()).x()*/0,/*mapToGlobal(active->pos()).y()*/0,active->width(),active->height());
 	QImage image = active->grabFrameBuffer(true);
@@ -4787,7 +4788,7 @@ bool MainWindow::viewportScreenshot( ) {
 bool MainWindow::appScreenshot(){
 	// appPixmap = QPixmap::grabWidget(this);
 	appPixmap = QPixmap::grabWindow(this->winId());
-	
+
 	QString format = "png";
 	QString initialPath = mSaveDirectory + tr("/untitled.") + format;
 
@@ -4803,8 +4804,8 @@ bool MainWindow::appScreenshot(){
 	}
 	return false;
 }
-  
-void MainWindow::loadCube(){	
+
+void MainWindow::loadCube(){
 	if (isModified())
 		undoPush();
 	setModified(false);
@@ -4812,8 +4813,8 @@ void MainWindow::loadCube(){
 	mWasPrimitive = true;
 	setCurrentFile(tr("cube.obj"));
 	readObjectQFile(":/cube.obj");
-	
-	
+
+
 	//iterate through faces and color them red... just to test the renderer out...
 	// DLFLFacePtrArray fparray;
 	// vector<DLFLFacePtr>::iterator it;
@@ -4821,15 +4822,15 @@ void MainWindow::loadCube(){
 	// for ( it = fparray.begin(); it != fparray.end(); it++){
 	// 	(*it)->material()->setColor(1.0,0.0,0.0);
 	// }//end for loop
-	
-	
+
+
 	/* If we are in Patch Mode, recompute patches to ensure that patches are shown */
 	if ( active->isInPatchMode() ) active->recomputePatches();
 	active->recomputeNormals();
 	active->redraw();
 }
 
-void MainWindow::loadOctahedron(){	
+void MainWindow::loadOctahedron(){
 	if (isModified())
 		undoPush();
 	setModified(false);
@@ -4844,7 +4845,7 @@ void MainWindow::loadOctahedron(){
 	active->redraw();
 }
 
-void MainWindow::loadTetrahedron(){	
+void MainWindow::loadTetrahedron(){
 	if (isModified())
 		undoPush();
 	setModified(false);
@@ -4859,7 +4860,7 @@ void MainWindow::loadTetrahedron(){
 	active->redraw();
 }
 
-void MainWindow::loadDodecahedron(){	
+void MainWindow::loadDodecahedron(){
 	if (isModified())
 		undoPush();
 	setModified(false);
@@ -4874,10 +4875,10 @@ void MainWindow::loadDodecahedron(){
 	active->redraw();
 }
 
-void MainWindow::loadIcosahedron(){	
+void MainWindow::loadIcosahedron(){
 	if (isModified())
 		undoPush();
-	setModified(false);	
+	setModified(false);
 	mIsPrimitive = true;
 	mWasPrimitive = true;
 	setCurrentFile(tr("icosahedron.obj"));
@@ -4889,7 +4890,7 @@ void MainWindow::loadIcosahedron(){
 	active->redraw();
 }
 
-void MainWindow::loadSoccerball(){	
+void MainWindow::loadSoccerball(){
 	if (isModified())
 		undoPush();
 	setModified(false);
@@ -4904,7 +4905,7 @@ void MainWindow::loadSoccerball(){
 	active->redraw();
 }
 
-void MainWindow::loadGeodesic(){	
+void MainWindow::loadGeodesic(){
 	if (isModified())
 		undoPush();
 	setModified(false);
@@ -4925,7 +4926,7 @@ bool MainWindow::isModified(){
 
 void MainWindow::setModified(bool isModified){
 	mIsModified = isModified;
-	setWindowModified(mIsModified);	
+	setWindowModified(mIsModified);
 }
 
 void MainWindow::switchPerspView(){
@@ -4980,16 +4981,16 @@ void MainWindow::getCheckerboardSelection(DLFLFacePtr fptr) {
 				}
 				else {
 					active->setSelectedFace(*it);
-					num_sel_faces++;					
+					num_sel_faces++;
 				}
 				getCheckerboardSelection((*it));
 			}
 		}//end for loop
 		if (numShared == 0) return; //break out of recursive loop is there are no one vertex sharing faces
-	}		
+	}
 }
 
-//recurse through selected edge to get a list of 
+//recurse through selected edge to get a list of
 void MainWindow::getEdgeLoopSelection(DLFLEdgePtr eptr) {
 	if (eptr){
 		//first check to see if edge only connects to only three other edges
@@ -5037,12 +5038,12 @@ void MainWindow::getEdgeLoopSelection(DLFLEdgePtr eptr) {
 			return;
 		}//end if vp->valence
 		return;
-	}	
+	}
 }
 
-//recurse through selected edge to get a list of 
+//recurse through selected edge to get a list of
 void MainWindow::getFaceLoopSelection(DLFLEdgePtr eptr, bool start, DLFLFacePtr face_loop_marker, bool select_face_loop) {
-	if ( (eptr == face_loop_start_edge) && !start) 
+	if ( (eptr == face_loop_start_edge) && !start)
 		return;
 
 	int idx = 0;
@@ -5083,9 +5084,9 @@ void MainWindow::getFaceLoopSelection(DLFLEdgePtr eptr, bool start, DLFLFacePtr 
 	}
 }
 
-//recurse through selected edge to get a list of 
+//recurse through selected edge to get a list of
 void MainWindow::getEdgeRingSelection(DLFLEdgePtr eptr, bool start, DLFLFacePtr face_loop_marker, bool select_face_loop) {
-	if ( (eptr == edge_ring_start_edge) && !start) 
+	if ( (eptr == edge_ring_start_edge) && !start)
 		return;
 
 	int idx = 0;
@@ -5193,7 +5194,7 @@ void MainWindow::setLanguageEnglish(){
 }
 
 void MainWindow::changeLanguage(const QString & string){
-	
+
 	if(string == QString("es")) {
 		translator_es->load(QString(":lang/topmod_es"));
 		QCoreApplication::installTranslator(translator_es);
@@ -5235,12 +5236,12 @@ void MainWindow::changeLanguage(const QString & string){
 
 /**
 * \brief realtime app translation function
-* 
-* \todo all translatable text will eventually go in this function, but that would take forever! we'll see if there's another 
-* way to handle that. it's probably going to be a matter of putting all the QAction->setText() and 
+*
+* \todo all translatable text will eventually go in this function, but that would take forever! we'll see if there's another
+* way to handle that. it's probably going to be a matter of putting all the QAction->setText() and
 * QAction->setTooltip() calls into one function. This is going to be a pain but could be beneficial in the long run
 * I'm testing it out right now. we'll see how this goes...
-* 
+*
 */
 void MainWindow::retranslateUi() {
 
@@ -5252,7 +5253,7 @@ void MainWindow::retranslateUi() {
 	mHighgenusMode->retranslateUi();
 	mConicalMode->retranslateUi();
 	mExperimentalMode->retranslateUi();
-	
+
 	mStartupDialogDockWidget->setWindowTitle(tr("Learning Movies"));
 	mToolOptionsDockWidget->setWindowTitle(mToolOptionsDockWidget->windowTitle());
 
@@ -5320,7 +5321,7 @@ void MainWindow::retranslateUi() {
 	#ifdef QCOMPLETER
 	mQuickCommandAct->setText(tr("Quick Command"));
 	mQuickCommandAct->setStatusTip(tr("Quick Command Access with Autocompletion"));
-	#endif		
+	#endif
 	//Edit Menu Actions
 	mDeleteSelectedAct->setText(/*QIcon(":images/edit-undo.png"),*/ tr("&Delete Selected"));
 	mDeleteSelectedAct->setStatusTip(tr("Delete Selected"));
@@ -5363,7 +5364,7 @@ void MainWindow::retranslateUi() {
 
 	#ifdef WITH_PYTHON
 	mShowScriptEditorAct->setStatusTip( tr("Show the script editor to execute DLFL commands") );
-	#endif	
+	#endif
 
 	mShowToolOptionsAct->setStatusTip( tr("Show the tool options window") );
 	mShowStartupDialogAct->setStatusTip( tr("Show the startup screen with links to video tutorials") );
@@ -5468,7 +5469,7 @@ void MainWindow::retranslateUi() {
 	mSelectCornersMaskAct->setText(tr("Select &Corner"));
 	mSelectCornersMaskAct->setStatusTip(tr("Select by Component type: Corners"));
 
-	//SETTINGS ACTIONS	
+	//SETTINGS ACTIONS
 	mPreferencesAct->setText(tr("&Preferences"));
 	mPreferencesAct->setStatusTip(tr("Open the Preferences Dialog"));
 
@@ -5518,8 +5519,8 @@ void MainWindow::retranslateUi() {
 	mShowToolBarsAct->setStatusTip( tr("Show All ToolBars") );
 
 	//from createAnimatedHelp
-	
-	
+
+
 	//from creatToolbars()
 	mEditToolBar->setWindowTitle(tr("Edit"));
 	mSelectionMaskToolBar->setWindowTitle(tr("Selection Masks"));
@@ -5533,7 +5534,7 @@ void MainWindow::retranslateUi() {
 	mExperimentalToolBar->setWindowTitle(tr("Experimental Tools"));
 
 	//createStartupDialog
-	mTutorialNavigationAct->setText(tr("Navigation Basics"));	
+	mTutorialNavigationAct->setText(tr("Navigation Basics"));
 	mTutorialInterfaceAct->setText(tr("Interface Basics"));
 	mTutorialBasicAct->setText(tr("Basic Operations"));
 	mTutorialExtrusionAct->setText(tr("Extrusion Operations"));
