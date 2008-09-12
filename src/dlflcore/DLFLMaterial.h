@@ -8,7 +8,7 @@
 
 #include "DLFLCommon.h"
 #include "DLFLFace.h"
-#include <Graphics/Color.h>
+#include <Color.h>
 #include <map>
 
 namespace DLFL {

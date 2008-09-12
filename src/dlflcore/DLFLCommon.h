@@ -18,9 +18,9 @@
 #include <Vector2d.h>
 #include <Vector3d.h>
 #include <Matrix4x4.h>
-#include <Base/Inlines.h>
-#include <Base/StreamIO.h>
-#include <Graphics/Color.h>
+#include <Inlines.h>
+#include <StreamIO.h>
+#include <Color.h>
 #include <cstring>
 #include <cstdlib>
 

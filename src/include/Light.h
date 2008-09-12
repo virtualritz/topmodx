@@ -14,8 +14,8 @@
 // Every light also has a position (although it might be meaningless for directional lights)
 // and a boolean variable which indicates active/inactive state of light
 
-#include "../Base/BaseObject.h"
-#include "../Graphics/Color.h"
+#include "BaseObject.h"
+#include "Color.h"
 #include "../vecmat/Vector3d.h"
 
 #include <QColor>

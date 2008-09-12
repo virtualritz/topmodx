@@ -11,7 +11,7 @@
 
 #include "../vecmat/Vector3d.h"
 #include "../vecmat/Matrix4x4.h"
-#include "../Base/Inlines.h"
+#include "../include/Inlines.h"
 
 class ZoomControl
 {

@@ -11,10 +11,10 @@
 // Provides a function, clamp() to clamp the values to lie between 0 and 1
 // Does not automatically do the clamping. User has to do it explicitly
 
-#include "../Base/BaseObject.h"
+#include "BaseObject.h"
 #include "../vecmat/Vector3d.h"
 #include "../vecmat/Vector4d.h"
-#include "../Base/Inlines.h"
+#include "Inlines.h"
 
 #ifdef __APPLE__
 #include <OpenGL/gl.h>

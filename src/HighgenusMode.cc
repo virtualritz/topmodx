@@ -24,8 +24,7 @@
 * @param actionList the master list of actions for use with the CommandCompleter class
 *
 */
-QDoubleSpinBox *createDoubleSpinBox(QGridLayout *layout, QLabel *label, QString s,
-    double low, double high, double step, double value, double decimals, int row, int col);
+
 
 // The implementation of HighgenusMode starts here.
 

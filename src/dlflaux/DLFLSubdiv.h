@@ -4,8 +4,6 @@
 #define _DLFLSUBDIV_H_
 
 #include <DLFLObject.h>
-// #include <QApplication>
-// #include <QProgressDialog>
 
 namespace DLFL {
 

@@ -19,13 +19,11 @@ macx {
  LIBS += -lvecmat
 }
 
-HEADERS += \
-	Arcball.h \
-	BallMath.h \
-	DollyControl.h \
-	TransControl.h \
-	ZoomControl.h 
+HEADERS +=  Arcball.h \
+          	BallMath.h \
+          	DollyControl.h \
+          	TransControl.h \
+          	ZoomControl.h 
 
-SOURCES += \
-	Arcball.cc \
-	BallMath.cc
+SOURCES +=  Arcball.cc \
+            BallMath.cc

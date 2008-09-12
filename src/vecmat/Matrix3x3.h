@@ -11,7 +11,7 @@
 // is a Vector3d. This makes inversion easier, since elementary
 // row operations are simplified
 
-#include "../Base/BaseObject.h"
+#include "../include/BaseObject.h"
 #include "Vector3d.h"
 
 class Matrix3x3;

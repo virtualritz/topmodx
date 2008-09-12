@@ -8,7 +8,7 @@
 
 // Class for a Quaternion
 
-#include "../Base/BaseObject.h"
+#include "../include/BaseObject.h"
 #include "Vector3d.h"
 #include "Matrix4x4.h"
 

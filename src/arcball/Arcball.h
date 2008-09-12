@@ -8,7 +8,7 @@
 
 #include "../vecmat/Vector3d.h"
 #include "../vecmat/Quaternion.h"
-#include "../Base/Inlines.h"
+#include "../include/Inlines.h"
 #include <cmath>
 #include "../vecmat/Matrix4x4.h"
 

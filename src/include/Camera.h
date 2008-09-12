@@ -19,7 +19,7 @@
 #include <GL/gl.h>
 #endif
 #include <math.h>
-#include "../Base/Inlines.h"
+#include "Inlines.h"
 
 enum ProjectionType { Orthographic=0, Perspective=1 };
 

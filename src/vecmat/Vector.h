@@ -12,10 +12,10 @@
 // of Vectors
 
 // Common include files
-#include "../Base/BaseObject.h"
-#include "../Base/StreamIO.h"
-#include "../Base/Constants.h"
-#include "../Base/Inlines.h"
+#include "../include/BaseObject.h"
+#include "../include/StreamIO.h"
+#include "../include/Constants.h"
+#include "../include/Inlines.h"
 
 #include <cstdlib>
 #include <cmath>

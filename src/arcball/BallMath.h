@@ -8,7 +8,7 @@
 
 #include "../vecmat/Vector3d.h"
 #include "../vecmat/Quaternion.h"
-#include "../Base/Inlines.h"
+#include "../include/Inlines.h"
 #include <cmath>
 
 Vector3d mouseOnSphere(const Vector3d& mouse, const Vector3d& ballCenter, double ballRadius);

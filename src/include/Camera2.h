@@ -16,7 +16,7 @@
 #include <Vector3d.h>
 #include <Matrix4x4.h>
 #include <math.h>
-#include "Base/Inlines.h"
+#include "Inlines.h"
 
 #define INACTIVE 0
 #define TRANSLATE 1
