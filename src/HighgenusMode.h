@@ -11,11 +11,12 @@
 /*!
 	\file HighgenusMode.h
 	\brief Definition of the HighgenusMode class
-	
+
 	\see HighgenusMode
 */
 
 #include "MainWindow.h"
+#include "tools/topmod_tool.h"
 #include "tools/create_torus_tool.h"
 class CreateTorusTool;
 class MainWindow;
@@ -29,31 +30,31 @@ public:
 	void addActions(QActionGroup *actionGroup, QToolBar *toolBar, QStackedWidget *stackedWidget);
 	QMenu* getMenu();
 	void retranslateUi();
-	
+
 	QAction *mAddHoleHandleAction;
 	QAction *mAddHoleHandleCVAction;
 	QAction *mAddHandleSIAction;
-	QAction *mRindModelingScalingAction; 
+	QAction *mRindModelingScalingAction;
 	QAction *mRindModelingThicknessAction;
-	QAction *mWireframeModelingAction; 
-	QAction *mWireframeModeling2Action; 
-	QAction *mColumnModelingAction;	
+	QAction *mWireframeModelingAction;
+	QAction *mWireframeModeling2Action;
+	QAction *mColumnModelingAction;
 	QAction *mSierpinskyAction;
 	QAction *mMultiFaceHandleAction;
 	QAction *mMengerSpongeAction;
-	
+
 	QWidget *mAddHoleHandleWidget;
 	QWidget *mAddHoleHandleCVWidget;
 	QWidget *mAddHandleSIWidget;
-	QWidget *mRindModelingScalingWidget; 
+	QWidget *mRindModelingScalingWidget;
 	QWidget *mRindModelingThicknessWidget;
-	QWidget *mWireframeModelingWidget; 
-	QWidget *mWireframeModeling2Widget; 
-	QWidget *mColumnModelingWidget;	
+	QWidget *mWireframeModelingWidget;
+	QWidget *mWireframeModeling2Widget;
+	QWidget *mColumnModelingWidget;
 	QWidget *mSierpinskyWidget;
 	QWidget *mMultiFaceHandleWidget;
 	QWidget *mMengerSpongeWidget;
-	
+
 	QGridLayout *mAddHoleHandleLayout;
 	QGridLayout *mAddHoleHandleCVLayout;
 	QGridLayout *mAddHandleSILayout;
@@ -61,11 +62,11 @@ public:
 	QGridLayout *mRindModelingThicknessLayout;
 	QGridLayout *mWireframeModelingLayout;
 	QGridLayout *mWireframeModeling2Layout;
-	QGridLayout *mColumnModelingLayout; 
+	QGridLayout *mColumnModelingLayout;
 	QGridLayout *mSierpinskyLayout;
-	QGridLayout *mMultiFaceHandleLayout; 
+	QGridLayout *mMultiFaceHandleLayout;
 	QGridLayout *mMengerSpongeLayout;
-	
+
 
 protected:
 	void setupAddHoleHandle();
@@ -79,9 +80,9 @@ protected:
 	void setupSierpinsky();
 	void setupMultiFaceHandle();
 	void setupMengerSponge();
-	
+
 	QDoubleSpinBox *createDoubleSpinBox(QGridLayout *layout, QLabel *label, QString s, double low, double high, double step, double value, double decimals, int row, int col);
-	
+
 public slots:
 	void numSegmentsValueChanged(double value);
 	void changeMultiFaceAlgorithm(bool on);
@@ -90,10 +91,10 @@ public slots:
 	void toggleWireframeSplit(int state);
 	void toggleTriangulateFace(int state);
 	void toggleScherkCollins(int state);
-	
+
 	void toggleCrustCleanupFlag(int state);
 	void numSegmentsConnectValueChanged(double value);
-	
+
 	void triggerAddHoleHandle();
 	// void triggerCreateTorus();
 	void triggerAddHoleHandleCV();
@@ -106,10 +107,10 @@ public slots:
 	void triggerSierpinsky();
 	void triggerMultiFaceHandle();
 	void triggerMengerSponge();
-	
+
 	void changeHoleHandlePinch(double value);
 	void changeHoleHandlePinchCenter(double value);
-	void changeHoleHandlePinchWidth(double value);	
+	void changeHoleHandlePinchWidth(double value);
 
 	void ChangeScherkCollinsPinch(double value);
 	void ChangeScherkCollinsPinchCenter(double value);
@@ -122,7 +123,7 @@ public slots:
 	void ChangeScherkCollinsHoleSegSkip(double value);
 
 private:
-	
+
 	QWidget *mParent;
 	QMenu *mHighgenusMenu;
     CreateTorusTool *create_torus_tool_;
@@ -150,12 +151,12 @@ private:
 	QLabel *mengerSpongeThicknessLabel;
 	QLabel *mengerSpongeThresholdLabel;
 	QLabel *columnModelingNumSegmentsLabel;
-	
-	
+
+
 	QGridLayout *mMultiFaceAlgorithmLayout;
-	
+
 	QButtonGroup *multiFaceAlgorithmButtonGroup;
-	
+
 	QCheckBox *rindModelingThicknessCleanupCheckBox;
 	QCheckBox *rindModelingScalingCleanupCheckBox;
 	QCheckBox *AddHandleScherkCollinsCheckBox;
@@ -183,19 +184,19 @@ private:
 
 	QDoubleSpinBox *addHoleHandleCVNumSegmentsSpinBox;
 	QDoubleSpinBox *addHoleHandleCVNumSegmentsConnectSpinBox;
-	
+
 	QDoubleSpinBox *addHandleSINumSegmentsSpinBox;
 	QDoubleSpinBox *addHandleSINumSegmentsConnectSpinBox;
-	
+
 	QDoubleSpinBox *addHandleSITwistsConnectSpinBox;
 	QDoubleSpinBox *addHandleSIWeight1SpinBox;
 	QDoubleSpinBox *addHandleSIWeight2SpinBox;
-	
+
 	QDoubleSpinBox *addHandleSIPinchConnectSpinBox;//ryan
 	QLabel *addHandleSIPinchCenterConnectLabel;//ryan
 	QLabel *addHandleSIBubbleConnectLabel;//ryan
-	
-	
+
+
 	QDoubleSpinBox *rindModelingScalingSpinBox;
 	QDoubleSpinBox *rindModelingThicknessSpinBox;
 	QDoubleSpinBox *wireframeModelingThicknessSpinBox;
@@ -205,17 +206,17 @@ private:
 	QDoubleSpinBox *columnModelingNumSegmentsSpinBox;
 	QDoubleSpinBox *mengerSpongeThicknessSpinBox;
 	QDoubleSpinBox *mengerSpongeThresholdSpinBox;
-		
+
 	QCheckBox *wireframeSplitCheckBox;
 	QCheckBox *wireframe2SplitCheckBox;
-	
-	
+
+
 	QLabel *multiFaceHandleExtrudeDistanceLabel;
 	QLabel *multiFaceHandleScaleLabel;
 	QDoubleSpinBox *multiFaceHandleExtrudeDistanceSpinBox;
 	QCheckBox *multiFaceHandleMaxOffsetsCheckBox;
 	QDoubleSpinBox *multiFaceHandleScaleSpinBox;
-	
+
 	QCheckBox *addHandleSISymmetricWeightsCheckBox;
 	QPushButton *rindModelingScalingCreateCrustButton;
 	QPushButton *rindModelingThicknessCreateButton;

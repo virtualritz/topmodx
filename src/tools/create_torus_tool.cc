@@ -1,22 +1,13 @@
-#include <QtGui>
+/*
+ * create_torus_tool.cc
+ *
+ *  Created on: Sep 12, 2008
+ *      Author: david.morris
+ */
 
 #include "create_torus_tool.h"
-
-//this needs to be moved to a generic super class geometric_tool or something like that --dave...
-QDoubleSpinBox *CreateTorusTool::createDoubleSpinBox(QGridLayout *layout, QLabel *label, QString s, double low, double high, double step, double value, double decimals, int row, int col){
-	label->setText(s);
-	QDoubleSpinBox *spinbox = new QDoubleSpinBox(this);
-	spinbox->setAccelerated(true);
-	spinbox->setRange(low, high);
-	spinbox->setSingleStep(step);
-	spinbox->setValue(value);
-	spinbox->setDecimals(decimals);
-	spinbox->setMaximumSize(75,25);
-	layout->addWidget(label,row,col);
-  layout->addWidget(spinbox,row,col+1);
-
-	return spinbox;
-}
+#include "../MainWindow.h"
+class MainWindow;
 
 // Implementation of the class CreateTorusTool.
 // We should move it to a file named create_torus_tool.cc later.

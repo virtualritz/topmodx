@@ -1,28 +1,26 @@
 #ifndef CREATE_TORUS_TOOL_H
 #define CREATE_TORUS_TOOL_H
 
-#include "MainWindow.h"
-class MainWindow;
+#include <QtGui>
+#include <QWidget>
+
+#include "topmod_tool.h"
 
 // Declaration of the class CreateTorusTool.
 // We should move it to a file named create_torus_tool.h later.
 // I will create a super class for all the tools. -- Fenghui
-class CreateTorusTool: public QWidget {
+class CreateTorusTool: public TopModTool {
   Q_OBJECT // does it have to be a Q_OBJECT?
 
 public:
-  QAction *action_;
-  QWidget *widget_;
-  QGridLayout *layout_;
+  //QAction *action_;
+  //QWidget *widget_;
+  //QGridLayout *layout_;
 
   CreateTorusTool(QWidget *parent);
-  
-  //this needs to be moved to a generic super class geometric_tool.h or something...
-  QDoubleSpinBox *createDoubleSpinBox(QGridLayout *layout, QLabel *label, QString s,
-    double low, double high, double step, double value, double decimals, int row, int col);
-    
+
 protected:
-  QWidget *parent_;
+  //QWidget *parent_;
 
   QDoubleSpinBox *cross_section_radius_spin_;
   QDoubleSpinBox *cross_section_rotation_spin_;
