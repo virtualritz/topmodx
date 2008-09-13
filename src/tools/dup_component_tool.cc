@@ -185,3 +185,6 @@ void DupComponentTool::Activate() {
   ((MainWindow*) parent_)->setToolOptions(widget_);
 }
 
+void DupComponentTool::RetranslateUi(){
+
+}

@@ -299,3 +299,7 @@ void CreateTorusTool::Apply() {
   active->recomputeNormals();
   active->redraw();
 }
+
+void CreateTorusTool::RetranslateUi(){
+
+}

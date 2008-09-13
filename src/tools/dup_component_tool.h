@@ -32,7 +32,7 @@ public:
   QGridLayout *layout_;
 
   DupComponentTool(QWidget *parent);
-
+  void RetranslateUi();
 protected:
   QWidget *parent_;
 
@@ -63,7 +63,6 @@ public slots:
   // from the controls directly.
   void Apply();
   void Activate();
-
 };
 
 #endif /* DUP_COMPONENT_TOOL_H_ */

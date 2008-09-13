@@ -18,7 +18,7 @@ public:
   //QGridLayout *layout_;
 
   CreateTorusTool(QWidget *parent);
-
+  void RetranslateUi();
 protected:
   //QWidget *parent_;
 

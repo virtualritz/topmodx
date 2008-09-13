@@ -51,15 +51,13 @@ DEPENDPATH += lang \
     vecmat \
     dlflcore \
     dlflaux \
-    arcball \
-		tools
+    arcball
 INCLUDEPATH += include \
     vecmat \
     arcball \
     dlflcore \
     dlflaux \
-    arcball \
-		tools
+    arcball
 CONFIG(WITH_PYTHON) { 
     message("PYTHON support will be included")
     DEFINES *= WITH_PYTHON
@@ -172,10 +170,17 @@ else:win32 {
 }
 
 # Input
-HEADERS += tools/topmod_tool.h \
-    tools/create_torus_tool.h \
+HEADERS += \
+		tools/insert_edge_tool.h \
+		tools/delete_edge_tool.h \
+		tools/collapse_edge_tool.h \
+		tools/connect_edges_tool.h \
+		tools/subdivide_edge_tool.h \
+		tools/splice_corners_tool.h \
+    tools/topmod_tool.h \
     tools/geometric_tool.h \
     tools/dup_component_tool.h \
+    tools/create_torus_tool.h \
     DLFLScriptEditor.h \
     TopModPreferences.h \
     TdxDeviceWrappers.h \
@@ -211,7 +216,6 @@ HEADERS += tools/topmod_tool.h \
     include/Constants.h \
     include/Inlines.h \
     include/StreamIO.h \
-    \ \ # include/Camera.h \
     include/Color.h \
     include/Grid.h \
     include/Texture.h \
@@ -221,14 +225,19 @@ HEADERS += tools/topmod_tool.h \
     include/PointLight.h \
     include/SpotLight.h \
     CgData.h \
-    \ \ # include/Camera2.h \
     include/Camera3.h
 FORMS += shortcutdialog.ui \
     stylesheeteditor.ui
-SOURCES += tools/topmod_tool.cc \
-    tools/create_torus_tool.cc \
+SOURCES += tools/insert_edge_tool.cc \
+		tools/delete_edge_tool.cc \
+		tools/collapse_edge_tool.cc \
+		tools/connect_edges_tool.cc \
+		tools/subdivide_edge_tool.cc \
+		tools/splice_corners_tool.cc \
+    tools/topmod_tool.cc \
     tools/dup_component_tool.cc \
     tools/geometric_tool.cc \
+    tools/create_torus_tool.cc \
     DLFLScriptEditor.cc \
     TopModPreferences.cc \
     TdxDeviceWrappers.cc \
@@ -253,7 +262,6 @@ SOURCES += tools/topmod_tool.cc \
     DLFLLighting.cc \
     DLFLRenderer.cc \
     DLFLSelection.cc \
-		# DLFLSculpting.cc \
     DLFLUndo.cc \
     DLFLLocator.cc \
     TMPatchObject.cc \

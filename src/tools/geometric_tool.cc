@@ -228,3 +228,7 @@ void GeometricTool::Activate() {
   ((MainWindow*)parent_)->setToolOptions(widget_);
   ((MainWindow*)parent_)->setMode(MainWindow::NormalMode);
 }
+
+void GeometricTool::RetranslateUi(){
+
+}

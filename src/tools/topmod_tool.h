@@ -25,8 +25,8 @@ public:
 
   //TopModTool(QWidget *parent);
   TopModTool();
+  virtual void RetranslateUi();
 
-  //this needs to be moved to a generic super class geometric_tool.h or something...
   QDoubleSpinBox *createDoubleSpinBox(QGridLayout *layout, QLabel *label, QString s,
     double low, double high, double step, double value, double decimals, int row, int col);
 

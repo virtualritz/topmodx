@@ -34,7 +34,7 @@ class GeometricTool : public TopModTool {
 
   static GeometricTool * GetInstance(QWidget *parent);
   void SetTranslation(double x, double y, double z);
-
+  void RetranslateUi();
  protected:
   GeometricTool(QWidget *parent);
 

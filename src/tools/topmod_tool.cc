@@ -44,3 +44,6 @@ void TopModTool::Activate() {
   //((MainWindow*) parent_)->setToolOptions(widget_);
 }
 
+void TopModTool::RetranslateUi(){
+
+}
