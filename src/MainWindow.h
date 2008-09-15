@@ -846,7 +846,7 @@ private:
 	QAction *mEditStyleSheetAct;
 	TopModPreferences *mPreferencesDialog;
 	QAction *mPreferencesAct;
-	QSettings *mSettings;
+	QSettings *settings_;
 	#ifdef QCOMPLETER
 	CommandCompleter *mCommandCompleter;
 	#endif
@@ -1017,6 +1017,7 @@ public slots:
 	void toggleUseQuadsFlag(int state);
 
 	void changeFaceAreaTolerance(double value);	//!< dave - facial area calculation
+  double getFaceAreaTolerance(); //!< dave - facial area calculation
 
 	// Extrusion
 	void changeExtrudeLength(double value);
@@ -1036,6 +1037,7 @@ public slots:
 	void changeExtrudeAngleIcosa(double value);
 
 	void changeValence2SplitOffset(double value);
+	double getValence2SplitOffset();
 	void toggleWireframeSplit(int state);
 
   void changeScherkCollinsPinch(double value);

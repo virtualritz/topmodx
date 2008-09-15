@@ -151,6 +151,18 @@ void MainWindow::changeValence2SplitOffset(double value){
 	MainWindow::vertex_split_offset = value;
 }
 
+double MainWindow::getValence2SplitOffset(){
+  return MainWindow::vertex_split_offset;
+}
+
+void MainWindow::changeFaceAreaTolerance(double value) {
+  MainWindow::face_area_tolerance = value;
+}
+
+double MainWindow::getFaceAreaTolerance() {
+  return MainWindow::face_area_tolerance;
+}
+
 void MainWindow::changeCornerCuttingAlpha(double value){
 	MainWindow::corner_cutting_alpha = value;
 }
@@ -366,10 +378,6 @@ void MainWindow::toggleDeleteEdgeCleanupFlag(int state) {
 
 void MainWindow::changeNumSubDivs(double value) {
 	MainWindow::num_e_subdivs = (int)value;
-}
-
-void MainWindow::changeFaceAreaTolerance(double value) {
-	MainWindow::face_area_tolerance = value;
 }
 
 void MainWindow::changeTileTexNum(double value) {

@@ -351,8 +351,8 @@ MainWindow::MainWindow(char *filename) : object(), mode(NormalMode), undoList(),
 	//style sheet editor
 	mStyleSheetEditor = new StyleSheetEditor;
 	//preference dialog
-	mSettings = new QSettings("TopMod");
-	mPreferencesDialog = new TopModPreferences(mSettings, mStyleSheetEditor, sm, this);
+	settings_ = new QSettings("TopMod");
+	mPreferencesDialog = new TopModPreferences(settings_, mStyleSheetEditor, sm, this);
 
 	// //testing shortcut context
 	// for (int i = 0; i < mActionListWidget->actions().count(); i++){
@@ -1887,10 +1887,6 @@ void MainWindow::createStatusBar() {
 }
 
 void MainWindow::closeEvent(QCloseEvent *event) {
-//close the help file if it's open... not sure this is necessary
-	// if (mAssistantClient)
-	// 	mAssistantClient->closeAssistant();
-
 	mPreferencesDialog->saveSettings();
 
 	if (maybeSave()) {

@@ -47,7 +47,7 @@ public:
 	QMenu* getMenu();
 	void retranslateUi();
 protected:
-	//void setupSelectionOptions();
+
 private:
 
 	QWidget *parent_;
@@ -60,11 +60,6 @@ private:
   ConnectEdgesTool *connect_edges_tool_;
   SubdivideEdgeTool *subdivide_edge_tool_;
   SpliceCornersTool *splice_corners_tool_;
-
-//	QLabel *mFaceAreaToleranceLabel;
-//	QDoubleSpinBox *mFaceAreaToleranceSpinBox;
-//	QLabel *mSplit2ValenceVertexOffsetLabel;
-//	QDoubleSpinBox *mSplit2ValenceVertexOffsetSpinBox;
 
 public slots:
 
