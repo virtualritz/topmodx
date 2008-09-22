@@ -443,7 +443,7 @@ void ExtrusionsMode::setupCubicalExtrude(){
           SLOT(toggleCubicalTriangulateFace(int)));
 	mCubicalExtrudeLayout->addWidget(cubicalTriangulateNewFacesCheckBox, 5, 0, 1, 2);
 
-	cubicalScherkCollinsCheckBox = new QCheckBox(tr("Scherk Collins"), this);	
+	cubicalScherkCollinsCheckBox = new QCheckBox(tr("Handles in Handles"), this);	
 	connect(cubicalScherkCollinsCheckBox, SIGNAL(stateChanged(int)), this,
           SLOT(toggleCubicalScherkCollins(int)));
 	mCubicalExtrudeLayout->addWidget(cubicalScherkCollinsCheckBox, 6, 0, 1, 2);

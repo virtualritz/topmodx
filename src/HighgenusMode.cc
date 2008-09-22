@@ -500,7 +500,7 @@ void HighgenusMode::setupAddHandleSI(){
           SLOT(toggleTriangulateFace(int)));
 	mAddHandleSILayout->addWidget(addHandleTriangulateNewFacesCheckBox, 9, 0, 1, 2);
 
-	addHandleSIScherkCollinsCheckBox = new QCheckBox(tr("Scherk Collins"), this);
+	addHandleSIScherkCollinsCheckBox = new QCheckBox(tr("Handles in Handles"), this);
 	connect(addHandleSIScherkCollinsCheckBox, SIGNAL(stateChanged(int)), this,
           SLOT(toggleScherkCollins(int)));
 	mAddHandleSILayout->addWidget(addHandleSIScherkCollinsCheckBox, 10, 0, 1, 2);

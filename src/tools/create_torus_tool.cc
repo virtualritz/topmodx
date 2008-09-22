@@ -58,7 +58,7 @@ CreateTorusTool::CreateTorusTool(QWidget *parent) {
       SLOT(ToggleTriangulateNewFace(int)));
   layout_->addWidget(triangulate_new_faces_check_, 7, 0, 1, 2);
 
-  scherk_collins_check_ = new QCheckBox(tr("Scherk Collins"), this);
+  scherk_collins_check_ = new QCheckBox(tr("Handles in Handles"), this);
   connect(scherk_collins_check_, SIGNAL(stateChanged(int)), this,
       SLOT(ToggleScherkCollins(int)));
   layout_->addWidget(scherk_collins_check_, 8, 0, 1, 2);
