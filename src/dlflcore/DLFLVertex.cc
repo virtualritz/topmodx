@@ -14,6 +14,50 @@ namespace DLFL {
   NextOnFreeList *DLFLVertex::vertex_pool = NULL;
   uint DLFLVertex::suLastID = 0;
 
+    // Override new operator
+    void* DLFLVertex::operator new(size_t size) {
+      if(vertex_pool == NULL) {
+        expandVertexPool();
+      }
+      NextOnFreeList *head = vertex_pool;
+      vertex_pool = vertex_pool->next;
+      return head;
+    };
+
+    // Override delete operator
+    void DLFLVertex::operator delete(void* to_be_deleted) {
+      NextOnFreeList *head = static_cast<NextOnFreeList *>(to_be_deleted);
+      head->next = vertex_pool;
+      vertex_pool = head;
+    };
+
+    void DLFLVertex::operator delete(void* to_be_deleted, size_t size) {
+      NextOnFreeList *head = static_cast<NextOnFreeList *>(to_be_deleted);
+      head->next = vertex_pool;
+      vertex_pool = head;
+    };
+
+    /*static*/ void DLFLVertex::deleteVertexPool() {
+      NextOnFreeList *head;
+      while(vertex_pool != NULL) {
+        head = vertex_pool;
+        vertex_pool = vertex_pool->next;
+        delete[] head;
+      }
+    };
+
+    /*static*/ void DLFLVertex::expandVertexPool() {
+      //Allocate an object large enough to hold both objects
+      size_t size = (sizeof(DLFLVertex) > sizeof(NextOnFreeList)) ? sizeof(DLFLVertex) :
+                    sizeof(NextOnFreeList);
+      NextOnFreeList *runner = (NextOnFreeList *)malloc(size);
+      vertex_pool = runner;
+      for(int i = 0; i < EXPANSION_SIZE; i++) {
+        runner->next = (NextOnFreeList *)malloc(size);
+        runner = runner->next;
+      }
+      runner->next = NULL;
+    };
   // Dump contents of this object to an output stream
   void DLFLVertex::dump(ostream& o) const {
     o << "DLFLVertex" << endl
@@ -87,8 +131,8 @@ namespace DLFL {
     if ( set ) {
       first = fvpList.begin();
       while ( first != last ) {
-  (*first)->normal = normal;
-  ++first;
+        (*first)->normal = normal;
+        ++first;
       }
     }
     return normal;
@@ -136,7 +180,8 @@ namespace DLFL {
   }
 
   // Set tex coordinates, color and normal info for all FaceVertexes referring to this vertex
-  void DLFLVertex::setFaceVertexProps(const Vector2d& texcoord, const RGBColor& color, const Vector3d& n) {
+  void DLFLVertex::setFaceVertexProps(
+      const Vector2d& texcoord, const RGBColor& color, const Vector3d& n) {
     DLFLFaceVertexPtrList::iterator first, last;
 
     first = fvpList.begin(); last = fvpList.end();
@@ -301,7 +346,8 @@ namespace DLFL {
   }
 
   void DLFLVertex::getOrderedCornerAuxCoords(Vector3dArray& coords) const {
-    // Get the aux coords of face vertices associated with this vertex in the clockwise rotation order
+    // Get the aux coords of face vertices associated with this vertex in the
+    // clockwise rotation order.
     coords.clear();
 
     DLFLFaceVertexPtr fvpstart = fvpList.front();
@@ -362,11 +408,11 @@ namespace DLFL {
       retfvp = (*first);
     else {
       while ( first != last ) {
-  fvp = (*first); ++first;
-  if ( fvp->prev()->vertex == vp ) {
-    retfvp = fvp;
-    break;
-  }
+        fvp = (*first); ++first;
+        if ( fvp->prev()->vertex == vp ) {
+          retfvp = fvp;
+          break;
+        }
       }
     }
     return retfvp;
@@ -383,11 +429,11 @@ namespace DLFL {
       retfvp = (*first);
     else {
       while ( first != last ) {
-  fvp = (*first); ++first;
-  if ( fvp->next()->vertex == vp ) {
-    retfvp = fvp;
-    break;
-  }
+        fvp = (*first); ++first;
+        if ( fvp->next()->vertex == vp ) {
+          retfvp = fvp;
+          break;
+        }
       }
     }
     return retfvp;
@@ -402,7 +448,7 @@ namespace DLFL {
     while ( first != last ) {
       fvp = (*first); ++first;
       if ( fvp->backface == true ) {
-  retfvp = fvp; break;
+        retfvp = fvp; break;
       }
     }
     return retfvp;
@@ -446,4 +492,222 @@ namespace DLFL {
     return o;
   }
 
+  /*static*/ void DLFLVertex::setLastID( uint id ) {
+    if( id > suLastID )
+      suLastID = id;
+  };
+
+  // Generate a new unique ID
+  /*static*/ uint DLFLVertex::newID(void) {
+    uint temp = suLastID;
+    suLastID++;
+    return temp;
+  };
+   
+  void DLFLVertex::assignID(void) {
+    uID = DLFLVertex :: newID();
+    index = 0;
+    ismarked = 0;
+    isvisited = 0;
+  };
+
+  // Default constructor
+  DLFLVertex::DLFLVertex() : coords(), flags(0), fvpList(), vtType(VTNormal),
+                 auxcoords(), auxnormal(), normal() {
+    assignID();
+  }
+  
+  // 1 argument constructor
+  DLFLVertex::DLFLVertex(const Vector3d& vec) : coords(vec), flags(0), fvpList(),
+      vtType(VTNormal), auxcoords(), auxnormal(), normal() {
+    assignID();
+  }
+
+  // 3 argument constructor
+  DLFLVertex::DLFLVertex(double x, double y, double z) : coords(x,y,z), flags(0),
+      fvpList(), vtType(VTNormal), auxcoords(), auxnormal(), normal() {
+    assignID();
+  }
+
+  // Copy constructor
+  DLFLVertex::DLFLVertex(const DLFLVertex& dv) : coords(dv.coords), flags(dv.flags),
+      uID(dv.uID), index(dv.index), fvpList(dv.fvpList), vtType(dv.vtType),
+      auxcoords(dv.auxcoords), auxnormal(dv.auxnormal), normal(dv.normal) {}
+
+  // Destructor
+  DLFLVertex::~DLFLVertex() {}
+
+  // Assignment operator
+  DLFLVertex& DLFLVertex::operator = (const DLFLVertex& dv) {
+    coords = dv.coords;
+    flags = dv.flags;
+    uID = dv.uID;
+    index = dv.index;
+    fvpList = dv.fvpList;
+    vtType = dv.vtType;
+    auxcoords = dv.auxcoords;
+    auxnormal = dv.auxnormal;
+    normal = dv.normal;
+    return (*this);
+  }
+
+  DLFLVertexPtr DLFLVertex::copy(void) const {
+    DLFLVertexPtr newdv = new DLFLVertex(*this);
+    return newdv;
+  }
+
+  void DLFLVertex::reset(void) {
+    coords.reset(); flags = 0; fvpList.clear(); vtType = VTNormal;
+    auxcoords.reset(); auxnormal.reset(); normal.reset();
+  }
+
+  void DLFLVertex::makeUnique(void) {
+    assignID();
+  }
+
+  //--- Query functions ---//
+
+  DLFLVertexType DLFLVertex::getType(void) const {
+    return vtType;
+  }
+
+  Vector3d DLFLVertex::getCoords(void) const {
+    return coords;
+  }
+
+  DLFLFaceVertexPtrList DLFLVertex::getFaceVertexList(void) const {
+    return fvpList;
+  }
+
+  // Number of Edges incident on this Vertex = no. of Faces adjacent to this Vertex
+  // = size of the FaceVertex list = valence of Vertex
+  uint DLFLVertex::numEdges(void) const {
+    return fvpList.size();
+  }
+   
+  uint DLFLVertex::numFaces(void) const {
+    return fvpList.size();
+  }
+
+  uint DLFLVertex::valence(void) const {
+    return fvpList.size();
+  }
+   
+  uint DLFLVertex::getID(void) const {
+    return uID;
+  }
+
+  uint DLFLVertex::getIndex(void) const {
+    return index;
+  }
+
+  Vector3d DLFLVertex::getAuxCoords(void) const {
+    return auxcoords;
+  }
+
+  Vector3d DLFLVertex::getAuxNormal(void) const {
+    return auxnormal;
+  }
+   
+  Vector3d DLFLVertex::getNormal(void) const {
+    return normal;
+  }
+
+  //--- Mutative functions ---//
+
+  void DLFLVertex::setType(DLFLVertexType type) {
+    vtType = type;
+  }
+
+  void DLFLVertex::resetType(void) {
+    vtType = VTNormal;
+  }
+
+  void DLFLVertex::setFaceVertexList(const DLFLFaceVertexPtrList& list) {
+    fvpList = list;
+  }
+
+  void DLFLVertex::setCoords(const Vector3d& p) {
+    coords = p;
+  }
+
+  // Set the aux. coords
+  void DLFLVertex::setAuxCoords(const Vector3d& p) {
+    auxcoords = p;
+  }
+
+  void DLFLVertex::setAuxNormal(const Vector3d& n) {
+    auxnormal = n;
+  }
+   
+  // Add to the aux coords
+  void DLFLVertex::addToAuxCoords(const Vector3d& p) {
+    auxcoords += p;
+  }
+
+  void DLFLVertex::addToAuxNormal(const Vector3d& n) {
+    auxnormal += n;
+  }
+   
+  // Reset the aux coords
+  void DLFLVertex::resetAuxCoords(void) {
+    auxcoords.reset();
+  }
+
+  void DLFLVertex::resetAuxNormal(void) {
+    auxnormal.reset();
+  }
+         
+  // Set the normal for this vertex directly
+  void DLFLVertex::setNormal(const Vector3d& n) {
+    normal = n; normalize(normal);
+  }
+
+  // Retained for backward compatibility
+  // Same as updateNormal but doesn't recompute the corner normals
+  Vector3d DLFLVertex::averageNormal(void) {
+    return updateNormal(false);
+  }
+
+  // Update the DLFLFaceVertexList by adding a new DLFLFaceVertexPtr
+  void DLFLVertex::addToFaceVertexList(DLFLFaceVertexPtr fvptr) {
+    cout << fvpList.size();
+    fvpList.push_back(fvptr);
+  }
+
+  void DLFLVertex::deleteFromFaceVertexList(DLFLFaceVertexPtr fvptr) {
+    //cout << "removing corner " << fvptr << " from " << this << endl;
+    fvpList.remove(fvptr);
+    //cout << " .... done!"<< endl;
+  }
+
+  void DLFLVertex::getCorners(DLFLFaceVertexPtrArray& fvparray) {
+    getFaceVertices(fvparray);
+  }
+
+  void DLFLVertex::getOrderedCorners(DLFLFaceVertexPtrArray& fvparray) {
+    getOrderedFaceVertices(fvparray);
+  }
+
+  // Apply a transformation specified by the matrix to the coordinates
+  void DLFLVertex::transform(const Matrix4x4& tmat) {
+    Vector4d tp(coords); tp[3] = 1.0;
+    tp = tmat * tp;
+    tp /= tp[3];
+    coords = tp;
+  }
+
+  // Print out this Vertex
+  void DLFLVertex::print(void) const {
+    cout << "DLFLVertex " << uID << "," << vtType << "," << valence() << " : "
+         << coords << endl;
+  }
+
+  // Write this vertex in DLFL format and set it's index value
+  void DLFLVertex::writeDLFL(ostream& o, uint newindex) {
+    double x,y,z;
+    coords.get(x,y,z);
+    o << "v " << x << ' ' << y << ' ' << z << endl;
+    index = newindex;
+  }
 } // end namespace

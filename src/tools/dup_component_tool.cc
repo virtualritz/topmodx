@@ -62,6 +62,8 @@ void DupComponentTool::Apply() {
   }
   if (old_vertices.size() <= 0) return;
 
+  ((MainWindow*)parent_)->undoPush();
+
   //get all faces, edges, and vertices in the connected component.
   std::queue<DLFLVertexPtr> Q;
   Q.push(*old_vertices.begin());
@@ -154,8 +156,8 @@ void DupComponentTool::Apply() {
       } else {
         new_edge->setFaceVertexPtr2(u_corner, false);
         new_edge->updateFaceVertices();
+        object->addEdgePtr(new_edge);
       }
-      object->addEdgePtr(new_edge);
 
       face_vertex = face_vertex->next();
     } while (face_vertex != face->front());

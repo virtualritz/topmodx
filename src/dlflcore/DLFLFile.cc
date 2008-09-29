@@ -20,7 +20,7 @@ namespace DLFL {
 
 	void DLFLObject::readObject(istream& i, istream &imtl) {
 		// std::cout << "reading obj file \n";
-		if ( !i ) {
+		if (!i) {
 			cerr  << "Incomplete OBJ file." << endl;
 			return;
 		}
@@ -42,46 +42,46 @@ namespace DLFL {
 		int num_edges=0;
 
 		// char *tmp = new char[512];
-		// strcpy( tmp, filename );
-		// dname = dirname( tmp );
+		// strcpy(tmp, filename);
+		// dname = dirname(tmp);
 		// Get file size
-		// fseek( fp, 0, SEEK_END );
-		// long lSize = ftell( fp );
-		// rewind( fp );
+		// fseek(fp, 0, SEEK_END);
+		// long lSize = ftell(fp);
+		// rewind(fp);
 		// allocate memory
 		// char *buffer = new char[lSize];
-		// if( buffer == NULL ) return false;
+		// if(buffer == NULL) return false;
 		// load the file into the buffer
-		// fread( buffer, 1, lSize, fp );
+		// fread(buffer, 1, lSize, fp);
 
 		// long i = 0;
 		// int currentMaterial = -1;
 
 		// Read each line and set the Vertex, Normal, Face, Color or Texture
-		while ( i ) {
+		while (i) {
 			removeWhiteSpace(i); i.get(c); i.get(c2);
-			if ( c == 'm' && c2 == 't'){
+			if (c == 'm' && c2 == 't') {
 				char mtlfilename[256], mtlfilepath[512];
 				i.get(c); i.get(c2); i.get(c); i.get(c2); i.get(c2);
 				i >> mtlfilename;
 				// std::cout << mtlfilename << "\n";
-				// sprintf( mtlfilepath, "%s/%s", mDirname, mtlfilename );
+				// sprintf(mtlfilepath, "%s/%s", mDirname, mtlfilename);
 				// std::cout << mtlfilepath << "\n";
 				// ifstream file;
 				// file.open(mtlfilepath);
 				readMTL(imtl);
 			}
-			else if (c == 'u' && c2 == 's'){
+			else if (c == 'u' && c2 == 's') {
 				i.get(c);i.get(c);i.get(c);i.get(c);i.get(c);
 				char *mtlname = new char[256];
 				i >> mtlname;
 				cur_mtl = findMaterial(mtlname);
 				// std::cout << mtlname << "\t" << cur_mtl->name << "\n";
 			}
-			else if ( c == 'c' && c2 == ' ' ) {
+			else if (c == 'c' && c2 == ' ') {
 				// Read a color specification
 				i >> color; cur_mtl = findMaterial(color);
-				if ( cur_mtl == NULL ) {                     // No matching material found
+				if (cur_mtl == NULL) {                     // No matching material found
 					if (matl_added == false) {
 						// No new materials have been added.
 						// Set default material to be this color
@@ -98,50 +98,50 @@ namespace DLFL {
 					}
 				}
 			} 
-			else if ( c == 'v' ) {
-				if ( c2 == ' ' ) {
+			else if (c == 'v') {
+				if (c2 == ' ') {
 					// Read a vertex specification
 					i >> xyz;
 					// Create a new DLFLVertex
-					newvptr = new DLFLVertex( xyz );
+					newvptr = new DLFLVertex(xyz);
 					// Add the pointer to the VertexPtr list. The list will free the memory
 					addVertexPtr(newvptr);
 					// Add the pointer to the local vertex_array
 					// for easy access when creating the faces
 					vertex_array.push_back(newvptr);
 				} 
-				else if ( c2 == 'n' ) {
+				else if (c2 == 'n') {
 					// Read a normal specification
 					i >> xyz; 
 					normals.push_back(xyz);
 				} 
-				else if ( c2 == 't' ) {
+				else if (c2 == 't') {
 					// Read a texture coordinate
 					i >> uv;
 					texcoords.push_back(uv);
 				}
 			} 
-			else if ( c == 'f' && c2 == ' ' ) {
+			else if (c == 'f' && c2 == ' ') {
 				// Create a new DLFLFace
 				newfptr = new DLFLFace;
 				// Read a face specification
 				c = i.peek(); 
-				while ( c != '\n' ) {
+				while (c != '\n') {
 					int v,vt,vn;
 					i >> v; vt = -1; vn = -1; c = i.peek();
-					if ( c == '/' ) {
+					if (c == '/') {
 						i.get(c); c = i.peek();
-						if ( c != '/' )  i >> vt; c = i.peek();
+						if (c != '/')  i >> vt; c = i.peek();
 						
-						if ( c == '/' ) i.get(c); i >> vn; c = i.peek();
+						if (c == '/') i.get(c); i >> vn; c = i.peek();
 					}
 					// We have v,vt and vn now
 					// Create a new DLFLFaceVertex
 					newfvptr = new DLFLFaceVertex;
 					// Set the Vertex ptr field for the new face vertex
 					newfvptr->vertex = vertex_array[v-1];
-					if ( vt > 0 ) newfvptr->texcoord = texcoords[vt-1];
-					if ( vn > 0 ) newfvptr->normal = normals[vn-1];
+					if (vt > 0) newfvptr->texcoord = texcoords[vt-1];
+					if (vn > 0) newfvptr->normal = normals[vn-1];
 					// Add this new DLFLFaceVertexPtr to the new DLFLFace
 					newfptr->addVertexPtr(newfvptr);
 				}
@@ -159,7 +159,7 @@ namespace DLFL {
 				// Delete the Edge array allocated by getEdges, since addEdges makes a copy
 				delete [] edges; edges = NULL;
 			}
-			if ( c2 != '\n' ) readTillEOL(i);
+			if (c2 != '\n') readTillEOL(i);
 		}
 
 		// Clear the temporary vertex array
@@ -193,7 +193,7 @@ namespace DLFL {
 
 		// Output the Vertex list
 		DLFLVertexPtrList::const_iterator vf = vertex_list.begin(), vl = vertex_list.end();
-		while ( vf != vl ) {
+		while (vf != vl) {
 			o << *(*vf);
 			++vf;
 		}
@@ -202,18 +202,18 @@ namespace DLFL {
 
 		DLFLFacePtrList::const_iterator ff, fl = face_list.end();
 
-		if ( with_normals ) {
+		if (with_normals) {
 			ff = face_list.begin();
 			// Output the normals for each FaceVertex in each Face
-			while ( ff != fl ) {
+			while (ff != fl) {
 				(*ff)->objWriteNormals(o);
 				++ff;
 			}
 		}
-		if ( with_tex_coords ) {
+		if (with_tex_coords) {
 			ff = face_list.begin();
 			// Output the texture coordinates for each FaceVertex in each Face
-			while ( ff != fl ) {
+			while (ff != fl) {
 				(*ff)->objWriteTexCoords(o);
 				++ff;
 			}
@@ -222,13 +222,13 @@ namespace DLFL {
 		DLFLMaterialPtr mptr = (*ff)->material();
 		o << "usemtl " << mptr->name << "\n";						
 		
-		if ( with_normals ) {
+		if (with_normals) {
 			uint normal_id_start = 1;
-			if ( with_tex_coords ) {
+			if (with_tex_coords) {
 				// Output the Face list with normals and texture coords
 				uint tex_id_start = 1;
-				while ( ff != fl ) {
-					if (mptr != (*ff)->material()){
+				while (ff != fl) {
+					if (mptr != (*ff)->material()) {
 						mptr = (*ff)->material();
 						o << "usemtl " << mptr->name << "\n";						
 					}
@@ -238,8 +238,8 @@ namespace DLFL {
 			} 
 			else {
 				// Output the Face list with normals only
-				while ( ff != fl ) {
-					if (mptr != (*ff)->material()){
+				while (ff != fl) {
+					if (mptr != (*ff)->material()) {
 						mptr = (*ff)->material();
 						o << "usemtl " << mptr->name << "\n";						
 					}
@@ -249,11 +249,11 @@ namespace DLFL {
 				}
 			}
 		}
-		else if ( with_tex_coords ) {
+		else if (with_tex_coords) {
 			// Output the face list with texture coords but without normals
 			uint tex_id_start = 1;
-			while ( ff != fl ) {
-				if (mptr != (*ff)->material()){
+			while (ff != fl) {
+				if (mptr != (*ff)->material()) {
 					mptr = (*ff)->material();
 					o << "usemtl " << mptr->name << "\n";						
 				}
@@ -264,8 +264,8 @@ namespace DLFL {
 		} 
 		else {
 			// Output the Face list without normals or texture coordinates
-			while ( ff != fl ) {
-				if (mptr != (*ff)->material()){
+			while (ff != fl) {
+				if (mptr != (*ff)->material()) {
 					mptr = (*ff)->material();
 					o << "usemtl " << mptr->name << "\n";						
 				}				
@@ -280,14 +280,14 @@ namespace DLFL {
 	void DLFLObject::readDLFL(istream& i, istream &imtl,  bool clearold) {
 		// Read the object from an input stream in DLFL format
 		// std:: cout << "about to read dlfl" << i << endl;
-		if ( !i ) {
+		if (!i) {
 			cerr  << "Incomplete DLFL file." << endl;
 			return;
 		}
 
 		// Clear the object first if flag is set
 		// Otherwise new vertices,faces and edges will be appended to the existing lists
-		if ( clearold ) reset();
+		if (clearold) reset();
 
 		DLFLVertexPtr newvptr;
 		DLFLFaceVertexPtr newfvptr, fvptr;
@@ -302,22 +302,22 @@ namespace DLFL {
 		const char dlfl[] = "DLFL";
 		char compare[4];
 		i.read(compare,4);
-		if( strncmp(dlfl,compare,4) != 0 ) {
+		if(strncmp(dlfl,compare,4) != 0) {
 			cerr << "File not in DLFL format" << endl;
 			return;
 		}
 		readTillEOL(i); c = ' ';
 
 		//read the material
-		while ( i && c != '#' ) {
+		while (i && c != '#') {
 			i.get(c); i.get(c2);
-			if ( c == 'm' && c2 == 't'){
+			if (c == 'm' && c2 == 't') {
 				readTillEOL(i); 
 				// char *mtlfilename = new char[256];//, mtlfilepath[512];
 				// i.get(c); i.get(c2); i.get(c); i.get(c2); i.get(c2);
 				// i >> mtlfilename;
 				// std::cout << mtlfilename << "\n";
-				// sprintf( mtlfilepath, "%s/%s", mDirname, mtlfilename );
+				// sprintf(mtlfilepath, "%s/%s", mDirname, mtlfilename);
 				// std::cout << mtlfilepath << "\n";
 				// ifstream file;
 				// file.open(mtlfilepath);
@@ -326,19 +326,19 @@ namespace DLFL {
 			}
 		}
 		
-		if ( !i ) {
+		if (!i) {
 			cerr << "Incomplete DLFL file. Failed after mtl read." << endl;
 			reset();
 			return;
 		}
 		
-		if ( c2 != '\n' ) readTillEOL(i);
+		if (c2 != '\n') readTillEOL(i);
 		c = ' ';
 		
 		// Read the vertices first. Stop when we get to a '#' sign at the beginning of a line
-		while ( i && c != '#' ) {
+		while (i && c != '#') {
 			i.get(c); i.get(c2);
-			if ( c == 'v' && c2 == ' ') {
+			if (c == 'v' && c2 == ' ') {
 				// Read a vertex specification
 				// std::cout << "reading a vertex\n";
 				
@@ -356,18 +356,18 @@ namespace DLFL {
 			}
 		}
 
-		if ( !i ) {
+		if (!i) {
 			cerr << "Incomplete DLFL file. Failed after vertices." << endl;
 			reset();
 			return;
 		}
 
 		// Read the face vertices next. Stop when we get to a '#' sign at the beginning of a line
-		if ( c2 != '\n' ) readTillEOL(i);
+		if (c2 != '\n') readTillEOL(i);
 		c = ' ';
-		while ( i && c != '#') {
+		while (i && c != '#') {
 			i.get(c); i.get(c2);
-			if ( c == 'f' && c2 == 'v' ) {
+			if (c == 'f' && c2 == 'v') {
 				// std::cout << "reading a face vertex\n";
 				
 				// Read a face vertex specification
@@ -382,19 +382,19 @@ namespace DLFL {
 			}
 		}
 
-		if ( !i ) {
+		if (!i) {
 			cerr << "Incomplete DLFL file. failed after Face-vertices" << endl;
 			reset();
 			return;
 		}
 
 		// Read the edges next. Stop when we get to a '#' sign at the beginning of a line
-		if ( c2 != '\n' ) readTillEOL(i);
+		if (c2 != '\n') readTillEOL(i);
 
 		c = ' ';
-		while ( i && c != '#') {
+		while (i && c != '#') {
 			i.get(c); i.get(c2);
-			if ( c == 'e' && c2 == ' ' ) {
+			if (c == 'e' && c2 == ' ') {
 				// Read a edge specification
 				// std::cout << "reading an edge\n";
 				neweptr = new DLFLEdge;
@@ -408,18 +408,18 @@ namespace DLFL {
 			}
 		}
 
-		if ( !i ) {
+		if (!i) {
 			cerr << "Incomplete DLFL file. Failed after edges." << endl;
 			reset();
 			return;
 		}
 
 			// Read the faces next. Stop when we get to a '#' sign at the beginning of a line
-		if ( c2 != '\n' ) readTillEOL(i);
+		if (c2 != '\n') readTillEOL(i);
 		c = ' ';
-		while ( i && c != '#') {
+		while (i && c != '#') {
 			i.get(c); i.get(c2);
-			if (c == 'u' && c2 == 's'){
+			if (c == 'u' && c2 == 's') {
 				i.get(c);i.get(c);i.get(c);i.get(c);i.get(c);
 				char *mtlname = new char[256];
 				i >> mtlname;
@@ -427,7 +427,7 @@ namespace DLFL {
 				// std::cout << mtlname << "\t" << cur_mtl->name << "\n";
 				readTillEOL(i);
 			}
-			else if ( c == 'f' && c2 == ' ' )	{
+			else if (c == 'f' && c2 == ' ')	{
 				
 				// std::cout << "reading a face\n";
 					// Read a face specification
@@ -436,7 +436,7 @@ namespace DLFL {
 					// Read a face specification. Get the face vertex index and find
 					// the face vertex pointer from the array and add it to the face
 				c = i.peek(); 
-				while ( c != '\n' )
+				while (c != '\n')
 				{
 					i >> fvindex;
 					fvptr = face_vertex_array[fvindex];
@@ -475,7 +475,7 @@ namespace DLFL {
 
 	void DLFLObject::writeDLFL(ostream& o, ostream &omtl, bool reverse_faces) {
 		//write the mtl file if it exists
-		if (!omtl.fail()){
+		if (!omtl.fail()) {
 			// std::cout<<"mtl file did not fail.\n";
 			writeMTL(omtl);	
 		}
@@ -490,26 +490,26 @@ namespace DLFL {
 		// Write the vertex list next. Update the vertex index also
 		DLFLVertexPtrList::iterator vf = vertex_list.begin(), vl = vertex_list.end();
 		uint vindex = 0;
-		while ( vf != vl ) {
+		while (vf != vl) {
 			(*vf)->writeDLFL(o,vindex++);
 			++vf;
 		}
 		o << '#' << endl;
 
-		// Write the face vertices and update the face vertex index also
+		// Write the facevertices and update the face vertex index also
 		DLFLFacePtrList::iterator ff = face_list.begin(), fl = face_list.end();		
 		DLFLFacePtr fptr;
 		uint fvindex = 0;
-		while ( ff != fl ) {
+		while (ff != fl) {
 			fptr = (*ff);
 			DLFLFaceVertexPtr head;
 			head = fptr->front();
-			if ( head ) {
+			if (head) {
 				DLFLFaceVertexPtr current = head;
-				current->writeDLFL(o,fvindex++);
+				current->writeDLFL(o, fvindex++);
 				current = current->next();
-				while ( current != head ) {
-					current->writeDLFL(o,fvindex++);
+				while (current != head) {
+					current->writeDLFL(o, fvindex++);
 					current = current->next();
 				}
 			}
@@ -519,14 +519,14 @@ namespace DLFL {
 
 		// Write the edge list
 		DLFLEdgePtrList::iterator ef = edge_list.begin(), el = edge_list.end();
-		if ( reverse_faces ) {
-			while ( ef != el ) {
+		if (reverse_faces) {
+			while (ef != el) {
 				(*ef)->writeDLFLReverse(o);
 				++ef;
 			}
 		}
 		else {
-			while ( ef != el ) {
+			while (ef != el) {
 				(*ef)->writeDLFL(o);
 				++ef;
 			}
@@ -537,9 +537,9 @@ namespace DLFL {
 		// o << "usemtl " << mptr->name << "\n";						
 		// Write the face list
 		ff = face_list.begin(); fl = face_list.end();
-		if ( reverse_faces ) {
-			while ( ff != fl ) {
-				if (mptr != (*ff)->material()){
+		if (reverse_faces) {
+			while (ff != fl) {
+				if (mptr != (*ff)->material()) {
 					mptr = (*ff)->material();
 					o << "usemtl " << mptr->name << "\n";						
 				}				
@@ -548,8 +548,8 @@ namespace DLFL {
 			}
 		}
 		else {
-			while ( ff != fl ) {
-				if (mptr != (*ff)->material()){
+			while (ff != fl) {
+				if (mptr != (*ff)->material()) {
 					mptr = (*ff)->material();
 					o << "usemtl " << mptr->name << "\n";						
 				}				
@@ -560,10 +560,10 @@ namespace DLFL {
 		o << '#' << endl;
 	}
 
-	bool DLFLObject::readMTL( istream &i ) {
+	bool DLFLObject::readMTL(istream &i) {
 		char c,c2;
 		float r,g,b;
-		if ( !i ) {
+		if (!i) {
 			cerr  << "Incomplete MTL file." << endl;
 			return false;
 		}
@@ -571,24 +571,24 @@ namespace DLFL {
 		DLFLMaterialPtr mptr;
 		char *mtlname = new char[255];
 		
-		while ( i ) {
+		while (i) {
 			removeWhiteSpace(i); i.get(c); i.get(c2);
-			if ( c == 'n' && c2 == 'e'){
+			if (c == 'n' && c2 == 'e') {
 				i.get(c); i.get(c2); i.get(c); i.get(c2); i.get(c2);
 				i >> mtlname; 
 			}
-			else if (c == 'K' && c2 == 'd'){
+			else if (c == 'K' && c2 == 'd') {
 				i.get(c);
 				i >> r >> g >> b;
 				DLFLMaterialPtr mptr = new DLFLMaterial(mtlname,r,g,b);
 				matl_list.push_back(mptr);
 			}
-			if ( c2 != '\n' ) readTillEOL(i);
+			if (c2 != '\n') readTillEOL(i);
 		}
 		return true;
 	}
 	
-	bool DLFLObject::writeMTL( ostream& o ) {
+	bool DLFLObject::writeMTL(ostream& o) {
 
 		// newmtl blinn1SG
 		// illum 4
@@ -603,11 +603,11 @@ namespace DLFL {
 		// Ka 0.00 0.00 0.00
 		// Tf 1.00 1.00 1.00
 		// Ni 1.00
-		if (o){
+		if (o) {
 			//test by dave...
 			//store the material color in the diffuse channel
 			DLFLMaterialPtrList::const_iterator mf = matl_list.begin(), ml = matl_list.end();
-			while ( mf != ml ) {
+			while (mf != ml) {
 				o <<  "newmtl " << (*mf)->name << "\n"
 					<< "illum 4\n" 
 					<< "Kd " << (*mf)->color.r << " " << (*mf)->color.g << " " << (*mf)->color.b << "\n" 
@@ -629,24 +629,24 @@ namespace DLFL {
 	void DLFLObject::writeLG3d(ostream& o, bool selected) {
 
 		Vector3dArray coords; int i=0, j=0;		
-		if (selected){
+		if (selected) {
 			vector<DLFLFacePtr>::iterator ff = this->sel_fptr_array.begin(), 
 																		fl = this->sel_fptr_array.end();
 			// Write the object in LG3d (*.m) format for use with the LiveGraphics3D live.jar java archive from Mathworld.com
 			o << "Graphics3D[{";
 
-			while ( ff != fl ) {
+			while (ff != fl) {
 				//format: Polygon[{ {x,y,z}, {x,y,z}, {x,y,z}, {x,y,z} }],
 				o << "Polygon[{";
 				(*ff)->getVertexCoords(coords);
-				for (i=0; i < coords.size(); i++){
+				for (i=0; i < coords.size(); i++) {
 					o << "{" << coords[i][0] << "," << coords[i][1] << "," << coords[i][2] << "}"; 
-					if (i != coords.size()-1){
+					if (i != coords.size()-1) {
 						o << ",";
 					}
 				}
 				o << "}]";
-				if ( j < num_faces()-1){
+				if (j < num_faces()-1) {
 					o << ",";
 				}
 				++ff; j++;
@@ -662,18 +662,18 @@ namespace DLFL {
 			// Write the object in LG3d (*.m) format for use with the LiveGraphics3D live.jar java archive from Mathworld.com
 			o << "Graphics3D[{";
 
-			while ( ff != fl ) {
+			while (ff != fl) {
 				//format: Polygon[{ {x,y,z}, {x,y,z}, {x,y,z}, {x,y,z} }],
 				o << "Polygon[{";
 				(*ff)->getVertexCoords(coords);
-				for (i=0; i < coords.size(); i++){
+				for (i=0; i < coords.size(); i++) {
 					o << "{" << coords[i][0] << "," << coords[i][1] << "," << coords[i][2] << "}"; 
-					if (i != coords.size()-1){
+					if (i != coords.size()-1) {
 						o << ",";
 					}
 				}
 				o << "}]";
-				if ( j < num_faces()-1){
+				if (j < num_faces()-1) {
 					o << ",";
 				}
 				++ff; j++;
@@ -683,7 +683,7 @@ namespace DLFL {
 		}
 	}
 	
-	void DLFLObject::writeSTL(ostream& o){		
+	void DLFLObject::writeSTL(ostream& o) {		
 		// if(binary)
 		// {
 		// 	// Write Header
@@ -696,13 +696,13 @@ namespace DLFL {
 		// 	unsigned short attributes=0;
 		//     
 		//     FaceIterator fi;		
-		// 	for(fi=m.face.begin(); fi!=m.face.end(); ++fi) if( !(*fi).IsD() )
+		// 	for(fi=m.face.begin(); fi!=m.face.end(); ++fi) if(!(*fi).IsD())
 		// 	{
 		// 		// For each triangle write the normal, the three coords and a short set to zero
 		// 		p.Import(vcg::NormalizedNormal(*fi));
 		// 		fwrite(p.V(),3,sizeof(float),fp);
 		//  
-		// 		for(int k=0;k<3;++k){
+		// 		for(int k=0;k<3;++k) {
 		// 			p.Import((*fi).V(k)->P());
 		// 			fwrite(p.V(),3,sizeof(float),fp);
 		// 		}
@@ -716,11 +716,11 @@ namespace DLFL {
 			Vector3dArray coords; int i=0;
 			
 			o << "solid ascii\n";
-			while ( ff != fl ) {
+			while (ff != fl) {
 				o << "  facet normal "	<< (*ff)->getNormal(true)[0] << " "  << (*ff)->getNormal()[1] << " " << (*ff)->getNormal()[2] << "\n";
 				o << "    outer loop\n";	
 				(*ff)->getVertexCoords(coords);
-				for (i=0; i < coords.size(); i++){
+				for (i=0; i < coords.size(); i++) {
 					o << "      vertex  " << coords[i][0] << " " << coords[i][1] << " " << coords[i][2] << "\n"; 
 				}
 				o << "    endloop\n";

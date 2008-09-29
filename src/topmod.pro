@@ -16,9 +16,10 @@ DEFINES += QT_VER=\"$${QT_VERSTR}\" # create a QT_VER macro containing the versi
 QT += opengl \
     xml
 CONFIG += qt \
-    release \
+    debug \
     warn_off \
     link_prl
+    #release \
 
 # Fenghui: disable pg option
 QMAKE_CXXFLAGS_DEBUG += -pg

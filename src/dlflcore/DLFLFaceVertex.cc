@@ -17,24 +17,28 @@ namespace DLFL {
   // Default constructor
   DLFLFaceVertex::DLFLFaceVertex( bool bf )
     : vertex(NULL), normal(), color(1), texcoord(), backface(bf), index(0),
-      epEPtr(NULL), fpFPtr(NULL), fvpNext(NULL), fvpPrev(NULL), fvtType(FVTNormal), 
-      auxcoords(), auxnormal(), ds2coords(NULL)
-  { assignID(); fvpNext = this; fvpPrev = this; }
+      epEPtr(NULL), fpFPtr(NULL), fvpNext(NULL), fvpPrev(NULL),
+      fvtType(FVTNormal), auxcoords(), auxnormal(), ds2coords(NULL) {
+    assignID(); fvpNext = this; fvpPrev = this;
+  }
 
   // 2 arg-constructor - copy the pointers
   DLFLFaceVertex::DLFLFaceVertex( DLFLVertexPtr vptr, DLFLEdgePtr eptr, bool bf )
     : vertex(vptr), normal(), color(1), texcoord(), backface(bf), index(0),
       epEPtr(eptr), fpFPtr(NULL), fvpNext(NULL), fvpPrev(NULL),
-      fvtType(FVTNormal), auxcoords(), auxnormal(), ds2coords(NULL)
-  { assignID(); fvpNext = this; fvpPrev = this; }
+      fvtType(FVTNormal), auxcoords(), auxnormal(), ds2coords(NULL) {
+    assignID(); fvpNext = this; fvpPrev = this;
+  }
   
   // Copy constructor
   DLFLFaceVertex::DLFLFaceVertex( const DLFLFaceVertex& dfv )
-    : uID(dfv.uID), vertex(dfv.vertex), normal(dfv.normal), color(dfv.color), texcoord(dfv.texcoord),
-      backface(false), index(dfv.index), epEPtr(dfv.epEPtr), fpFPtr(dfv.fpFPtr), 
-      fvpNext(NULL), fvpPrev(NULL), fvtType(dfv.fvtType), auxcoords(dfv.auxcoords), auxnormal(dfv.auxnormal),
-      ds2coords(NULL)
-  { fvpNext = this; fvpPrev = this; }
+      :uID(dfv.uID), vertex(dfv.vertex), normal(dfv.normal), color(dfv.color),
+      texcoord(dfv.texcoord), backface(false), index(dfv.index),
+      epEPtr(dfv.epEPtr), fpFPtr(dfv.fpFPtr), fvpNext(NULL), fvpPrev(NULL),
+      fvtType(dfv.fvtType), auxcoords(dfv.auxcoords), auxnormal(dfv.auxnormal),
+      ds2coords(NULL) {
+    fvpNext = this; fvpPrev = this;
+  }
 
   // Destructor
   DLFLFaceVertex::~DLFLFaceVertex() {
@@ -43,11 +47,20 @@ namespace DLFL {
 
   // Assignment operator
   DLFLFaceVertex& DLFLFaceVertex::operator=( const DLFLFaceVertex& dfv ) {
-    vertex = dfv.vertex; normal = dfv.normal; color = dfv.color; texcoord = dfv.texcoord;
-    backface = dfv.backface; index = dfv.index;
-    epEPtr = dfv.epEPtr; fpFPtr = dfv.fpFPtr;
-    fvpNext = dfv.fvpNext; fvpPrev = dfv.fvpPrev;
-    fvtType = dfv.fvtType; auxcoords = dfv.auxcoords; auxnormal = dfv.auxnormal; //tmpp = dfv.tmpp;
+    vertex = dfv.vertex;
+    normal = dfv.normal;
+    color = dfv.color;
+    texcoord = dfv.texcoord;
+    backface = dfv.backface;
+    index = dfv.index;
+    epEPtr = dfv.epEPtr;
+    fpFPtr = dfv.fpFPtr;
+    fvpNext = dfv.fvpNext;
+    fvpPrev = dfv.fvpPrev;
+    fvtType = dfv.fvtType;
+    auxcoords = dfv.auxcoords;
+    auxnormal = dfv.auxnormal;
+    //tmpp = dfv.tmpp;
     return (*this);
   }
 
@@ -79,8 +92,10 @@ namespace DLFL {
       << endl;
   }
 
-  void average(const DLFLFaceVertex& dfv1, const DLFLFaceVertex& dfv2, DLFLFaceVertex& ave) {
-    // Average 2 face vertexes. Coordinates, normals, texture coordinates and color are averaged
+  void average(const DLFLFaceVertex& dfv1, const DLFLFaceVertex& dfv2,
+               DLFLFaceVertex& ave) {
+    // Average 2 face vertexes. Coordinates, normals, texture coordinates and
+    // color are averaged.
     // Assumes that all 3 face vertexes have valid vertex pointers
     ave.vertex->coords = ((dfv1.vertex->coords)+(dfv2.vertex->coords))/2.0;
     ave.normal = (dfv1.normal + dfv2.normal)/2.0;
@@ -88,13 +103,16 @@ namespace DLFL {
     ave.texcoord = (dfv1.texcoord + dfv2.texcoord)/2.0;
   }
 
-  void average(DLFLFaceVertexPtr dfvp1, DLFLFaceVertexPtr dfvp2, DLFLFaceVertexPtr avep) {
-    // Average 2 face vertexes. Coordinates, normals, texture coordinates and color are averaged
+  void average(DLFLFaceVertexPtr dfvp1, DLFLFaceVertexPtr dfvp2,
+               DLFLFaceVertexPtr avep) {
+    // Average 2 face vertexes. Coordinates, normals, texture coordinates and
+    // color are averaged.
     // Assumes that all 3 face vertexes have valid vertex pointers
-    avep->vertex->coords = ((dfvp1->vertex->coords)+(dfvp2->vertex->coords))/2.0;
-    avep->normal = (dfvp1->normal + dfvp2->normal)/2.0;
-    avep->color = (dfvp1->color + dfvp2->color)/2.0;
-    avep->texcoord = (dfvp1->texcoord + dfvp2->texcoord)/2.0;
+    avep->vertex->coords =
+        ((dfvp1->vertex->coords) + (dfvp2->vertex->coords)) / 2.0;
+    avep->normal = (dfvp1->normal + dfvp2->normal) / 2.0;
+    avep->color = (dfvp1->color + dfvp2->color) / 2.0;
+    avep->texcoord = (dfvp1->texcoord + dfvp2->texcoord) / 2.0;
   }
 
   bool coFacial(DLFLFaceVertexPtr fvptr1, DLFLFaceVertexPtr fvptr2) {
@@ -119,8 +137,9 @@ namespace DLFL {
       return false;
     } else {
       // Both pointers are not NULL
-      if ( coFacial(fvptr1,fvptr2) && ( fvptr1->getVertexID() == fvptr2->getVertexID() ) )
-	return true;
+      if (coFacial(fvptr1,fvptr2) &&
+          (fvptr1->getVertexID() == fvptr2->getVertexID()))
+        return true;
     }
     return false;
   }
@@ -129,14 +148,15 @@ namespace DLFL {
     // Test to see if 2 DLFLFaceVertexes are "equal"
     // They are "equal" iff they belong to the same Face AND they
     // refer to the same Position
-    if ( coFacial(fv1,fv2) && ( fv1.getVertexID() == fv2.getVertexID() ) )
+    if (coFacial(fv1,fv2) && ( fv1.getVertexID() == fv2.getVertexID()))
       return true;
     return false;
   }
 
   // Check if given corner is a concave corner or not.
   // Will not work properly for non-planar faces.
-  // Will not work properly for faces which have edges which belong entirely to that face.
+  // Will not work properly for faces which have edges which belong entirely to
+  // that face.
   // Will not work properly for highly skewed geometry.
   bool DLFLFaceVertex::isConcaveCorner( ) const {
     // If face is a triangle or a 2-gon or a point-sphere return false
@@ -217,13 +237,14 @@ namespace DLFL {
   DLFLFaceVertexPtr DLFLFaceVertex::closestNonWingedCorner( ) const {
     DLFLFaceVertexPtr fvpn = next(), fvpp = prev(), fvp = NULL;
     while ( fvpn->isWingedCorner() && fvpp->isWingedCorner() && fvpp != fvpn ) {
-      fvpn = fvpn->next(); fvpp = fvpp->prev();
+      fvpn = fvpn->next();
+      fvpp = fvpp->prev();
     }
     if ( fvpp == fvpn ) {
       if ( ! fvpp->isWingedCorner() ) 
-	fvp = fvpp;
+        fvp = fvpp;
       else if ( ! fvpn->isWingedCorner() ) 
-	fvp = fvpn;
+        fvp = fvpn;
       // WARNING! If the code reaches this point, this function will return NULL
       // This will cause other parts of the program to fail
     } else if ( ! fvpp->isWingedCorner() ) {
@@ -247,7 +268,8 @@ namespace DLFL {
   // Both vectors will originate at this corner
   void DLFLFaceVertex::getEdgeVectors(Vector3d& pvec, Vector3d& nvec) {
     nvec = getEdgeVector();
-    pvec = - (fvpPrev->getEdgeVector()); // Reverse direction of edgevector from previous corner
+    // Reverse direction of edgevector from previous corner
+    pvec = - (fvpPrev->getEdgeVector());
   }
 
   void DLFLFaceVertex::updateNormal( ) {
@@ -286,25 +308,25 @@ namespace DLFL {
   }
 
   void DLFLFaceVertex::deleteSelfFromEdge( ) {
-    // Set the DLFLFaceVertexPtr of Edge which refers to this DLFLFaceVertex to NULL
+    // Set the DLFLFaceVertexPtr of Edge which refers to this DLFLFaceVertex
+    // to NULL.
     if ( epEPtr ) epEPtr->resetFaceVertexPtr(this);
   }
 
   void DLFLFaceVertex::deleteSelfFromFace( ) {
     // Remove the DLFLFaceVertexPtr from the face to which it belongs.
     // Simply calls the deleteVertexPtr method in the face
-    // This can't be properly implemented here since the head pointer of the DLFLFace might
-    // need to be adjusted too
+    // This can't be properly implemented here since the head pointer of the
+    // DLFLFace might need to be adjusted too.
     fpFPtr->deleteFaceVertexPtr(this);
   }
 
   DLFLFaceVertexPtr DLFLFaceVertex::vnext( ) {
     DLFLFaceVertexPtr vn = this;
-    if ( epEPtr )
-      {
-	vn = epEPtr->getOtherFaceVertexPtr(vn);
-	vn = vn->next();
-      }
+    if ( epEPtr ) {
+      vn = epEPtr->getOtherFaceVertexPtr(vn);
+      vn = vn->next();
+    }
     return vn;
   }
 
@@ -319,9 +341,9 @@ namespace DLFL {
 
   void DLFLFaceVertex::print(bool printadjacent) const {
     cout << "DLFLFaceVertex : "
-	 << "Vertex (" << vertex->getID() << ") "
-	 << "Face (" << fpFPtr->getID() << ") "
-	 << "Edge (" << epEPtr->getID() << ") " << endl;
+         << "Vertex (" << vertex->getID() << ") "
+         << "Face (" << fpFPtr->getID() << ") "
+         << "Edge (" << epEPtr->getID() << ") " << endl;
     if ( printadjacent ) {
       cout << "Previous "; fvpPrev->print();
       cout << "Next "; fvpNext->print();
@@ -329,8 +351,7 @@ namespace DLFL {
   }
 
   void DLFLFaceVertex::writeDLFL(ostream& o, uint newindex) {
-    o << "fv " << vertex->getIndex() << ' '
-      << normal << ' '
+    o << "fv " << vertex->getIndex() << ' ' << normal << ' '
       << texcoord << ' ' << endl;
     index = newindex;
   }
@@ -346,18 +367,18 @@ namespace DLFL {
 
   uint DLFLFaceVertex::getFaceID( ) const { return fpFPtr->getID(); }
 
-  void advance(DLFLFaceVertexPtr& fvp) 
-  {
+  void advance(DLFLFaceVertexPtr& fvp) {
     fvp = fvp->fvpNext;
   }
 
-  void backward(DLFLFaceVertexPtr& fvp)
-  {
+  void backward(DLFLFaceVertexPtr& fvp) {
     fvp = fvp->fvpPrev;
   }
 
-  void DLFLFaceVertex::setDS2Coords(const Vector3d& dsc0, const Vector3d& dsc1, const Vector3d& dsc2, const Vector3d& dsc3) { 
-    if(!ds2coords) {
+  void DLFLFaceVertex::setDS2Coords(
+      const Vector3d& dsc0, const Vector3d& dsc1, const Vector3d& dsc2,
+      const Vector3d& dsc3) { 
+    if (!ds2coords) {
       ds2coords = new Vector3d[4];
     }
     ds2coords[0] = dsc0;
@@ -372,18 +393,21 @@ namespace DLFL {
     }
     ds2coords[0] = dsc0; 
   };
+
   void DLFLFaceVertex::setDS2Coord1(const Vector3d& dsc1) {
     if(!ds2coords) {
       ds2coords = new Vector3d[4];
     }
     ds2coords[1] = dsc1; 
   };
+
   void DLFLFaceVertex::setDS2Coord2(const Vector3d& dsc2) {
     if(!ds2coords) {
       ds2coords = new Vector3d[4];
     }
     ds2coords[2] = dsc2;
   };
+
   void DLFLFaceVertex::setDS2Coord3(const Vector3d& dsc3) {
     if(!ds2coords) {
       ds2coords = new Vector3d[4];
@@ -391,7 +415,171 @@ namespace DLFL {
     ds2coords[3] = dsc3;
   };
 
-  /*void DLFLFaceVertex::render( ) const
+  /*static*/ void DLFLFaceVertex::setLastID( uint id ) {
+    if( id > suLastID )
+      suLastID = id;
+  };
+
+  // Override new operator
+  void* DLFLFaceVertex::operator new(size_t size) {
+    if(face_pool == NULL) {
+      expandEdgePool();
+    }
+    NextOnFreeList *head = face_pool;
+    face_pool = face_pool->next;
+    return head;
+  };
+
+  // Override delete operator
+  void DLFLFaceVertex::operator delete(void* to_be_deleted) {
+    NextOnFreeList *head = static_cast<NextOnFreeList *>(to_be_deleted);
+    head->next = face_pool;
+    face_pool = head;
+  };
+  void DLFLFaceVertex::operator delete(void* to_be_deleted, size_t size) {
+    NextOnFreeList *head = static_cast<NextOnFreeList *>(to_be_deleted);
+    head->next = face_pool;
+    face_pool = head;
+  };
+
+  /*static*/ void DLFLFaceVertex::deleteEdgePool() {
+    NextOnFreeList *head;
+    while(face_pool != NULL) {
+      head = face_pool;
+      face_pool = face_pool->next;
+      delete[] head;
+    }
+  };
+
+  /*static*/ void DLFLFaceVertex::expandEdgePool() {
+    //Allocate an object large enough to hold both objects
+    size_t size = (sizeof(DLFLFaceVertex) > sizeof(NextOnFreeList)) ?
+                  sizeof(DLFLFaceVertex) : sizeof(NextOnFreeList);
+    NextOnFreeList *runner = (NextOnFreeList *)malloc(size);
+    face_pool = runner;
+    for(int i = 0; i < EXPANSION_SIZE; i++) {
+      runner->next = (NextOnFreeList *)malloc(size);
+      runner = runner->next;
+    }
+    runner->next = NULL;
+  };
+
+  /*static*/ uint DLFLFaceVertex::newID( ) {
+    uint temp = suLastID;
+    suLastID++;
+    return temp;
+  };
+
+  void DLFLFaceVertex::assignID( ) {
+    // uID = DLFLFaceVertex::newID();
+    //std::cout << this;
+    uID = (unsigned int) this;
+    //std::cout << "->" << uID << std::endl;
+  };
+
+  // Query Functions
+  uint DLFLFaceVertex::getIndex( ) const { return index; };
+  uint DLFLFaceVertex::getID( ) { assignID(); return uID; };
+  DLFLFaceVertexType DLFLFaceVertex::getType( ) const { return fvtType; };
+  DLFLVertexType DLFLFaceVertex::getVertexType( ) const { return vertex->getType(); };
+  DLFLVertexPtr DLFLFaceVertex::getVertexPtr( ) const { return vertex; };
+  DLFLEdgePtr DLFLFaceVertex::getEdgePtr( ) const { return epEPtr; };
+  DLFLFaceVertexPtr DLFLFaceVertex::getOppositeCorner( ) {
+    return epEPtr->getOtherFaceVertexPtr(this);
+  };
+  DLFLFacePtr DLFLFaceVertex::getFacePtr( ) const {
+    if (fpFPtr) return fpFPtr;
+    else return NULL;
+  };
+  uint DLFLFaceVertex::getVertexID( ) const { return vertex->getID(); };
+  uint DLFLFaceVertex::getFaceID( ) const;
+  uint DLFLFaceVertex::getEdgeID( ) const { return epEPtr->getID(); };
+  Vector3d DLFLFaceVertex::getNormal( ) const { return normal; };
+  Vector3d DLFLFaceVertex::getVertexCoords( ) const { return vertex->coords; };
+  Vector2d DLFLFaceVertex::getTexCoords( ) const { return texcoord; };
+  Vector3d DLFLFaceVertex::getAuxCoords( ) const { return auxcoords; };
+  Vector3d DLFLFaceVertex::getAuxNormal( ) const { return auxnormal; };
+
+  void DLFLFaceVertex::getDS2Coords(
+      Vector3d& dsc0, Vector3d& dsc1, Vector3d& dsc2, Vector3d& dsc3) const { 
+    dsc0 = ds2coords[0];
+    dsc1 = ds2coords[1];
+    dsc2 = ds2coords[2];
+    dsc3 = ds2coords[3];
+  };
+  Vector3d DLFLFaceVertex::getDS2Coord(uint index) const {
+    // Assumes index is within range (0 to 3)
+    return ds2coords[index];
+  };
+   
+  //--- Mutative Functions ---//
+
+  void DLFLFaceVertex::setType(DLFLFaceVertexType type) { fvtType = type; };
+  void DLFLFaceVertex::resetType( ) { fvtType = FVTNormal; };
+   
+  // Reset to original state
+  void DLFLFaceVertex::reset( ) {
+    vertex = NULL;
+    normal.reset();
+    //color = 1.0;
+    //texcoord.reset();
+    epEPtr = NULL;
+    fpFPtr = NULL;
+    fvpNext = this;
+    fvpPrev = this;
+    fvtType = FVTNormal;
+  };
+
+  void DLFLFaceVertex::setVertexPtr(DLFLVertexPtr vptr) { vertex = vptr; };
+  void DLFLFaceVertex::setEdgePtr(DLFLEdgePtr eptr) { epEPtr = eptr; };
+  void DLFLFaceVertex::setFacePtr(DLFLFacePtr fptr) { fpFPtr = fptr; };
+  void DLFLFaceVertex::setNormal(const Vector3d& n) { normal = normalized(n); };
+
+
+  Vector3d DLFLFaceVertex::computeNormal( ) {
+    updateNormal();
+    return normal;
+  };
+
+  void DLFLFaceVertex::setVertexCoords(const Vector3d& vec) {
+    if ( vertex ) vertex->coords = vec;
+  };
+
+  void DLFLFaceVertex::setVertexCoords(double x, double y, double z) {
+    if ( vertex ) vertex->coords.set(x,y,z);
+  };
+
+  void DLFLFaceVertex::setTexCoords(const Vector2d& tc) { texcoord = tc; };
+  void DLFLFaceVertex::setAuxCoords(const Vector3d& p) { auxcoords = p; };
+  void DLFLFaceVertex::setAuxNormal(const Vector3d& n) { auxnormal = n; };
+
+
+  // This function by itself can leave the DLFL object in an invalid state
+  // It should be used with extreme care, ideally as part of a face reversal only.
+  // To prevent unintended misuse, this is made private and classes which need
+  // access to this function are made friends
+  void DLFLFaceVertex::reverse( ) {
+    // Swap the previous and next pointers
+    DLFLFaceVertexPtr temp = fvpNext;
+    fvpNext = fvpPrev;
+    fvpPrev = temp;
+  };
+
+  void DLFLFaceVertex::setNext(DLFLFaceVertexPtr fvptr) { fvpNext = fvptr; };
+  void DLFLFaceVertex::setPrev(DLFLFaceVertexPtr fvptr) { fvpPrev = fvptr; };
+
+  DLFLFaceVertexPtr DLFLFaceVertex::next( ) const { return fvpNext; };
+  DLFLFaceVertexPtr& DLFLFaceVertex::next( ) { return fvpNext; };
+
+  DLFLFaceVertexPtr DLFLFaceVertex::prev( ) const { return fvpPrev; };
+  DLFLFaceVertexPtr& DLFLFaceVertex::prev( ) { return fvpPrev; };
+
+  void DLFLFaceVertex::printPointers( ) const {
+    cout << "DLFLFaceVertex : " << vertex << ", " << epEPtr << ", " << fpFPtr << ";"
+   << "< " << fvpPrev << ", " << fvpNext << " >" << endl;
+  };
+
+  /*void dlflfacevertex::render( ) const
     {
     if ( vertex ) vertex->render();
     }*/

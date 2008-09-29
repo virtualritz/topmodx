@@ -9,15 +9,10 @@
 #include "DLFLVertex.h"
 
 namespace DLFL {
-
-
-  // Define the static variable. Initialized to 0
-
   NextOnFreeList *DLFLEdge::edge_pool = NULL;
   uint DLFLEdge::suLastID = 0;
 
-  void DLFLEdge::dump(ostream& o) const
-  {
+  void DLFLEdge::dump(ostream& o) const {
     o << "DLFLEdge" << endl
       //    << "  ID : " << uID << endl
       << "  fvpV1 : " << fvpV1 << endl
@@ -27,8 +22,7 @@ namespace DLFL {
   }
 
   // Update the mid point for this edge
-  void DLFLEdge::updateMidPoint(void)
-  {
+  void DLFLEdge::updateMidPoint(void) {
     if ( fvpV1 != NULL && fvpV2 != NULL ) midpoint = 0.5 * (fvpV1->getVertexCoords() + fvpV2->getVertexCoords());
   }
 
@@ -36,7 +30,7 @@ namespace DLFL {
   void DLFLEdge::updateNormal(void) {
     if ( fvpV1 != NULL && fvpV2 != NULL ) {
       normal = fvpV1->computeNormal() + fvpV1->next()->computeNormal() +
-	fvpV2->computeNormal() + fvpV2->next()->computeNormal();
+               fvpV2->computeNormal() + fvpV2->next()->computeNormal();
       normalize(normal);
     }
   }
@@ -435,6 +429,257 @@ namespace DLFL {
   void makeEdgeUnique(DLFLEdgePtr dep) 
   {
     dep->makeUnique();
+  }
+
+  /*static*/ void DLFLEdge::setLastID( uint id ) {
+    if( id > suLastID )
+      suLastID = id;
+  };
+
+  // Override new operator
+  void* DLFLEdge::operator new(size_t size) {
+    if(edge_pool == NULL) {
+      expandEdgePool();
+    }
+    NextOnFreeList *head = edge_pool;
+    edge_pool = edge_pool->next;
+    return head;
+  };
+
+  // Override delete operator
+  void DLFLEdge::operator delete(void* to_be_deleted) {
+    NextOnFreeList *head = static_cast<NextOnFreeList *>(to_be_deleted);
+    head->next = edge_pool;
+    edge_pool = head;
+  };
+
+  void DLFLEdge::operator delete(void* to_be_deleted, size_t size) {
+    NextOnFreeList *head = static_cast<NextOnFreeList *>(to_be_deleted);
+    head->next = edge_pool;
+    edge_pool = head;
+  };
+
+  /*static*/ void DLFLEdge::deleteEdgePool() {
+    NextOnFreeList *head;
+    while(edge_pool != NULL) {
+      head = edge_pool;
+      edge_pool = edge_pool->next;
+      delete[] head;
+    }
+  };
+
+  /*static*/ void DLFLEdge::expandEdgePool() {
+    //Allocate an object large enough to hold both objects
+    size_t size = (sizeof(DLFLEdge) > sizeof(NextOnFreeList)) ? sizeof(DLFLEdge) :
+                  sizeof(NextOnFreeList);
+    NextOnFreeList *runner = (NextOnFreeList *)malloc(size);
+    edge_pool = runner;
+    for(int i = 0; i < EXPANSION_SIZE; i++) {
+      runner->next = (NextOnFreeList *)malloc(size);
+      runner = runner->next;
+    }
+    runner->next = NULL;
+  };
+
+  // Generate a new unique ID
+  /*static*/ uint DLFLEdge::newID(void) {
+    uint temp = suLastID;
+    suLastID++;
+    return temp;
+  }
+   
+  // Assign a unique ID for this instance
+  void DLFLEdge::assignID() {
+    uID = DLFLEdge :: newID();
+    ismarked = 0;
+    isvisited = 0;
+  }
+
+  // Default constructor
+  DLFLEdge::DLFLEdge()
+      :fvpV1(NULL), fvpV2(NULL), etType(ETNormal), auxcoords(), auxnormal(), midpoint(),
+      normal(), flags(0) {
+    assignID();
+  }
+
+  // 2 & 3 argument constructor
+  DLFLEdge::DLFLEdge(
+      DLFLFaceVertexPtr fvp1, DLFLFaceVertexPtr fvp2, bool update=true)
+      :fvpV1(fvp1), fvpV2(fvp2), etType(ETNormal), auxcoords(), auxnormal(),
+      midpoint(), normal(), flags(0) {
+    if ( update ) {
+      updateNormal();
+    }
+    updateMidPoint();
+    assignID();
+  }
+
+  // Copy constructor
+  DLFLEdge::DLFLEdge(const DLFLEdge& e)
+      :fvpV1(e.fvpV1), fvpV2(e.fvpV2), uID(e.uID), etType(e.etType),
+      auxcoords(e.auxcoords), auxnormal(e.auxnormal), midpoint(e.midpoint),
+      normal(e.normal), flags(e.flags) {}
+
+  // Destructor
+  DLFLEdge::~DLFLEdge() {}
+
+  // Assignment operator
+  DLFLEdge& DLFLEdge::operator = (const DLFLEdge& e) {
+    fvpV1 = e.fvpV1;
+    fvpV2 = e.fvpV2;
+    uID = e.uID;
+    etType = e.etType;
+    auxcoords = e.auxcoords;
+    auxnormal = e.auxnormal;
+    midpoint = e.midpoint;
+    normal = e.normal;
+    flags = e.flags;
+    return (*this);
+  }
+
+  // Copy function 
+  DLFLEdgePtr DLFLEdge::copy(void) const {
+    DLFLEdgePtr eptr = new DLFLEdge(*this);
+    return eptr;
+  }
+
+  // Get/set the attribute flags
+  DLFLEdgeType DLFLEdge::getType(void) const {
+    return etType;
+  }
+
+  Vector3d DLFLEdge::getAuxCoords(void) const {
+    return auxcoords;
+  }
+
+  Vector3d DLFLEdge::getAuxNormal(void) const {
+    return auxnormal;
+  }
+   
+  void DLFLEdge::setType(DLFLEdgeType type) {
+    etType = type;
+  }
+
+  void DLFLEdge::resetType(void) {
+    etType = ETNormal;
+  }
+
+  void DLFLEdge::setAuxCoords(const Vector3d& p) {
+    auxcoords = p;
+  }
+
+  void DLFLEdge::setAuxNormal(const Vector3d& n) {
+    auxnormal = n;
+  }
+   
+  void DLFLEdge::addToAuxCoords(const Vector3d& p) {
+    auxcoords += p;
+  }
+
+  void DLFLEdge::addToAuxNormal(const Vector3d& n) {
+    auxnormal += n;
+  }
+   
+  void DLFLEdge::resetAuxCoords(void) {
+    auxcoords.reset();
+  }
+
+  void DLFLEdge::resetAuxNormal(void) {
+    auxnormal.reset();
+  }
+         
+  // Query functions
+  DLFLFaceVertexPtr DLFLEdge::getFaceVertexPtr1(void) const {
+    return fvpV1;
+  }
+
+  DLFLFaceVertexPtr DLFLEdge::getFaceVertexPtr2(void) const {
+    return fvpV2;
+  }
+
+  // Get the face-vertex belonging to given face
+  // Returns NULL if edge is not adjacent to given face
+  DLFLFaceVertexPtr getFaceVertexPtr(DLFLFacePtr fptr);
+
+  DLFLFaceVertexPtr DLFLEdge::getOtherFaceVertexPtr(DLFLFaceVertexPtr fvptr) {
+    // Return the other DLFLFaceVertexPtr for this edge.
+    // Returns NULL if given DLFLFaceVertexPtr is not found in this edge
+    if ( fvpV1 == fvptr ) return fvpV2;
+    else if ( fvpV2 == fvptr ) return fvpV1;
+    return NULL;
+  }
+
+  void DLFLEdge::getFaceVertexPointers(
+      DLFLFaceVertexPtr& fvptr1, DLFLFaceVertexPtr& fvptr2) const {
+    fvptr1 = fvpV1; fvptr2 = fvpV2;
+  }
+
+  void DLFLEdge::getCorners(
+      DLFLFaceVertexPtr& fvp1, DLFLFaceVertexPtr& fvp2) const {
+    getFaceVertexPointers(fvp1,fvp2);
+  }
+
+  uint DLFLEdge::getID(void) const {
+    return uID;
+  }
+
+  Vector3d DLFLEdge::getMidPoint(bool update=false) {
+    if( update )
+      updateMidPoint();
+    return midpoint;
+  }
+
+  Vector3d DLFLEdge::getNormal(bool update=false) {
+    if( update )
+      updateNormal();
+    return normal;
+  }
+
+  // Mutative functions
+  void DLFLEdge::setFaceVertexPtr1(DLFLFaceVertexPtr fvptr, bool update=true) {
+    fvpV1 = fvptr;
+    if ( update ) {
+      updateNormal();
+    }
+    updateMidPoint();
+  }
+
+  void DLFLEdge::setFaceVertexPtr2(DLFLFaceVertexPtr fvptr, bool update=true) {
+    fvpV2 = fvptr;
+    if ( update ) {
+      updateNormal();
+    }
+    updateMidPoint();
+  }
+
+  void DLFLEdge::setFaceVertexPointers(
+      DLFLFaceVertexPtr fvptr1, DLFLFaceVertexPtr fvptr2, bool update=true) {
+    fvpV1 = fvptr1;
+    fvpV2 = fvptr2;
+    if ( update ) {
+      updateNormal();
+    }
+    updateMidPoint();
+  }
+   
+  void DLFLEdge::makeUnique(void) {
+    assignID();
+  }
+
+  // If any of the FaceVertexPtr fields are NULL set it to the given FaceVertexPtr
+  void DLFLEdge::setNullFaceVertexPtr(DLFLFaceVertexPtr fvptr) {
+    if ( fvpV1 == NULL ) fvpV1 = fvptr;
+    else if ( fvpV2 == NULL ) fvpV2 = fvptr;
+  }
+
+  // If any of the FaceVertexPtr fields matches the given FaceVertexPtr, set it to NULL
+  void DLFLEdge::resetFaceVertexPtr(DLFLFaceVertexPtr fvptr) {
+    if ( fvpV1 == fvptr ) fvpV1 = NULL;
+    else if ( fvpV2 == fvptr ) fvpV2 = NULL;
+  }
+   
+  void DLFLEdge::print(void) const {
+    printFaceIDs();
   }
 
   // Edge normal. See comments in header file for details
