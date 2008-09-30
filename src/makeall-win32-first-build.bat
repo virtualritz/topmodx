@@ -14,7 +14,7 @@
 ::put this batch script in the topmod_gui source folder and run it from there.
 
 ::create vecmat makefile and build it for the first time
-cd include\vecmat
+cd vecmat
 qmake
 mingw32-make
 
@@ -25,6 +25,10 @@ mingw32-make
 
 ::create dlflaux makefile and build it for the first time
 cd ..\dlflaux
+qmake
+mingw32-make
+
+cd ..\arcball
 qmake
 mingw32-make
 
