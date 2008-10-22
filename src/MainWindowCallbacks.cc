@@ -16,7 +16,7 @@ void MainWindow::load_texture() {
 	if (!fileName.isEmpty()){
 		// undoPush();
 	  mTextureSaveDirectory = QFileInfo(fileName).absoluteDir().absolutePath();
-	  mPreferencesDialog->setTextureSaveDirectory(mTextureSaveDirectory);
+	  //mPreferencesDialog->setTextureSaveDirectory(mTextureSaveDirectory);
 
 		QByteArray ba = fileName.toLatin1();
 		const char *texfile = ba.data();
@@ -26,26 +26,8 @@ void MainWindow::load_texture() {
 			// getActive()->valid(0); // To ensure new texture is loaded into OpenGL
 			redraw();
 		}
-		// readObject(filename);
-		// active->recomputePatches();
- 		// active->recomputeNormals();
-		// //loadFile(fileName);
-		// active->redraw();
 	}
 }
-
-// void DLFLAppWindow :: load_texture(Fl_Menu_*, void*)
-// {
-//   char * texfile = fl_file_chooser("Load Texture","*.{jpg,png}","");
-//   if ( texfile != NULL )
-//      {
-//        textured->setTexture(texfile);
-//        texturedlit->setTexture(texfile);
-//        mainWindowPtr->getActive()->valid(0); // To ensure new texture is loaded into OpenGL
-//        mainWindowPtr->redraw();
-//        Fl :: focus(mainWindowPtr);
-//      }
-// }
 
 //use a specific renderer...
 void MainWindow::useWireframeRenderer() {
@@ -74,118 +56,12 @@ void MainWindow::useTexturedLitRenderer() {
 	redraw();
 }
 
-void MainWindow::usePatchRenderer() {
-	setRenderer(patch);
-  active->recomputePatches();
-  active->recomputeNormals();
-  statusBar()->showMessage(tr("Switched to patch mode."));
-	redraw();
-}
-
 void MainWindow::useColorableRenderer() {
 	setRenderer(colorable);
 	redraw();
 }
 
-//preference functions for topmodpreferences - dave
-void MainWindow::setAutoSave(int value){
-	//start the timer if it's ON
-	//stop timer if it's OFF
-	mAutoSave = bool(value);
-	if (mAutoSave)
-		mAutoSaveTimer->start();
-	else
-		mAutoSaveTimer->stop();
-}
 
-//this value is sent in minutes... so multiply it by 6000!
-void MainWindow::setAutoSaveDelay(double value){
-	mAutoSaveDelay = value;
-	mAutoSaveTimer->setInterval(mAutoSaveDelay*60000);
-	// mAutoSaveTimer->setInterval(5000);
-}
-
-//incremental save will just save a new file each time...
-void MainWindow::setIncrementalSave(int value){
-	mIncrementalSave = (bool)value;
-}
-
-void MainWindow::setIncrementalSaveMax(double value){
-	mIncrementalSaveMax = (int)value;
-}
-
-void MainWindow::setSaveDirectory(QString s){
-	mSaveDirectory = s;
-}
-
-void MainWindow::checkSaveDirectory(){
-	QDir dir(mSaveDirectory);
-	if (dir.exists()){	}
-	else {
-		QString s = QString("Directory\n\n%1\n\ndoes not exist, please type a different directory name.\n\nCheck to make sure there are no unnecessary spaces at the end.").arg(mSaveDirectory);
-		QMessageBox::about(this, tr("TopMod Error"), s);
-	}
-}
-
-void MainWindow::setTextureSaveDirectory(QString s){
-  mTextureSaveDirectory = s;
-}
-
-void MainWindow::checkTextureSaveDirectory(){
-  QDir dir(mTextureSaveDirectory);
-  if (dir.exists()){  }
-  else {
-    QString s = QString("Directory\n\n%1\n\ndoes not exist, please type a different directory name.\n\nCheck to make sure there are no unnecessary spaces at the end.").arg(mTextureSaveDirectory);
-    QMessageBox::about(this, tr("TopMod Error"), s);
-  }
-}
-
-void MainWindow::setCommandCompleterIndexToggle(int value){
-	//stuff here...?
-	// std::cout << "toggle command completer thing\n";
-	mCommandCompleterIndexToggle = (bool)value;
-}
-
-//dave
-void MainWindow::changeValence2SplitOffset(double value){
-	MainWindow::vertex_split_offset = value;
-}
-
-double MainWindow::getValence2SplitOffset(){
-  return MainWindow::vertex_split_offset;
-}
-
-void MainWindow::changeFaceAreaTolerance(double value) {
-  MainWindow::face_area_tolerance = value;
-}
-
-double MainWindow::getFaceAreaTolerance() {
-  return MainWindow::face_area_tolerance;
-}
-
-void MainWindow::changeCornerCuttingAlpha(double value){
-	MainWindow::corner_cutting_alpha = value;
-}
-
-void MainWindow::changeDomeExtrudeLength(double value)
-{
-  MainWindow::domeExtrudeLength_factor = value;
-}
-
-void MainWindow::changeDooSabinExtrudeTwist(double value)
-{
-  MainWindow::ds_ex_twist = value;
-}
-
-void MainWindow::changeDomeExtrudeScale(double value)
-{
-  MainWindow::domeExtrudeScale_factor = value;
-}
-
-void MainWindow::changeDomeExtrudeRotation(double value)
-{
-  MainWindow::domeExtrudeRotation_factor = value;
-}
 
 void MainWindow::setSingleClickExtrude(int value){
 	mSingleClickExtrude = (bool)value;
@@ -365,25 +241,7 @@ void MainWindow::clear_selected(){
 	redraw();
 }
 
-//dave
-void MainWindow::toggleWireframeSplit(int state) {
-	MainWindow::wireframe_split = bool(state);
-}
-
-
 // Basics.
-void MainWindow::toggleDeleteEdgeCleanupFlag(int state) {
-	MainWindow::delete_edge_cleanup = bool(state);
-}
-
-void MainWindow::changeNumSubDivs(double value) {
-	MainWindow::num_e_subdivs = (int)value;
-}
-
-void MainWindow::changeTileTexNum(double value) {
-	MainWindow::tile_tex_n = (int)value;
-}
-
 // Extrusions.
 void MainWindow::changeExtrudeLength(double value) {
 	MainWindow::extrude_dist = value;
@@ -397,63 +255,10 @@ void MainWindow::changeExtrudeScale(double value) {
 	MainWindow::extrude_scale = value;
 }
 
-void MainWindow::changeExtrudeLength1(double value) {
-	MainWindow::extrude_length1 = value;
-}
-
-void MainWindow::changeExtrudeLength2(double value) {
-	MainWindow::extrude_length2 = value;
-}
-
-void MainWindow::changeExtrudeLength3(double value) {
-	MainWindow::extrude_length3 = value;
-}
-
-void MainWindow::changeExtrudeAngle(double value){
-	MainWindow::extrude_angle = value;
-}
-
-void MainWindow::changeExtrudeLength1Icosa(double value) {
-	MainWindow::extrude_length1_icosa = value;
-}
-
-void MainWindow::changeExtrudeLength2Icosa(double value) {
-	MainWindow::extrude_length2_icosa = value;
-}
-
-void MainWindow::changeExtrudeLength3Icosa(double value) {
-	MainWindow::extrude_length3_icosa = value;
-}
-
-void MainWindow::changeExtrudeAngleIcosa(double value){
-	MainWindow::extrude_angle_icosa = value;
-}
-
 void MainWindow::changeNumExtrusions(double value) {
 	MainWindow::num_extrusions = (int)value;
 }
 
-void MainWindow::toggleDualMeshEdgesFlag(int state) {
-	MainWindow::dual_mesh_edges_check = bool(state);
-}
-
-void MainWindow::toggleHexagonalizeDodecaExtrudeFlag(int state) {
-	MainWindow::hexagonalize_dodeca_extrude = bool(state);
-}
-
-// Stellation
-void MainWindow::changeStellateLength(double value) {
-	MainWindow::extrude_dist = value;
-}
-
-// Holes and Handles.
-void MainWindow::changeMaxSegments(double value) {
-	MainWindow::max_segments = (int)value;
-}
-
-void MainWindow::changeNumSegments(double value) {
-	MainWindow::num_segments = (int)value;
-}
 void MainWindow::changeScherkCollinsPinch(double value) {
 	MainWindow::scherk_collins_pinch = value;
 }
@@ -484,20 +289,6 @@ void MainWindow::changeScherkCollinsHoleSegSkip(double value) {
   scherk_collins_hole_seg_skip = (int)value;
 }
 
-
-
-void MainWindow::changeNumSegments2(double value){
-
-}
-
-void MainWindow::changeMaxSegments2(double value){
-
-}
-
-void MainWindow::changeWeight1(double value) {
-	MainWindow::nwt1 = value;
-}
-
 void MainWindow::toggleScherkCollins(int state) {
 	scherk_collins = bool(state);
 }
@@ -505,248 +296,11 @@ void MainWindow::toggleTriangulateNewFaces(int state) {
 	MainWindow::triangulate_new_faces = bool(state);
 }
 
-void MainWindow::toggleSymmetricWeightsFlag(int state) {
-	MainWindow::symmetric_weights = bool(state);
-}
 
-void MainWindow::changeWeight2(double value) {
-	MainWindow::nwt2 = value;
-}
-
-void MainWindow::changeExtraTwists(double value) {
-	MainWindow::num_extra_twists = (int)value;
-}
-
-//added by Ryan
-void MainWindow::changePinch(double value) {
-	MainWindow::pinching_factor = value;
-}
-void MainWindow::changePinchCenter(double value) {
-	MainWindow::pinch_center = value;
-}
-void MainWindow::changeBubble(double value) {
-	MainWindow::bubble_factor = value;
-}
-void MainWindow::changeHoleHandlePinchValue(double value) {
-	MainWindow::holeHandle_pinching_factor = value;
-}
-void MainWindow::changeHoleHandlePinchCenterValue(double value) {
-	MainWindow::holeHandle_pinch_center = value;
-}
-void MainWindow::changeHoleHandlePinchWidthValue(double value) {
-	MainWindow::holeHandle_pinch_width = value;
-}
-//end Ryan's stuff
-
-// Crust Modeling.
-void MainWindow::changeCrustScaleFactor(double value) {
-	MainWindow::crust_scale_factor = value;
-}
-
-void MainWindow::changeCrustThickness(double value) {
-	MainWindow::crust_thickness = value;
-}
-
-void MainWindow::toggleCrustCleanupFlag(int state) {
-	MainWindow::crust_cleanup = bool(state);
-}
-
-void MainWindow::crustModeling1() {
-	setMode(MainWindow::CrustModeling);
-	createCrust(true);
-	redraw();
-}
-
-void MainWindow::crustModeling2() {
-	setMode(MainWindow::CrustModeling);
-	createCrust(false);
-	redraw();
-}
-
-void MainWindow::crustModeling3() {
-// setMode(MainWindow::CrustModelingPainting);
-	createCrust2(false);
-	redraw();
-}
-
-void MainWindow::crustModeling4() {
-// setMode(MainWindow::CrustModelingPainting);
-	createCrust2(true);
-	redraw();
-}
-
-//for modified corner cutting scheme... it's the same as the first step in the wireframe process
-void MainWindow::changeModifiedCornerCuttingThickness(double value) {
-	MainWindow::modified_corner_cutting_thickness = value;
-}
-
-//column modeling and wireframe modeling
-void MainWindow::changeWireframeThickness(double value) {
-	MainWindow::wireframe_thickness = value;
-}
-
-void MainWindow::changeWireframe2Thickness(double value) {
-	MainWindow::wireframe2_thickness = value;
-}
-
-void MainWindow::changeWireframe2Width(double value) {
-	MainWindow::wireframe2_width = value;
-}
-
-void MainWindow::changeColumnThickness(double value) {
-	MainWindow::column_thickness = value;
-}
-
-void MainWindow::changeColumnSegments(double value) {
-	MainWindow::column_segments = (int)value;
-}
-
-// Multi-face handle
-void MainWindow::mfh_use_closest_edge_algo() {
-	MainWindow::mfh_algo = MainWindow::ClosestEdge;
-}
-
-void MainWindow::mfh_use_convex_hull_algo() {
-	MainWindow::mfh_algo = MainWindow::ConvexHull;
-}
-
-void MainWindow::changeMultiFaceHandleScaleFactor(double value) {
-	MainWindow::mfh_scale_factor = value;
-}
-
-void MainWindow::changeMultiFaceHandleExtrudeDist(double value) {
-	MainWindow::mfh_extrude_dist = value;
-}
-
-void MainWindow::toggleMultiFaceHandleUseMaxOffsetFlag(int state) {
-	MainWindow::mfh_use_max_offsets = bool(state);
-}
-
-//menger sponge operations
-void MainWindow::changeMengerSpongeThickness(double value) {
-	MainWindow::sponge_thickness = value;
-}
-
-void MainWindow::changeMengerSpongeCollapseThreshold(double value) {
-	MainWindow::sponge_collapse_threshold = value;
-}
-
-void MainWindow::toggleMengerSpongeFractionalThicknessFlag(int state) {
-	MainWindow::sponge_fractional_thickness = bool(state);
-}
-
-/* begin ozgur */
-//sculpting operations from ozgur
-//conical stuff from ozgur
-void MainWindow::performCutting() {
-	// DLFLEdgePtrArray eparray;
-	// DLFLVertexPtrArray vparray;
-	// DLFLEdgePtrArray fparray;
-
-	undoPush();
-	setModified(true);
-	// void performCutting( DLFLObjectPtr obj, int type,float offsetE,float offsetV,bool global,bool selected) {
-	// DLFL::performCutting(&object, MainWindow::mode,MainWindow::cutOffsetE_factor,MainWindow::cutOffsetV_factor,MainWindow::global_cut,MainWindow::selected_cut);
-	switch (selectionmask){
-		case MaskEdges:
-		// std::cout << "cut by edge!\n";
-		// active->getSelectedEdges(eparray);
-		DLFL::cutSelectedEdges(&object, MainWindow::cutOffsetE_factor,MainWindow::cutOffsetV_factor, MainWindow::global_cut);
-		break;
-		case MaskVertices:
-		// std::cout << "cut by vertex!\n";
-		// active->getSelectedVertices(vparray);
-		DLFL::cutSelectedVertices(&object, MainWindow::cutOffsetE_factor,MainWindow::cutOffsetV_factor, MainWindow::global_cut);
-		break;
-		case MaskFaces:
-		// std::cout << "cut by face!\n";
-		// active->getSelectedFaces(fparray);
-		DLFL::cutSelectedFaces(&object, MainWindow::cutOffsetE_factor,MainWindow::cutOffsetV_factor, MainWindow::global_cut);
-		break;
-		default:
-		break;
-	};
-  active->recomputePatches();
-	active->recomputeNormals();
-	MainWindow::clearSelected();
-	redraw();
-}
-
-void MainWindow::createConvexHull() {
-	undoPush();
-	setModified(true);
-	DLFL::createConvexHull(&object);
-  active->recomputePatches();
-	active->recomputeNormals();
-	MainWindow::clearSelected();
-	redraw();
-}
-
-void MainWindow::createDualConvexHull() {
-	undoPush();
-	setModified(true);
-	DLFL::createDualConvexHull(&object);
-  active->recomputePatches();
-	active->recomputeNormals();
-	MainWindow::clearSelected();
-	redraw();
-}
-
-void MainWindow::changeCutOffsetE(double value) {
-	MainWindow::cutOffsetE_factor= value;
-}
-
-void MainWindow::changeCutOffsetV(double value) {
-	MainWindow::cutOffsetV_factor= value;
-}
-
-void MainWindow::changePNormalBendS(double value) {
-	MainWindow:: pnormalBendS_factor= value;
-}
-
-void MainWindow::changePNormalBendT(double value) {
-	MainWindow:: pnormalBendT_factor= value;
-}
-
-void MainWindow::toggleGlobalCut(int state){    //ozgur
-	MainWindow::global_cut = bool(state);
-}
-void MainWindow::toggleSelectedCut(int state){  //ozgur
-	MainWindow::selected_cut = bool(state);
-}
-
-void MainWindow::changeTiltPlane1(double value){
-
-}
-void MainWindow::changeTiltPlane2(double value){
-
-}
-/* end ozgur */
-
-//dave 11.07
-void MainWindow::setPaintBucketColor(QColor c){
-	MainWindow::paint_bucket_color = c;
-}
-
-void MainWindow::paintSelectedFaces(){
-	//iterate through the selected faces and color them with object.addMaterial?
-	undoPush();
-	// DLFLFacePtrArray fparray;
-	// fparray.resize(active->numSelectedFaces());
-	for (int i=0; i < active->numSelectedFaces(); ++i)	{
-		active->getSelectedFace(i)->setMaterial(object.addMaterial(RGBColor(paint_bucket_color.redF(),paint_bucket_color.greenF(),paint_bucket_color.blueF())));
-	}
-	MainWindow::clearSelected();
-  active->recomputePatches();
-	active->recomputeNormals();
-	redraw();
-
-}
 
 void MainWindow::clearMaterials(){
 	undoPush();
 	object.clearMaterials();
-  active->recomputePatches();
 	active->recomputeNormals();
 	redraw();
 }
@@ -796,994 +350,20 @@ void MainWindow::freezeTransforms() {
 	object.scale_factor.set(1,1,1);
 	object.rotation.reset();
 	object.tr.reset();
-  active->recomputePatches();
 	active->recomputeLighting();
 	redraw();
 }
 
-// // Global operations (don't require selection)
-// void MainWindow::active->recomputeNormals(void)     // Recompute normals and lighting
-// {
-// 	object.computeNormals();
-// 	computeLighting( &object, patchObject, &plight);
-// }
-//
-// void MainWindow::recomputeLighting(void)                // Recompute lighting
-// {
-// 	computeLighting( &object, patchObject, &plight);
-// }
-//
-// void MainWindow::active->recomputePatches(void) // Recompute the patches for patch rendering
-// {
-//   if(patchObject)
-//     patchObject->updatePatches(&object);
-// }
-//
-void MainWindow::subdivideAllEdges(void)              // Sub-divide all edges
-{
-	undoPush();
-	DLFL::subdivideAllEdges(&object,MainWindow::num_e_subdivs);
-	MainWindow::clearSelected();
-  active->recomputePatches();
-	active->recomputeNormals();
-	redraw();
-}
-
-void MainWindow::subdivideSelectedEdges(void) // Subdivide all selected edges
-{
-	undoPush();
-	// DLFLEdgePtrArray eparray;
-	// eparray.resize(active->numSelectedEdges());
-	for (int i=0; i < active->numSelectedEdges(); ++i)	{
-		subdivideEdge(&object,MainWindow::num_e_subdivs, active->getSelectedEdge(i));
-	}
-	// DLFL::subdivideEdges(&object,fparray,use_quads);
-	MainWindow::clearSelected();
-  active->recomputePatches();
-	active->recomputeNormals();
-	redraw();
-}
-
-void MainWindow::subdivideSelectedFaces(void) // Subdivide all selected faces
-{
-	undoPush();
-	DLFLFacePtrArray fparray;
-	fparray.resize(active->numSelectedFaces());
-	for (int i=0; i < active->numSelectedFaces(); ++i)	{
-		fparray[i] = active->getSelectedFace(i);
-	}
-	DLFL::subdivideFaces(&object,fparray,use_quads);
-	MainWindow::clearSelected();
-  active->recomputePatches();
-	active->recomputeNormals();
-	redraw();
-}
-
-void MainWindow::subdivideAllFaces(void) // Subdivide all the faces
-{
-	undoPush();
-	DLFL::subdivideAllFaces(&object,use_quads);
-	MainWindow::clearSelected();
-  active->recomputePatches();
-	active->recomputeNormals();
-	redraw();
-}
-
-void MainWindow::createMultiFaceHandle(void) // Create multi-face handle between selected faces
-{
-	int numsel = active->numSelectedFaces();
-	if ( numsel < 3 ) return;
-	undoPush();
-	DLFLFacePtrArray sel_faces;
-	DLFLFacePtr sfptr;
-	for (int i=0; i < numsel; ++i)	{
-		sfptr = active->getSelectedFace(i);
-		if ( sfptr ) sel_faces.push_back(sfptr);
-	}
-	switch ( MainWindow::mfh_algo )	{
-		case ConvexHull :
-		DLFL::multiConnectFaces(&object,sel_faces,MainWindow::mfh_scale_factor,MainWindow::mfh_extrude_dist,MainWindow::mfh_use_max_offsets);
-		break;
-		case ClosestEdge :
-		DLFL::multiConnectFaces(&object,sel_faces);
-		break;
-		default :
-		break;
-	}
-  active->recomputePatches();
-	active->recomputeNormals();
-	MainWindow::clearSelected();
-	redraw();
-}
-
-void MainWindow::multiConnectMidpoints(void)
-{
-	// Multi-connect midpoints after simplest-subdivision without edge deletion
-	undoPush();
-	DLFL::multiConnectMidpoints(&object);
-  active->recomputePatches();
-	active->recomputeNormals();
-	MainWindow::clearSelected();
-	redraw();
-}
-
-void MainWindow::multiConnectCrust(void)
-{
-	// Multi-connect after creating crust
-	undoPush();
-	DLFL::multiConnectCrust(&object);
-  active->recomputePatches();
-	active->recomputeNormals();
-	MainWindow::clearSelected();
-	redraw();
-}
-
-void MainWindow::modifiedMultiConnectCrust(void)
-{
-	// Modified multi-connect after creating crust
-	undoPush();
-	DLFL::modifiedMultiConnectCrust(&object);
-  active->recomputePatches();
-	active->recomputeNormals();
-	MainWindow::clearSelected();
-	redraw();
-}
-
-void MainWindow::createSponge(void)
-{
-	undoPush();
-	DLFL::createSponge(&object,MainWindow::sponge_thickness,
-		MainWindow::sponge_collapse_threshold);
-  active->recomputePatches();
-	active->recomputeNormals();
-	MainWindow::clearSelected();
-	redraw();
-}
-
-void MainWindow::planarizeFaces(void)                  // Planarize all faces
-{
-	undoPush();
-	DLFL::planarize(&object);
-  active->recomputePatches();
-	active->recomputeNormals();
-	redraw();
-}
-
-void MainWindow::spheralizeObject(void)         // Spheralize object vertices
-{
-	undoPush();
-	DLFL::spheralize(&object);
-  active->recomputePatches();
-	active->recomputeNormals();
-	redraw();
-}
-
-void MainWindow::smoothMesh(void)                          // Smooth the mesh
-{
-	undoPush();
-	DLFL::meshsmooth(&object);
-  active->recomputePatches();
-	active->recomputeNormals();
-	redraw();
-}
-
-void MainWindow::subdivideCatmullClark(void)     // Catmull-Clark subdivision
-{
-	undoPush();
-	DLFL::catmullClarkSubdivide(&object);
-  active->recomputePatches();
-	active->recomputeNormals();
-	MainWindow::clearSelected();
-	QString cmd( "subdivide(\"catmull-clark\")");
-	emit echoCommand( cmd );
-	// redraw();
-}
-
-void MainWindow::subdivideDooSabin(void)             // Doo-Sabin subdivision
-{
-	undoPush();
-
-	// QProgressDialog *progress = new QProgressDialog("Performing Doo Sabin Remeshing...", "Cancel", 0, 1);
-	// progress->setMinimumDuration(2000);
-	// progress->setWindowModality(Qt::WindowModal);
-
-	// DLFLObjectPtr t = object;
-	// active->setRenderingEnabled(false);
-
-	// if (!DLFL::dooSabinSubdivide(&object, doo_sabin_check/* , progress*/) ){
-		// active->recomputePatches();
-		// active->recomputeNormals();
-		// undo();
-		// MainWindow::clearSelected();
-		// active->setRenderingEnabled(true);
-	// }
-	// else {
-		// object = t;
-		// delete t;
-		// active->setRenderingEnabled(true);
-
-
-  // Fenghui's simple profiler for the remeshing operation.
-  std::clock_t start = std::clock();
-  std::clock_t op = std::clock();
-  std::clock_t recompute_patches = std::clock();
-  std::clock_t recompute_normals = std::clock();
-
-
-  DLFL::dooSabinSubdivide(&object, doo_sabin_check/* , progress*/);
-
-  // Fenghui, record the time after the remeshing.
-  op = std::clock();
-
-  active->recomputePatches();
-
-  // Fenghui, record the time after compute patches.
-  recompute_patches = std::clock();
-
-  active->recomputeNormals();
-
-  // Fenghui, record the time after compute normals.
-  recompute_normals = std::clock();
-
-  MainWindow::clearSelected();
-  QString cmd( "subdivide(\"doo-sabin\",");
-  QString check("False");
-  if( doo_sabin_check )
-    check = QString("True");
-		cmd += check + QString(")");
-		emit echoCommand( cmd );
-	// }
-
-  // Fenghui, output the time taken to perform each steps.
-  cout << "DooSabin:" << (op - start) / (double)CLOCKS_PER_SEC
-       << ":" << (recompute_patches - op) / (double)CLOCKS_PER_SEC
-       << ":" << (recompute_normals - recompute_patches) / (double)CLOCKS_PER_SEC
-       << ":" << (std::clock() - recompute_normals) / (double)CLOCKS_PER_SEC
-       << endl;
-  // Fenghui's simple profiler for DooSabin, end!
-}
-
-void MainWindow::subdivideHoneycomb(void)            // Honeycomb subdivision
-{
-	undoPush();
-	DLFL::honeycombSubdivide(&object);
-  active->recomputePatches();
-	active->recomputeNormals();
-	MainWindow::clearSelected();
-
-	QString cmd("subdivide(\"honeycomb\")");
-	emit echoCommand( cmd );
-}
-
-void MainWindow::subdivideRoot4(void)                   // Root-4 subdivision
-{
-	undoPush();
-	DLFL::root4Subdivide( &object, MainWindow::weight_factor,MainWindow::twist_factor);
-  active->recomputePatches();
-	active->recomputeNormals();
-	MainWindow::clearSelected();
-	QString cmd( "subdivide(\"root4\",");
-	cmd += QString().setNum(MainWindow::weight_factor) + QString(",");
-	cmd += QString().setNum(MainWindow::twist_factor) + QString(")");
-	emit echoCommand( cmd );
-}
-
-void MainWindow::subdivideCornerCutting(void)   // Corner-cutting subdivision
-{
-	undoPush();
-	DLFL::cornerCuttingSubdivide(&object, MainWindow::corner_cutting_alpha);
-  active->recomputePatches();
-	active->recomputeNormals();
-	MainWindow::clearSelected();
-	QString cmd("subdivide(\"corner-cut\")");
-	emit echoCommand( cmd );
-}
-
-void MainWindow::subdivideModifiedCornerCutting(void)   // Modified Corner-cutting subdivision
-{
-	undoPush();
-	DLFL::modifiedCornerCuttingSubdivide(&object,MainWindow::modified_corner_cutting_thickness);
-  active->recomputePatches();
-	active->recomputeNormals();
-	MainWindow::clearSelected();
-	// QString cmd("subdivide(\"modified-corner-cut\")");
-	// emit echoCommand( cmd );
-}
-
-
-void MainWindow::subdivideLinearVertexInsertion(void) // Bi-linear Vertex-insertion remeshing
-{
-	undoPush();
-	DLFL::subdivideAllFaces(&object,true);
-  active->recomputePatches();
-	active->recomputeNormals();
-	MainWindow::clearSelected();
-	QString cmd("subdivide(\"linear-vertex\",True)");
-	emit echoCommand( cmd );
-}
-
-void MainWindow::subdivideSimplest(void)        // Corner-cutting subdivision
-{
-	undoPush();
-	DLFL::simplestSubdivide(&object);
-  active->recomputePatches();
-	active->recomputeNormals();
-	MainWindow::clearSelected();
-	QString cmd("subdivide(\"simplest\")");
-	emit echoCommand( cmd );
-}
-
-void MainWindow::subdivideVertexCutting(void)   // Vertex-cutting subdivision
-{
-	undoPush();
-	DLFL::vertexCuttingSubdivide(&object,MainWindow::vertex_cutting_offset);
-  active->recomputePatches();
-	active->recomputeNormals();
-	MainWindow::clearSelected();
-
-	QString cmd = QString("subdivide(\"vertex-cut\"," )
-		+ QString().setNum(MainWindow::vertex_cutting_offset)
-		+ QString(")");
-	emit echoCommand( cmd );
-}
-
-void MainWindow::subdividePentagonal(void)          // Pentagonal subdivision
-{
-	undoPush();
-	DLFL::pentagonalSubdivide(&object,MainWindow::pentagonal_offset);
-  active->recomputePatches();
-	active->recomputeNormals();
-	MainWindow::clearSelected();
-	QString cmd( "subdivide(\"pentagon\",");
-	cmd += QString().setNum(MainWindow::pentagonal_offset) + QString(")");
-	emit echoCommand( cmd );
-}
-
-void MainWindow::subdivideCubicPentagonal(void) // Cubic Pentagonal remeshing scheme
-{
-// Implemented as Pentagonal + Dual + Dual
-	undoPush();
-	DLFL::pentagonalSubdivide(&object,MainWindow::pentagonal_offset);
-	DLFL::createDual(&object,true); // Use accurate method
-	DLFL::createDual(&object,true); // Use accurate method
-  active->recomputePatches();
-	active->recomputeNormals();
-	MainWindow::clearSelected();
-	QString cmd( "subdivide(\"pentagon\",");
-	cmd += QString().setNum(MainWindow::pentagonal_offset) + QString(")");
-	cmd += QString("\ndual()\ndual()");
-	emit echoCommand( cmd );
-}
-
-void MainWindow::subdivideDualPentagonal(void) // Dual-Pentagonal subdivision
-{
-// Implemented as Dual + Pentagonal + Dual
-	undoPush();
-	DLFL::createDual(&object,true); // Use accurate method
-	DLFL::pentagonalSubdivide(&object,MainWindow::pentagonal_offset);
-	DLFL::createDual(&object,true); // Use accurate method
-  active->recomputePatches();
-	active->recomputeNormals();
-	MainWindow::clearSelected();
-	QString cmd( "dual()\nsubdivide(\"pentagon\",");
-	cmd += QString().setNum(MainWindow::pentagonal_offset) + QString(")");
-	cmd += QString("\ndual()");
-	emit echoCommand( cmd );
-}
-
-void MainWindow::subdividePentagonPreserving(void) // Pentagon preserving remeshing
-{
-	undoPush();
-	DLFL::pentagonalSubdivide2(&object,MainWindow::pentagonal_scale);
-  active->recomputePatches();
-	active->recomputeNormals();
-	MainWindow::clearSelected();
-	QString cmd( "subdivide(\"pentagon-preserve\",");
-	cmd += QString().setNum(MainWindow::pentagonal_scale) + QString(")");
-	emit echoCommand( cmd );
-}
-
-void MainWindow::subdivideDualPentagonPreserving(void) // Dual Pentagon preserving remeshing
-{
-// Implemented as Dual + Pentagonal + Dual
-	undoPush();
-	DLFL::createDual(&object,true); // Use accurate method
-	DLFL::pentagonalSubdivide2(&object,MainWindow::pentagonal_scale);
-	DLFL::createDual(&object,true); // Use accurate method
-  active->recomputePatches();
-	active->recomputeNormals();
-	MainWindow::clearSelected();
-	QString cmd( "dual()\nsubdivide(\"pentagon-preserve\",");
-	cmd += QString().setNum(MainWindow::pentagonal_scale) + QString(")");
-	cmd += QString("\ndual()");
-	emit echoCommand( cmd );
-}
-
-void MainWindow::subdivideDualHexagonPreserving(void) // Dual Hexagon Preserving remeshing
-{
-// Implemented as Dual + Root4 + Dual
-	undoPush();
-	DLFL::createDual(&object,true); // Use accurate method
-	DLFL::root4Subdivide(&object,MainWindow::weight_factor,MainWindow::twist_factor);
-	DLFL::createDual(&object,true); // Use accurate method
-  active->recomputePatches();
-	active->recomputeNormals();
-	MainWindow::clearSelected();
-	QString cmd( "dual()\nsubdivide(\"root4\",");
-	cmd += QString().setNum(MainWindow::weight_factor) + QString(",");
-	cmd += QString().setNum(MainWindow::twist_factor) + QString(")");
-	cmd += QString("\ndual()");
-	emit echoCommand( cmd );
-}
-
-void MainWindow::subdivideRoot3(void)                     // Root-3 remeshing
-{
-// Implemented as Dual + Honeycomb + Dual
-	undoPush();
-	DLFL::createDual(&object,true); // Use accurate method
-	DLFL::honeycombSubdivide(&object);
-	DLFL::createDual(&object,true); // Use accurate method
-  active->recomputePatches();
-	active->recomputeNormals();
-	MainWindow::clearSelected();
-
-	QString cmd = QString("dual()\n");
-	cmd += QString("subdivide(\"honeycomb\")\n");
-	cmd += QString("dual()");
-	emit echoCommand( cmd );
-}
-
-void MainWindow::subdivideLoop(void)                      // Loop subdivision
-{
-	undoPush();
-	DLFL::loopSubdivide(&object);
-  active->recomputePatches();
-	active->recomputeNormals();
-	MainWindow::clearSelected();
-
-	QString cmd("subdivide(\"loop\")\n");
-	emit echoCommand( cmd );
-}
-
-void MainWindow::subdivideDualLoop(void)          // Dual of Loop subdivision
-{
-// Implemented as Dual + Loop + Dual
-	undoPush();
-	DLFL::createDual(&object,true); // Use accurate method
-	DLFL::loopSubdivide(&object);
-	DLFL::createDual(&object,true); // Use accurate method
-  active->recomputePatches();
-	active->recomputeNormals();
-	MainWindow::clearSelected();
-
-	QString cmd = QString("dual()\n");
-	cmd += QString("subdivide(\"loop\")\n");
-	cmd += QString("dual()");
-	emit echoCommand( cmd );
-}
-
-void MainWindow::subdivide1264(void)                      // 12-6-4 remeshing
-{
-// Implemented as Dual + Dual 12-6-4 + Dual
-	undoPush();
-	DLFL::createDual(&object,true); // Use accurate method
-	DLFL::dual1264Subdivide(&object,MainWindow::dual1264_scale_factor);
-	DLFL::createDual(&object,true); // Use accurate method
-  active->recomputePatches();
-	active->recomputeNormals();
-	MainWindow::clearSelected();
-
-	QString cmd = QString("dual()\ndual()\n");
-	cmd += QString("subdivide(\"dual-12.6.4\",")
-		+ QString().setNum(MainWindow::dual1264_scale_factor)
-		+ QString(")\n");
-	cmd += QString("dual()");
-	emit echoCommand(cmd);
-}
-
-void MainWindow::subdivideDual1264(void) // Dual of 12-6-4 remeshing - Bei & Cansin
-{
-	undoPush();
-	DLFL::dual1264Subdivide(&object,MainWindow::dual1264_scale_factor);
-  active->recomputePatches();
-	active->recomputeNormals();
-	MainWindow::clearSelected();
-
-	QString cmd("subdivide(\"dual-12.6.4\",");
-	cmd += QString().setNum(MainWindow::dual1264_scale_factor);
-	cmd += QString(")");
-	emit echoCommand(cmd);
-}
-
-void MainWindow::subdivideCheckerBoard(void)       // Checker board remeshing
-{
-	undoPush();
-	DLFL::checkerBoardRemeshing(&object,MainWindow::checkerboard_thickness);
-  active->recomputePatches();
-	active->recomputeNormals();
-	MainWindow::clearSelected();
-	QString cmd("subdivide(\"checker\",");
-	cmd += QString().setNum(MainWindow::checkerboard_thickness);
-	cmd += QString(")");
-	emit echoCommand(cmd);
-}
-
-void MainWindow::subdivideDualCheckerBoard(void) // Dual Checker board remeshing
-{
-// Implemented as Dual + Checker board + Dual
-	undoPush();
-	setModified(true);
-	DLFL::createDual(&object,true); // Use accurate method
-	DLFL::checkerBoardRemeshing(&object,MainWindow::checkerboard_thickness);
-	DLFL::createDual(&object,true); // Use accurate method
-  active->recomputePatches();
-	active->recomputeNormals();
-	MainWindow::clearSelected();
-	QString cmd("dual()\nsubdivide(\"checker\",");
-	cmd += QString().setNum(MainWindow::checkerboard_thickness);
-	cmd += QString(")\ndual()");
-	emit echoCommand(cmd);
-}
-
-void MainWindow::subdivideStar(void)               // Star subdivision - Doug
-{
-	undoPush();
-	setModified(true);
-	DLFL::starSubdivide(&object,MainWindow::star_offset);
-  active->recomputePatches();
-	active->recomputeNormals();
-	MainWindow::clearSelected();
-
-	QString cmd = QString("subdivide(\"star\")");
-	emit echoCommand( cmd );
-}
-
-void MainWindow::subdivideSqrt3(void)           // sqrt(3) subdivision - Doug
-{
-	undoPush();
-	setModified(true);
-	DLFL::sqrt3Subdivide(&object);
-  active->recomputePatches();
-	active->recomputeNormals();
-	MainWindow::clearSelected();
-
-	QString cmd = QString("subdivide(\"sqrt3\")");
-	emit echoCommand( cmd );
-}
-
-void MainWindow::subdivideFractal(void)                     // fractal - Doug
-{
-	undoPush();
-	setModified(true);
-	DLFL::fractalSubdivide(&object,MainWindow::fractal_offset);
-  active->recomputePatches();
-	active->recomputeNormals();
-	MainWindow::clearSelected();
-
-	QString cmd("subdivide(\"fractal\",");
-	cmd += QString().setNum(MainWindow::fractal_offset);
-	cmd += QString(")");
-	emit echoCommand(cmd);
-}
-
-void MainWindow::subStellate1(void)            // stellate subdivision - Eric
-{
-	undoPush();
-	setModified(true);
-	DLFL::stellateSubdivide(&object);
-  active->recomputePatches();
-	active->recomputeNormals();
-	MainWindow::clearSelected();
-
-	QString cmd = QString("subdivide(\"stellate\")");
-	emit echoCommand( cmd );
-}
-
-void MainWindow::subStellate2(void)            // stellate subdivision - Eric
-{
-	undoPush();
-	setModified(true);
-	DLFL::twostellateSubdivide(&object,MainWindow::substellate_height, MainWindow::substellate_curve);
-  active->recomputePatches();
-	active->recomputeNormals();
-	MainWindow::clearSelected();
-
-	QString cmd = QString("subdivide(\"double-stellate\",");
-	cmd += QString().setNum(MainWindow::substellate_height) + QString(",");
-	cmd += QString().setNum(MainWindow::substellate_curve) + QString(")");
-	emit echoCommand( cmd );
-}
-
-void MainWindow::subdivideDome(void)                          // Bei & Cansin
-{
-	undoPush();
-	setModified(true);
-	DLFL::domeSubdivide(&object,MainWindow::domeLength_factor, MainWindow::domeScale_factor);
-  active->recomputePatches();
-	active->recomputeNormals();
-	MainWindow::clearSelected();
-
-	QString cmd = QString("subdivide(\"dome\",");
-	cmd += QString().setNum(MainWindow::substellate_height) + QString(",");
-	cmd += QString().setNum(MainWindow::substellate_curve) + QString(")");
-	emit echoCommand( cmd );
-}
-
-void MainWindow::subdivideDooSabinBC(void) // Doo-Sabin(BC) subdivision - Bei & Cansin
-{
-	undoPush();
-	setModified(true);
-	DLFL::dooSabinSubdivideBC(&object,MainWindow::doo_sabin_check);
-  active->recomputePatches();
-	active->recomputeNormals();
-	MainWindow::clearSelected();
-	QString check("False");
-	if(MainWindow::doo_sabin_check)
-		check = QString("True");
-	QString cmd = QString("subdivide(\"doo-sabin-bc\",");
-	cmd += check + QString(")");
-	emit echoCommand( cmd );
-}
-
-void MainWindow::subdivideDooSabinBCNew(void) // Doo-Sabin(BCNew) Bei & Cansin
-{
-	undoPush();
-	setModified(true);
-	DLFL::dooSabinSubdivideBCNew(&object,MainWindow::dooSabinBCnewScale_factor,
-		MainWindow::dooSabinBCnewLength_factor);
-  active->recomputePatches();
-	active->recomputeNormals();
-	MainWindow::clearSelected();
-	QString cmd = QString("subdivide(\"doo-sabin-bc-new\",");
-	cmd += QString().setNum(MainWindow::dooSabinBCnewScale_factor) + QString(",");
-	cmd += QString().setNum(MainWindow::dooSabinBCnewLength_factor) + QString(")");
-	emit echoCommand( cmd );
-}
-
-void MainWindow::subdivideLoopStyle(void)     // Loop-style subdivision - Bei
-{
-	undoPush();
-	setModified(true);
-	DLFL::loopStyleSubdivide(&object,MainWindow::loopLength_factor);
-  active->recomputePatches();
-	active->recomputeNormals();
-	MainWindow::clearSelected();
-	QString cmd = QString("subdivide(\"loop-style\",");
-	cmd += QString().setNum(MainWindow::loopLength_factor) + QString(")");
-	emit echoCommand( cmd );
-}
-
-void MainWindow::globalStellate(void)
-{
-	// Does not use length parameter for now. Uses subdivideFace method with triangles
-	undoPush();
-	setModified(true);
-	DLFL::subdivideAllFaces(&object,false);
-  active->recomputePatches();
-	active->recomputeNormals();
-	MainWindow::clearSelected();
-
-	QString cmd = QString("subdivide(\"allfaces\",False)");
-	emit echoCommand( cmd );
-}
-
-void MainWindow::triangulate(void)
-{
-	undoPush();
-	setModified(true);
-	DLFL::triangulateAllFaces(&object);
-  active->recomputePatches();
-	active->recomputeNormals();
-	MainWindow::clearSelected();
-
-	// QString cmd = QString("subdivide(\"triangulate\",False)");
-	// emit echoCommand( cmd );
-}
-
-void MainWindow::splitValence2Vertices(void)      // Split Valence 2 vertices
-{
-	undoPush();
-	setModified(true);
-	DLFL::splitValence2Vertices(&object,MainWindow::vertex_split_offset);
-  active->recomputePatches();
-	active->recomputeNormals();
-	MainWindow::clearSelected();
-	redraw();
-}
-
-void MainWindow::cleanup2gons(void)      // cleanup 2-gons
-{
-	undoPush();
-	setModified(true);
-	DLFL::cleanup2gons(&object);
-  active->recomputePatches();
-	active->recomputeNormals();
-	MainWindow::clearSelected();
-	redraw();
-}
-
-void MainWindow::cleanupWingedVertices(void)     // Remove valence 2 vertices
-{
-	undoPush();
-	setModified(true);
-	DLFL::cleanupWingedVertices(&object);
-  active->recomputePatches();
-	active->recomputeNormals();
-	MainWindow::clearSelected();
-	redraw();
-}
-
-void MainWindow::createDual(void)                       // Create dual object
-{
-	undoPush();
-	setModified(true);
-	DLFL::createDual(&object,MainWindow::accurate_dual);
-  active->recomputePatches();
-	active->recomputeNormals();
-	MainWindow::clearSelected();
-
-	QString cmd = QString("dual()");
-	emit echoCommand( cmd );
-}
-
-void MainWindow::createCrust(bool use_scaling)        // Create a crust
-{
-	undoPush();
-	setModified(true);
-	if ( use_scaling )
-		DLFL::createCrustWithScaling(&object,MainWindow::crust_scale_factor);
-	else
-		DLFL::createCrust(&object,MainWindow::crust_thickness);
-  active->recomputePatches();
-	active->recomputeNormals();
-	MainWindow::clearSelected();
-	redraw();
-}
-
-
-//this function will tag all currently selected faces with the FTHole type
-//when the user presses the rind modeling button, and it will punch out all those faces
-void MainWindow::createCrust2(bool use_scaling) {
-	// DLFLFacePtrArray::iterator first, last;
-	vector<DLFLFacePtr>::iterator it;
-
-	QString facelist("[");
-
-	undoPush();
-	setModified(true);
-	if ( use_scaling )
-		DLFL::createCrustWithScaling(&object,MainWindow::crust_scale_factor);
-	else
-		DLFL::createCrust(&object,MainWindow::crust_thickness);
-  active->recomputePatches();
-	active->recomputeNormals();
-	if ( active->numSelectedFaces() >= 1 ) {
-		DLFLFacePtrArray sfptrarr = active->getSelectedFaces();
-		if ( sfptrarr[0] ) {
-			for(it = sfptrarr.begin(); it != sfptrarr.end(); it++) {
-				(*it)->setType(FTHole);
-				facelist += QString().setNum((*it)->getID()) + QString(",");
-			}
-			facelist += QString("]");
-			DLFL::punchHoles(&object);
-		}
-	}
-  active->recomputePatches();
-	active->recomputeNormals();
-	active->clearSelectedFaces();
-	redraw();
-
-	QString cmd = QString("rind(") +
-		facelist + QString(",True,") +
-		MainWindow::crust_thickness +
-		QString(")");
-	emit echoCommand( cmd );
-}
-
-void MainWindow::makeWireframe(void)                    // Create a wireframe
-{
-	undoPush();
-	setModified(true);
-	DLFL::makeWireframe(&object,MainWindow::wireframe_thickness,MainWindow::wireframe_split);
-  active->recomputePatches();
-	active->recomputeNormals();
-	MainWindow::clearSelected();
-	redraw();
-}
-
-void MainWindow::makeWireframe2() {// Create a wireframe // dave {
-	// vector<DLFLFacePtr>::iterator it;
-	undoPush();
-	setModified(true);
-	DLFL::makeWireframe2(&object,MainWindow::wireframe2_thickness, MainWindow::wireframe2_width,MainWindow::wireframe_split);
-	// active->recomputePatches();
-	// active->recomputeNormals();
-	// if ( active->numSelectedFaces() >= 1 ) {
-	// 	DLFLFacePtrArray sfptrarr = active->getSelectedFaces();
-	// 	if ( sfptrarr[0] ) {
-	// 		//mark all the faces for hole punching
-	// 		for(it = sfptrarr.begin(); it != sfptrarr.end(); it++)
-	// 			(*it)->setType(FTHole);
-	// 		// object.punchHoles();
-	// 		object.makeWireframe2(MainWindow::wireframe_thickness);
-	// 	}
-	// }
-  active->recomputePatches();
-	active->recomputeNormals();
-	MainWindow::clearSelected();
-	redraw();
-}
-
-void MainWindow::makeWireframeWithColumns(void) // Create a wireframe using columns
-{
-	undoPush();
-	setModified(true);
-	DLFL::makeWireframeWithColumns(&object,MainWindow::column_thickness, MainWindow::column_segments);
-  active->recomputePatches();
-	active->recomputeNormals();
-	MainWindow::clearSelected();
-	redraw();
-}
-/*
-void MainWindow::makeUnitCube(double edgelength)
-{
-	undoPush();
-	setModified(true);
-	DLFLObjectPtr unitcube = DLFLObject::makeUnitCube(edgelength);
-	object.reset();
-	object.splice(*unitcube);
-	delete unitcube;
-	active->recomputePatches();
-	active->recomputeNormals();
-	MainWindow::clearSelected();
-}
-
-void MainWindow::makeUnitTetrahedron(double edgelength)
-{
-	undoPush();
-	setModified(true);
-	DLFLObjectPtr unittetra = DLFLObject::makeUnitTetrahedron();
-	object.reset();
-	object.splice(*unittetra);
-	delete unittetra;
-	active->recomputePatches();
-	active->recomputeNormals();
-	MainWindow::clearSelected();
-}
-
-void MainWindow::makeMengerSponge(int level)
-{
-	undoPush();
-	setModified(true);
-	DLFLObjectPtr mengersponge = DLFLObject::makeMengerSponge(level);
-	object.reset();
-	object.splice(*mengersponge);
-	delete mengersponge;
-	active->recomputePatches();
-	active->recomputeNormals();
-	MainWindow::clearSelected();
-}
-
-void MainWindow::makeSierpinskiTetrahedron(int level)
-{
-	undoPush();
-	setModified(true);
-	DLFLObjectPtr stetra = DLFLObject::makeSierpinskiTetrahedron(level);
-	object.reset();
-	object.splice(*stetra);
-	delete stetra;
-	active->recomputePatches();
-	active->recomputeNormals();
-	MainWindow::clearSelected();
-}
-*/
-void MainWindow::randomAssignTexCoords(void) // Randomly assign texture coordinates
-{
-	object.randomAssignTexCoords();
-	redraw();
-}
-
-void MainWindow::assignTileTexCoords(void) // Assign texture coordinates for tile texturing
-{
-	object.assignTileTexCoords(MainWindow::tile_tex_n);
-	redraw();
-}
 
 void MainWindow::edgeCleanup(void) // Cleanup redundant edges
 {
 	undoPush();
 	setModified(true);
 	DLFL::edgeCleanup(&object);
-  active->recomputePatches();
 	active->recomputeNormals();
 	MainWindow::clearSelected();
 	redraw();
 }
-
-void MainWindow::printSummary(void)              // Print summary information
-{
-	object.print();
-}
-
-void MainWindow::printVertexList(void)                   // Print vertex list
-{
-	object.printVertexList();
-}
-
-void MainWindow::printEdgeList(void)                       // Print edge list
-{
-	object.printEdgeList();
-}
-
-void MainWindow::printCVList(void)                       // Print CV list
-{
-///object.printPatchCVList();
-}
-
-void MainWindow::printFaceList(void)                       // Print face list
-{
-	object.printFaces();
-}
-
-void MainWindow::getCommand(){
-	#ifdef QCOMPLETER
-	int i = mCommandCompleter->exec();
-	mCommandCompleter->setFocus(Qt::PopupFocusReason);
-	// QMessageBox::about(this, tr("%1").arg(text),tr("%1").arg(mCommandList.indexOf(text)));
-	if (i > -1)
-		mActionListWidget->actions().at(i)->activate(QAction::Trigger);
-	#endif
-}
-
-void MainWindow::initializeAnimatedHelp(){
-
-	mAnimatedHelpWidget = new QWidget(this);
-	// QSplashScreen *w = new QSplashScreen(this);
-	mAnimatedHelpLayout = new QVBoxLayout;
-
-	mAnimatedHelpMovie = new QMovie(this);
-	mAnimatedHelpMovie->setCacheMode(QMovie::CacheAll);
-	mAnimatedHelpMovie->setBackgroundColor(QColor(255,255,255,255));
-
-	mAnimatedHelpLabel = new QLabel(tr("No movie loaded"));
-	mAnimatedHelpLabel->setAlignment(Qt::AlignCenter);
-	// mAnimatedHelpLabel->setSizePolicy(QSizePolicy::Ignored, QSizePolicy::Ignored);
-	// mAnimatedHelpLabel->setBackgroundRole(QPalette::Dark);
-	// mAnimatedHelpLabel->setAutoFillBackground(true);
-
-	mAnimatedHelpLayout->addWidget(mAnimatedHelpLabel);
-	mAnimatedHelpLayout->addStretch(1);
-	mAnimatedHelpLayout->setMargin(0);
-	mAnimatedHelpWidget->setLayout(mAnimatedHelpLayout);
-
-	mAnimatedHelpMovie->stop();
-  mAnimatedHelpLabel->setMovie(mAnimatedHelpMovie);
-  // mAnimatedHelp->setFileName("images/insert_edge.mng");
-	// w->move(QCursor::pos());
-	// w->show();
-
-	// create the dockwidget, set it to the right side
-	mAnimatedHelpDockWidget = new QDockWidget(tr("TopMod Animated Help"), this);
-	mAnimatedHelpDockWidget->setAllowedAreas(Qt::NoDockWidgetArea);
-	mAnimatedHelpDockWidget->setWidget(mAnimatedHelpWidget);
-	// addDockWidget(Qt::RightDockWidgetArea, mAnimatedHelpDockWidget);
-	mAnimatedHelpDockWidget->hide();
-	mAnimatedHelpDockWidget->setFloating(true);
-	mAnimatedHelpDockWidget->setFeatures(QDockWidget::DockWidgetMovable | QDockWidget::DockWidgetClosable | QDockWidget::DockWidgetFloatable);
-	// mAnimatedHelpDockWidget->setResizeEnabled(false);
-	//sizing
-	mAnimatedHelpDockWidget->setMinimumSize(200,200);
-	mAnimatedHelpDockWidget->setMaximumSize(200,200);
-
-	//fix positioning later
-	mAnimatedHelpDockWidget->move(width() , 150+mToolOptionsDockWidget->height()+200);
-}
-
-void MainWindow::setAnimatedHelpImage(){
-  mAnimatedHelpMovie->setFileName("images/insert_edge.mng");
-  mAnimatedHelpMovie->start();
-}
-
 void MainWindow::deleteEdge(DLFLEdgePtr edgeptr){
   // Fenghui's simple profiler for DeleteEdge operation.
   std::clock_t start = std::clock();
@@ -1796,10 +376,7 @@ void MainWindow::deleteEdge(DLFLEdgePtr edgeptr){
   edgeptr->getVertexPointers(vp1, vp2);
 
   DLFL::deleteEdge( &object, edgeptr, true);
-  if (active->isInPatchMode()) {
-    active->recomputePatches();
-    active->recomputeNormals();
-  } else {
+  
     // Compute Normals only for the face effected
     map<DLFLVertexPtr, DLFLVertexPtrList::iterator> vertex_idx = object.getVertexIdx();
     // Make sure it is not a point sphere
@@ -1810,9 +387,8 @@ void MainWindow::deleteEdge(DLFLEdgePtr edgeptr){
     if (vertex_idx.find(vp2) != vertex_idx.end()) {
       vp2->updateNormal();
     }
-  }
-}
 
+}
 void MainWindow::deleteSelected(){
 	DLFLEdgePtrArray septrarr;
 	DLFLFacePtrArray sfptrarr;
@@ -1853,42 +429,13 @@ void MainWindow::deleteSelected(){
 					for(eit = septrarr.begin(); eit != septrarr.end(); eit++)
 						//DLFL::deleteEdge( &object, *eit, true);
 						deleteEdge(*eit);
-						// active->recomputePatches();
-						// active->recomputeNormals();
 					}
 			}
 			active->clearSelectedVertices();
-      // active->recomputePatches();
-			// active->recomputeNormals();
 			redraw();
       break;
 		case MaskFaces:
-      // sfptrarr = active->getSelectedFaces();
-      // if ( sfptrarr[0] ) {
-      // 	undoPush();
-      // 	setModified(true);
-      // 	for(fit = sfptrarr.begin(); fit != sfptrarr.end(); fit++){
-      // 		//get edges, collapse them
-      // 		(*fit)->getEdges(septrarr);
-      // 		for(eit = septrarr.begin(); eit != septrarr.end(); eit++)
-      // 			DLFL::collapseEdge( &object, *eit, MainWindow::delete_edge_cleanup);
-      // 		// (*fit)->getCorners(sfvptrarr);
-      // 		// for(fvt = sfvptrarr.begin(); fvt != sfvptrarr.end(); fvt++){
-      // 		// 	if (*fvt){
-      // 		// 		DLFLVertexPtr vptr = (*fvt)->getVertexPtr();
-      // 		// 		if (vptr){
-      // 		// 			vptr->getEdges(septrarr);
-      // 		// 			for(eit = septrarr.begin(); eit != septrarr.end(); eit++)
-      // 		// 				DLFL::deleteEdge( &object, *eit, MainWindow::delete_edge_cleanup);
-      // 		// 		}
-      // 		// 	}
-      // 		// } // end loop through corners of current face
-      // 	}//end loop through selected faces
-      // 	active->recomputePatches();
-      // 	active->recomputeNormals();
-      // }
-      // active->clearSelectedFaces();
-      // redraw();
+
       break;
 		case MaskCorners:
       break;
@@ -1897,26 +444,6 @@ void MainWindow::deleteSelected(){
 		default:
       break;
 	};
-}
-
-void MainWindow::collapseSelectedEdges(){
-	DLFLEdgePtrArray septrarr;
-	vector<DLFLEdgePtr>::iterator eit;
-	septrarr = active->getSelectedEdges();
-	if ( septrarr[0] ) {
-		undoPush();
-		setModified(true);
-		vector<DLFLEdgePtr>::iterator eit;
-		for(eit = septrarr.begin(); eit != septrarr.end(); eit++){
-			if (*eit){
-				DLFL::collapseEdge( &object, *eit, MainWindow::delete_edge_cleanup);
-				active->recomputeNormals();
-			}
-		}
-    active->recomputePatches();
-	}
-	active->clearSelectedEdges();
-	redraw();
 }
 
 void MainWindow::selectEdgesFromFaces(){
@@ -1937,8 +464,7 @@ void MainWindow::selectEdgesFromFaces(){
 				}
 			}
 		}
-    active->recomputePatches();
-		active->recomputeNormals();
+  		active->recomputeNormals();
 	}
 	setMode(MainWindow::SelectEdge);
 	active->clearSelectedFaces();
@@ -1962,8 +488,7 @@ void MainWindow::selectEdgesFromVertices(){
 				}
 			}
 		}
-    active->recomputePatches();
-		active->recomputeNormals();
+  		active->recomputeNormals();
 	}
 	setMode(MainWindow::SelectEdge);
 	active->clearSelectedVertices();
@@ -1988,8 +513,7 @@ void MainWindow::selectFacesFromEdges(){
 				num_sel_faces++;
 			}
 		}
-    active->recomputePatches();
-		active->recomputeNormals();
+  		active->recomputeNormals();
 	}
 	setMode(MainWindow::SelectFace);
 	active->clearSelectedEdges();
@@ -2013,8 +537,7 @@ void MainWindow::selectFacesFromVertices(){
 				}
 			}
 		}
-    active->recomputePatches();
-		active->recomputeNormals();
+  		active->recomputeNormals();
 	}
 	setMode(MainWindow::SelectFace);
 	active->clearSelectedVertices();
@@ -2040,8 +563,7 @@ void MainWindow::selectVerticesFromFaces(){
 				}
 			}
 		}
-    active->recomputePatches();
-		active->recomputeNormals();
+  		active->recomputeNormals();
 	}
 	setMode(MainWindow::SelectVertex);
 	active->clearSelectedFaces();
@@ -2067,8 +589,7 @@ void MainWindow::selectVerticesFromEdges(){
 				num_sel_verts++;
 			}
 		}
-    active->recomputePatches();
-		active->recomputeNormals();
+  		active->recomputeNormals();
 	}
 	setMode(MainWindow::SelectVertex);
 	active->clearSelectedEdges();
@@ -2410,27 +931,7 @@ void MainWindow::shrinkSelection(){
 	};
 }
 void MainWindow::reorderSelectedFaces(){
-	// DLFLFaceVertexPtrArray sfvptrarr;
-	// vector<DLFLFaceVertexPtr>::iterator fvit;
-	// DLFLFacePtrArray sfptrarr;
-	// vector<DLFLFacePtr>::iterator fit;
-	// //loop through selected corners, get corresponding faces, reorder them to start from the selected fvptr's
-	// svptrarr = active->getSelectedVertices();
-	// if ( svptrarr[0] ) {
-	// 	for(vit = svptrarr.begin(); vit != svptrarr.end(); vit++){
-	// 		(*vit)->getFaces(sfptrarr);
-	// 		for(fit = sfptrarr.begin(); fit != sfptrarr.end(); fit++){
-	// 			if (!active->isSelected(*fit)){
-	// 				active->setSelectedFace(num_sel_faces,*fit);
-	// 				num_sel_faces++;
-	// 			}
-	// 		}
-	// 	}
-	// 	active->recomputePatches();
-	// 	active->recomputeNormals();
-	// }
-	// active->clearSelectedVertices();
-	// redraw();
+
 }
 
 void MainWindow::toggleFullScreen(){
@@ -2441,11 +942,6 @@ void MainWindow::toggleFullScreen(){
 		//mSelectionMaskToolBar->toggleViewAction();
 		mPrimitivesToolBar->setVisible(true);
 		mToolsToolBar->setVisible(true);
-		mExtrusionToolBar->setVisible(true);
-		//mConicalToolBar->toggleViewAction();
-		mHighgenusToolBar->setVisible(true);
-		mTexturingToolBar->setVisible(true);
-		// mRemeshingToolBar->setVisible(true);
 		mStatusBar->show();
 	}
 	// go to full screen mode 2
@@ -2455,10 +951,7 @@ void MainWindow::toggleFullScreen(){
 		mEditToolBar->setVisible(false);
 		mPrimitivesToolBar->setVisible(false);
 		mToolsToolBar->setVisible(false);
-		mExtrusionToolBar->setVisible(false);
-		mHighgenusToolBar->setVisible(false);
-		mTexturingToolBar->setVisible(false);
-		mRemeshingToolBar->setVisible(false);
+
 	}
 	//go into full screen mode 1
 	else {

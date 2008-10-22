@@ -9,9 +9,6 @@
 // int DLFLRenderer::render_flags = 0;
 bool DLFLRenderer::reverse_object = false;
 bool DLFLRenderer::antialiasing = false;
-#ifdef GPU_OK
-bool DLFLRenderer::useGPU = false;
-#endif
 
 QColor DLFLRenderer::mWireframeColor = QColor(0,0,0);									//!< wireframe RGB color
 QColor DLFLRenderer::mSilhouetteColor = QColor(0,0,0);								//!< silhouette RGB color

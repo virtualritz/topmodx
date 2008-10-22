@@ -119,8 +119,8 @@ class PerspCamera : public Camera
 {
 
 public:
-	PerspCamera():FOV(60),nearplane(0.1),farplane(500),Camera(){};
-	PerspCamera(Vector3d eye, Vector3d center, Vector3d up):FOV(60),nearplane(0.1),farplane(500),Camera(eye,center,up){};
+	PerspCamera():FOV(60),nearplane(1.0),farplane(200),Camera(){};
+	PerspCamera(Vector3d eye, Vector3d center, Vector3d up):FOV(60),nearplane(1.0),farplane(200),Camera(eye,center,up){};
 	PerspCamera(Vector3d eye, Vector3d center, Vector3d up, float fov, float n, float f):FOV(fov),nearplane(n),farplane(f),Camera(eye,center,up){};
 	~PerspCamera(){};
 	
