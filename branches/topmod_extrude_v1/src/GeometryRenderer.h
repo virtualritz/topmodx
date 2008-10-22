@@ -4,12 +4,6 @@
 #define _GEOMETRY_RENDERER_H_
 
 #include <DLFLObject.h>
-#include "CgData.h"
-
-
-#ifdef GPU_OK
-using namespace Cg;
-#endif // GPU_OK
 
 using namespace DLFL;
 
@@ -56,11 +50,6 @@ public :
   bool isReversed;
   bool useGPU;
 	bool antialiasing;
-
-  bool drawPatchWireframe;
-  bool drawPatchBoundaries;
-  bool drawCVs;
-  bool drawPatchNormals;
 
   GLdouble* renderColor;
 

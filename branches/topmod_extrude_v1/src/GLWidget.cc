@@ -3,50 +3,8 @@
 #include "GLWidget.h"
 #include "DLFLSelection.h"
 
-/*!
-	\ingroup gui
-	@{
-	
-	\class GLWidget
-	\brief The OpenGL viewport.
-	
-	\note also handles selection 
-	
-	\see GLWidget
-*/
-
-DLFLLocatorPtrArray GLWidget::sel_lptr_array;
-/*DLFLVertexPtrArray GLWidget::sel_vptr_array;
-DLFLEdgePtrArray GLWidget::sel_eptr_array;
-DLFLFacePtrArray GLWidget::sel_fptr_array;
-DLFLFaceVertexPtrArray GLWidget::sel_fvptr_array;
-extern DLFLVertexPtrArray DLFLObject::sel_vptr_array; // List of selected DLFLVertex pointers
-extern DLFLEdgePtrArray DLFLObject::sel_eptr_array; // List of selected DLFLEdge pointers
-extern DLFLFacePtrArray DLFLObject::sel_fptr_array; // List of selected DLFLFace pointers
-extern DLFLFaceVertexPtrArray DLFLObject::sel_fvptr_array; // List of selected DLFLFaceVertex pointers
-*/
-// QGLContext *cx;
-// QGLFormat f;
-// f.setStereo( TRUE );
-// QGLFormat::setDefaultFormat( f );
-// cx->setFormat( f );
-// if ( !cx->create() )
-// // printf("FALSE \n");
-// QMessageBox::about(this, tr("false"),tr("false"));
-// if ( !cx->format().stereo() )
-// 
-// // 			QMessageBox::about(this, tr("false"),tr("false"));
-// QGLFormat f;
-// f.setStereo(true);
-// QGLContext *cx = new QGLContext(f);
-// // cx->setFormat(f);
-// if (!cx->create())
-// exit(0); // no OpenGL support, or cannot render on the specified paintdevice
-// if (!cx->format().stereo())
-// exit(0); // could not create stereo context
-
 GLWidget::GLWidget(int w, int h, DLFLRendererPtr rp, QColor color, QColor vcolor, DLFLObjectPtr op, const QGLFormat & format, QWidget * parent ) 
- : 	QGLWidget(format, parent, NULL), /*viewport(w,h,v),*/ object(op), patchObject(NULL), renderer(rp), renderObject(true),
+ : 	QGLWidget(format, parent, NULL), /*viewport(w,h,v),*/ object(op), renderer(rp), renderObject(true),
 	mRenderColor(color), mViewportColor(vcolor),/*grid(ZX,20.0,10),*/ showgrid(false), showaxes(false), mUseGPU(false), mAntialiasing(true) { 
 	
     mParent = parent;
@@ -67,72 +25,26 @@ GLWidget::GLWidget(int w, int h, DLFLRendererPtr rp, QColor color, QColor vcolor
 	Vector3d Aim(0,0,0);
 	Vector3d Pos(10,10,10);
 	Vector3d Up(-0.40824829046,0.81649658093,-0.40824829046);
-	
-
-	// pos X up
-	// 	A  X B
-	// double ax = -10, ay = -10, az = -10;
-	// double bx = 0, by = 1, bz = 0;
-	// 
-	// double cx = ay*bz - az*by;
-	// double cy = az*bx - ax*bz;
-	// double cz = ax*by - ay*bx;
-	// 
-	// double dx = cy*az - cz*ay;
-	// double dy = cz*ax - cx*az;
-	// double dz = cx*ay - cy*ax;
-	// 
-	// double sqr = sqrt(dx*dx + dy*dy + dz*dz); 
-	
-	
-	// std::cout << dx/sqr << " " << dy/sqr << " " << dz/sqr << "\n\n\n";
-	// Vector3d vv(dx,dy,dz);
-	// normalize(vv);
-	// std::cout << vv << "\n";
-	// 
-	// Vector3d right = (-(normalized(Pos))) % Up;
-	// // Up = Vector3d(-0.408248,0.816497,-0.408248);//right % (-Pos);
-	// Up = normalized(right) % (-(normalized(Pos)));
-	// normalize(Up);
-	// std::cout << Up << std::endl;
-	// mCamera = new Camera2( eye, lookat, Vector3d(-0.408248,0.816497,-0.408248));
-
-	// mCamera = new Camera2( Pos, Aim, Up);
-
-	// mCamera = new PerspCamera( Pos, Aim, Up);
 	mCamera = new PerspCamera( Vector3d(10,10,10), Vector3d(0,0,0), Vector3d(0,1,0));
 
-  // ArbitraryRotate(Vector3d(1,0,0),Vector3d(0,1,0),Vector3d(0,0,1),45.0f,45.0f,mCamera->Pos,mCamera->Aim);
-
-	// Vector3d WindowX,WindowY,WindowZ;
-	// WindowX.set(1, 0, 0);
-	// WindowY.set(0, 1, 0);
-	// 
-	// RotateX(&WindowX, 45);
-	// RotateY(&WindowX, 45);
-	// WindowX[2] = -WindowX[2];
-	// 
-	// RotateX(&WindowY, 45);
-	// RotateY(&WindowY, 45);
-	// WindowY[2] = -WindowY[2];
-	// 
-	// WindowZ = WindowX % WindowY;
-	// normalize(WindowZ);
-	// 
-	// ArbitraryRotate(WindowX, WindowY, WindowZ, 0, 0, Pos, Aim);
-	// ArbitraryRotate(Vector3d(1, 0, 0), Vector3d(0, 1, 0), Vector3d(0, 0, 1), 0, 0, Pos, Aim);
-
-	// Up = WindowY;
-	// normalize(Up);
-
+	//set color defaults
+	setViewportColor(QColor(67, 68, 88));
+	setRenderColor(QColor(255, 151, 92));
+	setCoolLightColor(QColor(27, 26, 23));
+	setWarmLightColor(QColor(255, 250, 226));
+	setWireframeColor(QColor(0, 0, 0, 255));
+	setSilhouetteColor(QColor(0, 0, 0, 255));
+	setSelectedVertexColor(QColor(0, 255, 0, 127));
+	setSelectedEdgeColor(QColor(255, 0, 0, 127));
+	setSelectedFaceColor(QColor(247, 0, 229, 127));
+	setVertexIDBgColor(QColor(127, 0, 0, 127));
+	setNormalColor(QColor(127, 0, 127));
+	setFaceCentroidColor(QColor(127, 0, 127));
+	setFaceIDBgColor(QColor(0, 0, 127, 127));
+	setEdgeIDBgColor(QColor(0, 127, 0, 127));
 }
 
 GLWidget::~GLWidget(){ 
-#ifdef GPU_OK
-  cgDestroyProgram(cg->vertProgram);
-  cgDestroyProgram(cg->fragProgram);
-	cgDestroyContext(cg->context );
-#endif
 }
 
 void GLWidget::redraw() {
@@ -160,17 +72,12 @@ void GLWidget::initializeGL( ) {
 	
 	//initialize light position and color
 	plight.position.set(50,25,0);
-	plight.warmcolor.set(1,1,0.6);
-	plight.coolcolor.set(0.2,0.2,0.4);
+	plight.warmcolor.set(1,.95,0.886);
+	plight.coolcolor.set(0.11,.11,0.09);
 	plight.intensity = 2.0;
-	
+
 	mGlobalAmbient = QColor(0,0,0);
 	
-	//enable gl lighting for use with cg functions
-	#ifdef GPU_OK
-	enableGLLights();
-	#endif
-
 	mShowVertexIDs = false;
 	mShowEdgeIDs   = false;
 	mShowFaceIDs   = false;
@@ -182,111 +89,7 @@ void GLWidget::initializeGL( ) {
 	mShowSelectionWindow = false;
 	setMouseTracking(true);
 	
-	locatorPtr = new DLFLLocator(); // brianb
-	
-	#ifdef GPU_OK
-	if (mUseGPU)
-		initCg();
-	#endif
-	
 }
-
-#ifdef GPU_OK
-void GLWidget::enableGLLights(){
-	// plight.warmcolor.r, plight.warmcolor.g, plight.warmcolor.b 
-	
-	// ENABLE THE LIGHTING
-	// glPushMatrix(); {
-	//     glMatrixMode( GL_MODELVIEW);
-	//     glLoadIdentity();
-	//     GLfloat lmodel_ambient[] = {0.8,0.8,0.8,1.0};
-	//     GLfloat lmodel_diffuse[] = {0.8,0.7,0.5,1.0};
-	//     GLfloat lmodel_specular[] = {0.0,0.0,0.0,1.0};
-	//     GLfloat spotDir[]=	{0.0,-1.0,0.0};
-	// 	GLfloat light_position[] = { plight.position[0], plight.position[1], plight.position[1], 1.0 }; //{ -1.0, 30.0, 5.0, 1.0 };
-	// 
-	//     glLightfv(GL_LIGHT0, GL_SPOT_DIRECTION, spotDir);
-	//     glLightfv(GL_LIGHT0, GL_AMBIENT, lmodel_ambient);
-	//     glLightfv(GL_LIGHT0, GL_DIFFUSE, lmodel_diffuse);
-	//     glLightfv(GL_LIGHT0, GL_SPECULAR, lmodel_specular);
-	//     glLightfv(GL_LIGHT0, GL_POSITION, light_position);
-	//     //GLfloat lmodel_diffuse2[] = {0.4,0.4,0.4,1.0};
-	//     //glLightfv(GL_LIGHT1, GL_DIFFUSE, lmodel_diffuse);
-	//     //glLightfv(GL_LIGHT1, GL_POSITION, light_position2);  
-	//   } glPopMatrix();
-	//   glEnable(GL_LIGHT0);
-  //glEnable(GL_LIGHT1);
- 
-}
-#endif
-
-#ifdef GPU_OK
-
-void GLWidget::initCg( ) {
-	if (mUseGPU){
-		cg = CgData::instance();
-	  // Create Context
-	  cg->context = cgCreateContext( );
-	  checkForCgError("creating context");
-	  // Vertex Profile
-	  cg->vertProfile = cgGLGetLatestProfile( CG_GL_VERTEX );
-	  cgGLSetOptimalOptions( cg->vertProfile );
-	  checkForCgError("selecting vertex profile");
-	  // Frag Profile
-	  cg->fragProfile = cgGLGetLatestProfile( CG_GL_FRAGMENT );
-	  cgGLSetOptimalOptions( cg->fragProfile );	
-	  checkForCgError("selecting fragment profile");
-	  // Vertex Program
-	  char *programName = new char[256];
-	  sprintf( programName, "%s", "vertShader.cg" );
-	  cg->vertProgram = cgCreateProgramFromFile( cg->context, CG_SOURCE, programName, cg->vertProfile, NULL, NULL );
-	  checkForCgError("creating vertex program from file");
-	  // Fragment Program
-	  sprintf( programName, "%s", "fragShader.cg" );
-	  cg->fragProgram = cgCreateProgramFromFile( cg->context, CG_SOURCE, programName, cg->fragProfile, NULL, NULL );
-	  checkForCgError("creating fragment program from file");
-	  delete [] programName;
-	  programName = 0;
-
-		// Bind Variables to Cg Parameters
-		cg->camToWorld = cgGetNamedParameter( cg->vertProgram, "camToWorld");
-		cg->camToWorldIT = cgGetNamedParameter( cg->vertProgram, "camToWorldIT");
-		cg->worldToLight = cgGetNamedParameter( cg->vertProgram, "worldToLight");
-		// cg->texture = cgGetNamedParameter( cg->fProgram, "texture");
-		// cg->shadowMap = cgGetNamedParameter( cg->fProgram, "shadowMap" );
-		// cg->renderToTexSize = cgGetNamedParameter( cg->fProgram, "renderToTexSize" );
-		// cg->objectID = cgGetNamedParameter( cg->fProgram, "objectID" );
-		// checkCgError( cg->context, 5 );
-
-		cg->attenDegrees = cgGetNamedParameter( cg->fragProgram, "attenDegrees" );
-		cg->eyePosition = cgGetNamedParameter( cg->vertProgram, "eyePosition" );
-
-		// cg->velocity = cgGetNamedParameter( cg->vertProgram, "velocity" );
-		// cg->objCenter = cgGetNamedParameter( cg->vertProgram, "objCenter" );
-		
-		//from book
-		cg->globalAmbient = cgGetNamedParameter( cg->vertProgram, "globalAmbient" );
-		
-		//lighting
-		cg->lightWarmColor = cgGetNamedParameter( cg->vertProgram, "lightWarmColor" );
-		cg->lightCoolColor = cgGetNamedParameter( cg->vertProgram, "lightCoolColor" );
-		cg->lightIntensity = cgGetNamedParameter( cg->vertProgram, "lightIntensity" );
-		cg->lightPosition  = cgGetNamedParameter( cg->vertProgram, "lightPosition" );
-		//object material
-		cg->Kd = cgGetNamedParameter( cg->vertProgram, "Kd" );
-		cg->Ka = cgGetNamedParameter( cg->vertProgram, "Ka" );
-		cg->Ks = cgGetNamedParameter( cg->vertProgram, "Ks" );
-		cg->basecolor = cgGetNamedParameter( cg->vertProgram, "basecolor" );
-		cg->shininess = cgGetNamedParameter( cg->vertProgram, "shininess" );
-
-	  cgGLLoadProgram( cg->vertProgram );
-	  checkForCgError("loading vertex program");
-	  cgGLLoadProgram( cg->fragProgram );
-	  checkForCgError("loading fragment program");
-	}
-}
-
-#endif // GPU_OK
 
 void GLWidget::paintEvent(QPaintEvent *event){
 	
@@ -361,58 +164,9 @@ void GLWidget::paintEvent(QPaintEvent *event){
 	glDepthRange(0,1);
 	
 	if ( renderer ) {
-		#ifdef GPU_OK
-		if (mUseGPU){
-		  cgGLBindProgram( cg->vertProgram );
-		  checkForCgError("binding vertex program");
-		  cgGLBindProgram( cg->fragProgram );
-		  checkForCgError("binding fragment program");
-	
-		  cgGLEnableProfile( cg->vertProfile );
-		  checkForCgError("enabling vertex profile");
-		  cgGLEnableProfile( cg->fragProfile );
-		  checkForCgError("enabling fragment profile");
-	
-			//set cg parameters here
-		
-			//global ambient light
-			cgGLSetParameter3f(cg->globalAmbient, mGlobalAmbient.redF(), mGlobalAmbient.greenF(), mGlobalAmbient.blueF() );
-			//send lighing info
-			cgGLSetParameter3f(cg->lightWarmColor, plight.warmcolor.r, plight.warmcolor.g, plight.warmcolor.b );
-			cgGLSetParameter3f(cg->lightCoolColor, plight.coolcolor.r, plight.coolcolor.g, plight.coolcolor.b );
-			cgGLSetParameter1f(cg->lightIntensity, plight.intensity);
-			cgGLSetParameter3f(cg->lightPosition, plight.position[0], plight.position[1], plight.position[2] );
-			//object material
-		  cgSetParameter3f(cg->basecolor, 0.0, 0.0, 0.0);		
-		  cgSetParameter3f(cg->Ka, mRenderColor.redF(), mRenderColor.greenF(), mRenderColor.blueF());
-		  cgSetParameter3f(cg->Kd, 0.0, 0.0, 0.0);
-		  cgSetParameter3f(cg->Ks, 1.0, 1.0, 1.0);
-		  cgSetParameter1f(cg->shininess, 50);
-			  
-		  // lookThruLight( );
-		  // glViewport(0,0,texRenderSize,texRenderSize);
-		  //     glMatrixMode(GL_PROJECTION);
-		  //     glLoadIdentity();
-		  //     // gluPerspective( spotAtten*2, 1, NEAR, FAR );
-		  //     //glOrtho( -50, 50, -50, 50, NEAR, FAR );
-		  //     glMatrixMode( GL_MODELVIEW);
-		  //     glLoadIdentity();
-		  //     gluLookAt(light_position[0],light_position[1],light_position[2],0.0f,0.0f,0.0f,0,0,1);
-	    //glTranslatef(-light_position[0],-light_position[2],-light_position[1]);
-	    //glRotatef(90,1,0,0);	
-		}
-		#endif // GPU_OK
 		if (renderObject){
-		  if(patchObject) 
-		    renderer->render(patchObject);
 		  renderer->render(object);
 		}
-		#ifdef GPU_OK
-		if (mUseGPU){
-		  cgGLDisableProfile( cg->vertProfile );
-		  cgGLDisableProfile( cg->fragProfile );
-		}
-		#endif // GPU_OK
 	}
 	// Adjust the depthrange so selected items are shown clearly
 	glDepthRange(0,1-0.0005-0.0005);
@@ -1009,72 +763,6 @@ DLFLVertexPtrArray GLWidget::selectVertices(int mx, int my, int w, int h) {
 	return vparray;
 }
 
-// Subroutine for selecting a locator
-DLFLLocatorPtr GLWidget::selectLocator(int mx, int my, int w, int h) // brianb
-{
-  GLuint selectBuf[8192];
-  uint closest;
-  GLuint dist;
-  long hits, index;
-
-  glSelectBuffer(8192,selectBuf);
-  glRenderMode(GL_SELECT);
-
-  glInitNames(); glPushName(0);
-
-  GLint vp[4];
-  glGetIntegerv(GL_VIEWPORT, vp);
-  // viewport.camera.enterSelectionMode(mx,my,10,10,vp); // Reduced sensitivity for picking points
-  mCamera->enterSelectionMode(mx,my,w,h,vp); // Reduced sensitivity for picking points
-
-  // Make sure earlier matrices are preserved, since multiple windows
-  // seem to be sharing the same matrix stacks
-
-  glMatrixMode(GL_PROJECTION);
-  glPushMatrix();
-
-  glMatrixMode(GL_MODELVIEW);
-  glPushMatrix();
-
-  // viewport.reshape();
-  // viewport.apply_transform();
-	mCamera->SetProjection(width(),height());
-  // viewport.apply_transform();
-  glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-  renderLocatorsForSelect();
-  glFlush();
-
-  glPopMatrix();
-
-  glMatrixMode(GL_PROJECTION);
-  glPopMatrix();
-
-  mCamera->leaveSelectionMode();
-  hits = glRenderMode(GL_RENDER);
-  if ( hits > 0 )
-  {
-    closest = 0; dist = 0xffffffff;
-    while ( hits )
-    {
-      index = (hits-1)*4;
-      if ( selectBuf[index+1] < dist )
-      {
-        dist = selectBuf[index+1];
-        closest = selectBuf[index+3];
-      }
-      hits--;
-    }
-    
-    // closest now has the hit axis
-    GLWidget::locatorPtr->setSelectedAxis(closest);
-
-    // Only one locator for now, return pointer to DLFLViewport::locator
-    return GLWidget::locatorPtr;
-  }
-  
-  return NULL;
-}  // brianb
-
 // Subroutine for selecting an Edge
 DLFLEdgePtr GLWidget::selectEdge(int mx, int my,int w, int h) {
 	GLuint selectBuf[8192];
@@ -1212,7 +900,7 @@ DLFLFacePtr GLWidget::selectFace(int mx, int my, int w, int h) {
 	mCamera->SetProjection(width(),height());
 	// viewport.apply_transform();
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	renderFacesForSelect(object, isInPatchMode());
+	renderFacesForSelect(object);
 	glFlush();
 
 	glPopMatrix();
@@ -1266,7 +954,7 @@ DLFLFacePtrArray GLWidget::selectFaces(int mx, int my, int w, int h) {
 
 	mCamera->SetProjection(width(),height());
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	renderFacesForSelect(object, isInPatchMode());
+	renderFacesForSelect(object);
 	glFlush();
 
 	glPopMatrix();
@@ -1328,7 +1016,7 @@ DLFLFacePtr GLWidget::deselectFaces(int mx, int my, int w, int h) {
 	mCamera->SetProjection(width(),height());
 	// viewport.apply_transform();
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	renderFacesForSelect(object, isInPatchMode());
+	renderFacesForSelect(object);
 	glFlush();
 
 	glPopMatrix();
@@ -1420,9 +1108,6 @@ DLFLFaceVertexPtr GLWidget::selectFaceVertex(DLFLFacePtr fp, int mx, int my, int
 
 // Draw the selected items
 void GLWidget::drawSelected(void) {
-  if ( !sel_lptr_array.empty() ) {
-    sel_lptr_array[0]->render();
-  }
 
   if ( !object->sel_vptr_array.empty() ) {
     glPointSize(mSelectedVertexThickness);
@@ -1546,41 +1231,65 @@ void GLWidget::dropEvent(QDropEvent *event) {
     event->ignore();
 }
 
-//for vertex locator moving...
-void erase_dlp(DLFLLocatorPtr lp)  { delete lp; } // brianb
-
 // Global operations (don't require selection)
 void GLWidget::recomputeNormals(void)     // Recompute normals and lighting
 {
-	object->computeNormals();
-  if(mInPatchMode) computeLighting( object, patchObject, &plight, mUseGPU);
-  else computeLighting( object, NULL, &plight, mUseGPU);
+  object->computeNormals();
+  computeLighting( object, &plight);
 }
 
 void GLWidget::recomputeLighting(void)                // Recompute lighting
 {
-  if(mInPatchMode) computeLighting( object, patchObject, &plight, mUseGPU);
-  else computeLighting( object, NULL, &plight, mUseGPU);
+  computeLighting( object, &plight);
 }
 
-void GLWidget::recomputePatches(void) // Recompute the patches for patch rendering
-{
-  if(mInPatchMode && patchObject) {
-    patchObject->updatePatches(object);
+void GLWidget::computeLighting( DLFLFacePtr fp, LightPtr lightptr) {
+  if ( fp->front() ) {
+    double Ka = fp->material()->Ka;
+    double Kd = fp->material()->Kd;
+    double Ks = fp->material()->Ks;
+
+		RGBColor basecolor = fp->material()->color;
+		RGBColor fvcolor;
+		Vector3d normal, pos;
+
+    DLFLFaceVertexPtr current = fp->front();
+    normal = current->getNormal();
+    pos = current->getVertexCoords();
+		
+  	fvcolor = lightptr->illuminate(pos,normal)*Kd;
+    fvcolor += (1.0-Kd)*basecolor;		
+    current->color = fvcolor;
+
+    current = current->next();
+    while ( current != fp->front() ) {
+      normal = current->getNormal();
+      pos = current->getVertexCoords();
+
+    	fvcolor = lightptr->illuminate(pos,normal)*Kd;
+	    fvcolor += (1.0-Kd)*basecolor;
+    	current->color = fvcolor;
+
+			// current->color = RGBColor(((double)rand() / ((`)(RAND_MAX)+(double)(1)) ),
+			// 													((double)rand() / ((double)(RAND_MAX)+(double)(1)) ),
+			// 													((double)rand() / ((double)(RAND_MAX)+(double)(1)) )
+			// 													);
+      current = current->next();
+    }
   }
 }
 
-void GLWidget::createPatchObject( ) {
-    //patchObject = po;
-    if( patchObject != NULL ) { 
-      delete patchObject; patchObject = 0; 
-    }
-    patchObject = new TMPatchObject( object->getID() );
-    /*
-    if( patchObject )
-      patchObject->updatePatches( object );
-      */
-};
+void GLWidget::computeLighting(DLFLObjectPtr obj, LightPtr lightptr) 
+{
+  DLFLFacePtrList::iterator first, last;
+  DLFLFacePtr faceptr;
+  first = obj->beginFace(); last = obj->endFace();
+  while ( first != last ) {
+    faceptr = (*first);
+    computeLighting(faceptr,lightptr);
+    ++first;
+  }
+}
 
 void GLWidget::setWarmLightColor(QColor c){
 	plight.warmcolor.set(c.redF(),c.greenF(),c.blueF());

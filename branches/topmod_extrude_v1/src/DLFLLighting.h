@@ -1,24 +1,21 @@
-/*** ***/
-
 #ifndef _DLFL_LIGHTING_HH_
 #define _DLFL_LIGHTING_HH_
 
 // Subroutines for lighting computations in DLFL
 
-#include "TMPatchObject.h"
-#include <DLFLObject.h>
-
 #include <QApplication>
 #include <QProgressDialog>
 
-#include "CgData.h"
+#include <DLFLCommon.h>
+#include <DLFLObject.h>
+#include <DLFLCore.h>
+#include <DLFLCoreExt.h>
+#include <Light.h>
 
-#ifdef GPU_OK
-using namespace Cg;
-#endif // GPU_OK
-
-void computeLighting( DLFLFacePtr fp, LightPtr lightptr, bool usegpu = false);
-void computeLighting( DLFLObjectPtr obj, TMPatchObjectPtr po, LightPtr lightptr, bool usegpu = false );
+//
+;
+void computeLighting( DLFLFacePtr fp, LightPtr lightptr);
+void computeLighting( DLFLObjectPtr obj, LightPtr lightptr);
 
 #endif /* #ifndef _DLFL_LIGHTING_HH_ */
 

@@ -87,9 +87,6 @@ void MainWindow::undo(void) {
 		undoList.pop_back(); delete oldobj;
 		undoMtlList.pop_back(); delete oldobjmtl;
 		
-    cout << "Recompute patches for undo...." << endl;
-		active->recomputePatches();
-    cout << "done!" << endl;
 		active->recomputeNormals();
 		// Clear selection lists to avoid dangling pointers
 		MainWindow::clearSelected();
@@ -123,7 +120,6 @@ void MainWindow::redo(void) {
 		redoList.pop_back(); delete newobj;
 		redoMtlList.pop_back(); delete newobjmtl;
 
-		active->recomputePatches();
 		active->recomputeNormals();
 		// Clear selection lists to avoid dangling pointers
 		MainWindow::clearSelected();

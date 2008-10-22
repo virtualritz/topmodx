@@ -3,8 +3,6 @@
 #ifndef _GL_WIDGET_H
 #define _GL_WIDGET_H
 
-// #include "Viewport.h"
-//#include "include/Graphics/Grid.h"
 #include <QtOpenGL>
 #include <QGLContext>
 #include <QCursor>
@@ -20,28 +18,19 @@
 
 #include <DLFLObject.h>
 #include "DLFLRenderer.h"
-#include "TMPatchObject.h"
 
-#include "DLFLLighting.h"
+//#include "DLFLLighting.h"
 #include <Light.h>
 #include <SpotLight.h>
 #include <PointLight.h>
 #include <AmbientLight.h>
 
 #include "Camera3.h"
-#include "CgData.h"
-
-#ifdef GPU_OK
-using namespace Cg;
-#endif // GPU_OK
 
 using namespace DLFL;
 
 class QCursor;
 class QImage;
-//class MainWindow;
-
-#include "DLFLLocator.h"     // brianb
 
 //extern DLFLVertexPtrArray DLFLObject::sel_vptr_array; // List of selected DLFLVertex pointers
 //extern DLFLEdgePtrArray DLFLObject::sel_eptr_array; // List of selected DLFLEdge pointers
@@ -105,22 +94,13 @@ public :
     //compute lighting and normals functions now moved here from MainWindow
   void recomputeNormals();
   void recomputeLighting();
-  void recomputePatches();  
+  void computeLighting( DLFLFacePtr fp, LightPtr lightptr);
+  void computeLighting(DLFLObjectPtr obj, LightPtr lightptr);
 
   void toggleHUD() {
     mShowHUD = !mShowHUD;
     this->repaint();
   }
-
-  #ifdef GPU_OK
-  void toggleGPU(){
-    if (renderer)
-      renderer->toggleGPU();
-    mUseGPU = !mUseGPU;
-    recomputeLighting();
-    repaint();
-  }
-  #endif
 
   void toggleAntialiasing(){
     // std::cout<< mAntialiasing << "\n";
@@ -333,12 +313,6 @@ public :
 
   void setupViewport(int width, int height);
 
-  #ifdef GPU_OK
-    void enableGLLights(); //gl lighting for use in cg shaders
-    CgData *cg;
-    void initCg( );
-  #endif // GPU_OK
-
   // void showEvent(QShowEvent *event);
 
   // void paintOverlayGL();
@@ -361,20 +335,12 @@ public :
   //temporarily disable object rendering
   bool renderObject;
 
-    // Selection lists - these are shared by all viewports
-  static DLFLLocatorPtrArray sel_lptr_array; // List of selected DLFLLocator pointers  // brianb  
-  //static DLFLVertexPtrArray sel_vptr_array; // List of selected DLFLVertex pointers
-  //static DLFLEdgePtrArray sel_eptr_array; // List of selected DLFLEdge pointers
-  //static DLFLFacePtrArray sel_fptr_array; // List of selected DLFLFace pointers
-  //static DLFLFaceVertexPtrArray sel_fvptr_array; // List of selected DLFLFaceVertex pointers
-
   // Viewport viewport;   // Viewport for the window
   PerspCamera *mCamera;   //new camera originally from Don House and Chris Root, modified by Stuart and then Dave
 
   // Each viewport will have its own object to display. But since only
   // the pointer is stored, different viewports can share the same object.
   DLFLObjectPtr object;                   // Pointer to DLFLObjec
-  TMPatchObjectPtr patchObject; // The Patch Object associated with object
 
   // Each viewport will have its own renderer. But since only the pointer
   // is stored different viewports can share the same renderer object.
@@ -386,9 +352,6 @@ public :
   // Each viewport will have its own grid
   // Grid grid;                                        // Display grid
 
-  // Default Locator object // brianb
-  DLFLLocatorPtr locatorPtr;
-
     // Boolean flags - these are viewport specific
   bool showgrid;                           // Should grid be shown?
   bool showaxes;                           // Should axes be shown?
@@ -396,8 +359,6 @@ public :
   QImage image;
 
   public :
-
-  inline TMPatchObjectPtr patchobject( ) { return patchObject; };
 
   QCursor *cursor;
   void redraw();
@@ -440,18 +401,6 @@ public :
   }
   QString getModelingModeString() { return mModelingModeString; }
 
-  void renderLocatorsForSelect() // brianb
-  {
-    locatorPtr->setRenderSelection(true);
-    locatorPtr->render();
-    locatorPtr->setRenderSelection(false);
-  }
-
-  void resetLocator() // brianb
-  {
-    locatorPtr->setActiveVertex(NULL);
-  }
-
     //--- Initialize the selection lists ---//
   void initializeSelectionLists(int num) {
         // Reserves memory for the arrays to avoid reallocation
@@ -460,13 +409,6 @@ public :
     object->sel_eptr_array.reserve(num);
     object->sel_fptr_array.reserve(num);
     object->sel_fvptr_array.reserve(num);
-    sel_lptr_array.reserve(num); // brianb
-  }
-
-    //--- Add items to the selection lists - check for NULL pointers ---//
-  void addToSelection(DLFLLocatorPtr lp) // brianb
-  {
-    if ( lp ) sel_lptr_array.push_back(lp);
   }
 
   void addToSelection(DLFLVertexPtr vp) {
@@ -483,22 +425,6 @@ public :
 
   void addToSelection(DLFLFaceVertexPtr fvp) {
     if ( fvp ) object->sel_fvptr_array.push_back(fvp);
-  }
-
-    //--- Check if given item is there in the selection list ---//
-      //--- Check if given item is there in the selection list ---//
-  static bool isSelected(DLFLLocatorPtr vp)
-  {
-    bool found = false;
-    if ( vp )
-    {
-      for (int i=0; i < sel_lptr_array.size(); ++i)
-        if ( sel_lptr_array[i] == vp )
-      {
-        found = true; break;
-      }
-    }
-    return found;
   }
 
   bool isSelected(DLFLVertexPtr vp) {
@@ -551,17 +477,6 @@ public :
       }
     }
     return found;
-  }
-
-    //--- Set the selected item at given index ---//
-    //--- If size of array is smaller than index item will be added to end of array ---//
-  void setSelectedLocator(int index, DLFLLocatorPtr vp) // brianb
-  {
-    if ( vp && index >= 0 )
-    {
-      if ( index < sel_lptr_array.size() ) sel_lptr_array[index] = vp;
-      else sel_lptr_array.push_back(vp);
-    }
   }
 
   void setSelectedVertex(int index, DLFLVertexPtr vp) {
@@ -636,18 +551,6 @@ public :
     }
   }
 
-    //--- Return the selected items at given index ---//
-  DLFLLocatorPtr getLocatorPtr() const  // brianb
-  {
-    return locatorPtr;
-  }
-
-  static DLFLLocatorPtr getSelectedLocator(int index) // brianb
-  {
-    if ( index < sel_lptr_array.size() ) return sel_lptr_array[index];
-    return NULL;
-  }
-
   DLFLVertexPtr getSelectedVertex(int index) {
     if ( (uint) index < object->sel_vptr_array.size() ) return object->sel_vptr_array[index];
     return NULL;
@@ -684,11 +587,6 @@ public :
     return NULL;
   }
 
-    //--- Find the number of items in the selection lists ---//
-  static int numSelectedLocators(void) { // brianb
-    return sel_lptr_array.size();
-}
-
 int numSelectedVertices(void) {
   return object->sel_vptr_array.size();
 }
@@ -705,10 +603,6 @@ int numSelectedCorners(void) {
   return object->sel_fvptr_array.size();
 }
 
-    //--- Clear individual selection lists ---//
-static void clearSelectedLocators(void) {
-  sel_lptr_array.clear();
-}
 
 void clearSelectedVertices(void) {
   object->sel_vptr_array.clear();
@@ -773,7 +667,6 @@ void clearSelectedFaceVertices(void) {
 
     // Reset all selection lists
 void clearSelected(void) {
-  sel_lptr_array.clear(); // brianb
   object->sel_vptr_array.clear();
   object->sel_eptr_array.clear();
   object->sel_fptr_array.clear();
@@ -783,28 +676,11 @@ void clearSelected(void) {
     // Draw the selected items
 void drawSelected(void);
 
-    // Subroutine to translate FLTK events to Viewport events
-// static VPMouseEvent translateEvent(QMouseEvent *event) {
-//       // QMessageBox::about(NULL, tr("About TopMod"),tr("%1").arg(event->type()));
-//   return ( (event->type() == 2/*QEvent::mouseButtonPress*/) ? VPPush :
-//   ( (event->type() == 3/*QEvent::mouseButtonRelease*/) ? VPRelease :
-//   ( (event->type() == 5/*QEvent::mouseMove*/) ? VPDrag : VPUnknown ) ) );
-// }
-
-    // Set the object which should be shown in this viewport
-void createPatchObject();
-
     // Set the renderer for this viewport
 void setRenderer(DLFLRendererPtr rp) {
   renderer = rp;
   renderer->setState();
   this->repaint();
-}
-void setPatchMode(bool patch_mode) {
-  mInPatchMode = patch_mode;
-}
-bool isInPatchMode() {
-  return mInPatchMode;
 }
 
 DLFLRendererPtr getRenderer(){
@@ -825,7 +701,6 @@ int getRenderFlags(void) const {
 }
 
   // Subroutines for selecting Vertices, Edges, Faces and FaceVertices (Corners)
-DLFLLocatorPtr selectLocator(int mx, int my, int w=10, int h=10);  // brianb
 DLFLVertexPtr selectVertex(int mx, int my, int w=30, int h=30);
 DLFLVertexPtrArray selectVertices(int mx, int my, int w=30, int h=30);
 DLFLEdgePtr selectEdge(int mx, int my, int w=10, int h=10);
@@ -855,7 +730,6 @@ void dropEvent(QDropEvent *event);
 
 private :
 
-bool   mInPatchMode;
 friend class QGLFormat;
 QColor mGlobalAmbient;
 QColor mRenderColor;

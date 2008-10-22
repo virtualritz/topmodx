@@ -25,13 +25,6 @@
 
 #include <DLFLObject.h>
 #include "GeometryRenderer.h"
-#include "TMPatchObject.h"
-
-#include "CgData.h"
-
-#ifdef GPU_OK
-using namespace Cg;
-#endif // GPU_OK
 
 
 using namespace DLFL;
@@ -65,10 +58,7 @@ protected :
   /* Flag indicating if we should front or back side of object */
   int render_flags;
   static bool reverse_object;
-	#ifdef GPU_OK
-	static bool useGPU;
-	#endif
-	static bool antialiasing;
+  static bool antialiasing;
 
 public :
 
@@ -80,9 +70,6 @@ protected :
   /* Default constructor */
   DLFLRenderer() {
 		// mWireframeThickness(0.1);mSilhouetteThickness(8.0);mVertexThickness(5.0);mFaceCentroidThickness(5.0);mNormalThickness(1.0);mNormalLength(0.5)
-		#ifdef GPU_OK
-		DLFLRenderer::useGPU = false; 
-		#endif
 		DLFLRenderer::antialiasing = false; 
     DLFLRenderer::mWireframeColor.setRgbF(0.0,0.0,0.0,0.9);
     DLFLRenderer::mSilhouetteColor.setRgbF(0.0,0.0,0.0,0.8);
@@ -100,9 +87,6 @@ protected :
 			// mSilhouetteColor(sc), mVertexColor(vc),mFaceCentroidColor(fc), mFaceCentroidThickness(ft),
 			// mNormalColor(nc), mNormalThickness(nt), 
 		// mNormalLength(0.5);
-		#ifdef GPU_OK
-		DLFLRenderer::useGPU = gpu; 
-		#endif
 		DLFLRenderer::antialiasing = aa; 
     render_flags = 0;
     gr = GeometryRenderer::instance( );
@@ -152,13 +136,6 @@ public :
     gr->drawFaceCentroids = !(gr->drawFaceCentroids);
   };
 
-	#ifdef GPU_OK
-	void toggleGPU() {
-		DLFLRenderer::useGPU = !DLFLRenderer::useGPU; 
-		gr->useGPU = !gr->useGPU;
-	};
-	#endif
-
 	void toggleAntialiasing(){ 
 		DLFLRenderer::antialiasing = !DLFLRenderer::antialiasing; 
 		gr->antialiasing = !(gr->antialiasing);
@@ -176,23 +153,19 @@ public :
 
   static bool isReversed(void) {
     return DLFLRenderer::reverse_object;
-  };
+  }
 
   /* Get the render flags */
   int getRenderFlags(void) const {
     return render_flags;
-  };
+  }
 
-	// #ifdef GPU_OK
-	// void setCgData(CgData cg){	mCg = cg; } 
-	// #endif
   /*
     Render the DLFLObject specified by the given pointer.
     This is a virtual function which has to be implemented by derived classes.
     Return value can be used for error reporting..
   */
   virtual int render(DLFLObjectPtr object) = 0;
-  virtual int render(TMPatchObjectPtr patchObject) { /* most renderers leave this blank*/ };
   /*
     Perform any initializations required
   */
@@ -246,16 +219,6 @@ public :
   };
 
   void drawFaceCentroids(DLFLObjectPtr object) {
-		#ifdef GPU_OK
-	  if(DLFLRenderer::useGPU) {
-      cgSetParameter3f(CgData::instance()->basecolor, 0.0, 0.0, 0.0);
-      // cgSetParameter3f(CgData::instance()->basecolor, mVertexColor.redF(), mVertexColor.greenF(), mVertexColor.blueF());
-      cgSetParameter3f(CgData::instance()->Ka, 0.0, 0.0, 0.0);
-      cgSetParameter3f(CgData::instance()->Kd, 0.0, 0.0, 0.0);
-      cgSetParameter3f(CgData::instance()->Ks, 0.0, 0.0, 0.0);
-      cgSetParameter1f(CgData::instance()->shininess, 0.0);
-    }
-		#endif 
     glColor4f(DLFLRenderer::mFaceCentroidColor.redF(),DLFLRenderer::mFaceCentroidColor.greenF(),DLFLRenderer::mFaceCentroidColor.blueF(),DLFLRenderer::mFaceCentroidColor.alphaF());
     glDepthRange(0.0,1.0-0.00075);
     //object->renderVertices(mVertexThickness);
