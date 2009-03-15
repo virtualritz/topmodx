@@ -1,142 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS><TS version="1.1">
 <context>
-    <name>BasicsMode</name>
+    <name>BasicToolset</name>
     <message>
-        <location filename="../BasicsMode.cc" line="880"/>
-        <source>Insert Edge</source>
+        <location filename="../tools/basic_toolset.cc" line="106"/>
+        <source>Tools</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../BasicsMode.cc" line="851"/>
-        <source>Enter Insert Edge Mode</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../BasicsMode.cc" line="852"/>
-        <source>Insert Edge Mode</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../BasicsMode.cc" line="853"/>
-        <source>Delete Edge</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../BasicsMode.cc" line="854"/>
-        <source>Enter Delete Edge Mode</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../BasicsMode.cc" line="882"/>
-        <source>Delete Edge Mode</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../BasicsMode.cc" line="884"/>
-        <source>Collapse Edge</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../BasicsMode.cc" line="857"/>
-        <source>Enter Collapse Edge Mode</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../BasicsMode.cc" line="858"/>
-        <source>Collapse Edge Mode</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../BasicsMode.cc" line="859"/>
-        <source>Subdivide Edge</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../BasicsMode.cc" line="860"/>
-        <source>Enter Subdivide Edge Mode</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../BasicsMode.cc" line="886"/>
-        <source>Subdivide Edge Mode</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../BasicsMode.cc" line="888"/>
-        <source>Connect Edges</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../BasicsMode.cc" line="863"/>
-        <source>Enter Connect Edges Mode</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../BasicsMode.cc" line="864"/>
-        <source>Connect Edges Mode</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../BasicsMode.cc" line="890"/>
-        <source>Splice Corners</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../BasicsMode.cc" line="866"/>
-        <source>Enter Splice Corners Mode</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../BasicsMode.cc" line="867"/>
-        <source>Splice Corners Mode</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../BasicsMode.cc" line="873"/>
-        <source>Selection Options</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../BasicsMode.cc" line="874"/>
-        <source>Enter Selection Options Mode</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../BasicsMode.cc" line="875"/>
-        <source>Selection Options Mode</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../BasicsMode.cc" line="876"/>
+        <location filename="../tools/basic_toolset.cc" line="105"/>
         <source>Basics</source>
         <translation type="unfinished"></translation>
     </message>
+</context>
+<context>
+    <name>CollapseEdgeTool</name>
     <message>
-        <location filename="../BasicsMode.cc" line="889"/>
+        <location filename="../tools/collapse_edge_tool.cc" line="19"/>
         <source>No Options for this tool.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../BasicsMode.cc" line="881"/>
-        <source>Cleanup</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../BasicsMode.cc" line="885"/>
-        <source># Subdivisions</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../BasicsMode.cc" line="901"/>
-        <source>Face Area Sel.
-Tolerance</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../BasicsMode.cc" line="902"/>
-        <source>Valence-2 Split
-Offset</source>
+        <location filename="../tools/collapse_edge_tool.cc" line="32"/>
+        <source>Collapse Edge</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -149,1148 +35,681 @@ Offset</source>
     </message>
 </context>
 <context>
-    <name>ConicalMode</name>
+    <name>ConicalToolset</name>
     <message>
-        <location filename="../ConicalMode.cc" line="653"/>
-        <source>Cut by Edge</source>
+        <location filename="../tools/conical_toolset.cc" line="93"/>
+        <source>Conical Toolset</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ConicalMode.cc" line="654"/>
-        <source>Enter Cut by Edge Mode</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ConicalMode.cc" line="655"/>
-        <source>Cut by Edge Mode</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ConicalMode.cc" line="657"/>
-        <source>Cut by Vertex</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ConicalMode.cc" line="658"/>
-        <source>Enter Cut by Vertex Mode</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ConicalMode.cc" line="659"/>
-        <source>Cut by Vertex Mode</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ConicalMode.cc" line="661"/>
-        <source>Cut by Face</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ConicalMode.cc" line="662"/>
-        <source>Enter Cut by Face Mode</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ConicalMode.cc" line="663"/>
-        <source>Cut by Face Mode</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ConicalMode.cc" line="668"/>
-        <source>Dual Convex Hull</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ConicalMode.cc" line="669"/>
-        <source>Enter Dual Convex Hull Mode</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ConicalMode.cc" line="670"/>
-        <source>Dual Convex Hull Mode</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ConicalMode.cc" line="651"/>
+        <location filename="../tools/conical_toolset.cc" line="92"/>
         <source>Conical</source>
         <translation type="unfinished"></translation>
     </message>
+</context>
+<context>
+    <name>ConnectEdgesTool</name>
     <message>
-        <location filename="../ConicalMode.cc" line="647"/>
-        <source>Offset:</source>
+        <location filename="../tools/connect_edges_tool.cc" line="19"/>
+        <source>No Options for this tool.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ConicalMode.cc" line="477"/>
-        <source>Global Cut</source>
+        <location filename="../tools/connect_edges_tool.cc" line="32"/>
+        <source>Connect Edges</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ConicalMode.cc" line="648"/>
-        <source>Perform Cutting</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ConicalMode.cc" line="649"/>
-        <source>Cut By Edge</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ConicalMode.cc" line="645"/>
-        <source>Cut By Vertex</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ConicalMode.cc" line="641"/>
-        <source>Cut By Face</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ConicalMode.cc" line="666"/>
-        <source>Create Convex Hull</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ConicalMode.cc" line="667"/>
-        <source>Create Dual Convex Hull</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ConicalMode.cc" line="665"/>
-        <source>Convex Hull</source>
+        <location filename="../tools/connect_edges_tool.cc" line="28"/>
+        <source>Connects Edges</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>CreateTorusTool</name>
     <message>
-        <location filename="../HighgenusMode.cc" line="42"/>
+        <location filename="../tools/create_torus_tool.cc" line="23"/>
         <source># Segments</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../HighgenusMode.cc" line="47"/>
+        <location filename="../tools/create_torus_tool.cc" line="27"/>
         <source>Radius</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../HighgenusMode.cc" line="52"/>
+        <location filename="../tools/create_torus_tool.cc" line="31"/>
         <source>#Vertices in CS
 (Cross Sectoin)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../HighgenusMode.cc" line="59"/>
+        <location filename="../tools/create_torus_tool.cc" line="38"/>
         <source>Radius of CS</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../HighgenusMode.cc" line="64"/>
+        <location filename="../tools/create_torus_tool.cc" line="43"/>
         <source>Rotation of CS</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../HighgenusMode.cc" line="69"/>
+        <location filename="../tools/create_torus_tool.cc" line="48"/>
         <source># Twists</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../HighgenusMode.cc" line="74"/>
+        <location filename="../tools/create_torus_tool.cc" line="52"/>
         <source># Partial twist</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../HighgenusMode.cc" line="76"/>
+        <location filename="../tools/create_torus_tool.cc" line="56"/>
         <source>Triangulate New Faces</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../HighgenusMode.cc" line="81"/>
-        <source>Scherk Collins</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../HighgenusMode.cc" line="89"/>
+        <location filename="../tools/create_torus_tool.cc" line="68"/>
         <source>Pinch</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../HighgenusMode.cc" line="94"/>
+        <location filename="../tools/create_torus_tool.cc" line="72"/>
         <source>Pinch Center</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../HighgenusMode.cc" line="99"/>
+        <location filename="../tools/create_torus_tool.cc" line="77"/>
         <source>Pinch Width</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../HighgenusMode.cc" line="104"/>
+        <location filename="../tools/create_torus_tool.cc" line="81"/>
         <source>#segs in holes</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../HighgenusMode.cc" line="109"/>
+        <location filename="../tools/create_torus_tool.cc" line="86"/>
         <source>Init skip</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../HighgenusMode.cc" line="114"/>
+        <location filename="../tools/create_torus_tool.cc" line="90"/>
         <source>Skip</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../HighgenusMode.cc" line="119"/>
+        <location filename="../tools/create_torus_tool.cc" line="94"/>
         <source>Twist of holes</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../HighgenusMode.cc" line="124"/>
+        <location filename="../tools/create_torus_tool.cc" line="98"/>
         <source>Skip in segments</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../HighgenusMode.cc" line="126"/>
+        <location filename="../tools/create_torus_tool.cc" line="101"/>
         <source>&amp;Create Torus</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../HighgenusMode.cc" line="136"/>
+        <location filename="../tools/create_torus_tool.cc" line="111"/>
         <source>Create Torus</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../HighgenusMode.cc" line="139"/>
+        <location filename="../tools/create_torus_tool.cc" line="114"/>
         <source>Enter Geometry Mode</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../HighgenusMode.cc" line="140"/>
+        <location filename="../tools/create_torus_tool.cc" line="115"/>
         <source>Geometry Mode</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../tools/create_torus_tool.cc" line="61"/>
+        <source>Handles in Handles</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>DLFLScriptEditor</name>
     <message>
-        <location filename="../DLFLScriptEditor.cc" line="56"/>
+        <location filename="../DLFLScriptEditor.cc" line="55"/>
         <source>&amp;Script</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../DLFLScriptEditor.cc" line="58"/>
+        <location filename="../DLFLScriptEditor.cc" line="57"/>
         <source>&amp;Execute File</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../DLFLScriptEditor.cc" line="59"/>
+        <location filename="../DLFLScriptEditor.cc" line="58"/>
         <source>Execute an existing Python script</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../DLFLScriptEditor.cc" line="63"/>
+        <location filename="../DLFLScriptEditor.cc" line="62"/>
         <source>&amp;Open File</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../DLFLScriptEditor.cc" line="64"/>
+        <location filename="../DLFLScriptEditor.cc" line="63"/>
         <source>Open the input window to a Python script</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../DLFLScriptEditor.cc" line="68"/>
+        <location filename="../DLFLScriptEditor.cc" line="67"/>
         <source>&amp;Save File</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../DLFLScriptEditor.cc" line="69"/>
+        <location filename="../DLFLScriptEditor.cc" line="68"/>
         <source>Save the input window to a Python script</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../DLFLScriptEditor.cc" line="73"/>
+        <location filename="../DLFLScriptEditor.cc" line="72"/>
         <source>Save Out&amp;put</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../DLFLScriptEditor.cc" line="74"/>
+        <location filename="../DLFLScriptEditor.cc" line="73"/>
         <source>Save the output window to a Python script</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../DLFLScriptEditor.cc" line="78"/>
+        <location filename="../DLFLScriptEditor.cc" line="77"/>
         <source>Clear &amp;History</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../DLFLScriptEditor.cc" line="79"/>
+        <location filename="../DLFLScriptEditor.cc" line="78"/>
         <source>Clears both output window and history</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../DLFLScriptEditor.cc" line="83"/>
+        <location filename="../DLFLScriptEditor.cc" line="82"/>
         <source>&amp;Clear Input</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../DLFLScriptEditor.cc" line="84"/>
+        <location filename="../DLFLScriptEditor.cc" line="83"/>
         <source>Clears everythin in the input window</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../DLFLScriptEditor.cc" line="88"/>
+        <location filename="../DLFLScriptEditor.cc" line="87"/>
         <source>&amp;Toggle Echoing</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../DLFLScriptEditor.cc" line="89"/>
+        <location filename="../DLFLScriptEditor.cc" line="88"/>
         <source>Turn on/off command echoing</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../DLFLScriptEditor.cc" line="340"/>
+        <location filename="../DLFLScriptEditor.cc" line="339"/>
         <source>load(&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../DLFLScriptEditor.cc" line="340"/>
+        <location filename="../DLFLScriptEditor.cc" line="339"/>
         <source>&quot;)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../DLFLScriptEditor.cc" line="381"/>
+        <location filename="../DLFLScriptEditor.cc" line="380"/>
         <source>Exec File</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../DLFLScriptEditor.cc" line="448"/>
+        <location filename="../DLFLScriptEditor.cc" line="447"/>
         <source>Python Files (*.py);;All Files (*)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../DLFLScriptEditor.cc" line="413"/>
+        <location filename="../DLFLScriptEditor.cc" line="412"/>
         <source>Open Python File</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../DLFLScriptEditor.cc" line="446"/>
+        <location filename="../DLFLScriptEditor.cc" line="445"/>
         <source>Save Python File</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../DLFLScriptEditor.cc" line="93"/>
+        <location filename="../DLFLScriptEditor.cc" line="92"/>
         <source>&amp;Format</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../DLFLScriptEditor.cc" line="95"/>
+        <location filename="../DLFLScriptEditor.cc" line="94"/>
         <source>&amp;Convert Spaces To Tabs</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../DLFLScriptEditor.cc" line="96"/>
+        <location filename="../DLFLScriptEditor.cc" line="95"/>
         <source>Convert each set of spaces into a TAB character</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../DLFLScriptEditor.cc" line="100"/>
+        <location filename="../DLFLScriptEditor.cc" line="99"/>
         <source>&amp;Set Tab Width</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../DLFLScriptEditor.cc" line="101"/>
+        <location filename="../DLFLScriptEditor.cc" line="100"/>
         <source>Will affect conversion of spaces to Tabs</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>DeleteEdgeTool</name>
+    <message>
+        <location filename="../tools/delete_edge_tool.cc" line="21"/>
+        <source>Cleanup</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../tools/delete_edge_tool.cc" line="36"/>
+        <source>Delete Edge</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>DupComponentTool</name>
     <message>
-        <location filename="../BasicsMode.cc" line="53"/>
+        <location filename="../tools/dup_component_tool.cc" line="21"/>
         <source>&amp;Duplicate</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../BasicsMode.cc" line="67"/>
+        <location filename="../tools/dup_component_tool.cc" line="35"/>
         <source>DupComponent Mode</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../BasicsMode.cc" line="63"/>
+        <location filename="../tools/dup_component_tool.cc" line="31"/>
         <source>Duplicate Component</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../BasicsMode.cc" line="66"/>
+        <location filename="../tools/dup_component_tool.cc" line="34"/>
         <source>Enter DupComponent Mode</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
-    <name>ExperimentalMode</name>
+    <name>ExperimentalToolset</name>
     <message>
-        <location filename="../ExperimentalModes.cc" line="169"/>
-        <source>Paint Bucket</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ExperimentalModes.cc" line="158"/>
-        <source>Enter Paint Bucket Mode</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ExperimentalModes.cc" line="159"/>
-        <source>Paint Bucket Mode</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ExperimentalModes.cc" line="162"/>
+        <location filename="../tools/experimental_toolset.cc" line="54"/>
         <source>Experimental</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ExperimentalModes.cc" line="116"/>
-        <source>Paint Bucket
-Color:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ExperimentalModes.cc" line="167"/>
-        <source>Paint Selected Faces</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ExperimentalModes.cc" line="125"/>
-        <source>Reset Materials</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ExperimentalModes.cc" line="168"/>
-        <source>Paint Bucket
-Color</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
-    <name>ExtrusionsMode</name>
+    <name>ExtrusionToolset</name>
     <message>
-        <location filename="../ExtrusionsMode.cc" line="670"/>
-        <source>Doo Sabin</source>
+        <location filename="../tools/extrusion_toolset.cc" line="39"/>
+        <source>Tools</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ExtrusionsMode.cc" line="671"/>
-        <source>Enter Doo Sabin Extrude Mode</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ExtrusionsMode.cc" line="672"/>
-        <source>Doo Sabin Extrude Mode</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ExtrusionsMode.cc" line="674"/>
-        <source>Cubical</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ExtrusionsMode.cc" line="675"/>
-        <source>Enter Cubical Extrude Mode</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ExtrusionsMode.cc" line="676"/>
-        <source>Cubical Extrude Mode</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ExtrusionsMode.cc" line="678"/>
-        <source>Dodecahedral</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ExtrusionsMode.cc" line="679"/>
-        <source>Enter Dodecahedral Extrude Mode</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ExtrusionsMode.cc" line="680"/>
-        <source>Dodecahedral Extrude Mode</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ExtrusionsMode.cc" line="682"/>
-        <source>Icosahedral</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ExtrusionsMode.cc" line="683"/>
-        <source>Enter Icosahedral Extrude Mode</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ExtrusionsMode.cc" line="684"/>
-        <source>Icosahedral Extrude Mode</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ExtrusionsMode.cc" line="686"/>
-        <source>Octahedral</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ExtrusionsMode.cc" line="687"/>
-        <source>Enter Octahedral Extrude Mode</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ExtrusionsMode.cc" line="688"/>
-        <source>Octahedral Extrude Mode</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ExtrusionsMode.cc" line="690"/>
-        <source>Stellate</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ExtrusionsMode.cc" line="691"/>
-        <source>Enter Stellate Extrude Mode</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ExtrusionsMode.cc" line="692"/>
-        <source>Stellate Extrude Mode</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ExtrusionsMode.cc" line="694"/>
-        <source>Double Stellate</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ExtrusionsMode.cc" line="695"/>
-        <source>Enter Double Stellate Mode</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ExtrusionsMode.cc" line="696"/>
-        <source>Double Stellate Mode</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ExtrusionsMode.cc" line="698"/>
-        <source>Dome</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ExtrusionsMode.cc" line="699"/>
-        <source>Enter Dome Extrude Mode</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ExtrusionsMode.cc" line="700"/>
-        <source>Dome Extrude Mode</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ExtrusionsMode.cc" line="702"/>
-        <source>Extrusion</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ExtrusionsMode.cc" line="742"/>
-        <source>Length</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ExtrusionsMode.cc" line="707"/>
-        <source>Twist</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ExtrusionsMode.cc" line="734"/>
-        <source>Scale</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ExtrusionsMode.cc" line="735"/>
-        <source>Segments</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ExtrusionsMode.cc" line="743"/>
-        <source>Extrude Selected Faces</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ExtrusionsMode.cc" line="710"/>
-        <source>Doo Sabin Extrusion</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ExtrusionsMode.cc" line="733"/>
-        <source>Rotation</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ExtrusionsMode.cc" line="716"/>
-        <source>Cubical Extrusion</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ExtrusionsMode.cc" line="725"/>
-        <source>Length 1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ExtrusionsMode.cc" line="726"/>
-        <source>Length 2</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ExtrusionsMode.cc" line="727"/>
-        <source>Length 3</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ExtrusionsMode.cc" line="728"/>
-        <source>Angle</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ExtrusionsMode.cc" line="722"/>
-        <source>Hexagonalize</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ExtrusionsMode.cc" line="724"/>
-        <source>Dodecahedral Extrusion</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ExtrusionsMode.cc" line="731"/>
-        <source>Icosahedral Extrusion</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ExtrusionsMode.cc" line="736"/>
-        <source>Mesh Flat Edges</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ExtrusionsMode.cc" line="738"/>
-        <source>Octahedral Extrusion</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ExtrusionsMode.cc" line="741"/>
-        <source>Stellate Extrusion</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ExtrusionsMode.cc" line="744"/>
-        <source>Double Stellate Extrusion</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ExtrusionsMode.cc" line="745"/>
-        <source>Height:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ExtrusionsMode.cc" line="746"/>
-        <source>Twist:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ExtrusionsMode.cc" line="747"/>
-        <source>Scale:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ExtrusionsMode.cc" line="748"/>
-        <source>Perform Extrusion</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ExtrusionsMode.cc" line="441"/>
-        <source>Triangulate New Faces</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ExtrusionsMode.cc" line="446"/>
-        <source>Scherk Collins</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ExtrusionsMode.cc" line="454"/>
-        <source>Pinch</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ExtrusionsMode.cc" line="461"/>
-        <source>Pinch Center</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ExtrusionsMode.cc" line="468"/>
-        <source>Pinch Width</source>
+        <location filename="../tools/extrusion_toolset.cc" line="88"/>
+        <source>Extrusions</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>GeometricTool</name>
     <message>
-        <location filename="../BasicsMode.cc" line="221"/>
+        <location filename="../tools/geometric_tool.cc" line="30"/>
         <source>X-translate</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../BasicsMode.cc" line="228"/>
+        <location filename="../tools/geometric_tool.cc" line="37"/>
         <source>Y-translate</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../BasicsMode.cc" line="235"/>
+        <location filename="../tools/geometric_tool.cc" line="44"/>
         <source>Z-translate</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../BasicsMode.cc" line="242"/>
+        <location filename="../tools/geometric_tool.cc" line="51"/>
         <source>X-Rotate</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../BasicsMode.cc" line="249"/>
+        <location filename="../tools/geometric_tool.cc" line="58"/>
         <source>Y-Rotate</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../BasicsMode.cc" line="256"/>
+        <location filename="../tools/geometric_tool.cc" line="65"/>
         <source>Z-Rotate</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../BasicsMode.cc" line="263"/>
+        <location filename="../tools/geometric_tool.cc" line="72"/>
         <source>X-Scale</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../BasicsMode.cc" line="270"/>
+        <location filename="../tools/geometric_tool.cc" line="79"/>
         <source>Y-Scale</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../BasicsMode.cc" line="277"/>
+        <location filename="../tools/geometric_tool.cc" line="86"/>
         <source>Z-Scale</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../BasicsMode.cc" line="282"/>
+        <location filename="../tools/geometric_tool.cc" line="91"/>
         <source>&amp;Reset</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../BasicsMode.cc" line="286"/>
+        <location filename="../tools/geometric_tool.cc" line="95"/>
         <source>&amp;Apply</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../BasicsMode.cc" line="300"/>
+        <location filename="../tools/geometric_tool.cc" line="109"/>
         <source>Geometry Mode</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../BasicsMode.cc" line="296"/>
+        <location filename="../tools/geometric_tool.cc" line="105"/>
         <source>Geometry</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../BasicsMode.cc" line="299"/>
+        <location filename="../tools/geometric_tool.cc" line="108"/>
         <source>Enter Geometry Mode</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
-    <name>HighgenusMode</name>
+    <name>HighGenusToolset</name>
     <message>
-        <location filename="../HighgenusMode.cc" line="1223"/>
+        <location filename="../tools/high_genus_toolset.cc" line="325"/>
         <source>Add Hole/Handle</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../HighgenusMode.cc" line="1185"/>
+        <location filename="../tools/high_genus_toolset.cc" line="67"/>
         <source>Enter Add Hole/Handle Mode</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../HighgenusMode.cc" line="1186"/>
+        <location filename="../tools/high_genus_toolset.cc" line="68"/>
         <source>Add Hole/Handle Mode</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../HighgenusMode.cc" line="1187"/>
+        <location filename="../tools/high_genus_toolset.cc" line="72"/>
         <source>Add Hole/Handle CV</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../HighgenusMode.cc" line="1188"/>
+        <location filename="../tools/high_genus_toolset.cc" line="75"/>
         <source>Enter Add Hole/Handle CV Mode</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../HighgenusMode.cc" line="1189"/>
+        <location filename="../tools/high_genus_toolset.cc" line="76"/>
         <source>Add Hole/Handle CV Mode</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../HighgenusMode.cc" line="1190"/>
+        <location filename="../tools/high_genus_toolset.cc" line="80"/>
         <source>Add Handle SI</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../HighgenusMode.cc" line="1191"/>
+        <location filename="../tools/high_genus_toolset.cc" line="83"/>
         <source>Enter Add Handle (Shape Interpolation) Mode</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../HighgenusMode.cc" line="1192"/>
+        <location filename="../tools/high_genus_toolset.cc" line="84"/>
         <source>Add Handle (Shape Interpolation) Mode</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../HighgenusMode.cc" line="1193"/>
+        <location filename="../tools/high_genus_toolset.cc" line="88"/>
         <source>Rind Modeling Scaling</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../HighgenusMode.cc" line="1194"/>
+        <location filename="../tools/high_genus_toolset.cc" line="91"/>
         <source>Enter Rind Modeling Scaling Mode</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../HighgenusMode.cc" line="1195"/>
+        <location filename="../tools/high_genus_toolset.cc" line="92"/>
         <source>Rind Modeling Scaling Mode</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../HighgenusMode.cc" line="1196"/>
+        <location filename="../tools/high_genus_toolset.cc" line="96"/>
         <source>Rind Modeling Thickness</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../HighgenusMode.cc" line="1197"/>
+        <location filename="../tools/high_genus_toolset.cc" line="99"/>
         <source>Enter Rind Modeling Thickness Mode</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../HighgenusMode.cc" line="1198"/>
+        <location filename="../tools/high_genus_toolset.cc" line="100"/>
         <source>Rind Modeling Thickness Mode</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../HighgenusMode.cc" line="1244"/>
+        <location filename="../tools/high_genus_toolset.cc" line="104"/>
         <source>Wireframe Modeling</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../HighgenusMode.cc" line="1200"/>
+        <location filename="../tools/high_genus_toolset.cc" line="107"/>
         <source>Enter Wireframe Modeling Mode</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../HighgenusMode.cc" line="1201"/>
+        <location filename="../tools/high_genus_toolset.cc" line="108"/>
         <source>Wireframe Modeling Mode</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../HighgenusMode.cc" line="1248"/>
+        <location filename="../tools/high_genus_toolset.cc" line="112"/>
         <source>Wireframe Modeling 2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../HighgenusMode.cc" line="1203"/>
+        <location filename="../tools/high_genus_toolset.cc" line="115"/>
         <source>Enter Wireframe Modeling 2 Mode</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../HighgenusMode.cc" line="1204"/>
+        <location filename="../tools/high_genus_toolset.cc" line="116"/>
         <source>Wireframe Modeling 2 Mode</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../HighgenusMode.cc" line="1252"/>
+        <location filename="../tools/high_genus_toolset.cc" line="120"/>
         <source>Column Modeling</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../HighgenusMode.cc" line="1206"/>
+        <location filename="../tools/high_genus_toolset.cc" line="123"/>
         <source>Enter Column Modeling Mode</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../HighgenusMode.cc" line="1207"/>
+        <location filename="../tools/high_genus_toolset.cc" line="124"/>
         <source>Column Modeling Mode</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../HighgenusMode.cc" line="1208"/>
+        <location filename="../tools/high_genus_toolset.cc" line="128"/>
         <source>Sierpinsky</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../HighgenusMode.cc" line="1209"/>
+        <location filename="../tools/high_genus_toolset.cc" line="131"/>
         <source>Enter Sierpinsky Mode</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../HighgenusMode.cc" line="1210"/>
+        <location filename="../tools/high_genus_toolset.cc" line="132"/>
         <source>Sierpinsky Mode</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../HighgenusMode.cc" line="1211"/>
+        <location filename="../tools/high_genus_toolset.cc" line="136"/>
         <source>Multi-face Handle</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../HighgenusMode.cc" line="1212"/>
+        <location filename="../tools/high_genus_toolset.cc" line="139"/>
         <source>Enter Multi-face Handle Mode</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../HighgenusMode.cc" line="1213"/>
+        <location filename="../tools/high_genus_toolset.cc" line="140"/>
         <source>Multi-face Handle Mode</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../HighgenusMode.cc" line="1267"/>
+        <location filename="../tools/high_genus_toolset.cc" line="144"/>
         <source>Menger Sponge</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../HighgenusMode.cc" line="1215"/>
+        <location filename="../tools/high_genus_toolset.cc" line="147"/>
         <source>Enter Menger Sponge Mode</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../HighgenusMode.cc" line="1216"/>
+        <location filename="../tools/high_genus_toolset.cc" line="148"/>
         <source>Menger Sponge Mode</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../HighgenusMode.cc" line="1218"/>
+        <location filename="../tools/high_genus_toolset.cc" line="154"/>
         <source>High Genus</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../HighgenusMode.cc" line="1227"/>
+        <location filename="../tools/high_genus_toolset.cc" line="438"/>
         <source># Segments</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../HighgenusMode.cc" line="1226"/>
-        <source>Add Hole/Handle (Closest Vertex)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../HighgenusMode.cc" line="1229"/>
-        <source>Weight 1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../HighgenusMode.cc" line="1230"/>
-        <source>Symmetric Weights</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../HighgenusMode.cc" line="1231"/>
-        <source>Weight 2</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../HighgenusMode.cc" line="1232"/>
-        <source>Extra Twists</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../HighgenusMode.cc" line="1233"/>
-        <source>Add Handle (Shape Interpolation)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../HighgenusMode.cc" line="1234"/>
-        <source>Scale</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../HighgenusMode.cc" line="1239"/>
-        <source>Cleanup when peeling</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../HighgenusMode.cc" line="1240"/>
-        <source>Create Crust</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../HighgenusMode.cc" line="1237"/>
-        <source>Rind Modeling (Scaling)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../HighgenusMode.cc" line="1262"/>
-        <source>Thickness:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../HighgenusMode.cc" line="1241"/>
-        <source>Rind Modeling (Thickness)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../HighgenusMode.cc" line="987"/>
-        <source>Split Valence-2 Vertices</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../HighgenusMode.cc" line="1243"/>
-        <source>Create Wireframe</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../HighgenusMode.cc" line="1246"/>
-        <source>Width:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../HighgenusMode.cc" line="1247"/>
-        <source>Create Wireframe 2</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../HighgenusMode.cc" line="1250"/>
-        <source># Segments:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../HighgenusMode.cc" line="1251"/>
-        <source>Create Columns</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../HighgenusMode.cc" line="1253"/>
-        <source>Create Sierpinsky
-Tetrahedra</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../HighgenusMode.cc" line="1254"/>
-        <source>Sierpinsky Tetrahedra</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../HighgenusMode.cc" line="1255"/>
-        <source>Use Convex Hull
-Algorithm</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../HighgenusMode.cc" line="1256"/>
-        <source>Scale Factor:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../HighgenusMode.cc" line="1257"/>
-        <source>Extrude Dist.
-Factor:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../HighgenusMode.cc" line="1258"/>
-        <source>Use max offsets</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../HighgenusMode.cc" line="1259"/>
-        <source>Connect Selected Faces</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../HighgenusMode.cc" line="1260"/>
-        <source>Multi-Face Handle</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../HighgenusMode.cc" line="1263"/>
-        <source>Edge Collapse
-Threshold Factor:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../HighgenusMode.cc" line="1265"/>
-        <source>Fractional Thickness</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../HighgenusMode.cc" line="1266"/>
-        <source>Create Menger Sponge</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../HighgenusMode.cc" line="782"/>
+        <location filename="../tools/high_genus_toolset.cc" line="469"/>
         <source>Pinching</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../HighgenusMode.cc" line="815"/>
+        <location filename="../tools/high_genus_toolset.cc" line="502"/>
         <source>Pinch Center</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../HighgenusMode.cc" line="822"/>
+        <location filename="../tools/high_genus_toolset.cc" line="509"/>
         <source>Pinch Width</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../HighgenusMode.cc" line="795"/>
+        <location filename="../tools/high_genus_toolset.cc" line="425"/>
+        <source>Add Hole/Handle (Closest Vertex)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../tools/high_genus_toolset.cc" line="449"/>
+        <source>Weight 1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../tools/high_genus_toolset.cc" line="452"/>
+        <source>Symmetric Weights</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../tools/high_genus_toolset.cc" line="458"/>
+        <source>Weight 2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../tools/high_genus_toolset.cc" line="464"/>
+        <source>Extra Twists</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../tools/high_genus_toolset.cc" line="482"/>
         <source>Triangulate New Faces</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../HighgenusMode.cc" line="800"/>
+        <location filename="../tools/high_genus_toolset.cc" line="487"/>
         <source>Scherk Collins</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../HighgenusMode.cc" line="808"/>
+        <location filename="../tools/high_genus_toolset.cc" line="495"/>
         <source>Pinch</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../HighgenusMode.cc" line="829"/>
+        <location filename="../tools/high_genus_toolset.cc" line="516"/>
         <source>#segs in holes</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../HighgenusMode.cc" line="836"/>
+        <location filename="../tools/high_genus_toolset.cc" line="523"/>
         <source>Init skip</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../HighgenusMode.cc" line="843"/>
+        <location filename="../tools/high_genus_toolset.cc" line="530"/>
         <source>Skip</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../HighgenusMode.cc" line="850"/>
+        <location filename="../tools/high_genus_toolset.cc" line="537"/>
         <source>Twist of holes</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../HighgenusMode.cc" line="857"/>
+        <location filename="../tools/high_genus_toolset.cc" line="544"/>
         <source>Skip in segments</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../tools/high_genus_toolset.cc" line="551"/>
+        <source>Add Handle (Shape Interpolation)</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>InsertEdgeTool</name>
+    <message>
+        <location filename="../tools/insert_edge_tool.cc" line="21"/>
+        <source>No Options for this tool.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../tools/insert_edge_tool.cc" line="34"/>
+        <source>Insert Edge</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1302,1418 +721,1403 @@ Threshold Factor:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5261"/>
+        <location filename="../MainWindow.cc" line="5316"/>
         <source>Script Editor</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="303"/>
-        <source>Tool Options - Insert Edge</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../MainWindow.cc" line="5256"/>
+        <location filename="../MainWindow.cc" line="5311"/>
         <source>Learning Movies</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5283"/>
+        <location filename="../MainWindow.cc" line="5337"/>
         <source>&amp;New File...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5284"/>
+        <location filename="../MainWindow.cc" line="5338"/>
         <source>Open a blank file and clear the undo list</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5285"/>
+        <location filename="../MainWindow.cc" line="5339"/>
         <source>&amp;Open...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5286"/>
+        <location filename="../MainWindow.cc" line="5340"/>
         <source>Open an existing file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5287"/>
+        <location filename="../MainWindow.cc" line="5341"/>
         <source>&amp;Save</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5288"/>
+        <location filename="../MainWindow.cc" line="5342"/>
         <source>Save the document to disk</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5289"/>
+        <location filename="../MainWindow.cc" line="5343"/>
         <source>Save &amp;As...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5310"/>
+        <location filename="../MainWindow.cc" line="5372"/>
         <source>Save the document under a new name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5291"/>
+        <location filename="../MainWindow.cc" line="5345"/>
         <source>Save &amp;Patch OBJ...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5292"/>
+        <location filename="../MainWindow.cc" line="5346"/>
         <source>Save a bezier patch .obj file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5293"/>
+        <location filename="../MainWindow.cc" line="5347"/>
         <source>Export LiveGrahpics3D...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5294"/>
+        <location filename="../MainWindow.cc" line="5350"/>
         <source>Export a LiveGraphics3D (*.m) file for embedding into the TopMod Wiki, Warning: you cannot import this file back into TopMod</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5295"/>
+        <location filename="../MainWindow.cc" line="5351"/>
         <source>Export LG3d (Sel. Faces)...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5296"/>
+        <location filename="../MainWindow.cc" line="5354"/>
         <source>Export a LiveGraphics3D (*.m) of the current selected faces file for embedding into the TopMod Wiki, Warning: you cannot import this file back into TopMod</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5297"/>
+        <location filename="../MainWindow.cc" line="5355"/>
         <source>Export STL...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5298"/>
+        <location filename="../MainWindow.cc" line="5358"/>
         <source>Export a stereolithography (*.stl) file for use with various rapid prototyping software and hardware</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5301"/>
+        <location filename="../MainWindow.cc" line="5362"/>
         <source>Save Viewport Screenshot...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5302"/>
+        <location filename="../MainWindow.cc" line="5364"/>
         <source>Save a screenshot of the contents of the OpenGL viewport (*.png)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5299"/>
+        <location filename="../MainWindow.cc" line="5359"/>
         <source>Save App Screenshot...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5300"/>
+        <location filename="../MainWindow.cc" line="5361"/>
         <source>Save a screenshot of the entire main application window (*.png)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5303"/>
+        <location filename="../MainWindow.cc" line="5365"/>
         <source>Load &amp;Texture...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5304"/>
+        <location filename="../MainWindow.cc" line="5366"/>
         <source>Load Texture from file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5305"/>
+        <location filename="../MainWindow.cc" line="5367"/>
         <source>Print &amp;Information</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5306"/>
+        <location filename="../MainWindow.cc" line="5368"/>
         <source>Print Information to the console</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5307"/>
+        <location filename="../MainWindow.cc" line="5369"/>
         <source>Print &amp;Face List</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5308"/>
+        <location filename="../MainWindow.cc" line="5370"/>
         <source>Print Face List to the console</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5309"/>
+        <location filename="../MainWindow.cc" line="5371"/>
         <source>Print &amp;Vertex List</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5311"/>
+        <location filename="../MainWindow.cc" line="5373"/>
         <source>Print &amp;Edge List</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5312"/>
+        <location filename="../MainWindow.cc" line="5374"/>
         <source>Print Edge list to the console</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5313"/>
+        <location filename="../MainWindow.cc" line="5375"/>
         <source>Print &amp;CV List</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5314"/>
+        <location filename="../MainWindow.cc" line="5376"/>
         <source>Print CV list to the console</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5315"/>
+        <location filename="../MainWindow.cc" line="5377"/>
         <source>E&amp;xit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5316"/>
+        <location filename="../MainWindow.cc" line="5378"/>
         <source>Exit the application</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5321"/>
+        <location filename="../MainWindow.cc" line="5382"/>
         <source>Quick Command</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5322"/>
+        <location filename="../MainWindow.cc" line="5383"/>
         <source>Quick Command Access with Autocompletion</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5325"/>
+        <location filename="../MainWindow.cc" line="5387"/>
         <source>&amp;Delete Selected</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5326"/>
+        <location filename="../MainWindow.cc" line="5388"/>
         <source>Delete Selected</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5327"/>
+        <location filename="../MainWindow.cc" line="5389"/>
         <source>&amp;Undo</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="502"/>
+        <location filename="../MainWindow.cc" line="506"/>
         <source>Undo the last operation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5328"/>
+        <location filename="../MainWindow.cc" line="5390"/>
         <source>&amp;Redo</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="508"/>
+        <location filename="../MainWindow.cc" line="512"/>
         <source>Redo the last operation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5329"/>
+        <location filename="../MainWindow.cc" line="5391"/>
         <source>&amp;Clear Undo List</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="514"/>
+        <location filename="../MainWindow.cc" line="519"/>
         <source>Clear the Undo List to free up some memory</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5331"/>
+        <location filename="../MainWindow.cc" line="5393"/>
         <source>&amp;Reset Camera</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="521"/>
+        <location filename="../MainWindow.cc" line="526"/>
         <source>Reset Camera Position to default</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5333"/>
+        <location filename="../MainWindow.cc" line="5395"/>
         <source>Zoom In</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="534"/>
+        <location filename="../MainWindow.cc" line="538"/>
         <source>Zoom in on the Model</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5332"/>
+        <location filename="../MainWindow.cc" line="5394"/>
         <source>Zoom Out</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5342"/>
+        <location filename="../MainWindow.cc" line="5404"/>
         <source>&amp;Full Screen</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5343"/>
+        <location filename="../MainWindow.cc" line="5405"/>
         <source>Toggle Full Screen</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5344"/>
+        <location filename="../MainWindow.cc" line="5406"/>
         <source>Show &amp;Vertices</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5345"/>
+        <location filename="../MainWindow.cc" line="5407"/>
         <source>Show &amp;Face IDs</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5346"/>
+        <location filename="../MainWindow.cc" line="5408"/>
         <source>Show &amp;Edge IDs</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5347"/>
+        <location filename="../MainWindow.cc" line="5409"/>
         <source>Show &amp;Vertex IDs</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5348"/>
+        <location filename="../MainWindow.cc" line="5410"/>
         <source>Show &amp;Selected IDs</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5349"/>
+        <location filename="../MainWindow.cc" line="5411"/>
         <source>Show &amp;Silhouette</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5350"/>
+        <location filename="../MainWindow.cc" line="5412"/>
         <source>Show &amp;Wireframe</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5351"/>
+        <location filename="../MainWindow.cc" line="5413"/>
         <source>Show &amp;Coordinate Axes</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5352"/>
+        <location filename="../MainWindow.cc" line="5414"/>
         <source>Reverse Object</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5353"/>
+        <location filename="../MainWindow.cc" line="5415"/>
         <source>Show &amp;Normals</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5354"/>
+        <location filename="../MainWindow.cc" line="5416"/>
         <source>Show &amp;Face Centroids</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="649"/>
+        <location filename="../MainWindow.cc" line="654"/>
         <source>Show &amp;Grid</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5355"/>
+        <location filename="../MainWindow.cc" line="5417"/>
         <source>Show &amp;Heads Up Display</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5356"/>
+        <location filename="../MainWindow.cc" line="5418"/>
         <source>Show the Heads Up Display</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5358"/>
+        <location filename="../MainWindow.cc" line="5420"/>
         <source>&amp;Use GPU Shading</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5359"/>
+        <location filename="../MainWindow.cc" line="5421"/>
         <source>Use GPU Shading</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5361"/>
+        <location filename="../MainWindow.cc" line="5423"/>
         <source>Toggle &amp;Antialiasing</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5362"/>
+        <location filename="../MainWindow.cc" line="5424"/>
         <source>Toggle Antialiasing</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5365"/>
+        <location filename="../MainWindow.cc" line="5427"/>
         <source>Show the script editor to execute DLFL commands</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5368"/>
+        <location filename="../MainWindow.cc" line="5430"/>
         <source>Show the tool options window</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5369"/>
+        <location filename="../MainWindow.cc" line="5432"/>
         <source>Show the startup screen with links to video tutorials</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5370"/>
-        <source>Show/Hide the animated help window</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../MainWindow.cc" line="5373"/>
+        <location filename="../MainWindow.cc" line="5436"/>
         <source>&amp;Wireframe Renderer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5374"/>
+        <location filename="../MainWindow.cc" line="5438"/>
         <source>Switch the current renderer to Wireframe</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5375"/>
+        <location filename="../MainWindow.cc" line="5439"/>
         <source>&amp;Normal Renderer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5376"/>
+        <location filename="../MainWindow.cc" line="5440"/>
         <source>Switch the current renderer to Normal</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5377"/>
+        <location filename="../MainWindow.cc" line="5441"/>
         <source>&amp;Lighted Renderer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5378"/>
+        <location filename="../MainWindow.cc" line="5442"/>
         <source>Switch the current renderer to Lighted</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5379"/>
+        <location filename="../MainWindow.cc" line="5443"/>
         <source>&amp;Textured Renderer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5380"/>
+        <location filename="../MainWindow.cc" line="5445"/>
         <source>Switch the current renderer to Textured</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5381"/>
+        <location filename="../MainWindow.cc" line="5446"/>
         <source>Te&amp;xtured Lighted Renderer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5382"/>
+        <location filename="../MainWindow.cc" line="5448"/>
         <source>Switch the current renderer to Textured Lit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5389"/>
+        <location filename="../MainWindow.cc" line="5456"/>
         <source>&amp;Cube</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5390"/>
+        <location filename="../MainWindow.cc" line="5457"/>
         <source>Load a Cube</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5391"/>
+        <location filename="../MainWindow.cc" line="5458"/>
         <source>&amp;Octahedron</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5392"/>
+        <location filename="../MainWindow.cc" line="5459"/>
         <source>Load an octahedron</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5393"/>
+        <location filename="../MainWindow.cc" line="5460"/>
         <source>&amp;Tetrahedron</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5394"/>
+        <location filename="../MainWindow.cc" line="5461"/>
         <source>Load a tetrahedron</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5395"/>
+        <location filename="../MainWindow.cc" line="5462"/>
         <source>&amp;Dodecahedron</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5396"/>
+        <location filename="../MainWindow.cc" line="5463"/>
         <source>Load a dodecahedron</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5397"/>
+        <location filename="../MainWindow.cc" line="5464"/>
         <source>&amp;Icosahedron</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5398"/>
+        <location filename="../MainWindow.cc" line="5465"/>
         <source>Load an icosahedron</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5399"/>
+        <location filename="../MainWindow.cc" line="5466"/>
         <source>&amp;Soccer ball</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5400"/>
+        <location filename="../MainWindow.cc" line="5467"/>
         <source>Load a soccer ball</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5401"/>
+        <location filename="../MainWindow.cc" line="5468"/>
         <source>&amp;Geodesic Dome</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5402"/>
+        <location filename="../MainWindow.cc" line="5469"/>
         <source>Load a geodesic dome</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5404"/>
+        <location filename="../MainWindow.cc" line="5471"/>
         <source>Subdivide All &amp;Edges</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5405"/>
+        <location filename="../MainWindow.cc" line="5472"/>
         <source>Planarize All &amp;Faces</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5406"/>
+        <location filename="../MainWindow.cc" line="5473"/>
         <source>Make &amp;Object Spherical</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5407"/>
+        <location filename="../MainWindow.cc" line="5474"/>
         <source>Cleanup 2-gons</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5408"/>
+        <location filename="../MainWindow.cc" line="5475"/>
         <source>Remove valence-2 vertices</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5409"/>
+        <location filename="../MainWindow.cc" line="5476"/>
         <source>Split valence-2 vertices</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5410"/>
+        <location filename="../MainWindow.cc" line="5477"/>
         <source>Make Object &amp;Smooth</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5411"/>
+        <location filename="../MainWindow.cc" line="5478"/>
         <source>Perform Cutting</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5412"/>
+        <location filename="../MainWindow.cc" line="5481"/>
         <source>Cut selected faces, edges, or vertices based on the current selection mask</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5413"/>
+        <location filename="../MainWindow.cc" line="5482"/>
         <source>&amp;Create Crust (Scaling)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5414"/>
+        <location filename="../MainWindow.cc" line="5484"/>
         <source>Create a crust using the currently selected faces with scaling mode</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5415"/>
+        <location filename="../MainWindow.cc" line="5485"/>
         <source>Create Crust (&amp;Thickness)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5416"/>
+        <location filename="../MainWindow.cc" line="5487"/>
         <source>Create a crust using the currently selected faces with thickness mode</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5417"/>
+        <location filename="../MainWindow.cc" line="5488"/>
         <source>Create Wireframe</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5418"/>
+        <location filename="../MainWindow.cc" line="5490"/>
         <source>Create a wireframe model using the current options</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5419"/>
+        <location filename="../MainWindow.cc" line="5491"/>
         <source>Create Columns</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5420"/>
+        <location filename="../MainWindow.cc" line="5493"/>
         <source>Create a column model using the current options</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5421"/>
+        <location filename="../MainWindow.cc" line="5494"/>
         <source>Create Sierpinski</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5422"/>
+        <location filename="../MainWindow.cc" line="5495"/>
         <source>Create a sierpinski tetrahedra</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5423"/>
+        <location filename="../MainWindow.cc" line="5496"/>
         <source>Compute &amp;Lighting</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5424"/>
+        <location filename="../MainWindow.cc" line="5497"/>
         <source>Compute &amp;Normals and Lighting</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5425"/>
+        <location filename="../MainWindow.cc" line="5498"/>
         <source>Assign &amp;Texture Coordinates</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5443"/>
+        <location filename="../MainWindow.cc" line="5516"/>
         <source>Selection Window</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5427"/>
+        <location filename="../MainWindow.cc" line="5500"/>
         <source>Select &amp;Vertex</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5428"/>
+        <location filename="../MainWindow.cc" line="5501"/>
         <source>Select a Vertex</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5429"/>
+        <location filename="../MainWindow.cc" line="5502"/>
         <source>Select Multiple Vertices</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5430"/>
+        <location filename="../MainWindow.cc" line="5503"/>
         <source>Select multiple vertices</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="960"/>
+        <location filename="../MainWindow.cc" line="983"/>
         <source>Select Multiple</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="962"/>
+        <location filename="../MainWindow.cc" line="985"/>
         <source>Select multiple</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5431"/>
+        <location filename="../MainWindow.cc" line="5504"/>
         <source>Edit Verte&amp;x</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="968"/>
+        <location filename="../MainWindow.cc" line="991"/>
         <source>Select and Move Vertices one at a time.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5433"/>
+        <location filename="../MainWindow.cc" line="5506"/>
         <source>Select &amp;Face</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5435"/>
+        <location filename="../MainWindow.cc" line="5508"/>
         <source>Select Face Loo&amp;p</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5436"/>
+        <location filename="../MainWindow.cc" line="5509"/>
         <source>Select a Face Loop.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5439"/>
+        <location filename="../MainWindow.cc" line="5512"/>
         <source>Select &amp;Multiple Faces</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5440"/>
+        <location filename="../MainWindow.cc" line="5513"/>
         <source>Select &amp;Similar Faces</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="4153"/>
+        <location filename="../MainWindow.cc" line="4158"/>
         <source>Select Similar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5441"/>
+        <location filename="../MainWindow.cc" line="5514"/>
         <source>Select Faces By Surf. Area</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5444"/>
+        <location filename="../MainWindow.cc" line="5517"/>
         <source>C&amp;heckerboard Select Faces</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5445"/>
+        <location filename="../MainWindow.cc" line="5518"/>
         <source>Select &amp;All</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5446"/>
+        <location filename="../MainWindow.cc" line="5519"/>
         <source>Grow Selection</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5448"/>
+        <location filename="../MainWindow.cc" line="5521"/>
         <source>Shrink Selection</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5449"/>
+        <location filename="../MainWindow.cc" line="5522"/>
         <source>Select &amp;Inverse</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5450"/>
+        <location filename="../MainWindow.cc" line="5523"/>
         <source>Select &amp;Edge</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5451"/>
+        <location filename="../MainWindow.cc" line="5524"/>
         <source>Select one Edge</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5454"/>
+        <location filename="../MainWindow.cc" line="5527"/>
         <source>Select Multiple Edges</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5455"/>
+        <location filename="../MainWindow.cc" line="5528"/>
         <source>Select multiple edges</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5453"/>
+        <location filename="../MainWindow.cc" line="5526"/>
         <source>Collapse Selected Edges</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5456"/>
+        <location filename="../MainWindow.cc" line="5529"/>
         <source>Select Edge &amp;Loop</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5457"/>
+        <location filename="../MainWindow.cc" line="5530"/>
         <source>Select an Edge Loop</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5437"/>
+        <location filename="../MainWindow.cc" line="5510"/>
         <source>Select Edge &amp;Ring</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="1065"/>
+        <location filename="../MainWindow.cc" line="1089"/>
         <source>Select an edge ring.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5468"/>
+        <location filename="../MainWindow.cc" line="5541"/>
         <source>Select &amp;Corner</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5459"/>
+        <location filename="../MainWindow.cc" line="5532"/>
         <source>Select a Corner</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5460"/>
+        <location filename="../MainWindow.cc" line="5533"/>
         <source>E&amp;xit Selection Mode</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5461"/>
+        <location filename="../MainWindow.cc" line="5534"/>
         <source>&amp;Clear Selected</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="1085"/>
+        <location filename="../MainWindow.cc" line="1109"/>
         <source>Select Edges from Faces</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="1090"/>
+        <location filename="../MainWindow.cc" line="1115"/>
         <source>Select Edges from Vertices</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="1095"/>
+        <location filename="../MainWindow.cc" line="1120"/>
         <source>Select Faces from Edges</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="1100"/>
+        <location filename="../MainWindow.cc" line="1126"/>
         <source>Select Faces from Vertices</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="1105"/>
+        <location filename="../MainWindow.cc" line="1132"/>
         <source>Select Vertices from Edges</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="1110"/>
+        <location filename="../MainWindow.cc" line="1138"/>
         <source>Select Vertices from Faces</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5462"/>
+        <location filename="../MainWindow.cc" line="5535"/>
         <source>Select &amp;Vertices</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5463"/>
+        <location filename="../MainWindow.cc" line="5536"/>
         <source>Select by Component type: Vertices</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5464"/>
+        <location filename="../MainWindow.cc" line="5537"/>
         <source>Select &amp;Edges</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5465"/>
+        <location filename="../MainWindow.cc" line="5538"/>
         <source>Select by Component type: Edges</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5466"/>
+        <location filename="../MainWindow.cc" line="5539"/>
         <source>Select &amp;Faces</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5467"/>
+        <location filename="../MainWindow.cc" line="5540"/>
         <source>Select by Component type: Faces</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5469"/>
+        <location filename="../MainWindow.cc" line="5542"/>
         <source>Select by Component type: Corners</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5472"/>
+        <location filename="../MainWindow.cc" line="5545"/>
         <source>&amp;Preferences</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5473"/>
+        <location filename="../MainWindow.cc" line="5546"/>
         <source>Open the Preferences Dialog</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5476"/>
+        <location filename="../MainWindow.cc" line="5549"/>
         <source>English</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5477"/>
+        <location filename="../MainWindow.cc" line="5550"/>
         <source>Spanish</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5478"/>
+        <location filename="../MainWindow.cc" line="5551"/>
         <source>German</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5479"/>
+        <location filename="../MainWindow.cc" line="5552"/>
         <source>French</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5480"/>
+        <location filename="../MainWindow.cc" line="5553"/>
         <source>Italian</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5481"/>
+        <location filename="../MainWindow.cc" line="5554"/>
         <source>Turkish</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5482"/>
+        <location filename="../MainWindow.cc" line="5555"/>
         <source>Catalan</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5483"/>
+        <location filename="../MainWindow.cc" line="5556"/>
         <source>Hindi</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5485"/>
+        <location filename="../MainWindow.cc" line="5558"/>
         <source>Subdivide Selected Faces</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5486"/>
+        <location filename="../MainWindow.cc" line="5559"/>
         <source>Subdivide all Selected Faces</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5491"/>
+        <location filename="../MainWindow.cc" line="5564"/>
         <source>Subdivide Selected Edges</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5492"/>
+        <location filename="../MainWindow.cc" line="5565"/>
         <source>Subdivide all Selected Edges</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5493"/>
+        <location filename="../MainWindow.cc" line="5566"/>
         <source>Perform Remeshing</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5494"/>
+        <location filename="../MainWindow.cc" line="5567"/>
         <source>Perform the current remeshing scheme</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5495"/>
+        <location filename="../MainWindow.cc" line="5568"/>
         <source>Perform Extrusion</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5496"/>
+        <location filename="../MainWindow.cc" line="5570"/>
         <source>Perform the current extrusion operator on the selected faces</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5497"/>
+        <location filename="../MainWindow.cc" line="5571"/>
         <source>Extrude Multiple Faces</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5498"/>
+        <location filename="../MainWindow.cc" line="5574"/>
         <source>Check this if you want to be able to select multiple faces and then hit CTRL+X to extrude the selected faces</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5501"/>
+        <location filename="../MainWindow.cc" line="5577"/>
         <source>&amp;Online User Manual</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5502"/>
+        <location filename="../MainWindow.cc" line="5578"/>
         <source>View the User Manual on the TopMod Wiki</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5505"/>
+        <location filename="../MainWindow.cc" line="5581"/>
         <source>&amp;TopMod Video Tutorials on blip.tv</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5506"/>
+        <location filename="../MainWindow.cc" line="5582"/>
         <source>Go to http://topmod.blip.tv</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5503"/>
+        <location filename="../MainWindow.cc" line="5579"/>
         <source>&amp;TopMod on the Web</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5504"/>
+        <location filename="../MainWindow.cc" line="5580"/>
         <source>Go to the TopMod web page</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5507"/>
+        <location filename="../MainWindow.cc" line="5583"/>
         <source>&amp;TopMod Research Papers</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5508"/>
+        <location filename="../MainWindow.cc" line="5584"/>
         <source>Go to the TopMod Research web page</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5509"/>
+        <location filename="../MainWindow.cc" line="5585"/>
         <source>&amp;Check for Updates</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5510"/>
+        <location filename="../MainWindow.cc" line="5586"/>
         <source>Check for updates to TopMod Online</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5511"/>
+        <location filename="../MainWindow.cc" line="5587"/>
         <source>&amp;About TopMod</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5512"/>
+        <location filename="../MainWindow.cc" line="5588"/>
         <source>About TopMod</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5513"/>
+        <location filename="../MainWindow.cc" line="5589"/>
         <source>About &amp;Qt</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5514"/>
+        <location filename="../MainWindow.cc" line="5590"/>
         <source>About Qt</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5516"/>
+        <location filename="../MainWindow.cc" line="5592"/>
         <source>Hide All ToolBars</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5518"/>
+        <location filename="../MainWindow.cc" line="5594"/>
         <source>Show All ToolBars</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5266"/>
+        <location filename="../MainWindow.cc" line="5321"/>
         <source>&amp;File</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5271"/>
+        <location filename="../MainWindow.cc" line="5326"/>
         <source>&amp;New</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="1348"/>
+        <location filename="../MainWindow.cc" line="1395"/>
         <source>&amp;Export</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5267"/>
+        <location filename="../MainWindow.cc" line="5322"/>
         <source>&amp;Edit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5268"/>
+        <location filename="../MainWindow.cc" line="5323"/>
         <source>&amp;Display</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5269"/>
+        <location filename="../MainWindow.cc" line="5324"/>
         <source>&amp;Renderer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="1419"/>
+        <location filename="../MainWindow.cc" line="1466"/>
         <source>Special Mode??</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5270"/>
+        <location filename="../MainWindow.cc" line="5325"/>
         <source>&amp;Show IDs</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5272"/>
+        <location filename="../MainWindow.cc" line="5327"/>
         <source>&amp;Primitives</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5273"/>
+        <location filename="../MainWindow.cc" line="5328"/>
         <source>&amp;Selection</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5274"/>
+        <location filename="../MainWindow.cc" line="5329"/>
         <source>&amp;Tools</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5275"/>
+        <location filename="../MainWindow.cc" line="5330"/>
         <source>&amp;Object</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5276"/>
+        <location filename="../MainWindow.cc" line="5331"/>
         <source>Selection &amp;Masks</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5277"/>
+        <location filename="../MainWindow.cc" line="5332"/>
         <source>&amp;Window</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5278"/>
+        <location filename="../MainWindow.cc" line="5333"/>
         <source>&amp;Help</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5279"/>
+        <location filename="../MainWindow.cc" line="5334"/>
         <source>&amp;Language</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5524"/>
+        <location filename="../MainWindow.cc" line="5600"/>
         <source>Edit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5525"/>
+        <location filename="../MainWindow.cc" line="5601"/>
         <source>Selection Masks</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5526"/>
+        <location filename="../MainWindow.cc" line="5602"/>
         <source>Primitives</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5527"/>
-        <source>Tools</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../MainWindow.cc" line="5528"/>
+        <location filename="../MainWindow.cc" line="5604"/>
         <source>Extrusion Tools</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5529"/>
+        <location filename="../MainWindow.cc" line="5605"/>
         <source>Conical Tools</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5530"/>
+        <location filename="../MainWindow.cc" line="5606"/>
         <source>High Genus Tools</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5531"/>
+        <location filename="../MainWindow.cc" line="5607"/>
         <source>Texturing Tools</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5532"/>
+        <location filename="../MainWindow.cc" line="5608"/>
         <source>Remeshing Tools</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5536"/>
+        <location filename="../MainWindow.cc" line="5612"/>
         <source>Navigation Basics</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5537"/>
+        <location filename="../MainWindow.cc" line="5613"/>
         <source>Interface Basics</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5538"/>
+        <location filename="../MainWindow.cc" line="5614"/>
         <source>Basic Operations</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5539"/>
+        <location filename="../MainWindow.cc" line="5615"/>
         <source>Extrusion Operations</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5540"/>
+        <location filename="../MainWindow.cc" line="5616"/>
         <source>Remeshing Operations</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5541"/>
+        <location filename="../MainWindow.cc" line="5617"/>
         <source>High genus Operations</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5542"/>
+        <location filename="../MainWindow.cc" line="5618"/>
         <source>Texturing Operations</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5543"/>
+        <location filename="../MainWindow.cc" line="5620"/>
         <source>Show this dialog at startup</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5544"/>
+        <location filename="../MainWindow.cc" line="5621"/>
         <source>Quicktime 7.2 or greater recommended.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5545"/>
+        <location filename="../MainWindow.cc" line="5624"/>
         <source>&lt;h5&gt;Quicktime 7.2 or greater recommended.&lt;br /&gt;&lt;a href=&quot;http://apple.com/quicktime/&quot;&gt;Download now.&lt;/a&gt;&lt;/h5&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="1875"/>
+        <location filename="../MainWindow.cc" line="1920"/>
         <source>Tool Options - </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="1885"/>
+        <location filename="../MainWindow.cc" line="1931"/>
         <source>Welcome to TopMod</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="4690"/>
+        <location filename="../MainWindow.cc" line="4761"/>
         <source>TopMod</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="1915"/>
+        <location filename="../MainWindow.cc" line="1957"/>
         <source>The document has been modified.
 Do you want to save your changes?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="1930"/>
+        <location filename="../MainWindow.cc" line="1970"/>
         <source>File loaded</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="1936"/>
+        <location filename="../MainWindow.cc" line="1975"/>
         <source>File saved</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="4065"/>
+        <location filename="../MainWindow.cc" line="4026"/>
         <source>Normal Mode</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="4067"/>
+        <location filename="../MainWindow.cc" line="4029"/>
         <source>Select Vertex</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="4069"/>
+        <location filename="../MainWindow.cc" line="4032"/>
         <source>Select Edge</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="4071"/>
+        <location filename="../MainWindow.cc" line="4035"/>
         <source>Select Face</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="4073"/>
+        <location filename="../MainWindow.cc" line="4038"/>
         <source>Select Corner</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="4075"/>
+        <location filename="../MainWindow.cc" line="4041"/>
         <source>Multi-Select Vertex</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="4077"/>
+        <location filename="../MainWindow.cc" line="4044"/>
         <source>Multi-Select Edge</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="4079"/>
+        <location filename="../MainWindow.cc" line="4047"/>
         <source>Multi-Select Face</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="4081"/>
+        <location filename="../MainWindow.cc" line="4050"/>
         <source>Multi-Select Corner</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="4083"/>
+        <location filename="../MainWindow.cc" line="4053"/>
         <source>Select Checkerboard</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="4085"/>
+        <location filename="../MainWindow.cc" line="4056"/>
         <source>Insert Edge</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="4087"/>
+        <location filename="../MainWindow.cc" line="4059"/>
         <source>Delete Edge</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="4089"/>
+        <location filename="../MainWindow.cc" line="4062"/>
         <source>Subdivide Edge</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="4091"/>
+        <location filename="../MainWindow.cc" line="4065"/>
         <source>Collapse Edge</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="4093"/>
+        <location filename="../MainWindow.cc" line="4068"/>
         <source>Splice Corners</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="4095"/>
+        <location filename="../MainWindow.cc" line="4071"/>
         <source>Connect Edges</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="4097"/>
+        <location filename="../MainWindow.cc" line="4074"/>
         <source>Cubical Extrusion</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="4099"/>
+        <location filename="../MainWindow.cc" line="4077"/>
         <source>Doo Sabin Extrusion</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="4101"/>
+        <location filename="../MainWindow.cc" line="4080"/>
         <source>Dual Extrusion</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="4103"/>
+        <location filename="../MainWindow.cc" line="4083"/>
         <source>Dodecahedral Extrusion</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="4105"/>
+        <location filename="../MainWindow.cc" line="4086"/>
         <source>Icosahedral Extrusion</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="4109"/>
+        <location filename="../MainWindow.cc" line="4092"/>
         <source>Stellate Face</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="4111"/>
+        <location filename="../MainWindow.cc" line="4095"/>
         <source>Double Stellate Face</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="4113"/>
+        <location filename="../MainWindow.cc" line="4098"/>
         <source>Dome Extrusion</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="4115"/>
+        <location filename="../MainWindow.cc" line="4101"/>
         <source>Connect Corners</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="4117"/>
+        <location filename="../MainWindow.cc" line="4104"/>
         <source>Connect Faces</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="4119"/>
+        <location filename="../MainWindow.cc" line="4107"/>
         <source>Bezier Connect Faces</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="4121"/>
+        <location filename="../MainWindow.cc" line="4110"/>
         <source>Hermite Connect Faces</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="4123"/>
+        <location filename="../MainWindow.cc" line="4113"/>
         <source>Reorder Face</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="4125"/>
+        <location filename="../MainWindow.cc" line="4116"/>
         <source>Subdivide Face</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="4127"/>
+        <location filename="../MainWindow.cc" line="4119"/>
         <source>Crust Modeling</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="4129"/>
+        <location filename="../MainWindow.cc" line="4122"/>
         <source>Cut Edge</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="4131"/>
+        <location filename="../MainWindow.cc" line="4125"/>
         <source>Cut Vertex</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="4133"/>
+        <location filename="../MainWindow.cc" line="4128"/>
         <source>Cut Edge and Vertex</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="4135"/>
+        <location filename="../MainWindow.cc" line="4131"/>
         <source>Cut Face</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="4137"/>
+        <location filename="../MainWindow.cc" line="4134"/>
         <source>Truncate Edge</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="4139"/>
+        <location filename="../MainWindow.cc" line="4137"/>
         <source>Mark Edge</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="4141"/>
+        <location filename="../MainWindow.cc" line="4140"/>
         <source>Mark Vertex</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2723,352 +2127,352 @@ Do you want to save your changes?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="4145"/>
+        <location filename="../MainWindow.cc" line="4146"/>
         <source>Edit Vertex</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="4147"/>
+        <location filename="../MainWindow.cc" line="4149"/>
         <source>Select Edge Loop</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="4149"/>
+        <location filename="../MainWindow.cc" line="4152"/>
         <source>Select Edge Ring</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="4151"/>
+        <location filename="../MainWindow.cc" line="4155"/>
         <source>Select Face Loop</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="4159"/>
+        <location filename="../MainWindow.cc" line="4167"/>
         <source>-</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="4211"/>
+        <location filename="../MainWindow.cc" line="4227"/>
         <source>Vertices</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="4222"/>
+        <location filename="../MainWindow.cc" line="4238"/>
         <source>Edges</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="4233"/>
+        <location filename="../MainWindow.cc" line="4249"/>
         <source>Faces</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="4244"/>
+        <location filename="../MainWindow.cc" line="4260"/>
         <source>Corners</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="4361"/>
+        <location filename="../MainWindow.cc" line="4413"/>
         <source>None</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="4289"/>
+        <location filename="../MainWindow.cc" line="4305"/>
         <source>Dual</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="4291"/>
+        <location filename="../MainWindow.cc" line="4308"/>
         <source>Root-3</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="4293"/>
+        <location filename="../MainWindow.cc" line="4311"/>
         <source>Dual Vertex Truncation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="4295"/>
+        <location filename="../MainWindow.cc" line="4314"/>
         <source>Global Stellate</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="4297"/>
+        <location filename="../MainWindow.cc" line="4317"/>
         <source>Star</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="4299"/>
+        <location filename="../MainWindow.cc" line="4320"/>
         <source>Generic 12.6.4</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="4301"/>
+        <location filename="../MainWindow.cc" line="4323"/>
         <source>Honeycomb</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="4303"/>
+        <location filename="../MainWindow.cc" line="4326"/>
         <source>Vertex Truncation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="4305"/>
+        <location filename="../MainWindow.cc" line="4329"/>
         <source>Dual Generic 12.6.4</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="4307"/>
+        <location filename="../MainWindow.cc" line="4332"/>
         <source>Linear Vertex Truncation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="4309"/>
+        <location filename="../MainWindow.cc" line="4335"/>
         <source>Catmull-Clark</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="4311"/>
+        <location filename="../MainWindow.cc" line="4338"/>
         <source>Modified Stellate</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="4313"/>
+        <location filename="../MainWindow.cc" line="4341"/>
         <source>Doo Sabin</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="4315"/>
+        <location filename="../MainWindow.cc" line="4344"/>
         <source>Corner Cutting</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="4317"/>
+        <location filename="../MainWindow.cc" line="4347"/>
         <source>Modified Corner Cutting</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="4319"/>
+        <location filename="../MainWindow.cc" line="4350"/>
         <source>Simplest</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="4321"/>
+        <location filename="../MainWindow.cc" line="4353"/>
         <source>Pentagonal</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="4323"/>
+        <location filename="../MainWindow.cc" line="4356"/>
         <source>Cubic Pentagonal</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="4325"/>
+        <location filename="../MainWindow.cc" line="4359"/>
         <source>Dual Pentagonal</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="4327"/>
+        <location filename="../MainWindow.cc" line="4362"/>
         <source>Loop Style</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="4329"/>
+        <location filename="../MainWindow.cc" line="4365"/>
         <source>Loop</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="4331"/>
+        <location filename="../MainWindow.cc" line="4368"/>
         <source>Root4</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="4333"/>
+        <location filename="../MainWindow.cc" line="4371"/>
         <source>Dual Loop</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="4335"/>
+        <location filename="../MainWindow.cc" line="4374"/>
         <source>Global Cubic Extrude</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="4337"/>
+        <location filename="../MainWindow.cc" line="4377"/>
         <source>Checkerboard</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="4339"/>
+        <location filename="../MainWindow.cc" line="4380"/>
         <source>Dual Global Cubic Extrude</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="4341"/>
+        <location filename="../MainWindow.cc" line="4383"/>
         <source>Dual Checkerboard</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="4343"/>
+        <location filename="../MainWindow.cc" line="4386"/>
         <source>Pentagon Preserving</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="4345"/>
+        <location filename="../MainWindow.cc" line="4389"/>
         <source>Dual Pentagon Preserving</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="4347"/>
+        <location filename="../MainWindow.cc" line="4392"/>
         <source>Hexagon Preserving</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="4349"/>
+        <location filename="../MainWindow.cc" line="4395"/>
         <source>Dual Hexagon Preserving</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="4351"/>
+        <location filename="../MainWindow.cc" line="4398"/>
         <source>Fractal</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="4353"/>
+        <location filename="../MainWindow.cc" line="4401"/>
         <source>Modified Double Stellate</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="4355"/>
+        <location filename="../MainWindow.cc" line="4404"/>
         <source>Dome</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="4357"/>
+        <location filename="../MainWindow.cc" line="4407"/>
         <source>Doo Sabin BC</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="4359"/>
+        <location filename="../MainWindow.cc" line="4410"/>
         <source>Doo Sabin BC New</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindowCallbacks.cc" line="11"/>
+        <location filename="../MainWindow.cc" line="4544"/>
         <source>Open File...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="4627"/>
+        <location filename="../MainWindow.cc" line="4697"/>
         <source>All Supported Files (*.obj *.dlfl);;Wavefront OBJ Files (*.obj);;DLFL Files (*.dlfl);;All Files (*)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="4622"/>
+        <location filename="../MainWindow.cc" line="4688"/>
         <source>Saving File...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="4625"/>
+        <location filename="../MainWindow.cc" line="4694"/>
         <source>Save File As...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="4698"/>
+        <location filename="../MainWindow.cc" line="4768"/>
         <source>Save Bezier Patch (OBJ)...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="4700"/>
+        <location filename="../MainWindow.cc" line="4769"/>
         <source>Wavefront OBJ Files (*.obj);;All Files (*)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="4714"/>
+        <location filename="../MainWindow.cc" line="4783"/>
         <source>Export to LiveGraphics3D  (M)...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="4732"/>
+        <location filename="../MainWindow.cc" line="4798"/>
         <source>Mathematica Graphics3D Files (*.m);;All Files (*)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="4730"/>
+        <location filename="../MainWindow.cc" line="4797"/>
         <source>Export Selected Faces to LiveGraphics3D  (M)...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="4754"/>
+        <location filename="../MainWindow.cc" line="4818"/>
         <source>STL Files (*.stl);;All Files (*)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="4792"/>
+        <location filename="../MainWindow.cc" line="4854"/>
         <source>/untitled.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="4774"/>
+        <location filename="../MainWindow.cc" line="4839"/>
         <source>Save Viewport Screenshot As</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="4797"/>
+        <location filename="../MainWindow.cc" line="4858"/>
         <source>%1 Files (*.%2);;All Files (*)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="4794"/>
+        <location filename="../MainWindow.cc" line="4857"/>
         <source>Save App Screenshot As</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="4690"/>
+        <location filename="../MainWindow.cc" line="4761"/>
         <source>%1[*] - %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="4813"/>
+        <location filename="../MainWindow.cc" line="4872"/>
         <source>cube.obj</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="4838"/>
+        <location filename="../MainWindow.cc" line="4895"/>
         <source>octahedron.obj</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="4853"/>
+        <location filename="../MainWindow.cc" line="4909"/>
         <source>tetrahedron.obj</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="4868"/>
+        <location filename="../MainWindow.cc" line="4923"/>
         <source>dodecahedron.obj</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="4883"/>
+        <location filename="../MainWindow.cc" line="4937"/>
         <source>icosahedron.obj</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="4898"/>
+        <location filename="../MainWindow.cc" line="4951"/>
         <source>soccerball.obj</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="4913"/>
+        <location filename="../MainWindow.cc" line="4965"/>
         <source>geodesic.obj</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5432"/>
+        <location filename="../MainWindow.cc" line="5505"/>
         <source>Select and Move Vertices One at a time.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5438"/>
+        <location filename="../MainWindow.cc" line="5511"/>
         <source>Select an Edge Ring.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3078,107 +2482,97 @@ Do you want to save your changes?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindowCallbacks.cc" line="125"/>
+        <location filename="../MainWindowCallbacks.cc" line="139"/>
         <source>TopMod Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindowCallbacks.cc" line="1726"/>
-        <source>No movie loaded</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../MainWindowCallbacks.cc" line="1744"/>
-        <source>TopMod Animated Help</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../MainWindow.cc" line="5385"/>
+        <location filename="../MainWindow.cc" line="5451"/>
         <source>&amp;Colorable Renderer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5386"/>
+        <location filename="../MainWindow.cc" line="5453"/>
         <source>Switch the current renderer to Colorable</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5442"/>
+        <location filename="../MainWindow.cc" line="5515"/>
         <source>Select Faces By Color</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5487"/>
+        <location filename="../MainWindow.cc" line="5560"/>
         <source>Paint Selected Faces</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5488"/>
+        <location filename="../MainWindow.cc" line="5561"/>
         <source>Paint all Selected Faces</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5490"/>
+        <location filename="../MainWindow.cc" line="5563"/>
         <source>Clear Materials</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5533"/>
+        <location filename="../MainWindow.cc" line="5609"/>
         <source>Experimental Tools</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="712"/>
+        <location filename="../MainWindow.cc" line="718"/>
         <source>&amp;Planar modeling</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="713"/>
+        <location filename="../MainWindow.cc" line="719"/>
         <source>Switch to planar modeling mode</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="722"/>
+        <location filename="../MainWindow.cc" line="728"/>
         <source>&amp;Polygonal modeling</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="723"/>
+        <location filename="../MainWindow.cc" line="729"/>
         <source>Switch to polygonal modeling mode</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="733"/>
+        <location filename="../MainWindow.cc" line="739"/>
         <source>&amp;Patch modeling</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="734"/>
+        <location filename="../MainWindow.cc" line="740"/>
         <source>Switch to patch modeling mode</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="974"/>
+        <location filename="../MainWindow.cc" line="997"/>
         <source>Select a single Face.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5447"/>
+        <location filename="../MainWindow.cc" line="5520"/>
         <source>Select Connected Component</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="1398"/>
+        <location filename="../MainWindow.cc" line="1445"/>
         <source>&amp;Mode</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cc" line="5434"/>
+        <location filename="../MainWindow.cc" line="5507"/>
         <source>Select One Face.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindowCallbacks.cc" line="78"/>
+        <location filename="../MainWindowCallbacks.cc" line="81"/>
         <source>Switched to patch mode.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3192,860 +2586,37 @@ Do you want to save your changes?</source>
         <source>Accurate Dual turned on</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <location filename="../MainWindow.cc" line="291"/>
+        <source>Tool Options</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../MainWindowCallbacks.cc" line="11"/>
+        <source>Open Texture File...</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>QShortcut</name>
     <message>
-        <location filename="../qshortcutdialog.cc" line="364"/>
+        <location filename="../qshortcutdialog.cc" line="341"/>
         <source>Shift</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qshortcutdialog.cc" line="365"/>
+        <location filename="../qshortcutdialog.cc" line="342"/>
         <source>Ctrl</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qshortcutdialog.cc" line="365"/>
+        <location filename="../qshortcutdialog.cc" line="342"/>
         <source>Alt</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qshortcutdialog.cc" line="365"/>
+        <location filename="../qshortcutdialog.cc" line="342"/>
         <source>Meta</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>RemeshingMode</name>
-    <message>
-        <location filename="../RemeshingMode.cc" line="1484"/>
-        <source>Dual</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../RemeshingMode.cc" line="1485"/>
-        <source>Enter Dual Remeshing Mode</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../RemeshingMode.cc" line="1486"/>
-        <source>Dual Remeshing Mode</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../RemeshingMode.cc" line="1487"/>
-        <source>Root-3</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../RemeshingMode.cc" line="1488"/>
-        <source>Enter Root-3 Remeshing Mode</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../RemeshingMode.cc" line="1489"/>
-        <source>Root-3 Remeshing Mode</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../RemeshingMode.cc" line="1490"/>
-        <source>Triangulate</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../RemeshingMode.cc" line="1491"/>
-        <source>Enter Triangulate Remeshing Mode</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../RemeshingMode.cc" line="1492"/>
-        <source>Triangulate Remeshing Mode</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../RemeshingMode.cc" line="1619"/>
-        <source>Dual Vertex Truncation</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../RemeshingMode.cc" line="1494"/>
-        <source>Enter Dual Vertex Truncation Remeshing Mode</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../RemeshingMode.cc" line="1495"/>
-        <source>Dual Vertex Truncation Remeshing Mode</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../RemeshingMode.cc" line="1496"/>
-        <source>Stellate</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../RemeshingMode.cc" line="1497"/>
-        <source>Enter Stellate Remeshing Mode</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../RemeshingMode.cc" line="1498"/>
-        <source>Stellate Remeshing Mode</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../RemeshingMode.cc" line="1583"/>
-        <source>Double Stellate</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../RemeshingMode.cc" line="1584"/>
-        <source>Enter Double Stellate Remeshing Mode</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../RemeshingMode.cc" line="1585"/>
-        <source>Double Stellate Remeshing Mode</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../RemeshingMode.cc" line="1502"/>
-        <source>12.6.4</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../RemeshingMode.cc" line="1503"/>
-        <source>Enter 12.6.4 Remeshing Mode</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../RemeshingMode.cc" line="1504"/>
-        <source>12.6.4 Remeshing Mode</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../RemeshingMode.cc" line="1505"/>
-        <source>Honeycomb</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../RemeshingMode.cc" line="1506"/>
-        <source>Enter Honeycomb Remeshing Mode</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../RemeshingMode.cc" line="1507"/>
-        <source>Honeycomb Remeshing Mode</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../RemeshingMode.cc" line="1508"/>
-        <source>Vertex Truncation</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../RemeshingMode.cc" line="1509"/>
-        <source>Enter Vertex Truncation Remeshing Mode</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../RemeshingMode.cc" line="1510"/>
-        <source>Vertex Truncation Remeshing Mode</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../RemeshingMode.cc" line="1511"/>
-        <source>Dual 12.6.4</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../RemeshingMode.cc" line="1512"/>
-        <source>Enter Dual 12.6.4 Remeshing Mode</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../RemeshingMode.cc" line="1513"/>
-        <source>Dual 12.6.4 Remeshing Mode</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../RemeshingMode.cc" line="1514"/>
-        <source>Linear Vertex Insertion</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../RemeshingMode.cc" line="1515"/>
-        <source>Enter Linear Vertex Insertion Remeshing Mode</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../RemeshingMode.cc" line="1516"/>
-        <source>Linear Vertex Insertion Remeshing Mode</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../RemeshingMode.cc" line="1517"/>
-        <source>Catmull Clark</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../RemeshingMode.cc" line="1518"/>
-        <source>Enter Catmull Clark Remeshing Mode</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../RemeshingMode.cc" line="1519"/>
-        <source>Catmull Clark Remeshing Mode</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../RemeshingMode.cc" line="1520"/>
-        <source>Stellate with Edge Removal</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../RemeshingMode.cc" line="1521"/>
-        <source>Enter Stellate with Edge Removal Remeshing Mode</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../RemeshingMode.cc" line="1522"/>
-        <source>Stellate with Edge Removal Remeshing Mode</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../RemeshingMode.cc" line="1523"/>
-        <source>Doo Sabin</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../RemeshingMode.cc" line="1524"/>
-        <source>Enter Doo Sabin Remeshing Mode</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../RemeshingMode.cc" line="1525"/>
-        <source>Doo Sabin Remeshing Mode</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../RemeshingMode.cc" line="1526"/>
-        <source>Corner Cutting</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../RemeshingMode.cc" line="1527"/>
-        <source>Enter Corner Cutting Remeshing Mode</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../RemeshingMode.cc" line="1528"/>
-        <source>Corner Cutting Remeshing Mode</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../RemeshingMode.cc" line="1529"/>
-        <source>Modified Corner Cutting</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../RemeshingMode.cc" line="1530"/>
-        <source>Enter Modified Corner Cutting Remeshing Mode</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../RemeshingMode.cc" line="1531"/>
-        <source>Modified Corner Cutting Remeshing Mode</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../RemeshingMode.cc" line="1532"/>
-        <source>Simplest</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../RemeshingMode.cc" line="1533"/>
-        <source>Enter Simplest Remeshing Mode</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../RemeshingMode.cc" line="1534"/>
-        <source>Simplest Remeshing Mode</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../RemeshingMode.cc" line="1535"/>
-        <source>Pentagonalization</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../RemeshingMode.cc" line="1536"/>
-        <source>Enter Pentagonalization Remeshing Mode</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../RemeshingMode.cc" line="1537"/>
-        <source>Pentagonalization Remeshing Mode</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../RemeshingMode.cc" line="1538"/>
-        <source>Cubic Pentagonalization</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../RemeshingMode.cc" line="1539"/>
-        <source>Enter Cubic Pentagonalization Remeshing Mode</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../RemeshingMode.cc" line="1540"/>
-        <source>Cubic Pentagonalization Remeshing Mode</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../RemeshingMode.cc" line="1541"/>
-        <source>Dual Pentagonalization</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../RemeshingMode.cc" line="1542"/>
-        <source>Enter Dual Pentagonalization Remeshing Mode</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../RemeshingMode.cc" line="1543"/>
-        <source>Dual Pentagonalization Remeshing Mode</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../RemeshingMode.cc" line="1661"/>
-        <source>Loop Style Remeshing</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../RemeshingMode.cc" line="1578"/>
-        <source>Enter Loop Style Remeshing Remeshing Mode</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../RemeshingMode.cc" line="1579"/>
-        <source>Loop Style Remeshing Remeshing Mode</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../RemeshingMode.cc" line="1547"/>
-        <source>Loop Subdivision</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../RemeshingMode.cc" line="1548"/>
-        <source>Enter Loop Subdivision Remeshing Mode</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../RemeshingMode.cc" line="1549"/>
-        <source>Loop Subdivision Remeshing Mode</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../RemeshingMode.cc" line="1667"/>
-        <source>Dual Loop Style Remeshing</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../RemeshingMode.cc" line="1551"/>
-        <source>Enter Dual Loop Style Remeshing Remeshing Mode</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../RemeshingMode.cc" line="1576"/>
-        <source>Dual Loop Style Remeshing Remeshing Mode</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../RemeshingMode.cc" line="1553"/>
-        <source>Dual Loop Subdivision</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../RemeshingMode.cc" line="1554"/>
-        <source>Enter Dual Loop Subdivision Remeshing Mode</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../RemeshingMode.cc" line="1555"/>
-        <source>Dual Loop Subdivision Remeshing Mode</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../RemeshingMode.cc" line="1556"/>
-        <source>Global Extrude</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../RemeshingMode.cc" line="1557"/>
-        <source>Enter Global Extrude Remeshing Mode</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../RemeshingMode.cc" line="1558"/>
-        <source>Global Extrude Remeshing Mode</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../RemeshingMode.cc" line="1559"/>
-        <source>Checkerboard</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../RemeshingMode.cc" line="1560"/>
-        <source>Enter Checkerboard Remeshing Mode</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../RemeshingMode.cc" line="1561"/>
-        <source>Checkerboard Remeshing Mode</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../RemeshingMode.cc" line="1562"/>
-        <source>Dual Global Extrude</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../RemeshingMode.cc" line="1563"/>
-        <source>Enter Dual Global Extrude Remeshing Mode</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../RemeshingMode.cc" line="1564"/>
-        <source>Dual Global Extrude Remeshing Mode</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../RemeshingMode.cc" line="1565"/>
-        <source>Dual Checkerboard</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../RemeshingMode.cc" line="1566"/>
-        <source>Enter Dual Checkerboard Remeshing Mode</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../RemeshingMode.cc" line="1567"/>
-        <source>Dual Checkerboard Remeshing Mode</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../RemeshingMode.cc" line="1568"/>
-        <source>Pentagon Preserving</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../RemeshingMode.cc" line="1569"/>
-        <source>Enter Pentagon Preserving Remeshing Mode</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../RemeshingMode.cc" line="1570"/>
-        <source>Pentagon Preserving Remeshing Mode</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../RemeshingMode.cc" line="1571"/>
-        <source>Dual Pentagon Preserving</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../RemeshingMode.cc" line="1572"/>
-        <source>Enter Dual Pentagon Preserving Remeshing Mode</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../RemeshingMode.cc" line="1573"/>
-        <source>Dual Pentagon Preserving Remeshing Mode</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../RemeshingMode.cc" line="1574"/>
-        <source>Dual Loop Style</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../RemeshingMode.cc" line="1577"/>
-        <source>Loop Style</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../RemeshingMode.cc" line="1580"/>
-        <source>Fractal</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../RemeshingMode.cc" line="1581"/>
-        <source>Enter Fractal Remeshing Mode</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../RemeshingMode.cc" line="1582"/>
-        <source>Fractal Remeshing Mode</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../RemeshingMode.cc" line="1586"/>
-        <source>Doo Sabin BC</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../RemeshingMode.cc" line="1587"/>
-        <source>Enter Doo Sabin BC Remeshing Mode</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../RemeshingMode.cc" line="1588"/>
-        <source>Doo Sabin BC Remeshing Mode</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../RemeshingMode.cc" line="1589"/>
-        <source>Doo Sabin BC New</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../RemeshingMode.cc" line="1590"/>
-        <source>Enter Doo Sabin BC New Remeshing Mode</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../RemeshingMode.cc" line="1591"/>
-        <source>Doo Sabin BC New Remeshing Mode</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../RemeshingMode.cc" line="1592"/>
-        <source>Dome</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../RemeshingMode.cc" line="1593"/>
-        <source>Enter Dome Remeshing Mode</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../RemeshingMode.cc" line="1594"/>
-        <source>Dome Remeshing Mode</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../RemeshingMode.cc" line="1595"/>
-        <source>Subdivide Face</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../RemeshingMode.cc" line="1596"/>
-        <source>Enter Subdivide Face Remeshing Mode</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../RemeshingMode.cc" line="1597"/>
-        <source>Subdivide Face Remeshing Mode</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../RemeshingMode.cc" line="1599"/>
-        <source>Remeshing</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../RemeshingMode.cc" line="1600"/>
-        <source>3-Conversion</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../RemeshingMode.cc" line="1601"/>
-        <source>4-Conversion</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../RemeshingMode.cc" line="1602"/>
-        <source>5-Conversion</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../RemeshingMode.cc" line="1603"/>
-        <source>3-Preservation</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../RemeshingMode.cc" line="1604"/>
-        <source>4-Preservation</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../RemeshingMode.cc" line="1605"/>
-        <source>5-Preservation</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../RemeshingMode.cc" line="1606"/>
-        <source>6-Preservation</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../RemeshingMode.cc" line="1607"/>
-        <source>Miscellaneous</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../RemeshingMode.cc" line="1611"/>
-        <source>Use Faster Method</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../RemeshingMode.cc" line="1612"/>
-        <source>Create Dual</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../RemeshingMode.cc" line="1613"/>
-        <source>Dual Remeshing</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../RemeshingMode.cc" line="1705"/>
-        <source>Perform Remeshing</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../RemeshingMode.cc" line="1615"/>
-        <source>Root-3 Remeshing</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../RemeshingMode.cc" line="1617"/>
-        <source>Triangulate Remeshing</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../RemeshingMode.cc" line="1621"/>
-        <source>Stellation Remeshing</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../RemeshingMode.cc" line="1654"/>
-        <source>Offset:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../RemeshingMode.cc" line="1624"/>
-        <source>Double Stellation Remeshing</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../RemeshingMode.cc" line="1628"/>
-        <source>Honeycomb Remeshing</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../RemeshingMode.cc" line="1631"/>
-        <source>Vertex Truncation Remeshing</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../RemeshingMode.cc" line="1634"/>
-        <source>Dual 12.6.4 Remeshing</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../RemeshingMode.cc" line="1636"/>
-        <source>Linear Vertex Insertion Remeshing</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../RemeshingMode.cc" line="1638"/>
-        <source>Catmull-Clark Remeshing</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../RemeshingMode.cc" line="1640"/>
-        <source>Stellate with Edge Removal Remeshing</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../RemeshingMode.cc" line="1641"/>
-        <source>Check for multiple edges</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../RemeshingMode.cc" line="1643"/>
-        <source>Doo Sabin Remeshing</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../RemeshingMode.cc" line="896"/>
-        <source>Alpha:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../RemeshingMode.cc" line="1645"/>
-        <source>Corner Cutting Remeshing</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../RemeshingMode.cc" line="1646"/>
-        <source>Thickness:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../RemeshingMode.cc" line="1648"/>
-        <source>Modified Corner Cutting Remeshing</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../RemeshingMode.cc" line="1650"/>
-        <source>Simplest Remeshing Scheme</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../RemeshingMode.cc" line="1653"/>
-        <source>Pentagonalization Remeshing</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../RemeshingMode.cc" line="1656"/>
-        <source>Cubic Pentagonalization Remeshing</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../RemeshingMode.cc" line="1658"/>
-        <source>Dual Pentagonalization Remeshing</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../RemeshingMode.cc" line="1700"/>
-        <source>Length:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../RemeshingMode.cc" line="1663"/>
-        <source>Loop Subdivision Remeshing</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../RemeshingMode.cc" line="1683"/>
-        <source>Twist:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../RemeshingMode.cc" line="1684"/>
-        <source>Weight:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../RemeshingMode.cc" line="1669"/>
-        <source>Dual Loop Subdivision Remeshing</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../RemeshingMode.cc" line="1671"/>
-        <source>Global Extrude Remeshing</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../RemeshingMode.cc" line="1673"/>
-        <source>Checkerboard Remeshing</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../RemeshingMode.cc" line="1675"/>
-        <source>Dual Global Extrude Remeshing</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../RemeshingMode.cc" line="1677"/>
-        <source>Dual Checkerboard Remeshing</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../RemeshingMode.cc" line="1678"/>
-        <source>Scale Factor:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../RemeshingMode.cc" line="1680"/>
-        <source>Pentagon Preserving Remeshing</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../RemeshingMode.cc" line="1682"/>
-        <source>Dual Pentagon Preserving Remeshing</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../RemeshingMode.cc" line="1686"/>
-        <source>Dual Loop Style Six Remeshing</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../RemeshingMode.cc" line="1689"/>
-        <source>Loop Style Six Remeshing</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../RemeshingMode.cc" line="1690"/>
-        <source>Multiplier:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../RemeshingMode.cc" line="1692"/>
-        <source>Fractal Remeshing</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../RemeshingMode.cc" line="1703"/>
-        <source>Height:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../RemeshingMode.cc" line="1694"/>
-        <source>Curve:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../RemeshingMode.cc" line="1696"/>
-        <source>Double Stellate (Misc.)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../RemeshingMode.cc" line="1698"/>
-        <source>Doo Sabin BC Remeshing</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../RemeshingMode.cc" line="1704"/>
-        <source>Scale:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../RemeshingMode.cc" line="1702"/>
-        <source>Doo Sabin BC New Remeshing</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../RemeshingMode.cc" line="1706"/>
-        <source>Dome Remeshing</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../RemeshingMode.cc" line="1707"/>
-        <source>Use Quads (off -&gt; triangles)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../RemeshingMode.cc" line="1709"/>
-        <source>Subdivide Selected Faces</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -4070,24 +2641,37 @@ Do you want to save your changes?</source>
 <context>
     <name>ShortcutGetter</name>
     <message>
-        <location filename="../qshortcutdialog.cc" line="232"/>
+        <location filename="../qshortcutdialog.cc" line="220"/>
         <source>Shortcut getter</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qshortcutdialog.cc" line="239"/>
+        <location filename="../qshortcutdialog.cc" line="227"/>
         <source>Press the key combination
 you want to assign.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qshortcutdialog.cc" line="253"/>
+        <location filename="../qshortcutdialog.cc" line="241"/>
         <source>OK</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qshortcutdialog.cc" line="258"/>
+        <location filename="../qshortcutdialog.cc" line="245"/>
         <source>Cancel</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>SpliceCornersTool</name>
+    <message>
+        <location filename="../tools/splice_corners_tool.cc" line="19"/>
+        <source>No Options for this tool.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../tools/splice_corners_tool.cc" line="32"/>
+        <source>Splice Corners</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -4125,256 +2709,261 @@ you want to assign.</source>
     </message>
 </context>
 <context>
-    <name>TexturingMode</name>
+    <name>SubdivideEdgeTool</name>
     <message>
-        <location filename="../TexturingMode.cc" line="121"/>
-        <source>Tile Texturing</source>
+        <location filename="../tools/subdivide_edge_tool.cc" line="22"/>
+        <source># Subdivisions</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TexturingMode.cc" line="117"/>
-        <source>Enter Tile Texturing Mode</source>
+        <location filename="../tools/subdivide_edge_tool.cc" line="35"/>
+        <source>Subdivide Edge</source>
         <translation type="unfinished"></translation>
     </message>
+</context>
+<context>
+    <name>TexturingToolset</name>
     <message>
-        <location filename="../TexturingMode.cc" line="118"/>
-        <source>Tile Texturing Mode</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../TexturingMode.cc" line="115"/>
+        <location filename="../tools/texturing_toolset.cc" line="58"/>
         <source>Texturing</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../TexturingMode.cc" line="99"/>
-        <source>Tiling Number</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../TexturingMode.cc" line="120"/>
-        <source>Assign Texture
-Coordinates</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>TopModPreferences</name>
     <message>
-        <location filename="../TopModPreferences.cc" line="13"/>
+        <location filename="../TopModPreferences.cc" line="15"/>
         <source>TopMod Preferences</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TopModPreferences.cc" line="29"/>
+        <location filename="../TopModPreferences.cc" line="31"/>
         <source>OK</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TopModPreferences.cc" line="32"/>
+        <location filename="../TopModPreferences.cc" line="34"/>
         <source>Cancel</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TopModPreferences.cc" line="60"/>
+        <location filename="../TopModPreferences.cc" line="59"/>
         <source>Main</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TopModPreferences.cc" line="61"/>
+        <location filename="../TopModPreferences.cc" line="60"/>
         <source>Colors</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TopModPreferences.cc" line="62"/>
+        <location filename="../TopModPreferences.cc" line="61"/>
         <source>Shortcuts</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TopModPreferences.cc" line="63"/>
+        <location filename="../TopModPreferences.cc" line="62"/>
         <source>Stylesheets</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TopModPreferences.cc" line="66"/>
+        <location filename="../TopModPreferences.cc" line="65"/>
         <source>Script Editor</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TopModPreferences.cc" line="434"/>
+        <location filename="../TopModPreferences.cc" line="507"/>
         <source>Near Plane:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TopModPreferences.cc" line="438"/>
+        <location filename="../TopModPreferences.cc" line="512"/>
         <source>Far Plane:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TopModPreferences.cc" line="442"/>
+        <location filename="../TopModPreferences.cc" line="517"/>
         <source>Field of View:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TopModPreferences.cc" line="446"/>
+        <location filename="../TopModPreferences.cc" line="521"/>
         <source>Auto Save:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TopModPreferences.cc" line="452"/>
+        <location filename="../TopModPreferences.cc" line="528"/>
         <source>Auto Save Delay
 (in minutes):</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TopModPreferences.cc" line="456"/>
+        <location filename="../TopModPreferences.cc" line="533"/>
         <source>Incremental Save:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TopModPreferences.cc" line="462"/>
+        <location filename="../TopModPreferences.cc" line="540"/>
         <source>Max Incremental Saves:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TopModPreferences.cc" line="466"/>
+        <location filename="../TopModPreferences.cc" line="545"/>
         <source>Default Save Directory</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TopModPreferences.cc" line="476"/>
+        <location filename="../TopModPreferences.cc" line="566"/>
         <source>Command Completer
 Single Word Completion</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TopModPreferences.cc" line="482"/>
+        <location filename="../TopModPreferences.cc" line="573"/>
         <source>Single Click Extrusions</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TopModPreferences.cc" line="533"/>
+        <location filename="../TopModPreferences.cc" line="650"/>
         <source>Viewport Background:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TopModPreferences.cc" line="536"/>
+        <location filename="../TopModPreferences.cc" line="655"/>
         <source>Object Render Color:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TopModPreferences.cc" line="539"/>
+        <location filename="../TopModPreferences.cc" line="660"/>
         <source>Cool Light Color:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TopModPreferences.cc" line="542"/>
+        <location filename="../TopModPreferences.cc" line="665"/>
         <source>Warm Light Color:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TopModPreferences.cc" line="545"/>
+        <location filename="../TopModPreferences.cc" line="670"/>
         <source>Wireframe Color:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TopModPreferences.cc" line="548"/>
+        <location filename="../TopModPreferences.cc" line="675"/>
         <source>Silhouette Color:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TopModPreferences.cc" line="551"/>
+        <location filename="../TopModPreferences.cc" line="680"/>
         <source>Patch Boundary Color:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TopModPreferences.cc" line="554"/>
+        <location filename="../TopModPreferences.cc" line="685"/>
         <source>Selected Vertex Color:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TopModPreferences.cc" line="557"/>
+        <location filename="../TopModPreferences.cc" line="690"/>
         <source>Selected Edge Color:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TopModPreferences.cc" line="560"/>
+        <location filename="../TopModPreferences.cc" line="695"/>
         <source>Selected Face Color:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TopModPreferences.cc" line="563"/>
+        <location filename="../TopModPreferences.cc" line="700"/>
         <source>Vertex ID Bg Color:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TopModPreferences.cc" line="566"/>
+        <location filename="../TopModPreferences.cc" line="705"/>
         <source>Face ID Bg Color:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TopModPreferences.cc" line="569"/>
+        <location filename="../TopModPreferences.cc" line="710"/>
         <source>Edge ID Bg Color:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TopModPreferences.cc" line="572"/>
+        <location filename="../TopModPreferences.cc" line="715"/>
         <source>Normal Color:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TopModPreferences.cc" line="575"/>
+        <location filename="../TopModPreferences.cc" line="720"/>
         <source>Face Centroid Color:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TopModPreferences.cc" line="581"/>
+        <location filename="../TopModPreferences.cc" line="727"/>
         <source>Light Intensity:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TopModPreferences.cc" line="584"/>
+        <location filename="../TopModPreferences.cc" line="732"/>
         <source>Wireframe Thickness:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TopModPreferences.cc" line="587"/>
+        <location filename="../TopModPreferences.cc" line="737"/>
         <source>Vertex Size:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TopModPreferences.cc" line="590"/>
+        <location filename="../TopModPreferences.cc" line="742"/>
         <source>Silhouette Thickness:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TopModPreferences.cc" line="593"/>
+        <location filename="../TopModPreferences.cc" line="747"/>
         <source>Selected Vertex Size:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TopModPreferences.cc" line="596"/>
+        <location filename="../TopModPreferences.cc" line="752"/>
         <source>Selected Edge Thickness:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TopModPreferences.cc" line="599"/>
+        <location filename="../TopModPreferences.cc" line="757"/>
         <source>Normal Thickness:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TopModPreferences.cc" line="602"/>
+        <location filename="../TopModPreferences.cc" line="762"/>
         <source>Normal Length:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TopModPreferences.cc" line="605"/>
+        <location filename="../TopModPreferences.cc" line="766"/>
         <source>Face Centroid Thickness:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TopModPreferences.cc" line="609"/>
+        <location filename="../TopModPreferences.cc" line="771"/>
         <source>Reset</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../TopModPreferences.cc" line="556"/>
+        <source>Default Texture File
+Save Directory</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../TopModPreferences.cc" line="581"/>
+        <source>Face Area Sel.
+Tolerance:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../TopModPreferences.cc" line="587"/>
+        <source>Valence-2 Split
+Offset:</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

@@ -118,7 +118,7 @@ void TopModPreferences::saveSettings() {
   settings_->setValue("showStartupDialogAtStartup",
       ((MainWindow*) parent_)->getShowStartupDialogAtStartup());
   settings_->setValue("toolOptionsPos",
-      ((MainWindow*) parent_)->mToolOptionsDockWidget->pos());
+      ((MainWindow*) parent_)->tool_options_dock_->pos());
   settings_->setValue("CommandCompleterIndex",
       mCommandCompleterIndexToggle->checkState());
   settings_->setValue("SingleClickExtrude",
@@ -282,10 +282,10 @@ void TopModPreferences::readSettings() {
   ((MainWindow*) parent_)->move(pos);
   ((MainWindow*) parent_)->setShowStartupDialogAtStartup(
       (int) mShowStartupDialogAtStartup);
-  ((MainWindow*) parent_)->mToolOptionsDockWidget->setGeometry(10
+  ((MainWindow*) parent_)->tool_options_dock_->setGeometry(10
       + ((MainWindow*) parent_)->x(), ((MainWindow*) parent_)->y() + 150,
-      ((MainWindow*) parent_)->mToolOptionsDockWidget->width(),
-      ((MainWindow*) parent_)->mToolOptionsDockWidget->height());
+      ((MainWindow*) parent_)->tool_options_dock_->width(),
+      ((MainWindow*) parent_)->tool_options_dock_->height());
 #ifdef WITH_PYTHON
   ((MainWindow*)parent_)->mScriptEditorDockWidget->resize(scriptEditorSize.width(),scriptEditorSize.height());
   ((MainWindow*)parent_)->mScriptEditorDockWidget->move(scriptEditorPos);

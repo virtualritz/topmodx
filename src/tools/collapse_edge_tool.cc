@@ -30,6 +30,7 @@ CollapseEdgeTool::CollapseEdgeTool(QWidget *parent) {
   action_->setCheckable(true);
   action_->setStatusTip(tr("Collapse Edge"));
   action_->setToolTip(tr("Collapse Edge"));
+//  sm->registerAction(action_, "Basic Menu", "CTRL+N");
   connect(action_, SIGNAL(triggered()), this, SLOT(Activate()));
 }
 
