@@ -36,12 +36,6 @@ bool TopMod::event(QEvent *event) {
       return true;
     default:
       return QApplication::event(event);
+
   };
 }
-
-// #ifdef __APPLE__
-// bool TopMod::macEventFilter( EventHandlerCallRef caller, EventRef event ){
-// 	// std::cout << event << "\n";
-// 	return false;
-// }
-// #endif
