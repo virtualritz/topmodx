@@ -26,13 +26,13 @@
 #include "GLWidget.h"
 
 //the six modes are now separated into separate classes
-#include "BasicsMode.h"
-#include "ExtrusionsMode.h"
-#include "RemeshingMode.h"
-#include "HighgenusMode.h"
-#include "ConicalMode.h"
-#include "TexturingMode.h"
-#include "ExperimentalModes.h"
+#include "tools/basic_toolset.h"
+#include "tools/extrusion_toolset.h"
+#include "tools/remeshing_toolset.h"
+#include "tools/high_genus_toolset.h"
+#include "tools/conical_toolset.h"
+#include "tools/texturing_toolset.h"
+#include "tools/experimental_toolset.h"
 
 #ifdef QCOMPLETER
 //new command auto completion interface - like quicksilver inside topmod
@@ -69,7 +69,7 @@ typedef list<StringStreamPtr> StringStreamPtrList;
 
 class TopModPreferences;
 
-class BasicsMode;
+class BasicToolset;
 class ExtrusionsMode;
 class RemeshingMode;
 class ConicalMode;
@@ -526,7 +526,7 @@ public :
 	Mode getMode(){ return mode; };											//!< returns the current operation mode enum... this needs to return a string eventually. don't know how to do that yet
 	void setRemeshingScheme(RemeshingScheme scheme);		//!< switch the current remeshing scheme
 	void setSelectionMask(SelectionMask m);							//!< set the current selection mask (verts, edges, faces, multiple?)
-	void setToolOptions(QWidget *optionsWidget);				//!< set the current tool option widget to be displayed in mToolOptionsDockWidget
+	void setToolOptions(QWidget *optionsWidget);				//!< set the current tool option widget to be displayed in tool_options_dock_
 	void loadFile(QString fileName);										//!< load an OBJ or a DLFL file
 
 	/**
@@ -539,12 +539,12 @@ public :
 	QDockWidget *mScriptEditorDockWidget;					//!< docked script editor window for Python Scripting interface by Stuart
 #endif
 
-	QDockWidget *mToolOptionsDockWidget;					//!< the floating window that displays the current tool's options (spinboxes, checkboxes, etc...)
-	QStackedWidget *mToolOptionsStackedWidget;		//!< the widget that references each tool option widget and handles switching the display
+	QDockWidget *tool_options_dock_;					//!< the floating window that displays the current tool's options (spinboxes, checkboxes, etc...)
+	QStackedWidget *tool_options_stack_;		//!< the widget that references each tool option widget and handles switching the display
 
-	QDockWidget *mStartupDialogDockWidget;
-	QWidget *mStartupDialogWidget;
-	QGridLayout *mStartupDialogLayout;
+	QDockWidget *startup_dialog_dock_;
+	QWidget *startup_dialog_widget_;
+	QGridLayout *startup_dialog_layout_;
 	bool mShowStartupDialogAtStartup;
 	QLabel *quicktimeLabel;
 	QLabel *downloadQuicktimeLabel;
@@ -563,18 +563,18 @@ protected:
 	static PatchRendererPtr patch;								//!< Bezier Patch Display
 	static ColorableRendererPtr colorable;				//!< face colors... new ... by dave... 11/07
 
-	BasicsMode *mBasicsMode;											//!< widget that holds all displayable option widgets for basic operating modes (InsertEdge, DeleteEdge, CollapseEdge, ConnectEdges, etc...)
-	ExtrusionsMode *mExtrusionsMode;								//!< widget that holds all displayable option widgets for the extrusion operation modes
-	ConicalMode *mConicalMode;										//!< for future implementation of Ozgur's Conical/Planar modeling modes.
-	RemeshingMode *mRemeshingMode;								//!< widget that holds all displayable option widgets for all remeshing modes
-	HighgenusMode *mHighgenusMode;								//!< high genus operation options (e.g. wireframe, sierpinsky, add handle)
-	TexturingMode *mTexturingMode;								//!< \todo  texturing mode widgets (not working at the moment)
-	ExperimentalMode *mExperimentalMode;					//!< experimental mode widgets like the new paint bucket tool dave 11.07
+	BasicToolset *basic_toolset_;											//!< widget that holds all displayable option widgets for basic operating modes (InsertEdge, DeleteEdge, CollapseEdge, ConnectEdges, etc...)
+	ExtrusionToolset *extrusion_toolset_;								//!< widget that holds all displayable option widgets for the extrusion operation modes
+	ConicalToolset *conical_toolset_;										//!< for future implementation of Ozgur's Conical/Planar modeling modes.
+	RemeshingToolset *remeshing_toolset_;								//!< widget that holds all displayable option widgets for all remeshing modes
+	HighGenusToolset *high_genus_toolset_;								//!< high genus operation options (e.g. wireframe, sierpinsky, add handle)
+	TexturingToolset *texturing_toolset_;								//!< \todo  texturing mode widgets (not working at the moment)
+	ExperimentalToolset *experimental_toolset_;					//!< experimental mode widgets like the new paint bucket tool dave 11.07
 
 	QShortcutManager *sm;													//!< Stuff for the shortcut manager test
 
-	QStandardItemModel *mActionModel; 						//!< stores all the actions in topmod. sent to CommandCompleter class in order to create an index of the possible actions based on the text and icon associated with each action
-	QWidget *mActionListWidget;										//!< widget that stores all actions availabe in topmod for CommandCompleter autocompletion functionality
+	QStandardItemModel *action_model_; 						//!< stores all the actions in topmod. sent to CommandCompleter class in order to create an index of the possible actions based on the text and icon associated with each action
+	QWidget *action_list_widget_;										//!< widget that stores all actions availabe in topmod for CommandCompleter autocompletion functionality
 
 private:
 	//document modified
@@ -599,7 +599,7 @@ private:
 	void initializeHelp();												//!< initialize the help files / create index / load html files
 
  	void createStartupDialog();										//!< initialize the startup screen that will show links to beginner video tutorials / will include link to quicktime website and "disable checkbox"
-	void initializeAnimatedHelp();								//!< initialize the in-context help animated screen captures. these will display in a small floatable window to the right
+	//void initializeAnimatedHelp();								//!< initialize the in-context help animated screen captures. these will display in a small floatable window to the right
 
 	//QAssistantClient *mAssistantClient;						//!< Qt help file viewer, will display html files created by DocBook xml transformation
 
@@ -800,7 +800,7 @@ private:
 	QAction *mEditToolBarAct;
 	QAction *mSelectionMaskToolBarAct;
 	QAction *mPrimitivesToolBarAct;
-	QAction *mToolsToolBarAct;
+//	QAction *mToolsToolBarAct;
 	QAction *mExtrusionToolBarAct;
 	QAction *mConicalToolBarAct;
 	QAction *mHighgenusToolBarAct;
@@ -817,7 +817,7 @@ private:
 	QToolBar *mEditToolBar;
 	QToolBar *mSelectionMaskToolBar;
 	QToolBar *mPrimitivesToolBar;
-	QToolBar *mToolsToolBar;
+//	QToolBar *mToolsToolBar;
 	QToolBar *mExtrusionToolBar;
 	QToolBar *mConicalToolBar;
 	QToolBar *mHighgenusToolBar;
@@ -826,7 +826,7 @@ private:
 	QToolBar *mRemeshingToolBar;
 
 	//QActionGroups
-	QActionGroup *mToolsActionGroup;
+	QActionGroup *tools_action_group_;
 	QActionGroup *mModeActionGroup;
 	QActionGroup *mRendererActionGroup;
 	QActionGroup *mRemeshingActionGroup;
@@ -853,12 +853,12 @@ private:
 	QStringList mCommandList;
 
 	//popup helper animations
-	QMovie *mAnimatedHelpMovie;
-	QLabel *mAnimatedHelpLabel;
-	QWidget *mAnimatedHelpWidget;
-	QVBoxLayout *mAnimatedHelpLayout;
-	QDockWidget *mAnimatedHelpDockWidget;
-	QAction *mShowAnimatedHelpAct;
+//	QMovie *mAnimatedHelpMovie;
+//	QLabel *mAnimatedHelpLabel;
+//	QWidget *mAnimatedHelpWidget;
+//	QVBoxLayout *mAnimatedHelpLayout;
+//	QDockWidget *mAnimatedHelpDockWidget;
+//	QAction *mShowAnimatedHelpAct;
 
 	QDoubleSpinBox *mSpinBoxOne,*mSpinBoxTwo,*mSpinBoxThree,*mSpinBoxFour,*mSpinBoxFive,*mSpinBoxSix;
 
@@ -936,7 +936,7 @@ public slots:
 
 	void getCommand(); 										//!< this will open up the quicksilver like interface and accept a value from the user
 
-	void setAnimatedHelpImage();
+//	void setAnimatedHelpImage();
 
 	void showAllToolBars();
 	void hideAllToolBars();
@@ -1008,7 +1008,7 @@ public slots:
 	void collapseSelectedEdges();																			//!< collapse selected edges
   void deleteEdge(DLFLEdgePtr edgeptr);
 
-	//Basics Widget
+	//Basic Toolset callback functions dave
 	void toggleDeleteEdgeCleanupFlag(int state);
 	void changeNumSubDivs(double value);
 	void changeCornerCuttingAlpha(double value);

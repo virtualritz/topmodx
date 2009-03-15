@@ -371,7 +371,7 @@ void MainWindow::toggleWireframeSplit(int state) {
 }
 
 
-// Basics.
+// BasicToolset callback functions
 void MainWindow::toggleDeleteEdgeCleanupFlag(int state) {
 	MainWindow::delete_edge_cleanup = bool(state);
 }
@@ -1731,58 +1731,58 @@ void MainWindow::getCommand(){
 	mCommandCompleter->setFocus(Qt::PopupFocusReason);
 	// QMessageBox::about(this, tr("%1").arg(text),tr("%1").arg(mCommandList.indexOf(text)));
 	if (i > -1)
-		mActionListWidget->actions().at(i)->activate(QAction::Trigger);
+		action_list_widget_->actions().at(i)->activate(QAction::Trigger);
 	#endif
 }
 
-void MainWindow::initializeAnimatedHelp(){
+//void MainWindow::initializeAnimatedHelp(){
+//
+//	mAnimatedHelpWidget = new QWidget(this);
+//	// QSplashScreen *w = new QSplashScreen(this);
+//	mAnimatedHelpLayout = new QVBoxLayout;
+//
+//	mAnimatedHelpMovie = new QMovie(this);
+//	mAnimatedHelpMovie->setCacheMode(QMovie::CacheAll);
+//	mAnimatedHelpMovie->setBackgroundColor(QColor(255,255,255,255));
+//
+//	mAnimatedHelpLabel = new QLabel(tr("No movie loaded"));
+//	mAnimatedHelpLabel->setAlignment(Qt::AlignCenter);
+//	// mAnimatedHelpLabel->setSizePolicy(QSizePolicy::Ignored, QSizePolicy::Ignored);
+//	// mAnimatedHelpLabel->setBackgroundRole(QPalette::Dark);
+//	// mAnimatedHelpLabel->setAutoFillBackground(true);
+//
+//	mAnimatedHelpLayout->addWidget(mAnimatedHelpLabel);
+//	mAnimatedHelpLayout->addStretch(1);
+//	mAnimatedHelpLayout->setMargin(0);
+//	mAnimatedHelpWidget->setLayout(mAnimatedHelpLayout);
+//
+//	mAnimatedHelpMovie->stop();
+//  mAnimatedHelpLabel->setMovie(mAnimatedHelpMovie);
+//  // mAnimatedHelp->setFileName("images/insert_edge.mng");
+//	// w->move(QCursor::pos());
+//	// w->show();
+//
+//	// create the dockwidget, set it to the right side
+//	mAnimatedHelpDockWidget = new QDockWidget(tr("TopMod Animated Help"), this);
+//	mAnimatedHelpDockWidget->setAllowedAreas(Qt::NoDockWidgetArea);
+//	mAnimatedHelpDockWidget->setWidget(mAnimatedHelpWidget);
+//	// addDockWidget(Qt::RightDockWidgetArea, mAnimatedHelpDockWidget);
+//	mAnimatedHelpDockWidget->hide();
+//	mAnimatedHelpDockWidget->setFloating(true);
+//	mAnimatedHelpDockWidget->setFeatures(QDockWidget::DockWidgetMovable | QDockWidget::DockWidgetClosable | QDockWidget::DockWidgetFloatable);
+//	// mAnimatedHelpDockWidget->setResizeEnabled(false);
+//	//sizing
+//	mAnimatedHelpDockWidget->setMinimumSize(200,200);
+//	mAnimatedHelpDockWidget->setMaximumSize(200,200);
+//
+//	//fix positioning later
+//	mAnimatedHelpDockWidget->move(width() , 150+mToolOptionsDockWidget->height()+200);
+//}
 
-	mAnimatedHelpWidget = new QWidget(this);
-	// QSplashScreen *w = new QSplashScreen(this);
-	mAnimatedHelpLayout = new QVBoxLayout;
-
-	mAnimatedHelpMovie = new QMovie(this);
-	mAnimatedHelpMovie->setCacheMode(QMovie::CacheAll);
-	mAnimatedHelpMovie->setBackgroundColor(QColor(255,255,255,255));
-
-	mAnimatedHelpLabel = new QLabel(tr("No movie loaded"));
-	mAnimatedHelpLabel->setAlignment(Qt::AlignCenter);
-	// mAnimatedHelpLabel->setSizePolicy(QSizePolicy::Ignored, QSizePolicy::Ignored);
-	// mAnimatedHelpLabel->setBackgroundRole(QPalette::Dark);
-	// mAnimatedHelpLabel->setAutoFillBackground(true);
-
-	mAnimatedHelpLayout->addWidget(mAnimatedHelpLabel);
-	mAnimatedHelpLayout->addStretch(1);
-	mAnimatedHelpLayout->setMargin(0);
-	mAnimatedHelpWidget->setLayout(mAnimatedHelpLayout);
-
-	mAnimatedHelpMovie->stop();
-  mAnimatedHelpLabel->setMovie(mAnimatedHelpMovie);
-  // mAnimatedHelp->setFileName("images/insert_edge.mng");
-	// w->move(QCursor::pos());
-	// w->show();
-
-	// create the dockwidget, set it to the right side
-	mAnimatedHelpDockWidget = new QDockWidget(tr("TopMod Animated Help"), this);
-	mAnimatedHelpDockWidget->setAllowedAreas(Qt::NoDockWidgetArea);
-	mAnimatedHelpDockWidget->setWidget(mAnimatedHelpWidget);
-	// addDockWidget(Qt::RightDockWidgetArea, mAnimatedHelpDockWidget);
-	mAnimatedHelpDockWidget->hide();
-	mAnimatedHelpDockWidget->setFloating(true);
-	mAnimatedHelpDockWidget->setFeatures(QDockWidget::DockWidgetMovable | QDockWidget::DockWidgetClosable | QDockWidget::DockWidgetFloatable);
-	// mAnimatedHelpDockWidget->setResizeEnabled(false);
-	//sizing
-	mAnimatedHelpDockWidget->setMinimumSize(200,200);
-	mAnimatedHelpDockWidget->setMaximumSize(200,200);
-
-	//fix positioning later
-	mAnimatedHelpDockWidget->move(width() , 150+mToolOptionsDockWidget->height()+200);
-}
-
-void MainWindow::setAnimatedHelpImage(){
-  mAnimatedHelpMovie->setFileName("images/insert_edge.mng");
-  mAnimatedHelpMovie->start();
-}
+//void MainWindow::setAnimatedHelpImage(){
+//  mAnimatedHelpMovie->setFileName("images/insert_edge.mng");
+//  mAnimatedHelpMovie->start();
+//}
 
 void MainWindow::deleteEdge(DLFLEdgePtr edgeptr){
   // Fenghui's simple profiler for DeleteEdge operation.
@@ -2435,12 +2435,12 @@ void MainWindow::reorderSelectedFaces(){
 
 void MainWindow::toggleFullScreen(){
 	// go back into normal screen mode
-	if (windowState() == Qt::WindowFullScreen && !mToolsToolBar->isVisible()) {
+	if (windowState() == Qt::WindowFullScreen && !basic_toolset_->toolbar_->isVisible()) {
 		setWindowState(Qt::WindowNoState);
 		mEditToolBar->setVisible(true);
 		//mSelectionMaskToolBar->toggleViewAction();
 		mPrimitivesToolBar->setVisible(true);
-		mToolsToolBar->setVisible(true);
+		basic_toolset_->toolbar_->setVisible(true);
 		mExtrusionToolBar->setVisible(true);
 		//mConicalToolBar->toggleViewAction();
 		mHighgenusToolBar->setVisible(true);
@@ -2454,7 +2454,7 @@ void MainWindow::toggleFullScreen(){
 		mStatusBar->hide();
 		mEditToolBar->setVisible(false);
 		mPrimitivesToolBar->setVisible(false);
-		mToolsToolBar->setVisible(false);
+		basic_toolset_->toolbar_->setVisible(false);
 		mExtrusionToolBar->setVisible(false);
 		mHighgenusToolBar->setVisible(false);
 		mTexturingToolBar->setVisible(false);

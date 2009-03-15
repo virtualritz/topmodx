@@ -199,13 +199,13 @@ HEADERS += \
     ui_stylesheeteditor.h \
     editor.h \
     PythonHighlighter.h \
-    BasicsMode.h \
-    ExtrusionsMode.h \
-    RemeshingMode.h \
-    ConicalMode.h \
-    HighgenusMode.h \
-    TexturingMode.h \
-    ExperimentalModes.h \
+    tools/basic_toolset.h \
+    tools/extrusion_toolset.h \
+    tools/remeshing_toolset.h \
+    tools/conical_toolset.h \
+    tools/high_genus_toolset.h \
+    tools/texturing_toolset.h \
+    tools/experimental_toolset.h \
     DLFLSelection.h \
     Viewport.h \
     TMPatchFace.h \
@@ -253,13 +253,13 @@ SOURCES += tools/insert_edge_tool.cc \
     qshortcutmanager.cc \
     editor.cc \
     PythonHighlighter.cc \
-    BasicsMode.cc \
-    ExtrusionsMode.cc \
-    RemeshingMode.cc \
-    ConicalMode.cc \
-    HighgenusMode.cc \
-    TexturingMode.cc \
-    ExperimentalModes.cc \
+    tools/basic_toolset.cc \
+    tools/extrusion_toolset.cc \
+    tools/remeshing_toolset.cc \
+    tools/conical_toolset.cc \
+    tools/high_genus_toolset.cc \
+    tools/texturing_toolset.cc \
+    tools/experimental_toolset.cc \
     DLFLLighting.cc \
     DLFLRenderer.cc \
     DLFLSelection.cc \

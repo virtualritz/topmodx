@@ -45,16 +45,17 @@ void MainWindow::undoPush(void)
   if ( undoList.size() > undolimit ) {
 		StringStreamPtr temp = undoList.front();
 		StringStreamPtr tempmtl = undoMtlList.front();
-		delete temp; delete tempmtl;
+		if (!temp)delete temp;
+		if (!tempmtl) delete tempmtl;
 		undoList.pop_front();
   }
 
 	StringStreamPtr curobj = new StringStream;
 	StringStreamPtr curobjmtl = new StringStream;
-	
+
 	object.writeDLFL(*curobj, *curobjmtl);
 	// object.writeMTL(*curobjmtl);
-	
+
 	undoList.push_back(curobj);
 	undoMtlList.push_back(curobjmtl);
 	// Evertime a new operation is done, previous state is put into UndoList
@@ -64,8 +65,8 @@ void MainWindow::undoPush(void)
 }
 
 void MainWindow::undo(void) {
-	
-	if ( !undoList.empty() ) {		
+
+	if ( !undoList.empty() ) {
  		// Restore previous object
 		// Put current object to end of redo list
 		// Take last element of undo list and re-create current object
@@ -80,13 +81,13 @@ void MainWindow::undo(void) {
 
 		StringStreamPtr oldobj = undoList.back();
 		StringStreamPtr oldobjmtl = undoMtlList.back();
-		
+
 		object.readDLFL(*oldobj,*oldobjmtl,true);
 		// object.readMTL(*oldobj,true);
 
 		undoList.pop_back(); delete oldobj;
 		undoMtlList.pop_back(); delete oldobjmtl;
-		
+
     cout << "Recompute patches for undo...." << endl;
 		active->recomputePatches();
     cout << "done!" << endl;
@@ -96,7 +97,7 @@ void MainWindow::undo(void) {
 		redraw();
 		/* is document modified? - dave */
 		setModified(true);
-		mIsPrimitive = false; 
+		mIsPrimitive = false;
 	}
 	if (undoList.empty()) {
 		setModified(false);
@@ -106,7 +107,7 @@ void MainWindow::undo(void) {
 }
 
 void MainWindow::redo(void) {
-	
+
   if ( !redoList.empty() ) {
 		// Redo previously undone operation
 		// Put current object to end of undo list
